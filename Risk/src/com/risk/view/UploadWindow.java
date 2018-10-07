@@ -7,6 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * Map Upload Window for the user to upload .map file. It validates and prints the map.
+ * 
+ * @author Hareesh Kavumkulath
+ * @version 1.0
+ * 
+ * Created Date: 10-07-2018
+ * Last Updated Date:
+ * Last Updated By:
+ *
+ */
 public class UploadWindow {
 
 
