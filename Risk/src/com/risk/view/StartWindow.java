@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
 
 /**
  * Starting window of the Risk Game where the user can start the game or upload the Map
@@ -62,7 +63,7 @@ public class StartWindow {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
-		JButton btnStart = new JButton("Start game");
+		JButton btnStart = new JButton("Start Game");
 		/**
 		 * event for the button startGame
 		 */
@@ -71,7 +72,7 @@ public class StartWindow {
 				
 			}
 		});
-		btnStart.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnStart.setFont(new Font("Calibri", Font.PLAIN, 20));
 		btnStart.setBounds(1500, 700, 128, 50);
 		btnStart.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		
@@ -83,10 +84,10 @@ public class StartWindow {
 			public void actionPerformed(ActionEvent e) {
 				//direct to the UploadWindow page
 				UploadWindow window = new UploadWindow();
-				window.main(null);
+				window.main();
 			}
 		});
-		btnUpload.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnUpload.setFont(new Font("Calibri", Font.PLAIN, 20));
 		btnUpload.setBounds(1500, 700, 128, 50);
 		btnUpload.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		
@@ -95,7 +96,7 @@ public class StartWindow {
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(btnUpload);
 		
-		frame.getContentPane().add(panel);
+		frame.getContentPane().add(panel, BorderLayout.EAST);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
