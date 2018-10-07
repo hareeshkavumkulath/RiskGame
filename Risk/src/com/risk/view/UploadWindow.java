@@ -1,4 +1,4 @@
-package swingInterface;
+package com.risk.view;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
