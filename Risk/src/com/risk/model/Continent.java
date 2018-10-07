@@ -17,6 +17,7 @@ public class Continent {
 	String name;
 	int numberOfArmies;
 	ArrayList<Continent> adjacentContinents = new ArrayList<Continent>();
+	ArrayList<Territory> territories = new ArrayList<Territory>();
 	
 	/**
 	 * Construct a continent with the name and number of Armies
@@ -51,6 +52,14 @@ public class Continent {
 
 	public void setAdjacentContinents(ArrayList<Continent> adjacentContinents) {
 		this.adjacentContinents = adjacentContinents;
+	}
+
+	public ArrayList<Territory> getTerritories() {
+		return territories;
+	}
+
+	public void setTerritories(ArrayList<Territory> territories) {
+		this.territories = territories;
 	}	
 
 }
