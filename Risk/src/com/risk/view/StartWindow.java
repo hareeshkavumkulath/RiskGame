@@ -4,6 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+/**
+ * Starting window of the Risk Game where the user can start the game or upload the Map
+ * 
+ * @author Hareesh Kavumkulath
+ * @version 1.0
+ * 
+ * Created Date: 06-10-2018
+ *
+ */
 public class StartWindow {
 
 	private JFrame frame;
