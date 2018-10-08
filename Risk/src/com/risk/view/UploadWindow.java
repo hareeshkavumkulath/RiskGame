@@ -73,8 +73,12 @@ public class UploadWindow {
         frame.getContentPane().add(uploadButton);
 
         JTextPane fileInfo = new JTextPane();
-        fileInfo.setBounds(46, 148, 1000, 2000);
-        frame.getContentPane().add(fileInfo);
+        fileInfo.setBounds(46, 148, 300, 500);
+        
+		JScrollPane scrollpane = new JScrollPane(fileInfo);
+		scrollpane.setBounds(40, 100, 300, 500);
+		scrollpane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		frame.add(scrollpane);
 
         JPanel panel = new JPanel();
         panel.setBounds(809, 548, -784, -544);
