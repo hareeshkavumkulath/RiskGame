@@ -389,7 +389,7 @@ public class MapController {
 	}
 	
 	/**
-	 * Remove continent if the user wants to remove it. Removes continent from the array
+	 * Remove continent if the user wants to remove it. Removes continent from the arraylist
 	 * 
 	 * @param continent
 	 * @return
@@ -397,11 +397,29 @@ public class MapController {
 	public static boolean removeContinent(Continent continent) {
 		boolean isRemoved = true;
 		try {
+			//Remove adjacency between continents
+			removeContinentAdjacency(continent);
 			continentArray.remove(continent);
 		}catch(Exception e) {
 			isRemoved = false;
 		}
 		return isRemoved;
+	}
+	
+	/**
+	 * Remove adjacency of continent
+	 * <p>If the user wants to delete the continent X from the map. If it has adjacency with continents A, B and C.
+	 * Then, go to continent A, B and C and remove X from their adjacent continents
+	 * </p> 
+	 * 
+	 * @param continent
+	 */
+	public static void removeContinentAdjacency(Continent continent) {
+		for(int i=0;i<continentArray.size();i++) {
+			if(continentArray.get(i).getAdjacentContinents().contains(continent)) {
+				continentArray.get(i).getAdjacentContinents().remove(continent);
+			}
+		}
 	}
 
 }
