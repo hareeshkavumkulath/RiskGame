@@ -57,47 +57,27 @@ public class StartWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1207, 726);
-		frame.setMinimumSize(new Dimension(200, 200));
-		
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		frame.setTitle("Risk Game");
+		frame.setBounds(100, 100, 419, 244);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JButton btnStart = new JButton("Start Game");
-		/**
-		 * event for the button startGame
-		 */
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
 		btnStart.setFont(new Font("Calibri", Font.PLAIN, 20));
-		btnStart.setBounds(1500, 700, 128, 50);
-		btnStart.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		btnStart.setBounds(114, 34, 161, 45);
+		frame.getContentPane().add(btnStart);
 		
-		JButton btnUpload = new JButton("Upload");
-		/**
-		 * event for the button upload 
-		 */
+		JButton btnUpload = new JButton("Upload Map");
+		btnUpload.setFont(new Font("Calibri", Font.PLAIN, 20));
+		btnUpload.setBounds(114, 111, 161, 45);
+		frame.getContentPane().add(btnUpload);
+		
 		btnUpload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//direct to the UploadWindow page
-				UploadWindow window = new UploadWindow();
-				window.main();
+				UploadWindow uploadWindow = new UploadWindow();
+				uploadWindow.main();
 			}
 		});
-		btnUpload.setFont(new Font("Calibri", Font.PLAIN, 20));
-		btnUpload.setBounds(1500, 700, 128, 50);
-		btnUpload.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		
-		panel.add(Box.createVerticalGlue());
-		panel.add(btnStart);
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		panel.add(btnUpload);
-		
-		frame.getContentPane().add(panel, BorderLayout.EAST);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 }
