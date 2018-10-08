@@ -143,11 +143,11 @@ public class MapController {
 					territoryInfo[i].trim();
 					String[] territoryDetails = territoryInfo[i].split(",");
 		    		Territory newTerritory = new Territory(territoryDetails[0], territoryDetails[3]);
-		    		ArrayList<String> adjacentCountries = new ArrayList<String>();
+		    		ArrayList<String> adjacentTerritories = new ArrayList<String>();
 		    		for(int j=4;j<territoryDetails.length;j++) {
-		    			adjacentCountries.add(territoryDetails[j]);
+		    			adjacentTerritories.add(territoryDetails[j]);
 		    		}
-		    		newTerritory.setAdjacentTerritories(adjacentCountries);
+		    		newTerritory.setAdjacentTerritories(adjacentTerritories);
 		    		territoriesArray.add(newTerritory);
 				}
 				isValidTerritories = true;
@@ -163,7 +163,7 @@ public class MapController {
 	}
 	
 	/**
-	 * Add each countries to the corresponding Continents
+	 * Add each Territories to the corresponding Continents
 	 * 
 	 * @return true if all territories are assigned to Continents, if there is any territory left return false
 	 */
@@ -184,11 +184,11 @@ public class MapController {
 			}
 		}catch(Exception e) {
 			valid = false;
-			message.append("There is some error in attaching countries to continents");
+			message.append("There is some error in attaching territories to continents");
 		}
 		if(count != territoriesArray.size()) {
 			valid = false;
-			message.append("Unable to add some countries to continents");
+			message.append("Unable to add some territories to continents");
 		}else {
 			valid = true;
 		}
@@ -265,7 +265,7 @@ public class MapController {
 			isConnected = true;
 		}catch(Exception e) {
 			isConnected = false;
-			message.append("There is some error connecting countries/continents. Please try again");
+			message.append("There is some error connecting territories/continents. Please try again");
 		}
 		return isConnected;
 	}
@@ -274,7 +274,7 @@ public class MapController {
 	 * Check whether the adjacent territory of a territory located in the same continent
 	 * 
 	 * @param continentName
-	 * @param adjacentCountry
+	 * @param adjacentTerritory
 	 * @return 
 	 */
 	private static boolean isAdjacentTerritoryInSameContinent(String continentName, String adjacentTerritory) {
@@ -327,32 +327,32 @@ public class MapController {
 	}
 	
 	/**
-	 * Check whether all the countries are well connected in the Map
-	 * Used DFS algorithm to check the connection and traversal of each countries
+	 * Check whether all the territories are well connected in the Map
+	 * Used DFS algorithm to check the connection and traversal of each territories
 	 *  
 	 * @return
 	 */
 	private static boolean validateContinent() {
 		boolean isConnected = false;
-		int numberOfCountries = territoriesArray.size();
+		int numberOfTerritories = territoriesArray.size();
 		ArrayList<String> visitedTerritories = new ArrayList<String>();
 		ArrayList<String> checkedTerritories = new ArrayList<String>();
-		Territory country = (Territory)territoriesArray.get(1);
-		visitedTerritories.add(country.getName());
-		checkedTerritories.add(country.getName());
+		Territory territory = (Territory)territoriesArray.get(1);
+		visitedTerritories.add(territory.getName());
+		checkedTerritories.add(territory.getName());
 		int index = 1;
-		System.out.print(country.getName()+"===");
+		System.out.print(territory.getName()+"===");
 		while(!checkedTerritories.isEmpty()) {
 			Territory newTerritory = getTerritory(checkedTerritories.get(0));
 			System.out.println(index + "==" + newTerritory.getName());
 			for(int k = 0;k < newTerritory.getAdjacentTerritories().size();k++) {
-				String adjacentCountry = newTerritory.getAdjacentTerritories().get(k);
-				if(visitedTerritories.indexOf(adjacentCountry) < 0 ) {
-					visitedTerritories.add(adjacentCountry);
-					System.out.print(adjacentCountry+",");
+				String adjacentTerritory = newTerritory.getAdjacentTerritories().get(k);
+				if(visitedTerritories.indexOf(adjacentTerritory) < 0 ) {
+					visitedTerritories.add(adjacentTerritory);
+					System.out.print(adjacentTerritory+",");
 				}
 			}
-			if(visitedTerritories.size() != numberOfCountries) {
+			if(visitedTerritories.size() != numberOfTerritories) {
 				checkedTerritories.remove(0);
 				try {
 					checkedTerritories.add(visitedTerritories.get(index));
@@ -366,7 +366,7 @@ public class MapController {
 			}
 		}
 		if(!isConnected) {
-			message.append("Countries are not well connected");
+			message.append("Territories are not well connected");
 			isConnected = false;
 		}
 		return isConnected;		
@@ -379,13 +379,144 @@ public class MapController {
 	 * @return
 	 */
 	public static Territory getTerritory(String territoryName) {
-		Territory country = null;
+		Territory territory = null;
 		for(int i = 0;i<territoriesArray.size();i++) {
 			if(territoryName.equals(territoriesArray.get(i).getName())) {
-				country = (Territory)territoriesArray.get(i);
+				territory = (Territory)territoriesArray.get(i);
 			}
 		}
-		return country;
+		return territory;
+	}
+	
+	/**
+	 * Remove continent if the user wants to remove it. Removes continent from the arraylist
+	 * <p>It consists of following processes</p>
+	 * <ul>
+	 * <li>Remove adjacency between continents</li>
+	 * <li>Remove all countries from the continent one by one</li>
+	 * </ul>
+	 * 
+	 * @param continent
+	 * @return
+	 */
+	public static boolean removeContinent(Continent continent) {
+		boolean isRemoved = true;
+		try {
+			//Remove adjacency between continents
+			removeContinentAdjacency(continent);
+			//Remove all territories from the continent
+			removeTerritoriesFromContinent(continent);
+			continentArray.remove(continent);
+		}catch(Exception e) {
+			isRemoved = false;
+		}
+		return isRemoved;
+	}
+	
+	/**
+	 * Remove adjacency of continent
+	 * <p>If the user wants to delete the continent X from the map. If it has adjacency with continents A, B and C.
+	 * Then, go to continent A, B and C and remove X from their adjacent continents
+	 * </p> 
+	 * 
+	 * @param continent
+	 */
+	public static void removeContinentAdjacency(Continent continent) {
+		for(int i=0;i<continentArray.size();i++) {
+			if(continentArray.get(i).getAdjacentContinents().contains(continent)) {
+				continentArray.get(i).getAdjacentContinents().remove(continent);
+			}
+		}
+	}
+	
+	/**
+	 * Remove all territories of the continent
+	 * 
+	 * @param continent
+	 */
+	public static void removeTerritoriesFromContinent(Continent continent) {
+		ArrayList<Territory> territoriesInContinent = continent.getTerritories();
+		for(int i=0;i<territoriesInContinent.size();i++) {
+			removeTerritory(territoriesInContinent.get(i));
+		}
+	}
+	
+	/**
+	 * Remove a single territory
+	 * <p>It consists of following processes</p>
+	 * <ul>
+	 * <li>Remove adjacency between territories</li>
+	 * <li>Remove the territory from the continent</li>
+	 * </ul>
+	 * 
+	 * @param territory
+	 * @return
+	 */
+	public static boolean removeTerritory(Territory territory) {
+		boolean isRemoved = true;
+		try {
+			String territoryName = territory.getName();
+			for(int i = 0;i<territoriesArray.size();i++) {
+				Territory newTerritory = (Territory)territoriesArray.get(i);
+				if(territory.equals(newTerritory)) {
+					ArrayList<String> adjacentTerritories = newTerritory.getAdjacentTerritories();
+					for(int j = 0;j<adjacentTerritories.size();j++) {
+						String adjacenTerritoryName = adjacentTerritories.get(j);
+						// Remove the adjacency between two territories
+						removeTerritoryAdjacency(territoryName, adjacenTerritoryName);
+					}
+				}
+			}
+			Continent continent = findContinentOfTerritory(territory);
+			removeTerritoryFromContinent(continent, territory);
+			territoriesArray.remove(territory);
+		}catch(Exception e) {
+			isRemoved = false;
+		}
+		return isRemoved;
+	}
+	
+	/**
+	 * Remove the adjacency between two territories.
+	 * <p> If the user wants to delete territory A, and if A has adjacency with B and C, then go to the territories
+	 * B and C and delete A from their adjacent territories list.
+	 * </p>
+	 * 
+	 * @param territoryName
+	 * @param adjacentTerritoryName
+	 */
+	public static void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
+		for(int i = 0;i<territoriesArray.size();i++) {
+			if(adjacentTerritoryName.equals(territoriesArray.get(i).getName())) {
+				territoriesArray.get(i).getAdjacentTerritories().remove(territoryName);
+			}
+		}
+	}
+	
+	/**
+	 * Find the continent of a territory
+	 * 
+	 * @param territory
+	 * @return continent
+	 */
+	public static Continent findContinentOfTerritory(Territory territory) {
+		Continent continent = null;
+		for(int i=0;i<continentArray.size();i++) {
+			if(continentArray.get(i).getTerritories().contains(territory)) {
+				continent = continentArray.get(i);
+			}
+		}
+		return continent;
+	}
+	
+	/**
+	 * Remove territory from the continent
+	 * 
+	 * @param continent
+	 * @param territory
+	 */
+	public static void removeTerritoryFromContinent(Continent continent, Territory territory) {
+		continent.getTerritories().remove(territory);	
 	}
 
 }
