@@ -61,5 +61,9 @@ public class Continent {
 	public void setTerritories(ArrayList<Territory> territories) {
 		this.territories = territories;
 	}	
+	
+	public void addTerritories(Territory territory) {
+		territories.add(territory);
+	}
 
 }

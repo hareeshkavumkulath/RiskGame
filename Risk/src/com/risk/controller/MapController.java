@@ -24,7 +24,7 @@ public class MapController {
 	
 	public static StringBuffer fileContent = new StringBuffer();
 	public static ArrayList<Continent> continentArray = new ArrayList<Continent>();
-	public static ArrayList<Territory> countriesArray = new ArrayList<Territory>();
+	public static ArrayList<Territory> territoriesArray = new ArrayList<Territory>();
 	public static boolean isValidMap = false;
 	public static StringBuffer message = new StringBuffer();	
 	
@@ -55,15 +55,22 @@ public class MapController {
         	ex.printStackTrace();
         }
 		
-		// Validating continents - Whether the continents are available in the .map file
+		// Processing continents - Whether the continents are available in the .map file
 		boolean isValidContinents = false;
 		isValidContinents = processContinents(fileContent.toString());
 		if(isValidContinents) {
-			//Validating territories -  Whether the territories are available in the .map file
+			// Processing territories -  Whether the territories are available in the .map file
 			boolean isValidTerritories = false;
 			isValidTerritories = processTerritories(fileContent.toString());
 			if(isValidTerritories) {
-				
+				//connecting territories to continents
+				boolean valid = false;
+				valid = territoriesToContinents();
+				if(valid) {
+					
+				}
+			}else { // else of isValidTerritories
+				isValidMap = false;
 			}
 		}else {  // else of isValidContinents
 			isValidMap = false;
@@ -128,7 +135,7 @@ public class MapController {
 		    			adjacentCountries.add(territoryDetails[j]);
 		    		}
 		    		newTerritory.setAdjacentTerritories(adjacentCountries);
-		    		countriesArray.add(newTerritory);
+		    		territoriesArray.add(newTerritory);
 				}
 				isValidTerritories = true;
 			}catch(Exception e) {
@@ -140,6 +147,62 @@ public class MapController {
 			isValidTerritories = false;
 		}
 		return isValidTerritories;
+	}
+	
+	/**
+	 * Add each countries to the corresponding Continents
+	 * 
+	 * @return true if all territories are assigned to Continents, if there is any territory left return false
+	 */
+	public static boolean territoriesToContinents() {
+		boolean valid = false;
+		int count = 0;
+		try {
+			for(int i = 0; i<territoriesArray.size();i++) {
+				String continentName = territoriesArray.get(i).getContinent();
+				int index = indexOfContinent(continentName);
+				if(index >= 0) {
+					continentArray.get(index).addTerritories(territoriesArray.get(i));
+					count++;
+				}else {
+					valid = false;
+					message.append("The continent, " + continentName + " is not available in the map.");
+				}
+			}
+		}catch(Exception e) {
+			valid = false;
+			message.append("There is some error in attaching countries to continents");
+		}
+		if(count != territoriesArray.size()) {
+			valid = false;
+			message.append("Unable to add some countries to continents");
+		}else {
+			valid = true;
+		}
+		return valid;
+	}
+	
+	/**
+	 * Function to return the index of the continent in the continent array
+	 * 
+	 * @param obj
+	 * @return index of the object
+	 */
+	public static int indexOfContinent(Object obj) {
+		if (obj == null) {
+			for (int i = 0; i < continentArray.size(); i++) {
+				if (continentArray.get(i)==null) {
+					return i;
+				}                    
+			}                
+		} else {
+			for (int i = 0; i < continentArray.size(); i++) {
+				if (obj.equals(continentArray.get(i).getName())) {
+					return i;
+				}
+			}
+		}
+		return -1;
 	}
 
 }
