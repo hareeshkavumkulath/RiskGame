@@ -387,5 +387,21 @@ public class MapController {
 		}
 		return country;
 	}
+	
+	/**
+	 * Remove continent if the user wants to remove it. Removes continent from the array
+	 * 
+	 * @param continent
+	 * @return
+	 */
+	public static boolean removeContinent(Continent continent) {
+		boolean isRemoved = true;
+		try {
+			continentArray.remove(continent);
+		}catch(Exception e) {
+			isRemoved = false;
+		}
+		return isRemoved;
+	}
 
 }
