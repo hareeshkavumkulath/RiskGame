@@ -58,14 +58,23 @@ public class MapController {
 		// Validating continents - Whether the continents are available in the .map file
 		boolean isValidContinents = false;
 		isValidContinents = processContinents(fileContent.toString());
-		
+		if(isValidContinents) {
+			//Validating territories -  Whether the territories are available in the .map file
+			boolean isValidTerritories = false;
+			isValidTerritories = processTerritories(fileContent.toString());
+			if(isValidTerritories) {
+				
+			}
+		}else {  // else of isValidContinents
+			isValidMap = false;
+		}
 		return null;
 	}
 	
 	
 	/**
-	 * Function to process the content of the .map file and see whether there is Continents available 
-	 * If yes, it will get added to ArrayList
+	 * Function to process the content of the .map file and see whether there are Continents available 
+	 * If yes, it will get added to ArrayList of Continents
 	 * 
 	 * @param mapInfo
 	 * @return
@@ -94,6 +103,43 @@ public class MapController {
 			message.append("Map has no continents");
 		}
 		return valid;
+	}
+	
+	/**
+	 * Function to process the content of the .map file and see whether there are Territories are available
+	 * If yes it will return ArrayList of Territories 
+	 * 
+	 * @param mapInfo
+	 * @return
+	 */
+	public static boolean processTerritories(String mapInfo) {
+		boolean isValidTerritories = false;
+		if(mapInfo.contains("[Territories]")) {
+			try {
+				int indexOfTerritories = mapInfo.indexOf("[Territories]");
+				String territories = mapInfo.substring(indexOfTerritories);
+				String territoryInfo[] = territories.split("\n");
+				for(int i=1;i<territoryInfo.length;i++) {
+					territoryInfo[i].trim();
+					String[] territoryDetails = territoryInfo[i].split(",");
+		    		Territory newTerritory = new Territory(territoryDetails[0], territoryDetails[3]);
+		    		ArrayList<String> adjacentCountries = new ArrayList<String>();
+		    		for(int j=4;j<territoryDetails.length;j++) {
+		    			adjacentCountries.add(territoryDetails[j]);
+		    		}
+		    		newTerritory.setAdjacentTerritories(adjacentCountries);
+		    		countriesArray.add(newTerritory);
+				}
+				isValidTerritories = true;
+			}catch(Exception e) {
+				message.append("There is some error in the syntax of the territories, Please recheck");
+				isValidTerritories = false;
+			}			
+		}else {
+			message.append("Map has no territories");
+			isValidTerritories = false;
+		}
+		return isValidTerritories;
 	}
 
 }
