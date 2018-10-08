@@ -30,6 +30,13 @@ public class Continent {
 		this.numberOfArmies = numberOfArmies;
 	}
 
+	/**
+	 * 
+	 */
+	public Continent() {
+		
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -61,5 +68,9 @@ public class Continent {
 	public void setTerritories(ArrayList<Territory> territories) {
 		this.territories = territories;
 	}	
+	
+	public void addTerritories(Territory territory) {
+		territories.add(territory);
+	}
 
 }
