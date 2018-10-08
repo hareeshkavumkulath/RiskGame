@@ -2,7 +2,6 @@ package com.risk.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,7 +36,6 @@ public class MapController {
 	 * @return MapMessage with information about the Map
 	 */
 	public static MapMessage processFile(File file) {
-		FileReader br = null;
 		try {
 
             Scanner input = new Scanner(file);

@@ -27,8 +27,7 @@ public class UploadWindow {
     private JTextField fileName;
     private File file;
     private JButton uploadButton;
-    private StringBuffer fileContent = new StringBuffer();
-
+    
     /**
      * Launch the application.
      */
