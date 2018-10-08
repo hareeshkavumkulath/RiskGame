@@ -71,9 +71,16 @@ public class MapController {
 					boolean isContinentConnected = false;
 					isContinentConnected = createContinentConnection();
 					if(isContinentConnected) {
-						
-					}
-					
+						// Check all the territories in the Map are connected or not
+						boolean isMapConnected = false;
+						isMapConnected = validateContinent();
+						if(isMapConnected) {
+							System.out.println("isMapConnected");
+							isValidMap = true;
+						}
+					}else {
+						isValidMap = false;
+					}					
 				}
 			}else { // else of isValidTerritories
 				isValidMap = false;
@@ -317,6 +324,68 @@ public class MapController {
 			}
 		}
 		return continent;
+	}
+	
+	/**
+	 * Check whether all the countries are well connected in the Map
+	 * Used DFS algorithm to check the connection and traversal of each countries
+	 *  
+	 * @return
+	 */
+	private static boolean validateContinent() {
+		boolean isConnected = false;
+		int numberOfCountries = territoriesArray.size();
+		ArrayList<String> visitedTerritories = new ArrayList<String>();
+		ArrayList<String> checkedTerritories = new ArrayList<String>();
+		Territory country = (Territory)territoriesArray.get(1);
+		visitedTerritories.add(country.getName());
+		checkedTerritories.add(country.getName());
+		int index = 1;
+		System.out.print(country.getName()+"===");
+		while(!checkedTerritories.isEmpty()) {
+			Territory newTerritory = getTerritory(checkedTerritories.get(0));
+			System.out.println(index + "==" + newTerritory.getName());
+			for(int k = 0;k < newTerritory.getAdjacentTerritories().size();k++) {
+				String adjacentCountry = newTerritory.getAdjacentTerritories().get(k);
+				if(visitedTerritories.indexOf(adjacentCountry) < 0 ) {
+					visitedTerritories.add(adjacentCountry);
+					System.out.print(adjacentCountry+",");
+				}
+			}
+			if(visitedTerritories.size() != numberOfCountries) {
+				checkedTerritories.remove(0);
+				try {
+					checkedTerritories.add(visitedTerritories.get(index));
+				}catch(Exception e) {
+					
+				}
+				index++;
+			}else {
+				checkedTerritories.remove(0);
+				isConnected = true;
+			}
+		}
+		if(!isConnected) {
+			message.append("Countries are not well connected");
+			isConnected = false;
+		}
+		return isConnected;		
+	}
+	
+	/**
+	 * Return territory using the territoryName
+	 * 	
+	 * @param territoryName
+	 * @return
+	 */
+	public static Territory getTerritory(String territoryName) {
+		Territory country = null;
+		for(int i = 0;i<territoriesArray.size();i++) {
+			if(territoryName.equals(territoriesArray.get(i).getName())) {
+				country = (Territory)territoriesArray.get(i);
+			}
+		}
+		return country;
 	}
 
 }
