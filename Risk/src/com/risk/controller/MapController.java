@@ -86,7 +86,9 @@ public class MapController {
 		}else {  // else of isValidContinents
 			isValidMap = false;
 		}
-		return null;
+		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isValidMap, message);
+		
+		return mapMessage;
 	}
 	
 	
