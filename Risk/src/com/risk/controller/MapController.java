@@ -390,6 +390,11 @@ public class MapController {
 	
 	/**
 	 * Remove continent if the user wants to remove it. Removes continent from the arraylist
+	 * <p>It consists of following processes</p>
+	 * <ul>
+	 * <li>Remove adjacency between continents</li>
+	 * <li>Remove all countries from the continent one by one</li>
+	 * </ul>
 	 * 
 	 * @param continent
 	 * @return
@@ -425,7 +430,7 @@ public class MapController {
 	}
 	
 	/**
-	 * 
+	 * Remove all territories of the continent
 	 * 
 	 * @param continent
 	 */
@@ -436,6 +441,17 @@ public class MapController {
 		}
 	}
 	
+	/**
+	 * Remove a single territory
+	 * <p>It consists of following processes</p>
+	 * <ul>
+	 * <li>Remove adjacency between territories</li>
+	 * <li>Remove the territory from the continent</li>
+	 * </ul>
+	 * 
+	 * @param territory
+	 * @return
+	 */
 	public static boolean removeTerritory(Territory territory) {
 		boolean isRemoved = true;
 		try {
@@ -446,6 +462,7 @@ public class MapController {
 					ArrayList<String> adjacentTerritories = newTerritory.getAdjacentTerritories();
 					for(int j = 0;j<adjacentTerritories.size();j++) {
 						String adjacenTerritoryName = adjacentTerritories.get(j);
+						// Remove the adjacency between two territories
 						removeTerritoryAdjacency(territoryName, adjacenTerritoryName);
 					}
 				}
@@ -459,6 +476,15 @@ public class MapController {
 		return isRemoved;
 	}
 	
+	/**
+	 * Remove the adjacency between two territories.
+	 * <p> If the user wants to delete territory A, and if A has adjacency with B and C, then go to the territories
+	 * B and C and delete A from their adjacent territories list.
+	 * </p>
+	 * 
+	 * @param territoryName
+	 * @param adjacentTerritoryName
+	 */
 	public static void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
 		for(int i = 0;i<territoriesArray.size();i++) {
 			if(adjacentTerritoryName.equals(territoriesArray.get(i).getName())) {
@@ -467,6 +493,12 @@ public class MapController {
 		}
 	}
 	
+	/**
+	 * Find the continent of a territory
+	 * 
+	 * @param territory
+	 * @return continent
+	 */
 	public static Continent findContinentOfTerritory(Territory territory) {
 		Continent continent = null;
 		for(int i=0;i<continentArray.size();i++) {
@@ -477,6 +509,12 @@ public class MapController {
 		return continent;
 	}
 	
+	/**
+	 * Remove territory from the continent
+	 * 
+	 * @param continent
+	 * @param territory
+	 */
 	public static void removeTerritoryFromContinent(Continent continent, Territory territory) {
 		continent.getTerritories().remove(territory);	
 	}
