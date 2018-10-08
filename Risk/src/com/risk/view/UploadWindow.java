@@ -11,11 +11,13 @@ import java.io.File;
  * Map Upload Window for the user to upload .map file. It validates and prints the map.
  * 
  * @author Hareesh Kavumkulath
+ * @author Anqi Wang
  * @version 1.0
  * 
  * @date 10-07-2018
  * @modifiedDate 10-07-2018
- * @modifiedBy jingya Pan
+ * @modifiedBy Jingya Pan
+ * @modifiedBy Anqi Wang
  *
  */
 public class UploadWindow {
