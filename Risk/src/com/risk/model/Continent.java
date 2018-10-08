@@ -7,9 +7,9 @@ import java.util.ArrayList;
  * @author Hareesh Kavumkulath
  * @version 1.0
  * 
- * Created Date: 10-07-2018
- * Modified Date:
- * Modified By:
+ * @date 10-07-2018
+ * @modifiedDate 10-07-2018
+ * @modifiedBy jingya Pan
  *
  */
 public class Continent {
