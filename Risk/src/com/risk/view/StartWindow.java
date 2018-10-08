@@ -21,9 +21,9 @@ import java.awt.BorderLayout;
  * @author Jingya Pan
  * @version 1.0
  * 
- * Created Date: 06-10-2018
- * Last modified Date:07-10-2018
- * Last modified By:jingya Pan
+ * @date 10-06-2018
+ * @modifiedDate 10-07-2018
+ * @modifiedBy jingya Pan
  */
 public class StartWindow {
 
