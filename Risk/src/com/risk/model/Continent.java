@@ -30,6 +30,13 @@ public class Continent {
 		this.numberOfArmies = numberOfArmies;
 	}
 
+	/**
+	 * 
+	 */
+	public Continent() {
+		
+	}
+
 	public String getName() {
 		return name;
 	}

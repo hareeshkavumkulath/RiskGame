@@ -67,6 +67,12 @@ public class MapController {
 				boolean valid = false;
 				valid = territoriesToContinents();
 				if(valid) {
+					// Check the adjacency of continents and added connection between continents
+					boolean isContinentConnected = false;
+					isContinentConnected = createContinentConnection();
+					if(isContinentConnected) {
+						
+					}
 					
 				}
 			}else { // else of isValidTerritories
@@ -203,6 +209,114 @@ public class MapController {
 			}
 		}
 		return -1;
+	}
+	
+	/**
+	 * Check the connection between continents by checking the adjacent territories of each territory
+	 * If there is any adjacency from a territory A in continent X to a territory in Y.
+	 * Then there is adjacency between continent X and continent Y.
+	 * 
+	 * @return true if there is no exception.
+	 */
+	public static boolean createContinentConnection() {
+		boolean isConnected = false;
+		Continent continent = new Continent();
+		int temp = 0;
+		try {
+			for(int i = 0;i < continentArray.size();i++) {
+				continent = continentArray.get(i);
+				for(int j = 0;j < continent.getTerritories().size();j++) {
+					Territory territory = continent.getTerritories().get(j);
+					for(int k = 0; k < territory.getAdjacentTerritories().size(); k++) {
+						String adjacentTerritory = territory.getAdjacentTerritories().get(k);
+						if(!isAdjacentTerritoryInSameContinent(continent.getName(), adjacentTerritory)) {
+							Continent adjacentTerritoryContinent = getContinentFromTerritory(adjacentTerritory);
+							if(temp == 0) {
+								continentArray.get(i).getAdjacentContinents().add(adjacentTerritoryContinent);
+								temp++;
+							}else {
+								boolean isExist = false;
+								try {
+									for(int l=0;l<temp;l++) {
+										if(adjacentTerritoryContinent.getName().equals(continentArray.get(i).getAdjacentContinents().get(l).getName())) {
+											isExist = true;
+										}
+									}
+								}catch(Exception e) {
+									isExist = true;
+								}
+								if(!isExist) {
+									continentArray.get(i).getAdjacentContinents().add(adjacentTerritoryContinent);
+									temp++;
+								}
+							}
+						}
+					}
+				}
+				temp = 0;				
+			}
+			isConnected = true;
+		}catch(Exception e) {
+			isConnected = false;
+			message.append("There is some error connecting countries/continents. Please try again");
+		}
+		return isConnected;
+	}
+	
+	/**
+	 * Check whether the adjacent territory of a territory located in the same continent
+	 * 
+	 * @param continentName
+	 * @param adjacentCountry
+	 * @return 
+	 */
+	private static boolean isAdjacentTerritoryInSameContinent(String continentName, String adjacentTerritory) {
+		Continent continent = new Continent();
+		boolean isAdjacentTerritoryInSameContinent = false;
+		for(int i = 0;i < continentArray.size();i++) {
+			if(continentArray.get(i).getName().equals(continentName)){
+				continent = continentArray.get(i);
+			}
+		}
+		for(int i = 0;i < continent.getTerritories().size();i++) {
+			if(adjacentTerritory.equals(continent.getTerritories().get(i).getName())){
+				isAdjacentTerritoryInSameContinent = true;
+			}
+		}
+		return isAdjacentTerritoryInSameContinent;
+	}
+	
+	/**
+	 * Return the continent of the territory
+	 * 
+	 * @param adjacentTerritory
+	 * @return - Continent
+	 */
+	private static Continent getContinentFromTerritory(String adjacentTerritory) {
+		Continent continent = new Continent();
+		for(int i = 0; i < territoriesArray.size();i++) {
+			if(adjacentTerritory.equals(territoriesArray.get(i).getName())) {
+				String continentName = territoriesArray.get(i).getContinent();
+				continent = getContinentFromArray(continentName);
+			}
+		}
+		return continent;
+	}
+	
+	/**
+	 * Returns the Continent from the continentsArray, ArrayList
+	 * 
+	 * @param continentName
+	 * @return
+	 */
+	private static Continent getContinentFromArray(String continentName) {
+		Continent continent = new Continent();
+		for(int i = 0; i < continentArray.size();i++) {
+			if(continentName.equals(continentArray.get(i).getName())) {
+				continent = continentArray.get(i);
+			}
+		}
+		return continent;
 	}
 
 }
