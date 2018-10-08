@@ -13,9 +13,9 @@ import java.io.File;
  * @author Hareesh Kavumkulath
  * @version 1.0
  * 
- * Created Date: 10-07-2018
- * Last Updated Date:
- * Last Updated By:
+ * @date 10-07-2018
+ * @modifiedDate 10-07-2018
+ * @modifiedBy jingya Pan
  *
  */
 public class UploadWindow {
@@ -52,7 +52,6 @@ public class UploadWindow {
     }
 
     public void initialize() {
-
         frame = new JFrame();
         frame.setBounds(100, 100, 1071, 681);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
