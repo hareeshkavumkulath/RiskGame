@@ -99,11 +99,11 @@ public class UploadWindow {
 		labelTerritories.setBounds(277, 108, 115, 20);
 		frame.getContentPane().add(labelTerritories);
 		
-		JList<String> territoriesList = new JList<String>();
-		territoriesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		territoriesList.setBorder(new LineBorder(Color.BLUE));
-		territoriesList.setBounds(277, 144, 211, 349);
-		frame.getContentPane().add(territoriesList);
+		JList<String> territoriesJList = new JList<String>();
+		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		territoriesJList.setBorder(new LineBorder(Color.BLUE));
+		territoriesJList.setBounds(277, 144, 211, 349);
+		frame.getContentPane().add(territoriesJList);
 		
 		/* Territories Information - End */
 		
@@ -112,11 +112,11 @@ public class UploadWindow {
 		labelAdjacentTerritories.setBounds(524, 108, 201, 20);
 		frame.getContentPane().add(labelAdjacentTerritories);		
 		
-		JList<String> adjTerritoriesList = new JList<String>();
-		adjTerritoriesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		adjTerritoriesList.setBorder(new LineBorder(Color.BLUE));
-		adjTerritoriesList.setBounds(524, 144, 211, 349);
-		frame.getContentPane().add(adjTerritoriesList);
+		JList<String> adjTerritoriesJList = new JList<String>();
+		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
+		adjTerritoriesJList.setBounds(524, 144, 211, 349);
+		frame.getContentPane().add(adjTerritoriesJList);
 		/* Adjacent Territories Information - End */
 		
         browseButton.addActionListener(new ActionListener() {
@@ -167,11 +167,12 @@ public class UploadWindow {
 		});
         
         /* Continents selection Action --> Display Territories - Start */
-        
         continentsJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
+				String[] adjTerritoryNames = {};
+				adjTerritoriesJList.setListData(adjTerritoryNames);
 				JList list = (JList) listSelectionEvent.getSource();
 				int selections[] = list.getSelectedIndices();
 				ArrayList<Territory> territories = mapMessage.getContinents().get(selections[0]).getTerritories();
@@ -179,15 +180,37 @@ public class UploadWindow {
 				for(int i=0;i<territories.size();i++) {
 					territoryNames[i] = territories.get(i).getName();
 				}
-				territoriesList.setListData(territoryNames);
+				territoriesJList.setListData(territoryNames);
 				
 			}
-		});
-        
+		});        
         /* Continents selection Action --> Display Territories - End */
         
         /* Territory Selection Action --> Display Adjacent Territories - Start */
-        
+        territoriesJList.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent listSelectionEvent) {
+				JList list = (JList) listSelectionEvent.getSource();
+				String selection = (String) list.getSelectedValue();
+				ArrayList<Territory> territories = mapMessage.getTerritories();
+				Territory selectedTerritory = null;
+				for(int i=0;i<territories.size();i++) {
+					if(territories.get(i).getName().equals(selection)) {
+						selectedTerritory = territories.get(i);
+					}
+				}
+				try {
+					String[] adjTerritoryNames = new String[selectedTerritory.getAdjacentTerritories().size()];
+					for(int i=0;i<selectedTerritory.getAdjacentTerritories().size();i++) {
+						adjTerritoryNames[i] = selectedTerritory.getAdjacentTerritories().get(i);
+					}
+					adjTerritoriesJList.setListData(adjTerritoryNames);
+				} catch(Exception e) {
+					System.out.println(e.toString());
+				}
+			}
+		});
         
         /* Territory Selection Action --> Display Adjacent Territories - End */
 
