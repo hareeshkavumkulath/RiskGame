@@ -20,14 +20,14 @@ import java.util.ArrayList;
 /**
  * Map Upload Window for the user to upload .map file. It validates and prints the map.
  * 
- * @author Hareesh Kavumkulath
  * @author Anqi Wang
  * @version 1.0
  * 
  * @date 10-07-2018
- * @modifiedDate 10-07-2018
+ * @modifiedDate 10-08-2018
  * @modifiedBy Jingya Pan
  * @modifiedBy Anqi Wang
+ * @modifiedBy Hareesh Kavumkulath
  *
  */
 public class UploadWindow {
@@ -38,6 +38,7 @@ public class UploadWindow {
     private File file;
     private JButton uploadButton;
     private MapMessage mapMessage;
+    private JTextField mapName;
     
     /**
      * Launch the application.
@@ -83,7 +84,7 @@ public class UploadWindow {
 		uploadButton.setBounds(530, 48, 115, 29);
 		frame.getContentPane().add(uploadButton);
 		
-		/* Continents Information - Start */
+		// Continents Information
 		JLabel labelContinents = new JLabel("Continents");
 		labelContinents.setBounds(45, 108, 115, 20);
 		frame.getContentPane().add(labelContinents);
@@ -94,7 +95,7 @@ public class UploadWindow {
 		continentsJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		frame.getContentPane().add(continentsJList);
         
-		/* Territories Information - Start */
+		// Territories Information
 		JLabel labelTerritories = new JLabel("Territories");
 		labelTerritories.setBounds(277, 108, 115, 20);
 		frame.getContentPane().add(labelTerritories);
@@ -103,11 +104,9 @@ public class UploadWindow {
 		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		territoriesJList.setBorder(new LineBorder(Color.BLUE));
 		territoriesJList.setBounds(277, 144, 211, 349);
-		frame.getContentPane().add(territoriesJList);
+		frame.getContentPane().add(territoriesJList);		
 		
-		/* Territories Information - End */
-		
-		/* Adjacent Territories Information - Start */
+		// Adjacent Territories Information
 		JLabel labelAdjacentTerritories = new JLabel("Adjacent Territories");
 		labelAdjacentTerritories.setBounds(524, 108, 201, 20);
 		frame.getContentPane().add(labelAdjacentTerritories);		
@@ -118,6 +117,7 @@ public class UploadWindow {
 		adjTerritoriesJList.setBounds(524, 144, 211, 349);
 		frame.getContentPane().add(adjTerritoriesJList);
 		
+		// Remove Continent and Remove Territory Buttons
 		JButton btnRemoveContinent = new JButton("Remove Continent");
 		btnRemoveContinent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -133,7 +133,17 @@ public class UploadWindow {
 		});
 		btnRemoveTerritory.setBounds(277, 516, 211, 29);
 		frame.getContentPane().add(btnRemoveTerritory);
-		/* Adjacent Territories Information - End */
+		
+		//Save Map fields
+		mapName = new JTextField();
+		mapName.setToolTipText("Enter name for Map");
+		mapName.setColumns(10);
+		mapName.setBounds(527, 565, 281, 26);
+		frame.getContentPane().add(mapName);
+		
+		JButton btnSaveMap = new JButton("Save Map");
+		btnSaveMap.setBounds(843, 564, 115, 29);
+		frame.getContentPane().add(btnSaveMap);
 		
         browseButton.addActionListener(new ActionListener() {
 
@@ -286,7 +296,6 @@ public class UploadWindow {
         /* Remove Territory Button Action - End */  
         
     }
-    
 }
 
 
