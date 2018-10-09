@@ -389,6 +389,18 @@ public class MapController {
 	}
 	
 	/**
+	 * Remove continent with name, continentName
+	 * 
+	 * @param continentName
+	 * @return
+	 */
+	public static MapMessage removeContinent(String continentName) {
+		boolean isRemoved = removeContinent(getContinentFromArray(continentName)); 
+		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
+		return mapMessage;
+	}
+	
+	/**
 	 * Remove continent if the user wants to remove it. Removes continent from the arraylist
 	 * <p>It consists of following processes</p>
 	 * <ul>

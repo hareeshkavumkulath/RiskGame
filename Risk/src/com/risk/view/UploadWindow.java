@@ -227,10 +227,37 @@ public class UploadWindow {
 				}
 			}
 		});
-        
         /* Territory Selection Action --> Display Adjacent Territories - End */
-
+        
+        /* Remove Continent Button Action - Start */
+        btnRemoveContinent.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] territoryNames = {};
+				territoriesJList.setListData(territoryNames);
+				if(continentsJList.getSelectedValue() != null) {
+					mapMessage = (MapMessage)MapController.removeContinent(continentsJList.getSelectedValue());
+					if(mapMessage.isValidMap()) {
+						StringBuffer continentsInfo = new StringBuffer();
+						ArrayList<Continent> continents = mapMessage.getContinents();
+						String[] continentNames = new String[continents.size()];
+						for(int i = 0; i < continents.size(); i++) {
+							Continent thisContinent = (Continent) continents.get(i);
+							continentNames[i] = thisContinent.getName(); 
+							continentsInfo.append(thisContinent.getName());
+							continentsInfo.append("\r\n");
+						}
+						continentsJList.setListData(continentNames);
+					}
+				}else {
+					System.out.println("Select a continent");
+				}
+			}
+		});
+        /* Remove Continent Button Action - End */        
     }
+    
 }
 
 
