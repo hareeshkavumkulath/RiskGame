@@ -117,6 +117,22 @@ public class UploadWindow {
 		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
 		adjTerritoriesJList.setBounds(524, 144, 211, 349);
 		frame.getContentPane().add(adjTerritoriesJList);
+		
+		JButton btnRemoveContinent = new JButton("Remove Continent");
+		btnRemoveContinent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnRemoveContinent.setBounds(46, 516, 201, 29);
+		frame.getContentPane().add(btnRemoveContinent);
+		
+		JButton btnRemoveTerritory = new JButton("Remove Territory");
+		btnRemoveTerritory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRemoveTerritory.setBounds(277, 516, 211, 29);
+		frame.getContentPane().add(btnRemoveTerritory);
 		/* Adjacent Territories Information - End */
 		
         browseButton.addActionListener(new ActionListener() {
