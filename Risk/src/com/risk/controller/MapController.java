@@ -16,17 +16,39 @@ import com.risk.model.Territory;
  * @version 1.0
  * 
  * @date 10-08-2018
- * @modifiedDate 
- * @modifiedBy
+ * @modifiedDate 10-09-2018
+ * @modifiedBy Hareesh Kavumkulath
  */
 public class MapController {
 	
-	public static StringBuffer fileContent = new StringBuffer();
-	public static ArrayList<Continent> continentArray = new ArrayList<Continent>();
-	public static ArrayList<Territory> territoriesArray = new ArrayList<Territory>();
-	public static boolean isValidMap = false;
-	public static StringBuffer message = new StringBuffer();	
+	public StringBuffer fileContent = new StringBuffer();
+	public ArrayList<Continent> continentArray = new ArrayList<Continent>();
+	public ArrayList<Territory> territoriesArray = new ArrayList<Territory>();
+	public boolean isValidMap = false;
+	public StringBuffer message = new StringBuffer();	
 	
+	public MapController() {
+	}
+	
+	/**
+	 * MapController constructor
+	 * 
+	 * @param fileContent
+	 * @param continentArray
+	 * @param territoriesArray
+	 * @param isValidMap
+	 * @param message
+	 */
+	public MapController(StringBuffer fileContent, ArrayList<Continent> continentArray,
+			ArrayList<Territory> territoriesArray, boolean isValidMap, StringBuffer message) {
+		super();
+		this.fileContent = fileContent;
+		this.continentArray = continentArray;
+		this.territoriesArray = territoriesArray;
+		this.isValidMap = isValidMap;
+		this.message = message;
+	}
+
 	/**
 	 * Process the .map file and checks whether its valid or not. 
 	 * If it is valid return territories and continents
@@ -35,14 +57,7 @@ public class MapController {
 	 * @param file
 	 * @return MapMessage with information about the Map
 	 */
-	public static MapMessage processFile(File file) {
-		//Initialize the variables when the files are loading again
-		fileContent = new StringBuffer();
-		continentArray = new ArrayList<Continent>();
-		territoriesArray = new ArrayList<Territory>();
-		isValidMap = false;
-		message = new StringBuffer();
-		
+	public MapMessage processFile(File file) {
 		try {
 
             Scanner input = new Scanner(file);
@@ -106,7 +121,7 @@ public class MapController {
 	 * @param mapInfo
 	 * @return
 	 */
-	public static boolean processContinents(String mapInfo) {
+	public boolean processContinents(String mapInfo) {
 		boolean valid = false;
 		if(mapInfo.contains("[Continents]")) {
 			try {
@@ -139,7 +154,7 @@ public class MapController {
 	 * @param mapInfo
 	 * @return
 	 */
-	public static boolean processTerritories(String mapInfo) {
+	public boolean processTerritories(String mapInfo) {
 		boolean isValidTerritories = false;
 		if(mapInfo.contains("[Territories]")) {
 			try {
@@ -174,7 +189,7 @@ public class MapController {
 	 * 
 	 * @return true if all territories are assigned to Continents, if there is any territory left return false
 	 */
-	public static boolean territoriesToContinents() {
+	public boolean territoriesToContinents() {
 		boolean valid = false;
 		int count = 0;
 		try {
@@ -208,7 +223,7 @@ public class MapController {
 	 * @param obj
 	 * @return index of the object
 	 */
-	public static int indexOfContinent(Object obj) {
+	public int indexOfContinent(Object obj) {
 		if (obj == null) {
 			for (int i = 0; i < continentArray.size(); i++) {
 				if (continentArray.get(i)==null) {
@@ -232,7 +247,7 @@ public class MapController {
 	 * 
 	 * @return true if there is no exception.
 	 */
-	public static boolean createContinentConnection() {
+	public boolean createContinentConnection() {
 		boolean isConnected = false;
 		Continent continent = new Continent();
 		int temp = 0;
@@ -284,7 +299,7 @@ public class MapController {
 	 * @param adjacentTerritory
 	 * @return 
 	 */
-	private static boolean isAdjacentTerritoryInSameContinent(String continentName, String adjacentTerritory) {
+	private boolean isAdjacentTerritoryInSameContinent(String continentName, String adjacentTerritory) {
 		Continent continent = new Continent();
 		boolean isAdjacentTerritoryInSameContinent = false;
 		for(int i = 0;i < continentArray.size();i++) {
@@ -306,7 +321,7 @@ public class MapController {
 	 * @param adjacentTerritory
 	 * @return - Continent
 	 */
-	private static Continent getContinentFromTerritory(String adjacentTerritory) {
+	private Continent getContinentFromTerritory(String adjacentTerritory) {
 		Continent continent = new Continent();
 		for(int i = 0; i < territoriesArray.size();i++) {
 			if(adjacentTerritory.equals(territoriesArray.get(i).getName())) {
@@ -323,7 +338,7 @@ public class MapController {
 	 * @param continentName
 	 * @return
 	 */
-	public static Continent getContinentFromArray(String continentName) {
+	public Continent getContinentFromArray(String continentName) {
 		Continent continent = new Continent();
 		for(int i = 0; i < continentArray.size();i++) {
 			if(continentName.equals(continentArray.get(i).getName())) {
@@ -339,7 +354,7 @@ public class MapController {
 	 *  
 	 * @return
 	 */
-	private static boolean validateContinent() {
+	private boolean validateContinent() {
 		boolean isConnected = false;
 		int numberOfTerritories = territoriesArray.size();
 		ArrayList<String> visitedTerritories = new ArrayList<String>();
@@ -385,7 +400,7 @@ public class MapController {
 	 * @param territoryName
 	 * @return
 	 */
-	public static Territory getTerritory(String territoryName) {
+	public Territory getTerritory(String territoryName) {
 		Territory territory = null;
 		for(int i = 0;i<territoriesArray.size();i++) {
 			if(territoryName.equals(territoriesArray.get(i).getName())) {
@@ -401,7 +416,7 @@ public class MapController {
 	 * @param continentName
 	 * @return
 	 */
-	public static MapMessage removeContinent(String continentName) {
+	public MapMessage removeContinent(String continentName) {
 		boolean isRemoved = removeContinent(getContinentFromArray(continentName)); 
 		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
 		return mapMessage;
@@ -418,7 +433,7 @@ public class MapController {
 	 * @param continent
 	 * @return
 	 */
-	public static boolean removeContinent(Continent continent) {
+	public boolean removeContinent(Continent continent) {
 		boolean isRemoved = true;
 		try {
 			//Remove adjacency between continents
@@ -440,7 +455,7 @@ public class MapController {
 	 * 
 	 * @param continent
 	 */
-	public static void removeContinentAdjacency(Continent continent) {
+	public void removeContinentAdjacency(Continent continent) {
 		for(int i=0;i<continentArray.size();i++) {
 			if(continentArray.get(i).getAdjacentContinents().contains(continent)) {
 				continentArray.get(i).getAdjacentContinents().remove(continent);
@@ -453,7 +468,7 @@ public class MapController {
 	 * 
 	 * @param continent
 	 */
-	public static void removeTerritoriesFromContinent(Continent continent) {
+	public void removeTerritoriesFromContinent(Continent continent) {
 		ArrayList<Territory> territoriesInContinent = continent.getTerritories();
 		for(int i=0;i<territoriesInContinent.size();i++) {
 			removeTerritory(territoriesInContinent.get(i));
@@ -466,7 +481,7 @@ public class MapController {
 	 * @param territoryName
 	 * @return
 	 */
-	public static MapMessage removeTerritory(String territoryName) {
+	public MapMessage removeTerritory(String territoryName) {
 		boolean isRemoved = removeTerritory(getTerritoryFromArray(territoryName)); 
 		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
 		return mapMessage;
@@ -483,7 +498,7 @@ public class MapController {
 	 * @param territory
 	 * @return
 	 */
-	public static boolean removeTerritory(Territory territory) {
+	public boolean removeTerritory(Territory territory) {
 		boolean isRemoved = true;
 		try {
 			String territoryName = territory.getName();
@@ -516,7 +531,7 @@ public class MapController {
 	 * @param territoryName
 	 * @param adjacentTerritoryName
 	 */
-	public static void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
+	public void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
 		for(int i = 0;i<territoriesArray.size();i++) {
 			if(adjacentTerritoryName.equals(territoriesArray.get(i).getName())) {
 				territoriesArray.get(i).getAdjacentTerritories().remove(territoryName);
@@ -530,7 +545,7 @@ public class MapController {
 	 * @param territory
 	 * @return continent
 	 */
-	public static Continent findContinentOfTerritory(Territory territory) {
+	public Continent findContinentOfTerritory(Territory territory) {
 		Continent continent = null;
 		for(int i=0;i<continentArray.size();i++) {
 			if(continentArray.get(i).getTerritories().contains(territory)) {
@@ -546,7 +561,7 @@ public class MapController {
 	 * @param continent
 	 * @param territory
 	 */
-	public static void removeTerritoryFromContinent(Continent continent, Territory territory) {
+	public void removeTerritoryFromContinent(Continent continent, Territory territory) {
 		continent.getTerritories().remove(territory);	
 	}
 	
@@ -556,7 +571,7 @@ public class MapController {
 	 * @param territoryName
 	 * @return
 	 */
-	public static Territory getTerritoryFromArray(String territoryName) {
+	public Territory getTerritoryFromArray(String territoryName) {
 		Territory territory = new Territory();
 		for(int i = 0; i < territoriesArray.size();i++) {
 			if(territoryName.equals(territoriesArray.get(i).getName())) {
