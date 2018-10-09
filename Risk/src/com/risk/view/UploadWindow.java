@@ -2,11 +2,14 @@ package com.risk.view;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.risk.controller.MapController;
 import com.risk.model.Continent;
 import com.risk.model.MapMessage;
+import com.risk.model.Territory;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,6 +37,7 @@ public class UploadWindow {
     private JTextField fileName;
     private File file;
     private JButton uploadButton;
+    private MapMessage mapMessage;
     
     /**
      * Launch the application.
@@ -141,7 +145,7 @@ public class UploadWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MapMessage mapMessage = (MapMessage)MapController.processFile(file);
+				mapMessage = (MapMessage)MapController.processFile(file);
 				System.out.println(mapMessage.isValidMap());
 				if(mapMessage.isValidMap()) {
 					StringBuffer continentsInfo = new StringBuffer();
@@ -153,8 +157,6 @@ public class UploadWindow {
 						continentsInfo.append(thisContinent.getName());
 						continentsInfo.append("\r\n");
 					}
-					
-					//Testing JList
 					continentsJList.setListData(continentNames);
 					
 				}else {
@@ -163,7 +165,31 @@ public class UploadWindow {
 				}				
 			}
 		});
-
+        
+        /* Continents selection Action --> Display Territories - Start */
+        
+        continentsJList.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent listSelectionEvent) {
+				JList list = (JList) listSelectionEvent.getSource();
+				int selections[] = list.getSelectedIndices();
+				ArrayList<Territory> territories = mapMessage.getContinents().get(selections[0]).getTerritories();
+				String[] territoryNames = new String[territories.size()];
+				for(int i=0;i<territories.size();i++) {
+					territoryNames[i] = territories.get(i).getName();
+				}
+				territoriesList.setListData(territoryNames);
+				
+			}
+		});
+        
+        /* Continents selection Action --> Display Territories - End */
+        
+        /* Territory Selection Action --> Display Adjacent Territories - Start */
+        
+        
+        /* Territory Selection Action --> Display Adjacent Territories - End */
 
     }
 }
