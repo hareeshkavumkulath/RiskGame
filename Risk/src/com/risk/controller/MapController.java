@@ -36,6 +36,13 @@ public class MapController {
 	 * @return MapMessage with information about the Map
 	 */
 	public static MapMessage processFile(File file) {
+		//Initialize the variables when the files are loading again
+		fileContent = new StringBuffer();
+		continentArray = new ArrayList<Continent>();
+		territoriesArray = new ArrayList<Territory>();
+		isValidMap = false;
+		message = new StringBuffer();
+		
 		try {
 
             Scanner input = new Scanner(file);
