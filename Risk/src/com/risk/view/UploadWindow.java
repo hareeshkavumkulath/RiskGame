@@ -1,6 +1,7 @@
 package com.risk.view;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.risk.controller.MapController;
@@ -83,43 +84,35 @@ public class UploadWindow {
 		labelContinents.setBounds(45, 108, 115, 20);
 		frame.getContentPane().add(labelContinents);
 		
-		JTextPane continentInfo = new JTextPane();
-		continentInfo.setBounds(46, 148, 300, 500);
-		continentInfo.setEditable(true);
+		JList<String> continentsJList = new JList<String>();
+		continentsJList.setBorder(new LineBorder(Color.BLUE));
+		continentsJList.setBounds(46, 144, 201, 349);
+		continentsJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		frame.getContentPane().add(continentsJList);
         
-		JScrollPane scrollPaneContinents = new JScrollPane(continentInfo);
-		scrollPaneContinents.setBounds(46, 142, 230, 349);
-		scrollPaneContinents.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		frame.getContentPane().add(scrollPaneContinents);
-		
 		/* Territories Information - Start */
 		JLabel labelTerritories = new JLabel("Territories");
-		labelTerritories.setBounds(293, 108, 115, 20);
+		labelTerritories.setBounds(277, 108, 115, 20);
 		frame.getContentPane().add(labelTerritories);
 		
-		JTextPane territoryInfo = new JTextPane();
-		territoryInfo.setBounds(46, 148, 300, 500);
-		territoryInfo.setEditable(true);
+		JList<String> territoriesList = new JList<String>();
+		territoriesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		territoriesList.setBorder(new LineBorder(Color.BLUE));
+		territoriesList.setBounds(277, 144, 211, 349);
+		frame.getContentPane().add(territoriesList);
 		
-		JScrollPane scrollPaneTerritories = new JScrollPane(territoryInfo);
-		scrollPaneTerritories.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPaneTerritories.setBounds(291, 142, 230, 349);
-		frame.getContentPane().add(scrollPaneTerritories);
 		/* Territories Information - End */
 		
 		/* Adjacent Territories Information - Start */
 		JLabel labelAdjacentTerritories = new JLabel("Adjacent Territories");
-		labelAdjacentTerritories.setBounds(540, 108, 201, 20);
-		frame.getContentPane().add(labelAdjacentTerritories);
+		labelAdjacentTerritories.setBounds(524, 108, 201, 20);
+		frame.getContentPane().add(labelAdjacentTerritories);		
 		
-		JTextPane adjacentTerritoryInfo = new JTextPane();
-		adjacentTerritoryInfo.setBounds(46, 148, 300, 500);
-		adjacentTerritoryInfo.setEditable(true);
-		
-		JScrollPane scrollPaneAdjacentTerritories = new JScrollPane(adjacentTerritoryInfo);
-		scrollPaneAdjacentTerritories.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPaneAdjacentTerritories.setBounds(542, 142, 230, 349);
-		frame.getContentPane().add(scrollPaneAdjacentTerritories);
+		JList<String> adjTerritoriesList = new JList<String>();
+		adjTerritoriesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		adjTerritoriesList.setBorder(new LineBorder(Color.BLUE));
+		adjTerritoriesList.setBounds(524, 144, 211, 349);
+		frame.getContentPane().add(adjTerritoriesList);
 		/* Adjacent Territories Information - End */
 		
         browseButton.addActionListener(new ActionListener() {
@@ -160,10 +153,13 @@ public class UploadWindow {
 						continentsInfo.append(thisContinent.getName());
 						continentsInfo.append("\r\n");
 					}
-					continentInfo.setText(continentsInfo.toString());
+					
+					//Testing JList
+					continentsJList.setListData(continentNames);
+					
 				}else {
 					String message = mapMessage.getMessage().toString();
-					continentInfo.setText(message);
+					//continentInfo.setText(message);
 				}				
 			}
 		});
