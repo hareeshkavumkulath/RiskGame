@@ -255,7 +255,36 @@ public class UploadWindow {
 				}
 			}
 		});
-        /* Remove Continent Button Action - End */        
+        /* Remove Continent Button Action - End */       
+        
+        /* Remove Territory Button Action - Start */
+        btnRemoveTerritory.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(territoriesJList.getSelectedValue() != null) {
+					mapMessage = (MapMessage)MapController.removeContinent(territoriesJList.getSelectedValue());
+					if(mapMessage.isValidMap()) {
+						StringBuffer continentsInfo = new StringBuffer();
+						ArrayList<Continent> continents = mapMessage.getContinents();
+						String[] continentNames = new String[continents.size()];
+						for(int i = 0; i < continents.size(); i++) {
+							Continent thisContinent = (Continent) continents.get(i);
+							continentNames[i] = thisContinent.getName(); 
+							continentsInfo.append(thisContinent.getName());
+							continentsInfo.append("\r\n");
+						}
+						continentsJList.setListData(continentNames);
+					}
+					String[] territoryNames = {};
+					territoriesJList.setListData(territoryNames);
+				}else {
+					System.out.println("Select a territory");
+				}
+			}
+		});
+        /* Remove Territory Button Action - End */  
+        
     }
     
 }
