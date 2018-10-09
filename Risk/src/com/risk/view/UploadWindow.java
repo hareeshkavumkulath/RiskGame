@@ -171,7 +171,8 @@ public class UploadWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mapMessage = (MapMessage)MapController.processFile(file);
+				MapController mapController = new MapController();
+				mapMessage = (MapMessage)mapController.processFile(file);
 				System.out.println(mapMessage.isValidMap());
 				if(mapMessage.isValidMap()) {
 					StringBuffer continentsInfo = new StringBuffer();
@@ -247,7 +248,8 @@ public class UploadWindow {
 				String[] territoryNames = {};
 				territoriesJList.setListData(territoryNames);
 				if(continentsJList.getSelectedValue() != null) {
-					mapMessage = (MapMessage)MapController.removeContinent(continentsJList.getSelectedValue());
+					MapController mapController = new MapController(new StringBuffer(""), mapMessage.getContinents(), mapMessage.getTerritories(), true, new StringBuffer(""));
+					mapMessage = (MapMessage)mapController.removeContinent(continentsJList.getSelectedValue());
 					if(mapMessage.isValidMap()) {
 						StringBuffer continentsInfo = new StringBuffer();
 						ArrayList<Continent> continents = mapMessage.getContinents();
@@ -273,7 +275,8 @@ public class UploadWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(territoriesJList.getSelectedValue() != null) {
-					mapMessage = (MapMessage)MapController.removeContinent(territoriesJList.getSelectedValue());
+					MapController mapController = new MapController(new StringBuffer(""), mapMessage.getContinents(), mapMessage.getTerritories(), true, new StringBuffer(""));
+					mapMessage = (MapMessage)mapController.removeContinent(territoriesJList.getSelectedValue());
 					if(mapMessage.isValidMap()) {
 						StringBuffer continentsInfo = new StringBuffer();
 						ArrayList<Continent> continents = mapMessage.getContinents();
