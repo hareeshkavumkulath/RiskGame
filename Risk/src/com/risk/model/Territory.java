@@ -32,6 +32,12 @@ public class Territory {
 		this.continent = continent;
 	}
 	
+	/**
+	 * 
+	 */
+	public Territory() {
+	}
+
 	public String getName() {
 		return name;
 	}

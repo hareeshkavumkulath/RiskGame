@@ -316,7 +316,7 @@ public class MapController {
 	 * @param continentName
 	 * @return
 	 */
-	private static Continent getContinentFromArray(String continentName) {
+	public static Continent getContinentFromArray(String continentName) {
 		Continent continent = new Continent();
 		for(int i = 0; i < continentArray.size();i++) {
 			if(continentName.equals(continentArray.get(i).getName())) {
@@ -389,6 +389,18 @@ public class MapController {
 	}
 	
 	/**
+	 * Remove continent with name, continentName
+	 * 
+	 * @param continentName
+	 * @return
+	 */
+	public static MapMessage removeContinent(String continentName) {
+		boolean isRemoved = removeContinent(getContinentFromArray(continentName)); 
+		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
+		return mapMessage;
+	}
+	
+	/**
 	 * Remove continent if the user wants to remove it. Removes continent from the arraylist
 	 * <p>It consists of following processes</p>
 	 * <ul>
@@ -440,6 +452,18 @@ public class MapController {
 			removeTerritory(territoriesInContinent.get(i));
 		}
 	}
+	
+	/**
+	 * Remove the territory with name, territoryName
+	 * 
+	 * @param territoryName
+	 * @return
+	 */
+	public static MapMessage removeTerritory(String territoryName) {
+		boolean isRemoved = removeTerritory(getTerritoryFromArray(territoryName)); 
+		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
+		return mapMessage;
+	} 
 	
 	/**
 	 * Remove a single territory
@@ -517,6 +541,22 @@ public class MapController {
 	 */
 	public static void removeTerritoryFromContinent(Continent continent, Territory territory) {
 		continent.getTerritories().remove(territory);	
+	}
+	
+	/**
+	 * Returns the Territory from the territoriesArray, ArrayList
+	 * 
+	 * @param territoryName
+	 * @return
+	 */
+	public static Territory getTerritoryFromArray(String territoryName) {
+		Territory territory = new Territory();
+		for(int i = 0; i < territoriesArray.size();i++) {
+			if(territoryName.equals(territoriesArray.get(i).getName())) {
+				territory = territoriesArray.get(i);
+			}
+		}
+		return territory;
 	}
 
 }
