@@ -276,21 +276,24 @@ public class UploadWindow {
 			public void actionPerformed(ActionEvent e) {
 				if(territoriesJList.getSelectedValue() != null) {
 					MapController mapController = new MapController(new StringBuffer(""), mapMessage.getContinents(), mapMessage.getTerritories(), true, new StringBuffer(""));
-					mapMessage = (MapMessage)mapController.removeContinent(territoriesJList.getSelectedValue());
+					mapMessage = (MapMessage)mapController.removeTerritory(territoriesJList.getSelectedValue());
 					if(mapMessage.isValidMap()) {
-						StringBuffer continentsInfo = new StringBuffer();
-						ArrayList<Continent> continents = mapMessage.getContinents();
-						String[] continentNames = new String[continents.size()];
-						for(int i = 0; i < continents.size(); i++) {
-							Continent thisContinent = (Continent) continents.get(i);
-							continentNames[i] = thisContinent.getName(); 
-							continentsInfo.append(thisContinent.getName());
-							continentsInfo.append("\r\n");
+						String continentName = continentsJList.getSelectedValue();
+						Continent continent = new Continent();
+						for(int i=0;i<mapMessage.getContinents().size();i++) {
+							if(mapMessage.getContinents().get(i).getName().equals(continentName)) {
+								continent = mapMessage.getContinents().get(i);
+							}
 						}
-						continentsJList.setListData(continentNames);
+						ArrayList<Territory> territories = continent.getTerritories();
+						String[] territoryNames = new String[territories.size()];
+						for(int i=0;i<territories.size();i++) {
+							territoryNames[i] = territories.get(i).getName();
+						}
+						territoriesJList.setListData(territoryNames);
 					}
-					String[] territoryNames = {};
-					territoriesJList.setListData(territoryNames);
+					String[] adjTerritoryNames = {};
+					adjTerritoriesJList.setListData(adjTerritoryNames);
 				}else {
 					System.out.println("Select a territory");
 				}
