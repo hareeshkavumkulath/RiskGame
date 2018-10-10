@@ -578,7 +578,8 @@ public class MapController {
 				territory = territoriesArray.get(i);
 			}
 		}
+		//System.out.println("test"+territory.getName());
 		return territory;
 	}
-
+	
 }
