@@ -142,6 +142,12 @@ public class UploadWindow {
 		frame.getContentPane().add(mapName);
 		
 		JButton btnSaveMap = new JButton("Save Map");
+		btnSaveMap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//write a file
+				
+			}
+		});
 		btnSaveMap.setBounds(843, 564, 115, 29);
 		frame.getContentPane().add(btnSaveMap);
 		
@@ -291,6 +297,17 @@ public class UploadWindow {
 							territoryNames[i] = territories.get(i).getName();
 						}
 						territoriesJList.setListData(territoryNames);
+						//if the territory is empty, so the according continents need to be removed.
+						if(territories.size()==0) {
+							mapMessage = (MapMessage)mapController.removeContinent(continentsJList.getSelectedValue());
+							ArrayList<Continent> continents = mapMessage.getContinents();
+							String[] continentNames = new String[continents.size()];
+							for(int i = 0; i < continents.size(); i++) {
+								Continent thisContinent = (Continent) continents.get(i);
+								continentNames[i] = thisContinent.getName(); 
+							}
+							continentsJList.setListData(continentNames);
+						}
 					}
 					String[] adjTerritoryNames = {};
 					adjTerritoriesJList.setListData(adjTerritoryNames);
