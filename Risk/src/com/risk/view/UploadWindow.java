@@ -151,6 +151,15 @@ public class UploadWindow {
 		btnSaveMap.setBounds(843, 564, 115, 29);
 		frame.getContentPane().add(btnSaveMap);
 		
+		JTextPane errorMessage = new JTextPane();
+		errorMessage.setBounds(46, 148, 300, 500);
+		errorMessage.setEditable(true);
+		
+		JScrollPane messageScrollPane = new JScrollPane(errorMessage);
+		messageScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		messageScrollPane.setBounds(761, 144, 251, 349);
+		frame.getContentPane().add(messageScrollPane);
+		
         browseButton.addActionListener(new ActionListener() {
 
             @Override
@@ -181,6 +190,8 @@ public class UploadWindow {
 				mapMessage = (MapMessage)mapController.processFile(file);
 				System.out.println(mapMessage.isValidMap());
 				if(mapMessage.isValidMap()) {
+					errorMessage.setForeground(Color.GREEN);
+					errorMessage.setText("Valid Map");
 					StringBuffer continentsInfo = new StringBuffer();
 					ArrayList<Continent> continents = mapMessage.getContinents();
 					String[] continentNames = new String[continents.size()];
@@ -194,6 +205,8 @@ public class UploadWindow {
 					
 				}else {
 					String message = mapMessage.getMessage().toString();
+					errorMessage.setForeground(Color.RED);
+					errorMessage.setText(message);
 					//continentInfo.setText(message);
 				}				
 			}
