@@ -93,7 +93,7 @@ public class MapController {
 					if(isContinentConnected) {
 						// Check all the territories in the Map are connected or not
 						boolean isMapConnected = false;
-						isMapConnected = validateMap();
+						isMapConnected = validateMap(territoriesArray);
 						if(isMapConnected) {
 							System.out.println("isMapConnected");
 							isValidMap = true;
@@ -351,23 +351,25 @@ public class MapController {
 	/**
 	 * Check whether all the territories are well connected in the Map
 	 * Used DFS algorithm to check the connection and traversal of each territories
+	 * @param territoriesList 
 	 *  
 	 * @return
 	 */
-	private boolean validateMap() {
+	public boolean validateMap(ArrayList<Territory> territoriesList) {
 		boolean isConnected = false;
-		int numberOfTerritories = territoriesArray.size();
+		int numberOfTerritories = territoriesList.size();
 		ArrayList<String> visitedTerritories = new ArrayList<String>();
 		ArrayList<String> checkedTerritories = new ArrayList<String>();
-		for(int i=0;i<territoriesArray.size();i++) {
-			Territory territory = (Territory)territoriesArray.get(i);
+		for(int i=0;i<territoriesList.size();i++) {
+			Territory territory = (Territory)territoriesList.get(i);
 			visitedTerritories.clear();
 			checkedTerritories.clear();
+			System.out.println(territory.getName());
 			visitedTerritories.add(territory.getName());
 			checkedTerritories.add(territory.getName());
 			int index = 1;
 			while(!checkedTerritories.isEmpty()) {
-				Territory newTerritory = getTerritory(checkedTerritories.get(0));
+				Territory newTerritory = getTerritory(checkedTerritories.get(0), territoriesList);
 				for(int k = 0;k < newTerritory.getAdjacentTerritories().size();k++) {
 					String adjacentTerritory = newTerritory.getAdjacentTerritories().get(k);
 					if(visitedTerritories.indexOf(adjacentTerritory) < 0 ) {
@@ -407,13 +409,14 @@ public class MapController {
 	 * Return territory using the territoryName
 	 * 	
 	 * @param territoryName
+	 * @param territoriesList 
 	 * @return
 	 */
-	public Territory getTerritory(String territoryName) {
+	public Territory getTerritory(String territoryName, ArrayList<Territory> territoriesList) {
 		Territory territory = null;
-		for(int i = 0;i<territoriesArray.size();i++) {
-			if(territoryName.equals(territoriesArray.get(i).getName())) {
-				territory = (Territory)territoriesArray.get(i);
+		for(int i = 0;i<territoriesList.size();i++) {
+			if(territoryName.equals(territoriesList.get(i).getName())) {
+				territory = (Territory)territoriesList.get(i);
 			}
 		}
 		return territory;

@@ -39,6 +39,7 @@ public class UploadWindow {
     private JButton uploadButton;
     private MapMessage mapMessage;
     private JTextField mapName;
+    private boolean mapStatus = false;
     
     /**
      * Launch the application.
@@ -119,10 +120,6 @@ public class UploadWindow {
 		
 		// Remove Continent and Remove Territory Buttons
 		JButton btnRemoveContinent = new JButton("Remove Continent");
-		btnRemoveContinent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnRemoveContinent.setBounds(46, 516, 201, 29);
 		frame.getContentPane().add(btnRemoveContinent);
 		
@@ -144,8 +141,11 @@ public class UploadWindow {
 		JButton btnSaveMap = new JButton("Save Map");
 		btnSaveMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//write a file
-				
+				if(mapStatus) {
+					
+				}else {
+					JOptionPane.showMessageDialog(frame, "Please validate the Map.");
+				}				
 			}
 		});
 		btnSaveMap.setBounds(843, 564, 115, 29);
@@ -159,6 +159,25 @@ public class UploadWindow {
 		messageScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		messageScrollPane.setBounds(761, 144, 251, 349);
 		frame.getContentPane().add(messageScrollPane);
+		
+		JButton validateAgain = new JButton("Validate Again");
+		validateAgain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MapController controller = new MapController();
+				System.out.println("Size:"+mapMessage.getTerritories().size());
+				boolean status = controller.validateMap(mapMessage.getTerritories());
+				System.out.println("Status:"+status);
+				if(status) {
+					JOptionPane.showMessageDialog(frame, "Map is valid. You can save the Map.");
+					mapStatus = true;
+				}else {
+					JOptionPane.showMessageDialog(frame, "Map is invalid.");
+					mapStatus = false;
+				}
+			}
+		});
+		validateAgain.setBounds(287, 561, 191, 29);
+		frame.getContentPane().add(validateAgain);
 		
         browseButton.addActionListener(new ActionListener() {
 
@@ -280,6 +299,7 @@ public class UploadWindow {
 							continentsInfo.append("\r\n");
 						}
 						continentsJList.setListData(continentNames);
+						mapStatus = false;
 					}
 				}else {
 					System.out.println("Select a continent");
@@ -321,6 +341,7 @@ public class UploadWindow {
 							}
 							continentsJList.setListData(continentNames);
 						}
+						mapStatus = false;
 					}
 					String[] adjTerritoryNames = {};
 					adjTerritoriesJList.setListData(adjTerritoryNames);
