@@ -93,7 +93,7 @@ public class MapController {
 					if(isContinentConnected) {
 						// Check all the territories in the Map are connected or not
 						boolean isMapConnected = false;
-						isMapConnected = validateContinent();
+						isMapConnected = validateMap();
 						if(isMapConnected) {
 							System.out.println("isMapConnected");
 							isValidMap = true;
@@ -354,42 +354,51 @@ public class MapController {
 	 *  
 	 * @return
 	 */
-	private boolean validateContinent() {
+	private boolean validateMap() {
 		boolean isConnected = false;
 		int numberOfTerritories = territoriesArray.size();
 		ArrayList<String> visitedTerritories = new ArrayList<String>();
 		ArrayList<String> checkedTerritories = new ArrayList<String>();
-		Territory territory = (Territory)territoriesArray.get(1);
-		visitedTerritories.add(territory.getName());
-		checkedTerritories.add(territory.getName());
-		int index = 1;
-		System.out.print(territory.getName()+"===");
-		while(!checkedTerritories.isEmpty()) {
-			Territory newTerritory = getTerritory(checkedTerritories.get(0));
-			System.out.println(index + "==" + newTerritory.getName());
-			for(int k = 0;k < newTerritory.getAdjacentTerritories().size();k++) {
-				String adjacentTerritory = newTerritory.getAdjacentTerritories().get(k);
-				if(visitedTerritories.indexOf(adjacentTerritory) < 0 ) {
-					visitedTerritories.add(adjacentTerritory);
-					System.out.print(adjacentTerritory+",");
+		for(int i=0;i<territoriesArray.size();i++) {
+			Territory territory = (Territory)territoriesArray.get(i);
+			visitedTerritories.clear();
+			checkedTerritories.clear();
+			visitedTerritories.add(territory.getName());
+			checkedTerritories.add(territory.getName());
+			int index = 1;
+			while(!checkedTerritories.isEmpty()) {
+				Territory newTerritory = getTerritory(checkedTerritories.get(0));
+				for(int k = 0;k < newTerritory.getAdjacentTerritories().size();k++) {
+					String adjacentTerritory = newTerritory.getAdjacentTerritories().get(k);
+					if(visitedTerritories.indexOf(adjacentTerritory) < 0 ) {
+						visitedTerritories.add(adjacentTerritory);
+					}
+				}
+				if(visitedTerritories.size() != numberOfTerritories) {
+					checkedTerritories.remove(0);
+					try {
+						checkedTerritories.add(visitedTerritories.get(index));
+					}catch(Exception e) {
+						
+					}
+					index++;
+				}else {
+					checkedTerritories.remove(0);
+					isConnected = true;
 				}
 			}
-			if(visitedTerritories.size() != numberOfTerritories) {
-				checkedTerritories.remove(0);
-				try {
-					checkedTerritories.add(visitedTerritories.get(index));
-				}catch(Exception e) {
-					
+			if(!isConnected) {
+				message.append("Territory: " + territory.getName() + "\n");
+				message.append("*************************************************\n");
+				for(int j=0;j<territoriesArray.size();j++) {
+					if(!visitedTerritories.contains(territoriesArray.get(j).getName())){
+						message.append("It is not connected to:"+territoriesArray.get(j).getName());
+					}
 				}
-				index++;
-			}else {
-				checkedTerritories.remove(0);
-				isConnected = true;
+				message.append("\n");
+				message.append("Territories are not well connected");
+				isConnected = false;
 			}
-		}
-		if(!isConnected) {
-			message.append("Territories are not well connected");
-			isConnected = false;
 		}
 		return isConnected;		
 	}
