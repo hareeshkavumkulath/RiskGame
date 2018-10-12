@@ -205,7 +205,7 @@ public class UploadWindow {
        	@Override
 			public void actionPerformed(ActionEvent e) {
 				if(file == null) {
-					 String message = "File Chosen was cancelled" + ". Please select a \".map\" file";
+					 String message = "Please select an upload file.";
 	                    JOptionPane.showMessageDialog(new JFrame(), message, "No File Selected",
 	                            JOptionPane.ERROR_MESSAGE);
 	
