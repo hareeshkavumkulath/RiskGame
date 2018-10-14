@@ -21,6 +21,7 @@ public class Territory {
 	String name;
 	String continent;
 	ArrayList<String> adjacentTerritories;
+	Player ruler;
 	/**
 	 * Create a Territory with territory name and continent name
 	 * @param name - Name of the Territory
@@ -60,6 +61,14 @@ public class Territory {
 	
 	public void setAdjacentTerritories(ArrayList<String> adjacentTerritories) {
 		this.adjacentTerritories = adjacentTerritories;
+	}
+
+	public Player getRuler() {
+		return ruler;
+	}
+
+	public void setRuler(Player ruler) {
+		this.ruler = ruler;
 	}	
 
 }

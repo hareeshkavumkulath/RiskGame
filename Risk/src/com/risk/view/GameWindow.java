@@ -12,6 +12,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.risk.controller.GameController;
 import com.risk.model.Continent;
 import com.risk.model.Map;
 import com.risk.model.Player;
@@ -55,7 +56,9 @@ public class GameWindow {
 	private JLabel lblPlayers;
 	private JList<String> playerJList;
 	
-	public ArrayList<Player> playerList = new ArrayList<Player>();
+	public ArrayList<Player> playerList;
+	public ArrayList<Continent> continents;
+	public ArrayList<Territory> territories;
 	
 	/**
 	 * Launch the application.
@@ -106,34 +109,35 @@ public class GameWindow {
 		adjTerritoriesLabel.setBounds(494, 16, 201, 20);
 		frame.getContentPane().add(adjTerritoriesLabel);
 		
-		JList<String> continentList = new JList<String>();
-		continentList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		continentList.setBorder(new LineBorder(Color.BLUE));
-		continentList.setBounds(15, 40, 201, 313);
-		frame.getContentPane().add(continentList);
+		JList<String> continentJList = new JList<String>();
+		continentJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		continentJList.setBorder(new LineBorder(Color.BLUE));
+		continentJList.setBounds(15, 40, 201, 313);
+		frame.getContentPane().add(continentJList);
 		
-		JList<String> territoriesList = new JList<String>();
-		territoriesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		territoriesList.setBorder(new LineBorder(Color.BLUE));
-		territoriesList.setBounds(246, 40, 211, 313);
-		frame.getContentPane().add(territoriesList);
+		JList<String> territoriesJList = new JList<String>();
+		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		territoriesJList.setBorder(new LineBorder(Color.BLUE));
+		territoriesJList.setBounds(246, 40, 211, 313);
+		frame.getContentPane().add(territoriesJList);
 		
-		JList<String> adjTerritoriesList = new JList<String>();
-		adjTerritoriesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		adjTerritoriesList.setBorder(new LineBorder(Color.BLUE));
-		adjTerritoriesList.setBounds(493, 40, 211, 313);
-		frame.getContentPane().add(adjTerritoriesList);
+		JList<String> adjTerritoriesJList = new JList<String>();
+		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
+		adjTerritoriesJList.setBounds(493, 40, 211, 313);
+		frame.getContentPane().add(adjTerritoriesJList);
 		
 		// Loading values in JLists
-		ArrayList<Continent> continents = map.getContinents();
+		continents = map.getContinents();
+		territories = map.getTerritories();
 		String[] continentNames = new String[continents.size()];
 		for(int i = 0; i < continents.size(); i++) {
 			Continent thisContinent = (Continent) continents.get(i);
 			continentNames[i] = thisContinent.getName(); 
 		}
-		continentList.setListData(continentNames);
+		continentJList.setListData(continentNames);
 		
-		continentList.addListSelectionListener(new ListSelectionListener() {
+		continentJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -144,11 +148,11 @@ public class GameWindow {
 				for(int i=0;i<territories.size();i++) {
 					territoryNames[i] = territories.get(i).getName();
 				}
-				territoriesList.setListData(territoryNames);				
+				territoriesJList.setListData(territoryNames);				
 			}
 		});
 		
-		territoriesList.addListSelectionListener(new ListSelectionListener() {
+		territoriesJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -166,7 +170,7 @@ public class GameWindow {
 					for(int i=0;i<selectedTerritory.getAdjacentTerritories().size();i++) {
 						adjTerritoryNames[i] = selectedTerritory.getAdjacentTerritories().get(i);
 					}
-					adjTerritoriesList.setListData(adjTerritoryNames);
+					adjTerritoriesJList.setListData(adjTerritoryNames);
 				} catch(Exception e) {
 					System.out.println(e.toString());
 				}
@@ -215,6 +219,15 @@ public class GameWindow {
 		beginGame.setFont(new Font("Tahoma", Font.BOLD, 22));
 		beginGame.setBounds(1128, 152, 235, 163);
 		frame.getContentPane().add(beginGame);
+		
+		beginGame.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameController controller = new GameController();
+				playerList = controller.addTerritories(playerList, territories);
+			}
+		});
 		
 	}
 
