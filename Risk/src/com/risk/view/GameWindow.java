@@ -28,6 +28,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JPanel;
+import java.awt.Font;
 
 /**
  * @author Hareesh Kavumkulath
@@ -88,6 +89,7 @@ public class GameWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setForeground(Color.GREEN);
 		frame.setBounds(100, 100, 1400, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -206,6 +208,13 @@ public class GameWindow {
 		playerJList.setBounds(758, 101, 355, 252);
 		
 		frame.getContentPane().add(playerJList);
+		
+		JButton beginGame = new JButton("Begin \r\nConquest");
+		beginGame.setBackground(Color.WHITE);
+		beginGame.setForeground(Color.GREEN);
+		beginGame.setFont(new Font("Tahoma", Font.BOLD, 22));
+		beginGame.setBounds(1128, 152, 235, 163);
+		frame.getContentPane().add(beginGame);
 		
 	}
 
