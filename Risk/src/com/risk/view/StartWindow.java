@@ -71,6 +71,15 @@ public class StartWindow {
 				uploadWindow.main();
 			}
 		});
+		
+		btnStart.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SelectMapWindow gameStart = new SelectMapWindow();		
+				gameStart.main();
+			}
+		});
 		frame.setVisible(true);
 	}
 }
