@@ -89,7 +89,21 @@ public class SelectMapWindow {
 
 		mapFilesJList.setListData(fileNames);	
 		
-		
+		btnSelect.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String fileName = mapFilesJList.getSelectedValue();
+				File file = new File(".\\Maps\\" + fileName);
+				MapController controller = new MapController();
+				MapMessage message = controller.processFile(file);
+				if(message.isValidMap()) {
+					Map map = new Map(message.getContinents(), message.getTerritories());
+					GameWindow beginGame = new GameWindow(map);		
+					beginGame.main(map);
+				}
+			}
+		});
 		
 	}
 }
