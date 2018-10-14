@@ -52,11 +52,9 @@ public class GameWindow {
 	private JComboBox playerType4 = null;
 	private JComboBox playerType5;
 	private JComboBox playerType6;
-	
-	private JLabel lblPlayers;
 	private JList<String> playerJList;
 	
-	public ArrayList<Player> playerList;
+	public ArrayList<Player> playerList = new ArrayList<Player>();
 	public ArrayList<Continent> continents;
 	public ArrayList<Territory> territories;
 	
@@ -93,12 +91,12 @@ public class GameWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.GREEN);
-		frame.setBounds(100, 100, 1400, 800);
+		frame.setBounds(100, 100, 1859, 824);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel continentlabel = new JLabel("Continents");
-		continentlabel.setBounds(15, 16, 115, 20);
+		continentlabel.setBounds(38, 16, 115, 20);
 		frame.getContentPane().add(continentlabel);
 		
 		JLabel territoriesLabel = new JLabel("Territories");
@@ -106,25 +104,25 @@ public class GameWindow {
 		frame.getContentPane().add(territoriesLabel);
 		
 		JLabel adjTerritoriesLabel = new JLabel("Adjacent Territories");
-		adjTerritoriesLabel.setBounds(494, 16, 201, 20);
+		adjTerritoriesLabel.setBounds(445, 16, 201, 20);
 		frame.getContentPane().add(adjTerritoriesLabel);
 		
 		JList<String> continentJList = new JList<String>();
 		continentJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		continentJList.setBorder(new LineBorder(Color.BLUE));
-		continentJList.setBounds(15, 40, 201, 313);
+		continentJList.setBounds(15, 40, 154, 313);
 		frame.getContentPane().add(continentJList);
 		
 		JList<String> territoriesJList = new JList<String>();
 		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		territoriesJList.setBorder(new LineBorder(Color.BLUE));
-		territoriesJList.setBounds(246, 40, 211, 313);
+		territoriesJList.setBounds(184, 40, 211, 313);
 		frame.getContentPane().add(territoriesJList);
 		
 		JList<String> adjTerritoriesJList = new JList<String>();
 		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
-		adjTerritoriesJList.setBounds(493, 40, 211, 313);
+		adjTerritoriesJList.setBounds(410, 40, 211, 313);
 		frame.getContentPane().add(adjTerritoriesJList);
 		
 		// Loading values in JLists
@@ -180,16 +178,16 @@ public class GameWindow {
 		// Select number of Players and create Players
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(2, 2, 6, 1));
-		spinner.setBounds(966, 13, 46, 26);
+		spinner.setBounds(885, 39, 46, 26);
 		spinner.setValue(5);
 		frame.getContentPane().add(spinner);
 		
 		JLabel lblSelectTheNumber = new JLabel("Select the number of Players:");
-		lblSelectTheNumber.setBounds(748, 16, 256, 20);
+		lblSelectTheNumber.setBounds(648, 42, 256, 20);
 		frame.getContentPane().add(lblSelectTheNumber);
 		
 		JButton btnOk = new JButton(">>");
-		btnOk.setBounds(1027, 12, 64, 29);
+		btnOk.setBounds(946, 38, 64, 29);
 		frame.getContentPane().add(btnOk);
 		
 		btnOk.addActionListener(new ActionListener() {
@@ -202,14 +200,10 @@ public class GameWindow {
 			}
 		});
 		
-		lblPlayers = new JLabel("Players");
-		lblPlayers.setBounds(758, 65, 69, 20);
-		frame.getContentPane().add(lblPlayers);
-		
 		playerJList = new JList<String>();
 		playerJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		playerJList.setBorder(new LineBorder(Color.BLUE));
-		playerJList.setBounds(758, 101, 355, 252);
+		playerJList.setBounds(648, 96, 154, 257);
 		
 		frame.getContentPane().add(playerJList);
 		
@@ -217,8 +211,38 @@ public class GameWindow {
 		beginGame.setBackground(Color.WHITE);
 		beginGame.setForeground(Color.GREEN);
 		beginGame.setFont(new Font("Tahoma", Font.BOLD, 22));
-		beginGame.setBounds(1128, 152, 235, 163);
+		beginGame.setBounds(1025, 16, 235, 48);
 		frame.getContentPane().add(beginGame);
+		
+		JList<String> list = new JList<String>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setBorder(new LineBorder(Color.BLUE));
+		list.setBounds(1449, 40, 355, 688);
+		frame.getContentPane().add(list);
+		
+		JLabel label = new JLabel("Players");
+		label.setBounds(700, 72, 69, 20);
+		frame.getContentPane().add(label);
+		
+		JList<String> ownedTerritories = new JList<String>();
+		ownedTerritories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ownedTerritories.setBorder(new LineBorder(Color.BLUE));
+		ownedTerritories.setBounds(817, 96, 211, 257);
+		frame.getContentPane().add(ownedTerritories);
+		
+		JLabel label_1 = new JLabel("Territories");
+		label_1.setBounds(880, 72, 115, 20);
+		frame.getContentPane().add(label_1);
+		
+		JLabel label_2 = new JLabel("Adjacent Territories");
+		label_2.setBounds(1078, 71, 201, 20);
+		frame.getContentPane().add(label_2);
+		
+		JList<String> ownedAdjTerritories = new JList<String>();
+		ownedAdjTerritories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ownedAdjTerritories.setBorder(new LineBorder(Color.BLUE));
+		ownedAdjTerritories.setBounds(1043, 95, 211, 258);
+		frame.getContentPane().add(ownedAdjTerritories);
 		
 		beginGame.addActionListener(new ActionListener() {
 			

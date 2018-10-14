@@ -13,8 +13,8 @@ public class Player {
 	
 	public String name;
 	public int numberOfArmies;
-	public ArrayList<Territory> ownedTerritories;
-	public ArrayList<Continent> ownedContinents;
+	public ArrayList<Territory> ownedTerritories = new ArrayList<Territory>();
+	public ArrayList<Continent> ownedContinents = new ArrayList<Continent>();
 	public boolean isComputer;
 	
 	public Player(String name, boolean isComputer) {
