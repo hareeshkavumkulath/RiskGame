@@ -17,9 +17,10 @@ public class Player {
 	public ArrayList<Continent> ownedContinents = new ArrayList<Continent>();
 	public boolean isComputer;
 	
-	public Player(String name, boolean isComputer) {
+	public Player(String name, boolean isComputer, int numberOfArmies) {
 		this.name = name;
 		this.isComputer = isComputer;
+		this.numberOfArmies = numberOfArmies;
 	}
 	public String getName() {
 		return name;

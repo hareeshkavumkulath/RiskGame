@@ -230,19 +230,13 @@ public class GameWindow {
 		ownedTerritories.setBounds(817, 96, 211, 257);
 		frame.getContentPane().add(ownedTerritories);
 		
-		JLabel label_1 = new JLabel("Territories");
-		label_1.setBounds(880, 72, 115, 20);
-		frame.getContentPane().add(label_1);
+		JLabel lblOwnedTerritories = new JLabel("Owned Territories");
+		lblOwnedTerritories.setBounds(844, 72, 164, 20);
+		frame.getContentPane().add(lblOwnedTerritories);
 		
-		JLabel label_2 = new JLabel("Adjacent Territories");
-		label_2.setBounds(1078, 71, 201, 20);
-		frame.getContentPane().add(label_2);
-		
-		JList<String> ownedAdjTerritories = new JList<String>();
-		ownedAdjTerritories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		ownedAdjTerritories.setBorder(new LineBorder(Color.BLUE));
-		ownedAdjTerritories.setBounds(1043, 95, 211, 258);
-		frame.getContentPane().add(ownedAdjTerritories);
+		JButton placeArmy = new JButton("Place Army");
+		placeArmy.setBounds(1058, 131, 174, 29);
+		frame.getContentPane().add(placeArmy);
 		
 		beginGame.addActionListener(new ActionListener() {
 			
@@ -250,6 +244,23 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				GameController controller = new GameController();
 				playerList = controller.addTerritories(playerList, territories);
+				// Set number of armies each player get
+				
+			}
+		});
+		
+		playerJList.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent listSelectionEvent) {
+				JList list = (JList) listSelectionEvent.getSource();
+				int selections[] = list.getSelectedIndices();
+				ArrayList<Territory> territories = playerList.get(selections[0]).getOwnedTerritories();
+				String[] territoryNames = new String[territories.size()];
+				for(int i=0;i<territories.size();i++) {
+					territoryNames[i] = territories.get(i).getName();
+				}
+				ownedTerritories.setListData(territoryNames);				
 			}
 		});
 		
@@ -259,6 +270,10 @@ public class GameWindow {
 	 * @param number
 	 */
 	protected void showPlayerSetupPanel(int number) {
+		
+		GameController controller = new GameController();
+		int numArmies; // Number of armies each player get
+		numArmies = controller.getPlayersArmies(number);
 		
 		JFrame playerFrame = new JFrame();
 		playerFrame.setBounds(100, 100, 450, 439);
@@ -354,41 +369,41 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				String name1 = player1.getText();
 				boolean isComputer1 = isComputer(playerType1.getSelectedIndex());
-				Player firstPlayer = new Player(name1, isComputer1);
+				Player firstPlayer = new Player(name1, isComputer1, numArmies);
 				String name2 = player2.getText();
 				boolean isComputer2 = isComputer(playerType2.getSelectedIndex());
-				Player secondPlayer = new Player(name2, isComputer2);
+				Player secondPlayer = new Player(name2, isComputer2, numArmies);
 				playerList.add(firstPlayer);
 				playerList.add(secondPlayer);
 				if(number > 2) {
 					String name = player3.getText();
 					boolean isComputer = isComputer(playerType3.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer);
+					Player newPlayer = new Player(name, isComputer, numArmies);
 					playerList.add(newPlayer);
 				}
 				if(number > 3) {
 					String name = player4.getText();
 					boolean isComputer = isComputer(playerType4.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer);
+					Player newPlayer = new Player(name, isComputer, numArmies);
 					playerList.add(newPlayer);
 				}
 				if(number > 4) {
 					String name = player5.getText();
 					boolean isComputer = isComputer(playerType5.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer);
+					Player newPlayer = new Player(name, isComputer, numArmies);
 					playerList.add(newPlayer);
 				}
 				if(number > 5) {
 					String name = player5.getText();
 					boolean isComputer = isComputer(playerType5.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer);
+					Player newPlayer = new Player(name, isComputer, numArmies);
 					playerList.add(newPlayer);
 				}
 				
 				playerFrame.setVisible(false);
 				String[] playerNames = new String[numberOfPlayers];
 				for(int i=0;i<playerList.size();i++) {
-					playerNames[i] = playerList.get(i).getName();
+					playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
 				}
 				playerJList.setListData(playerNames);
 			}

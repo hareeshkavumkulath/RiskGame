@@ -62,6 +62,24 @@ public class GameController {
 	        used.add(newRandom);  
 	    }  
 	    return result; 
+	}
+
+	/**
+	 * @param number
+	 * @return number of armies each player get on setup
+	 */
+	public int getPlayersArmies(int number) {
+		if(number == 2) {
+			return 40;
+		}else if(number == 3) {
+			return 35;
+		}else if(number == 4) {
+			return 30;
+		}else if(number == 5) {
+			return 25;
+		}else {
+			return 20;
+		}
 	}	
 	
 }
