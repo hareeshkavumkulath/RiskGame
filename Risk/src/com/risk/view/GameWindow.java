@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -52,6 +53,7 @@ public class GameWindow {
 	private JComboBox playerType4 = null;
 	private JComboBox playerType5;
 	private JComboBox playerType6;
+	private JList<String> territoriesJList;
 	private JList<String> playerJList;
 	
 	public ArrayList<Player> playerList = new ArrayList<Player>();
@@ -113,7 +115,7 @@ public class GameWindow {
 		continentJList.setBounds(15, 40, 154, 313);
 		frame.getContentPane().add(continentJList);
 		
-		JList<String> territoriesJList = new JList<String>();
+		territoriesJList = new JList<String>();
 		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		territoriesJList.setBorder(new LineBorder(Color.BLUE));
 		territoriesJList.setBounds(184, 40, 211, 313);
@@ -234,18 +236,13 @@ public class GameWindow {
 		lblOwnedTerritories.setBounds(844, 72, 164, 20);
 		frame.getContentPane().add(lblOwnedTerritories);
 		
-		JButton placeArmy = new JButton("Place Army");
-		placeArmy.setBounds(1058, 131, 174, 29);
-		frame.getContentPane().add(placeArmy);
-		
 		beginGame.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GameController controller = new GameController();
-				playerList = controller.addTerritories(playerList, territories);
-				// Set number of armies each player get
-				
+				playerList = controller.territoriesToPlayers(playerList, territories);
+				territories = controller.playersToTerritories(playerList, territories);
 			}
 		});
 		
