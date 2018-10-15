@@ -245,15 +245,7 @@ public class GameWindow {
 		instructionsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		instructionsScrollPane.setBounds(1390, 16, 432, 736);
 		frame.getContentPane().add(instructionsScrollPane);
-		
-		beginGame.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		
 		playerJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -429,6 +421,20 @@ public class GameWindow {
 					return true;
 			}
 			
+		});
+		
+		
+		// Begin Game - Start 
+		beginGame.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameController controller = new GameController();
+				//Assign one armies to each countries
+				String returnMessage = controller.assignOneArmyToEachCountry(playerList, territories);
+				instructions.setInstructions(returnMessage);
+				
+			}
 		});
 		
 	}

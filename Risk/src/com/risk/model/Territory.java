@@ -22,6 +22,7 @@ public class Territory {
 	String continent;
 	ArrayList<String> adjacentTerritories;
 	Player ruler;
+	int numberOfArmies;
 	/**
 	 * Create a Territory with territory name and continent name
 	 * @param name - Name of the Territory
@@ -69,6 +70,14 @@ public class Territory {
 
 	public void setRuler(Player ruler) {
 		this.ruler = ruler;
-	}	
+	}
+
+	public int getNumberOfArmies() {
+		return numberOfArmies;
+	}
+
+	public void setNumberOfArmies(int numberOfArmies) {
+		this.numberOfArmies = numberOfArmies;
+	}
 
 }
