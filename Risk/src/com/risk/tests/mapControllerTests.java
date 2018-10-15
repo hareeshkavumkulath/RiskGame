@@ -19,6 +19,15 @@ public class mapControllerTests{
     private static String map2;
     private static String map3;
     
+
+    @BeforeAll
+    //Should get the current path and locate the map folder
+    static void initAll() {
+        mapFolder = System.getProperty("user.dir")+"/maps/";
+        map1 = mapFolder + "map1.map";
+        map2 = mapFolder + "map2.map";
+        map3 = mapFolder + "map3.map";
+    }
     
 
 
