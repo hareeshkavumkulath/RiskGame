@@ -15,6 +15,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.risk.controller.GameController;
 import com.risk.model.Continent;
+import com.risk.model.GameInstructions;
 import com.risk.model.Map;
 import com.risk.model.Player;
 import com.risk.model.Territory;
@@ -31,6 +32,9 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JPanel;
 import java.awt.Font;
+import javax.swing.JScrollPane;
+import java.awt.Component;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * @author Hareesh Kavumkulath
@@ -42,6 +46,7 @@ public class GameWindow {
 	private Map map;
 	private int numberOfPlayers;
 	private JButton playerButton; 
+	private JButton beginGame;
 	
 	private JTextField player1;
 	private JTextField player2;
@@ -54,11 +59,13 @@ public class GameWindow {
 	private JComboBox playerType5;
 	private JComboBox playerType6;
 	private JList<String> territoriesJList;
-	private JList<String> playerJList;
+	private PlayerListView playerJList;
 	
 	public ArrayList<Player> playerList = new ArrayList<Player>();
 	public ArrayList<Continent> continents;
 	public ArrayList<Territory> territories;
+	private String instructionsMsg = "Let's Start Conquering the world.\r\nPlease select the number of Players";
+	private GameInstructions instructions = new GameInstructions(instructionsMsg);
 	
 	/**
 	 * Launch the application.
@@ -202,25 +209,16 @@ public class GameWindow {
 			}
 		});
 		
-		playerJList = new JList<String>();
-		playerJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		playerJList.setBorder(new LineBorder(Color.BLUE));
-		playerJList.setBounds(648, 96, 154, 257);
-		
+		playerJList = new PlayerListView(numberOfPlayers);
 		frame.getContentPane().add(playerJList);
 		
-		JButton beginGame = new JButton("Begin \r\nConquest");
+		beginGame = new JButton("Begin \r\nConquest");
 		beginGame.setBackground(Color.WHITE);
 		beginGame.setForeground(Color.GREEN);
 		beginGame.setFont(new Font("Tahoma", Font.BOLD, 22));
-		beginGame.setBounds(1025, 16, 235, 48);
+		beginGame.setBounds(1118, 16, 235, 48);
+		beginGame.setVisible(false);
 		frame.getContentPane().add(beginGame);
-		
-		JList<String> list = new JList<String>();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setBorder(new LineBorder(Color.BLUE));
-		list.setBounds(1449, 40, 355, 688);
-		frame.getContentPane().add(list);
 		
 		JLabel label = new JLabel("Players");
 		label.setBounds(700, 72, 69, 20);
@@ -236,16 +234,14 @@ public class GameWindow {
 		lblOwnedTerritories.setBounds(844, 72, 164, 20);
 		frame.getContentPane().add(lblOwnedTerritories);
 		
-		beginGame.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				GameController controller = new GameController();
-				playerList = controller.territoriesToPlayers(playerList, territories);
-				territories = controller.playersToTerritories(playerList, territories);
-			}
-		});
+		InstructionsView instructionsPane = new InstructionsView(instructionsMsg);
+		instructions.addObserver(instructionsPane);
 		
+		JScrollPane instructionsScrollPane = new JScrollPane(instructionsPane);
+		instructionsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		instructionsScrollPane.setBounds(1390, 16, 432, 736);
+		frame.getContentPane().add(instructionsScrollPane);
+			
 		playerJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -255,7 +251,7 @@ public class GameWindow {
 				ArrayList<Territory> territories = playerList.get(selections[0]).getOwnedTerritories();
 				String[] territoryNames = new String[territories.size()];
 				for(int i=0;i<territories.size();i++) {
-					territoryNames[i] = territories.get(i).getName();
+					territoryNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
 				}
 				ownedTerritories.setListData(territoryNames);				
 			}
@@ -397,12 +393,21 @@ public class GameWindow {
 					playerList.add(newPlayer);
 				}
 				
+				// Assigning territories to players
+				GameController controller = new GameController();
+				playerList = controller.territoriesToPlayers(playerList, territories);
+				territories = controller.playersToTerritories(playerList, territories);
+				
 				playerFrame.setVisible(false);
 				String[] playerNames = new String[numberOfPlayers];
 				for(int i=0;i<playerList.size();i++) {
 					playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
 				}
 				playerJList.setListData(playerNames);
+				//Set new instruction
+				instructions.setInstructions("Players and countries are assigned.\r\nPlease click Begin Conquest to Start the game");
+				//Display begin conquest button
+				beginGame.setVisible(true);
 			}
 
 			private boolean isComputer(int selectedIndex) {
@@ -414,6 +419,30 @@ public class GameWindow {
 			
 		});
 		
+		
+		// Begin Game - Start 
+		beginGame.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameController controller = new GameController();
+				//Assign one armies to each countries
+				String returnMessage = controller.assignOneArmyToEachCountry(playerList, territories);
+				updatePlayerJList();
+				instructions.setInstructions(returnMessage);
+			}
+		});
+		
 	}
 
+	/**
+	 * 
+	 */
+	protected void updatePlayerJList() {
+		String[] playerNames = new String[numberOfPlayers];
+		for(int i=0;i<playerList.size();i++) {
+			playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
+		}
+		playerJList.setListData(playerNames);
+	}
 }

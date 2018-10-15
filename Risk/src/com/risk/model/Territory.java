@@ -22,15 +22,17 @@ public class Territory {
 	String continent;
 	ArrayList<String> adjacentTerritories;
 	Player ruler;
+	int numberOfArmies;
 	/**
 	 * Create a Territory with territory name and continent name
 	 * @param name - Name of the Territory
 	 * @param continent - Name of the Continent
 	 */
-	public Territory(String name, String continent) {
+	public Territory(String name, String continent, int numberOfArmies) {
 		super();
 		this.name = name;
 		this.continent = continent;
+		this.numberOfArmies = numberOfArmies;
 	}
 	
 	/**
@@ -69,6 +71,14 @@ public class Territory {
 
 	public void setRuler(Player ruler) {
 		this.ruler = ruler;
-	}	
+	}
+
+	public int getNumberOfArmies() {
+		return numberOfArmies;
+	}
+
+	public void setNumberOfArmies(int numberOfArmies) {
+		this.numberOfArmies = numberOfArmies;
+	}
 
 }

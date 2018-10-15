@@ -20,7 +20,7 @@ public class GameController {
 	/**
 	 * @param playerList
 	 * @param territories
-	 * @return
+	 * @return arrayList of Players
 	 */
 	public ArrayList<Player> territoriesToPlayers(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		int count = 0;
@@ -93,6 +93,25 @@ public class GameController {
 		}else {
 			return 20;
 		}
+	}
+
+	/**
+	 * @param playerList
+	 * @param territories
+	 */
+	public String assignOneArmyToEachCountry(ArrayList<Player> playerList, ArrayList<Territory> territories) {
+		String message = "";
+		for(int i = 0;i<playerList.size();i++) {
+			for(int j=0;j<playerList.get(i).getOwnedTerritories().size();j++) {
+				int currentNumberOfArmies = playerList.get(i).getNumberOfArmies();
+				playerList.get(i).getOwnedTerritories().get(j).setNumberOfArmies(1);
+				playerList.get(i).setNumberOfArmies(currentNumberOfArmies-1);
+				message = message + "Player, " + playerList.get(i).getName() + " Placed an army to the territory " +  playerList.get(i).getOwnedTerritories().get(j).getName() + " " + playerList.get(i).getNumberOfArmies() + "\r\n";
+			}
+		}
+		return message;
 	}	
+	
+	
 		
 }
