@@ -44,7 +44,12 @@ public class mapControllerTests {
         assertTrue(mc.processContinents(mapToString(map1)));
     }
     
-
+    @Test
+    @DisplayName ("Process Continent Should Return false for MAP2")
+    void mapStringTest2(){
+    		//System.out.println(map1);
+        assertTrue(mc.processContinents(mapToString(map2)));
+    }
 
     /**
      * @param mapFile Map File Address as a String
