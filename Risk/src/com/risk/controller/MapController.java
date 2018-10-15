@@ -95,7 +95,6 @@ public class MapController {
 						boolean isMapConnected = false;
 						isMapConnected = validateMap(territoriesArray);
 						if(isMapConnected) {
-							System.out.println("isMapConnected");
 							isValidMap = true;
 						}
 					}else {
@@ -164,7 +163,7 @@ public class MapController {
 				for(int i=1;i<territoryInfo.length;i++) {
 					territoryInfo[i].trim();
 					String[] territoryDetails = territoryInfo[i].split(",");
-		    		Territory newTerritory = new Territory(territoryDetails[0], territoryDetails[3]);
+		    		Territory newTerritory = new Territory(territoryDetails[0], territoryDetails[3],0);
 		    		ArrayList<String> adjacentTerritories = new ArrayList<String>();
 		    		for(int j=4;j<territoryDetails.length;j++) {
 		    			adjacentTerritories.add(territoryDetails[j]);
@@ -364,7 +363,6 @@ public class MapController {
 			Territory territory = (Territory)territoriesList.get(i);
 			visitedTerritories.clear();
 			checkedTerritories.clear();
-			System.out.println(territory.getName());
 			visitedTerritories.add(territory.getName());
 			checkedTerritories.add(territory.getName());
 			int index = 1;
@@ -590,7 +588,6 @@ public class MapController {
 				territory = territoriesArray.get(i);
 			}
 		}
-		//System.out.println("test"+territory.getName());
 		return territory;
 	}
 	

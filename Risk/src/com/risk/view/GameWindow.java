@@ -59,7 +59,7 @@ public class GameWindow {
 	private JComboBox playerType5;
 	private JComboBox playerType6;
 	private JList<String> territoriesJList;
-	private JList<String> playerJList;
+	private PlayerListView playerJList;
 	
 	public ArrayList<Player> playerList = new ArrayList<Player>();
 	public ArrayList<Continent> continents;
@@ -209,11 +209,7 @@ public class GameWindow {
 			}
 		});
 		
-		playerJList = new JList<String>();
-		playerJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		playerJList.setBorder(new LineBorder(Color.BLUE));
-		playerJList.setBounds(648, 96, 154, 257);
-		
+		playerJList = new PlayerListView(numberOfPlayers);
 		frame.getContentPane().add(playerJList);
 		
 		beginGame = new JButton("Begin \r\nConquest");
@@ -255,7 +251,7 @@ public class GameWindow {
 				ArrayList<Territory> territories = playerList.get(selections[0]).getOwnedTerritories();
 				String[] territoryNames = new String[territories.size()];
 				for(int i=0;i<territories.size();i++) {
-					territoryNames[i] = territories.get(i).getName();
+					territoryNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
 				}
 				ownedTerritories.setListData(territoryNames);				
 			}
@@ -432,10 +428,21 @@ public class GameWindow {
 				GameController controller = new GameController();
 				//Assign one armies to each countries
 				String returnMessage = controller.assignOneArmyToEachCountry(playerList, territories);
+				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
-				
 			}
 		});
 		
+	}
+
+	/**
+	 * 
+	 */
+	protected void updatePlayerJList() {
+		String[] playerNames = new String[numberOfPlayers];
+		for(int i=0;i<playerList.size();i++) {
+			playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
+		}
+		playerJList.setListData(playerNames);
 	}
 }

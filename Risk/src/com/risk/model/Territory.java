@@ -28,10 +28,11 @@ public class Territory {
 	 * @param name - Name of the Territory
 	 * @param continent - Name of the Continent
 	 */
-	public Territory(String name, String continent) {
+	public Territory(String name, String continent, int numberOfArmies) {
 		super();
 		this.name = name;
 		this.continent = continent;
+		this.numberOfArmies = numberOfArmies;
 	}
 	
 	/**
