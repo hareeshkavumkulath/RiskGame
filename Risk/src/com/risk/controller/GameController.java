@@ -22,7 +22,7 @@ public class GameController {
 	 * @param territories
 	 * @return
 	 */
-	public ArrayList<Player> addTerritories(ArrayList<Player> playerList, ArrayList<Territory> territories) {
+	public ArrayList<Player> territoriesToPlayers(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		int count = 0;
 		int temp = 0;
 		int numTerritories = territories.size();
@@ -32,15 +32,28 @@ public class GameController {
 		while(count != numTerritories) {
 			int index = result[count];
 			if(temp < numPlayers) {
-				playerList.get(temp).getOwnedTerritories().add(territories.get(count));
+				playerList.get(temp).getOwnedTerritories().add(territories.get(index));
 				temp++;
 				count++;
 			}else {
 				temp = 0;
 			}			
 		}
-		System.out.println(playerList.get(0).getOwnedTerritories().size());
 		return playerList;
+	}
+
+	/**
+	 * @param playerList
+	 * @param territories
+	 */
+	public ArrayList<Territory> playersToTerritories(ArrayList<Player> playerList, ArrayList<Territory> territories) {
+		for(int i=0;i<playerList.size();i++) {
+			for(int j=0;j<playerList.get(i).getOwnedTerritories().size();j++) {
+				int index = territories.indexOf(playerList.get(i).getOwnedTerritories().get(j));
+				territories.get(index).setRuler(playerList.get(i));
+			}
+		}
+		return territories;
 	}
 
 	/**
@@ -81,5 +94,5 @@ public class GameController {
 			return 20;
 		}
 	}	
-	
+		
 }
