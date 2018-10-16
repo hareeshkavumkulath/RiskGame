@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * @author Hamid
@@ -27,26 +27,25 @@ public class mapControllerTests {
     private static String map3;
     private static MapController mc;
 
-    @BeforeAll
+    @BeforeEach
     // Should get the current path and locate the map folder
-    static void initAll() {
+    void init() {
         mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/maps/";
-        map1 = mapFolder + "map1.map";
-        map2 = mapFolder + "map2.map";
-        map3 = mapFolder + "map3.map";
+        map1 = mapFolder + "valid.map";
+        map2 = mapFolder + "invalid.map";
         mc = new MapController();
     }
 
     @Test
-    @DisplayName ("Process Continent Should Return True for MAP1")
-    void mapStringTest1(){
+    @DisplayName ("Process Continent => TRUE for Valid MAP")
+    void ProceeeContinentValid(){
     		//System.out.println(map1);
         assertTrue(mc.processContinents(mapToString(map1)));
     }
     
     @Test
-    @DisplayName ("Process Continent Should Return false for MAP2")
-    void mapStringTest2(){
+    @DisplayName ("Process Continent => TRUE for InValid MAP")
+    void ProceeeContinentInValid(){
     		//System.out.println(map1);
         assertTrue(mc.processContinents(mapToString(map2)));
     }
