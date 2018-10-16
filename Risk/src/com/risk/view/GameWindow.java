@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -24,16 +23,12 @@ import java.awt.Color;
 import javax.swing.ListSelectionModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JPanel;
 import java.awt.Font;
 import javax.swing.JScrollPane;
-import java.awt.Component;
 import javax.swing.ScrollPaneConstants;
 
 /**
@@ -66,10 +61,6 @@ public class GameWindow {
 	public ArrayList<Territory> territories;
 	private String instructionsMsg = "Let's Start Conquering the world.\r\nPlease select the number of Players";
 	private GameInstructions instructions = new GameInstructions(instructionsMsg);
-	
-	private AddArmyLabel playerLabel;
-	private AddArmyCombo addTerritory;
-	private AddArmyJButton addBtn;
 	
 	/**
 	 * Launch the application.
@@ -246,6 +237,14 @@ public class GameWindow {
 		instructionsScrollPane.setBounds(1390, 16, 432, 736);
 		frame.getContentPane().add(instructionsScrollPane);
 		
+		JButton btnAddArmy = new JButton("Add Army");
+		btnAddArmy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAddArmy.setBounds(1051, 201, 115, 29);
+		frame.getContentPane().add(btnAddArmy);
+		
 		playerJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -416,9 +415,9 @@ public class GameWindow {
 
 			private boolean isComputer(int selectedIndex) {
 				if(selectedIndex == 1)
-					return true;
-				else
 					return false;
+				else
+					return true;
 			}
 			
 		});
@@ -434,13 +433,6 @@ public class GameWindow {
 				String returnMessage = controller.assignOneArmyToEachCountry(playerList, territories);
 				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
-				for(int i=0;i<playerList.size();i++) {									
-					if(playerList.get(i).isComputer) {
-						
-					}else {
-						instructions.setInstructions(playerList.get(i).getName() + ", Please select a territory and add army to it");			
-					}
-				}
 			}
 		});
 		

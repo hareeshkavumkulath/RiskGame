@@ -80,7 +80,7 @@ public class SelectMapWindow {
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
 				String fileExtension = listOfFiles[i].getName().substring((listOfFiles[i].getName().lastIndexOf(".")+1));
-				if(fileExtension.equals("map")) {
+				if(fileExtension.equals("txt")) {
 					fileNames[k] = listOfFiles[i].getName();
 					k++;
 				}
