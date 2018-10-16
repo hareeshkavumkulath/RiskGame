@@ -66,6 +66,15 @@ public class mapControllerTests {
         assertTrue(mc.processTerritories(mapToString(noTerritories)));
     }
 
+    @Test
+    @DisplayName("createContinentConnection => TRUE for Valid MAP")
+    void createContinentConnectionValid() {
+        mc.processContinents(mapToString(map1));
+        mc.processTerritories(mapToString(map1));
+        mc.territoriesToContinents();
+        assertTrue(mc.createContinentConnection());
+    }
+
     /**
      * @param mapFile Map File Address as a String
      * @return Map Content to Strings
