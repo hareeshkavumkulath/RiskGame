@@ -40,32 +40,32 @@ public class mapControllerTests {
     }
 
     @Test
-    @DisplayName ("Process Continent => TRUE for Valid MAP")
-    void ProceeeContinentValid(){
-    		//System.out.println(map1);
+    @DisplayName("Process Continent => TRUE for Valid MAP")
+    void ProceeeContinentValid() {
+        // System.out.println(map1);
         assertTrue(mc.processContinents(mapToString(map1)));
     }
-    
+
     @Test
-    @DisplayName ("Process Continent => FALSE for noTag MAP")
-    void ProceeeContinentInValid(){
-    		//System.out.println(map1);
+    @DisplayName("Process Continent => FALSE for noTag MAP")
+    void ProceeeContinentInValid() {
+        // System.out.println(map1);
         assertTrue(mc.processContinents(mapToString(noTag)));
-        //processTerritories
+        // processTerritories
     }
 
     @Test
-    @DisplayName ("Process Territories => TRUE for Valid MAP")
-    void ProceeeTerritoriesValid(){
+    @DisplayName("Process Territories => TRUE for Valid MAP")
+    void ProceeeTerritoriesValid() {
         mc.processContinents(mapToString(map1));
-        assertTrue(mc.processContinents(mapToString(map1)));
+        assertTrue(mc.processTerritories(mapToString(map1)));
     }
 
     @Test
-    @DisplayName ("Process Territories => FALSE for noTerritories MAP")
-    void ProceeeTerritoriesValid(){
+    @DisplayName("Process Territories => FALSE for noTerritories MAP")
+    void ProceeeTerritoriesInValid() {
         mc.processContinents(mapToString(map1));
-        assertTrue(mc.processContinents(mapToString(noTerritories)));
+        assertTrue(mc.processTerritories(mapToString(noTerritories)));
     }
 
     /**
