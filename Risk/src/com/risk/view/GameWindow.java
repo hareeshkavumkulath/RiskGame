@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -24,16 +23,12 @@ import java.awt.Color;
 import javax.swing.ListSelectionModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JPanel;
 import java.awt.Font;
 import javax.swing.JScrollPane;
-import java.awt.Component;
 import javax.swing.ScrollPaneConstants;
 
 /**
@@ -241,7 +236,15 @@ public class GameWindow {
 		instructionsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		instructionsScrollPane.setBounds(1390, 16, 432, 736);
 		frame.getContentPane().add(instructionsScrollPane);
-			
+		
+		JButton btnAddArmy = new JButton("Add Army");
+		btnAddArmy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAddArmy.setBounds(1051, 201, 115, 29);
+		frame.getContentPane().add(btnAddArmy);
+		
 		playerJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
