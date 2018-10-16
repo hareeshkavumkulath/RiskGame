@@ -21,12 +21,12 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class mapControllerTests {
 
-    private static String mapFolder;
-    private static String map1;
-    private static String noTag;
-    private static String noTerritories;
-    private static String notConnected;
-    private static MapController mc;
+    private  String mapFolder;
+    private  String map1;
+    private  String noTag;
+    private  String noTerritories;
+    private  String notConnected;
+    private  MapController mc;
 
     @BeforeEach
     // Should get the current path and locate the map folder
@@ -89,6 +89,16 @@ public class mapControllerTests {
     void validateMapValid() {
         mc.processContinents(mapToString(map1));
         mc.processTerritories(mapToString(map1));
+        mc.territoriesToContinents();
+        mc.createContinentConnection();
+        assertTrue(mc.validateMap(mc.territoriesArray));
+    }
+
+    @Test
+    @DisplayName("validateMap => FALSE for NotConnected MAP")
+    void validateMapInValid() {
+        mc.processContinents(mapToString(notConnected));
+        mc.processTerritories(mapToString(notConnected));
         mc.territoriesToContinents();
         mc.createContinentConnection();
         assertTrue(mc.validateMap(mc.territoriesArray));
