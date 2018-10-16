@@ -1,0 +1,16 @@
+[Map]
+author=Zworg2
+warn=yes
+image=Wales.bmp
+wrap=no
+Scroll=horizontal
+
+[Continents]
+NW WaleS=2
+NE WaleS=3
+Ncent=3
+Scent=3
+SW WaleS=3
+S Wales=3
+
+[Territories]
