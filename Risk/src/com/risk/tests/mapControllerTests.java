@@ -23,8 +23,9 @@ public class mapControllerTests {
 
     private static String mapFolder;
     private static String map1;
-    private static String map2;
-    private static String map3;
+    private static String noTag;
+    private static String noTerritories;
+    private static String notConnected;
     private static MapController mc;
 
     @BeforeEach
@@ -32,7 +33,9 @@ public class mapControllerTests {
     void init() {
         mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/maps/";
         map1 = mapFolder + "valid.map";
-        map2 = mapFolder + "invalid.map";
+        noTag = mapFolder + "noTag.map";
+        noTerritories = mapFolder + "noTerritories.map";
+        notConnected = mapFolder + "notConnected.map";
         mc = new MapController();
     }
 
@@ -44,10 +47,25 @@ public class mapControllerTests {
     }
     
     @Test
-    @DisplayName ("Process Continent => TRUE for InValid MAP")
+    @DisplayName ("Process Continent => FALSE for noTag MAP")
     void ProceeeContinentInValid(){
     		//System.out.println(map1);
-        assertTrue(mc.processContinents(mapToString(map2)));
+        assertTrue(mc.processContinents(mapToString(noTag)));
+        //processTerritories
+    }
+
+    @Test
+    @DisplayName ("Process Territories => TRUE for Valid MAP")
+    void ProceeeTerritoriesValid(){
+        mc.processContinents(mapToString(map1));
+        assertTrue(mc.processContinents(mapToString(map1)));
+    }
+
+    @Test
+    @DisplayName ("Process Territories => FALSE for noTerritories MAP")
+    void ProceeeTerritoriesValid(){
+        mc.processContinents(mapToString(map1));
+        assertTrue(mc.processContinents(mapToString(noTerritories)));
     }
 
     /**
