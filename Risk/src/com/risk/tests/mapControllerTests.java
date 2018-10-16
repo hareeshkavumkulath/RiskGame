@@ -49,9 +49,7 @@ public class mapControllerTests {
     @Test
     @DisplayName("Process Continent => FALSE for noTag MAP")
     void ProceeeContinentInValid() {
-        // System.out.println(map1);
         assertTrue(mc.processContinents(mapToString(noTag)));
-        // processTerritories
     }
 
     @Test
@@ -64,7 +62,7 @@ public class mapControllerTests {
     @Test
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
     void ProceeeTerritoriesInValid() {
-        mc.processContinents(mapToString(map1));
+        mc.processContinents(mapToString(noTerritories));
         assertTrue(mc.processTerritories(mapToString(noTerritories)));
     }
 
