@@ -89,7 +89,15 @@ public class mapControllerTests {
         assertNotNull(mc.continentArray);
     }
     
-   
+    @Test
+    @DisplayName("continentArray => NULL for noContinent MAP")
+    void territoriesToContinentsInValid() {
+        mc.processContinents(mapToString(noContinent));
+        mc.processTerritories(mapToString(noContinent));
+        mc.territoriesToContinents();
+        assertNotNull(mc.continentArray);
+    }
+
     @Test
     @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
     void createContinentConnectionInValid() {
