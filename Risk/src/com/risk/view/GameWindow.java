@@ -67,6 +67,10 @@ public class GameWindow {
 	private String instructionsMsg = "Let's Start Conquering the world.\r\nPlease select the number of Players";
 	private GameInstructions instructions = new GameInstructions(instructionsMsg);
 	
+	private AddArmyLabel playerLabel;
+	private AddArmyCombo addTerritory;
+	private AddArmyJButton addBtn;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -241,7 +245,7 @@ public class GameWindow {
 		instructionsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		instructionsScrollPane.setBounds(1390, 16, 432, 736);
 		frame.getContentPane().add(instructionsScrollPane);
-			
+		
 		playerJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
@@ -412,9 +416,9 @@ public class GameWindow {
 
 			private boolean isComputer(int selectedIndex) {
 				if(selectedIndex == 1)
-					return false;
-				else
 					return true;
+				else
+					return false;
 			}
 			
 		});
@@ -430,6 +434,13 @@ public class GameWindow {
 				String returnMessage = controller.assignOneArmyToEachCountry(playerList, territories);
 				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
+				for(int i=0;i<playerList.size();i++) {									
+					if(playerList.get(i).isComputer) {
+						
+					}else {
+						instructions.setInstructions(playerList.get(i).getName() + ", Please select a territory and add army to it");			
+					}
+				}
 			}
 		});
 		
