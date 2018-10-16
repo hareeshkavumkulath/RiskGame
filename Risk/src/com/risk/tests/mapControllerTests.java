@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 
 /**
  * @author Hamid
@@ -21,21 +22,30 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class mapControllerTests {
 
-    private  String mapFolder;
-    private  String map1;
-    private  String noTag;
-    private  String noTerritories;
-    private  String notConnected;
+    private  static String mapFolder;
+    private  static String map1;
+    private  static String noTag;
+    private  static String noTerritories;
+    private  static String notConnected;
     private  MapController mc;
 
-    @BeforeEach
-    // Should get the current path and locate the map folder
-    void init() {
+    /**
+     * Before All sets the local address for Valid and Invalid maps 
+     */
+    @BeforeAll
+    static void initAll() {
         mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/maps/";
         map1 = mapFolder + "valid.map";
         noTag = mapFolder + "noTag.map";
         noTerritories = mapFolder + "noTerritories.map";
         notConnected = mapFolder + "notConnected.map";
+    }
+
+    /**
+     * Before Each Test it Creates a new object from Map Controller 
+     */
+    @BeforeEach
+    void init() {
         mc = new MapController();
     }
 
