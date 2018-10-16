@@ -75,7 +75,19 @@ public class mapControllerTests {
         assertTrue(mc.createContinentConnection());
     }
 
+    @Test
+    @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
+    void createContinentConnectionInValid() {
+        mc.processContinents(mapToString(notConnected));
+        mc.processTerritories(mapToString(notConnected));
+        mc.territoriesToContinents();
+        assertTrue(mc.createContinentConnection());
+    }
+
     /**
+     * 
+     * Function for reading a map file and convert that into String
+     * 
      * @param mapFile Map File Address as a String
      * @return Map Content to Strings
      * @exception IOException if there is a problem with the Map File Address
