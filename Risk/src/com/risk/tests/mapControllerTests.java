@@ -10,11 +10,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
+
 
 /**
  * @author Hamid
@@ -26,6 +28,7 @@ public class mapControllerTests {
     private  static String map1;
     private  static String noTag;
     private  static String noTerritories;
+    private  static String noContinent;
     private  static String notConnected;
     private  MapController mc;
 
@@ -39,6 +42,7 @@ public class mapControllerTests {
         noTag = mapFolder + "noTag.map";
         noTerritories = mapFolder + "noTerritories.map";
         notConnected = mapFolder + "notConnected.map";
+        noContinent = mapFolder + "noContinent.map";
     }
 
     /**
@@ -77,14 +81,15 @@ public class mapControllerTests {
     }
 
     @Test
-    @DisplayName("createContinentConnection => TRUE for Valid MAP")
-    void createContinentConnectionValid() {
+    @DisplayName("continentArray => NotNULL for Valid MAP")
+    void territoriesToContinentsValid() {
         mc.processContinents(mapToString(map1));
         mc.processTerritories(mapToString(map1));
         mc.territoriesToContinents();
-        assertTrue(mc.createContinentConnection());
+        assertNotNull(mc.continentArray);
     }
-
+    
+   
     @Test
     @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
     void createContinentConnectionInValid() {
