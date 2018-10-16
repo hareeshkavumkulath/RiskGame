@@ -84,6 +84,16 @@ public class mapControllerTests {
         assertTrue(mc.createContinentConnection());
     }
 
+    @Test
+    @DisplayName("validateMap => TRUE for Valid MAP")
+    void validateMapValid() {
+        mc.processContinents(mapToString(map1));
+        mc.processTerritories(mapToString(map1));
+        mc.territoriesToContinents();
+        mc.createContinentConnection();
+        assertTrue(mc.validateMap(mc.territoriesArray));
+    }
+
     /**
      * 
      * Function for reading a map file and convert that into String
