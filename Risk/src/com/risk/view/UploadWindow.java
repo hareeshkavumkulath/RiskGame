@@ -14,7 +14,10 @@ import com.risk.model.Territory;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -40,6 +43,7 @@ public class UploadWindow {
     private MapMessage mapMessage;
     private JTextField mapName;
     private boolean mapStatus = false;
+    private JTextPane mapTextPane;
     
     /**
      * Launch the application.
@@ -67,8 +71,7 @@ public class UploadWindow {
 
     public void initialize() {
     	frame = new JFrame();
-		frame.setBounds(100, 100, 1071, 681);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 1735, 1075);
 		frame.getContentPane().setLayout(null);	
 		frame.setTitle("Upload Map File");
 		
@@ -118,37 +121,30 @@ public class UploadWindow {
 		adjTerritoriesJList.setBounds(524, 144, 211, 349);
 		frame.getContentPane().add(adjTerritoriesJList);
 		
-		// Remove Continent and Remove Territory Buttons
-		JButton btnRemoveContinent = new JButton("Remove Continent");
-		btnRemoveContinent.setBounds(46, 516, 201, 29);
-		frame.getContentPane().add(btnRemoveContinent);
-		
-		JButton btnRemoveTerritory = new JButton("Remove Territory");
-		btnRemoveTerritory.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRemoveTerritory.setBounds(277, 516, 211, 29);
-		frame.getContentPane().add(btnRemoveTerritory);
-		
 		//Save Map fields
 		mapName = new JTextField();
 		mapName.setToolTipText("Enter name for Map");
 		mapName.setColumns(10);
-		mapName.setBounds(527, 565, 281, 26);
+		mapName.setBounds(1190, 898, 281, 26);
 		frame.getContentPane().add(mapName);
 		
 		JButton btnSaveMap = new JButton("Save Map");
 		btnSaveMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(mapStatus) {
-					
+					File fileName = new File(".\\Maps\\" + mapName.getText() + ".txt");
+					try {
+						writeFile(fileName, mapTextPane.getText());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}else {
 					JOptionPane.showMessageDialog(frame, "Please validate the Map.");
 				}				
 			}
 		});
-		btnSaveMap.setBounds(843, 564, 115, 29);
+		btnSaveMap.setBounds(1500, 897, 115, 29);
 		frame.getContentPane().add(btnSaveMap);
 		
 		JTextPane errorMessage = new JTextPane();
@@ -157,27 +153,46 @@ public class UploadWindow {
 		
 		JScrollPane messageScrollPane = new JScrollPane(errorMessage);
 		messageScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		messageScrollPane.setBounds(761, 144, 251, 349);
+		messageScrollPane.setBounds(46, 509, 689, 415);
 		frame.getContentPane().add(messageScrollPane);
 		
 		JButton validateAgain = new JButton("Validate Again");
 		validateAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MapController controller = new MapController();
-				System.out.println("Size:"+mapMessage.getTerritories().size());
-				boolean status = controller.validateMap(mapMessage.getTerritories());
-				System.out.println("Status:"+status);
-				if(status) {
-					JOptionPane.showMessageDialog(frame, "Map is valid. You can save the Map.");
-					mapStatus = true;
+				MapController mapController = new MapController();
+				mapMessage = (MapMessage)mapController.validateMap(mapTextPane.getText());
+				populateEditField(mapMessage);
+				if(mapMessage.isValidMap()) {
+					errorMessage.setForeground(Color.GREEN);
+					errorMessage.setText("Valid Map");
+					StringBuffer continentsInfo = new StringBuffer();
+					ArrayList<Continent> continents = mapMessage.getContinents();
+					String[] continentNames = new String[continents.size()];
+					for(int i = 0; i < continents.size(); i++) {
+						Continent thisContinent = (Continent) continents.get(i);
+						continentNames[i] = thisContinent.getName(); 
+						continentsInfo.append(thisContinent.getName());
+						continentsInfo.append("\r\n");
+					}
+					continentsJList.setListData(continentNames);
 				}else {
-					JOptionPane.showMessageDialog(frame, "Map is invalid.");
-					mapStatus = false;
+					String message = mapMessage.getMessage().toString();
+					errorMessage.setForeground(Color.RED);
+					errorMessage.setText(message);
 				}
 			}
 		});
-		validateAgain.setBounds(287, 561, 191, 29);
+		validateAgain.setBounds(918, 897, 191, 29);
 		frame.getContentPane().add(validateAgain);
+		
+		JScrollPane mapScrollPane = new JScrollPane((Component) null);
+		mapScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		mapScrollPane.setBounds(877, 46, 803, 811);
+		frame.getContentPane().add(mapScrollPane);
+		
+		mapTextPane = new JTextPane();
+		mapTextPane.setEditable(true);
+		mapScrollPane.setViewportView(mapTextPane);
 		
         browseButton.addActionListener(new ActionListener() {
 
@@ -191,13 +206,7 @@ public class UploadWindow {
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     fileName.setText(fileChooser.getSelectedFile().getName().toString());
                     file = fileChooser.getSelectedFile();
-                } else {
-                    String message = "File Chosen was cancelled" + ". Please select a \".map\" file";
-                    JOptionPane.showMessageDialog(new JFrame(), message, "No File Selected",
-                            JOptionPane.ERROR_MESSAGE);
-
-                }
-
+                } 
             }
         });
         
@@ -212,7 +221,7 @@ public class UploadWindow {
 				}
 				MapController mapController = new MapController();
 				mapMessage = (MapMessage)mapController.processFile(file);
-				System.out.println(mapMessage.isValidMap());
+				populateEditField(mapMessage);
 				if(mapMessage.isValidMap()) {
 					errorMessage.setForeground(Color.GREEN);
 					errorMessage.setText("Valid Map");
@@ -226,7 +235,6 @@ public class UploadWindow {
 						continentsInfo.append("\r\n");
 					}
 					continentsJList.setListData(continentNames);
-					
 				}else {
 					String message = mapMessage.getMessage().toString();
 					errorMessage.setForeground(Color.RED);
@@ -281,83 +289,54 @@ public class UploadWindow {
 				}
 			}
 		});
-        /* Territory Selection Action --> Display Adjacent Territories - End */
-        
-        /* Remove Continent Button Action - Start */
-        btnRemoveContinent.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] territoryNames = {};
-				territoriesJList.setListData(territoryNames);
-				if(continentsJList.getSelectedValue() != null) {
-					MapController mapController = new MapController(new StringBuffer(""), mapMessage.getContinents(), mapMessage.getTerritories(), true, new StringBuffer(""));
-					mapMessage = (MapMessage)mapController.removeContinent(continentsJList.getSelectedValue());
-					if(mapMessage.isValidMap()) {
-						StringBuffer continentsInfo = new StringBuffer();
-						ArrayList<Continent> continents = mapMessage.getContinents();
-						String[] continentNames = new String[continents.size()];
-						for(int i = 0; i < continents.size(); i++) {
-							Continent thisContinent = (Continent) continents.get(i);
-							continentNames[i] = thisContinent.getName(); 
-							continentsInfo.append(thisContinent.getName());
-							continentsInfo.append("\r\n");
-						}
-						continentsJList.setListData(continentNames);
-						mapStatus = false;
-					}
-				}else {
-					System.out.println("Select a continent");
-				}
-			}
-		});
-        /* Remove Continent Button Action - End */       
-        
-        /* Remove Territory Button Action - Start */
-        btnRemoveTerritory.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(territoriesJList.getSelectedValue() != null) {
-					MapController mapController = new MapController(new StringBuffer(""), mapMessage.getContinents(), mapMessage.getTerritories(), true, new StringBuffer(""));
-					mapMessage = (MapMessage)mapController.removeTerritory(territoriesJList.getSelectedValue());
-					if(mapMessage.isValidMap()) {
-						String continentName = continentsJList.getSelectedValue();
-						Continent continent = new Continent();
-						for(int i=0;i<mapMessage.getContinents().size();i++) {
-							if(mapMessage.getContinents().get(i).getName().equals(continentName)) {
-								continent = mapMessage.getContinents().get(i);
-							}
-						}
-						ArrayList<Territory> territories = continent.getTerritories();
-						String[] territoryNames = new String[territories.size()];
-						for(int i=0;i<territories.size();i++) {
-							territoryNames[i] = territories.get(i).getName();
-						}
-						territoriesJList.setListData(territoryNames);
-						//if the territory is empty, so the according continents need to be removed.
-						if(territories.size()==0) {
-							mapMessage = (MapMessage)mapController.removeContinent(continentsJList.getSelectedValue());
-							ArrayList<Continent> continents = mapMessage.getContinents();
-							String[] continentNames = new String[continents.size()];
-							for(int i = 0; i < continents.size(); i++) {
-								Continent thisContinent = (Continent) continents.get(i);
-								continentNames[i] = thisContinent.getName(); 
-							}
-							continentsJList.setListData(continentNames);
-						}
-						mapStatus = false;
-					}
-					String[] adjTerritoryNames = {};
-					adjTerritoriesJList.setListData(adjTerritoryNames);
-				}else {
-					System.out.println("Select a territory");
-				}
-			}
-		});
         /* Remove Territory Button Action - End */  
         
     }
+
+	protected void populateEditField(MapMessage tempMapMessage) {
+		if(tempMapMessage.isValidMap) {
+			ArrayList<Continent> continents = new ArrayList<Continent>();
+			ArrayList<Territory> territories = new ArrayList<Territory>();
+			continents = tempMapMessage.getContinents();
+			territories = tempMapMessage.getTerritories();
+			StringBuffer mapText = new StringBuffer("");
+			mapText = mapText.append("[Continents]\n");
+			for(int i=0;i<continents.size();i++) {
+				mapText = mapText.append(continents.get(i).getName()+ "=" +continents.get(i).getNumberOfArmies());
+				mapText = mapText.append("\n");
+			}
+			mapText.append("\n");
+			mapText.append("\n");
+			mapText = mapText.append("[Territories]\n");
+			
+			for(int i=0;i<territories.size();i++) {
+				mapText = mapText.append(territories.get(i).getName() + ",0,0," + territories.get(i).getContinent());
+				if(territories.get(i).getAdjacentTerritories().size() > 0) {
+					mapText = mapText.append(",");
+					for(int j=0;j<territories.get(i).getAdjacentTerritories().size();j++) {
+						mapText = mapText.append(territories.get(i).getAdjacentTerritories().get(j));
+						if(j != territories.get(i).getAdjacentTerritories().size() - 1) {
+							mapText = mapText.append(",");
+						}
+					}
+				}
+				mapText = mapText.append("\n");
+			}
+			mapText = mapText.append("\n");
+			mapTextPane.setText(mapText.toString());
+			mapStatus = true;
+		}else {
+			
+		}
+	}
+	
+	public void writeFile(File fileName, String text) throws IOException
+	{
+		BufferedWriter out = new BufferedWriter(new FileWriter(fileName)); 
+		out.write(text);
+		out.close();
+	}
+	
 }
 
 

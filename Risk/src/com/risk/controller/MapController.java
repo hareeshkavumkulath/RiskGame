@@ -74,14 +74,19 @@ public class MapController {
         } catch (FileNotFoundException ex) {
         	ex.printStackTrace();
         }
+		MapMessage mapMessage = validateMap(fileContent.toString());
+		return mapMessage;
+	}
+	
+	public MapMessage validateMap(String mapInfo) {
 		
 		// Processing continents - Whether the continents are available in the .map file
 		boolean isValidContinents = false;
-		isValidContinents = processContinents(fileContent.toString());
+		isValidContinents = processContinents(mapInfo);
 		if(isValidContinents) {
 			// Processing territories -  Whether the territories are available in the .map file
 			boolean isValidTerritories = false;
-			isValidTerritories = processTerritories(fileContent.toString());
+			isValidTerritories = processTerritories(mapInfo);
 			if(isValidTerritories) {
 				//connecting territories to continents
 				boolean valid = false;
@@ -131,12 +136,16 @@ public class MapController {
 				for(int i=1;i<continent.length;i++) {
 					continent[i].trim();
 					String[] continentData = continent[i].split("=");
+					continentData[0].trim();
+					continentData[1].trim();
+					continentData[1] = continentData[1].replaceAll("(\\r|\\n)", "");
 					Continent continent1 = new Continent(continentData[0], Integer.parseInt((continentData[1])));
 					continentArray.add(continent1);
 				}
 				valid = true;
 			}catch(Exception e) {
 				valid = false;
+				System.out.println(e.toString());
 				message.append("There is some error in the syntax of the continents, Please recheck");
 			}
 		}else {
@@ -163,9 +172,12 @@ public class MapController {
 				for(int i=1;i<territoryInfo.length;i++) {
 					territoryInfo[i].trim();
 					String[] territoryDetails = territoryInfo[i].split(",");
+					territoryDetails[0] = territoryDetails[0].trim();
+					territoryDetails[3] = territoryDetails[3].trim();
 		    		Territory newTerritory = new Territory(territoryDetails[0], territoryDetails[3],0);
 		    		ArrayList<String> adjacentTerritories = new ArrayList<String>();
 		    		for(int j=4;j<territoryDetails.length;j++) {
+		    			territoryDetails[j] = territoryDetails[j].trim();
 		    			adjacentTerritories.add(territoryDetails[j]);
 		    		}
 		    		newTerritory.setAdjacentTerritories(adjacentTerritories);
@@ -173,6 +185,7 @@ public class MapController {
 				}
 				isValidTerritories = true;
 			}catch(Exception e) {
+				System.out.println(e.toString());
 				message.append("There is some error in the syntax of the territories, Please recheck");
 				isValidTerritories = false;
 			}			
@@ -200,7 +213,7 @@ public class MapController {
 					count++;
 				}else {
 					valid = false;
-					message.append("The continent, " + continentName + " is not available in the map.");
+					message.append("The continent, " + continentName + " is not available in the map.\r\n");
 				}
 			}
 		}catch(Exception e) {
@@ -392,11 +405,11 @@ public class MapController {
 				message.append("*************************************************\n");
 				for(int j=0;j<territoriesArray.size();j++) {
 					if(!visitedTerritories.contains(territoriesArray.get(j).getName())){
-						message.append("It is not connected to:"+territoriesArray.get(j).getName());
+						message.append("It is not connected to:"+territoriesArray.get(j).getName()+"\n");
 					}
 				}
 				message.append("\n");
-				message.append("Territories are not well connected");
+				message.append("Territories are not well connected\n");
 				isConnected = false;
 			}
 		}
