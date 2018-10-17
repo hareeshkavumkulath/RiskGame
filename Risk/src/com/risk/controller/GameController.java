@@ -111,7 +111,60 @@ public class GameController {
 		}
 		return message;
 	}	
-	
+	/**
+	 * The method is used to check whether the player still have the armies to add.
+	 * @param playerList
+	 * @return true the adding is completed, false is still in processing
+	 */
+	public boolean isAddingCompleted(ArrayList<Player> playerList) {
+		boolean isAddingCompleted = false;
+		int totalNum = 0;
+		for(int i=0;i<playerList.size();i++) {
+			totalNum = totalNum + playerList.get(i).getNumberOfArmies();
+		}
+		System.out.println("Total Number"+totalNum);
+		if(totalNum == 0) {
+			isAddingCompleted = true;
+		}
+		return isAddingCompleted;
+	}
+	/**
+	 * The method is used to add the player's army to the territory he owned.
+	 * @param player
+	 * @param territory
+	 * @return
+	 */
+	public boolean addArmyToTerritory(Player player, Territory territory) {
+		boolean isAdded = false;
+		try {
+			int territoryIndex = player.getOwnedTerritories().indexOf(territory);
+			int currentNum = player.getOwnedTerritories().get(territoryIndex).getNumberOfArmies();
+			int currentNumberOfArmies = player.getNumberOfArmies();
+			if(currentNumberOfArmies > 0) {
+				player.getOwnedTerritories().get(territoryIndex).setNumberOfArmies(currentNum+1);
+				player.setNumberOfArmies(currentNumberOfArmies-1);
+				isAdded = true;
+			}			
+		}catch(Exception e) {
+			isAdded = false;
+		}
+		return isAdded;		
+	}
+	/**
+	 * The method is used to give the player certain number of armies  
+	 * at the start of the reinforcement stage.
+	 * @param player
+	 * @return the number of armies the player can get.
+	 */
+	public int getNumReinforcements(Player player) {
+		int numReinforcements = 3;
+		int numTerritories = player.getOwnedTerritories().size();
+		numReinforcements = numTerritories/4;
+		if(numReinforcements < 3) {
+			numReinforcements = 3;
+		}
+		return numReinforcements;
+	}
 	
 		
 }
