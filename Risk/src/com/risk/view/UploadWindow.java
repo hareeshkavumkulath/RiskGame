@@ -141,6 +141,7 @@ public class UploadWindow {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						frame.dispose();
 					}else {
 						JOptionPane.showMessageDialog(frame, "Please validate the Map.");
 					}				
