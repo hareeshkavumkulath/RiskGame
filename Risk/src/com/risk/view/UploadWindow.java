@@ -44,6 +44,7 @@ public class UploadWindow {
     private JTextField mapName;
     private boolean mapStatus = false;
     private JTextPane mapTextPane;
+    private String mapStringAfterValidation;
     
     /**
      * Launch the application.
@@ -131,17 +132,22 @@ public class UploadWindow {
 		JButton btnSaveMap = new JButton("Save Map");
 		btnSaveMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(mapStatus) {
-					File fileName = new File(".\\Maps\\" + mapName.getText() + ".txt");
-					try {
-						writeFile(fileName, mapTextPane.getText());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}else {
+				if(mapStringAfterValidation.equals(mapTextPane.getText())) {
+					if(mapStatus) {
+						File fileName = new File(".\\Maps\\" + mapName.getText() + ".txt");
+						try {
+							writeFile(fileName, mapTextPane.getText());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else {
+						JOptionPane.showMessageDialog(frame, "Please validate the Map.");
+					}				
+				}
+				else {
 					JOptionPane.showMessageDialog(frame, "Please validate the Map.");
-				}				
+				}
 			}
 		});
 		btnSaveMap.setBounds(1500, 897, 115, 29);
@@ -175,6 +181,7 @@ public class UploadWindow {
 						continentsInfo.append("\r\n");
 					}
 					continentsJList.setListData(continentNames);
+					mapStringAfterValidation = mapTextPane.getText();
 				}else {
 					String message = mapMessage.getMessage().toString();
 					errorMessage.setForeground(Color.RED);
@@ -235,6 +242,7 @@ public class UploadWindow {
 						continentsInfo.append("\r\n");
 					}
 					continentsJList.setListData(continentNames);
+					mapStringAfterValidation = mapTextPane.getText();
 				}else {
 					String message = mapMessage.getMessage().toString();
 					errorMessage.setForeground(Color.RED);
