@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -23,6 +24,7 @@ import java.awt.Color;
 import javax.swing.ListSelectionModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -55,12 +57,15 @@ public class GameWindow {
 	private JComboBox playerType6;
 	private JList<String> territoriesJList;
 	private PlayerListView playerJList;
+	private JList<String> ownedTerritories;
 	
 	public ArrayList<Player> playerList = new ArrayList<Player>();
 	public ArrayList<Continent> continents;
 	public ArrayList<Territory> territories;
 	private String instructionsMsg = "Let's Start Conquering the world.\r\nPlease select the number of Players";
 	private GameInstructions instructions = new GameInstructions(instructionsMsg);
+	private AbstractButton btnAddArmy;
+	private JButton btnReinforcement;
 	
 	/**
 	 * Launch the application.
@@ -201,6 +206,7 @@ public class GameWindow {
 				//btnOk.setVisible(false);
 				numberOfPlayers = Integer.parseInt(spinner.getValue().toString());
 				showPlayerSetupPanel(numberOfPlayers);
+				btnOk.setVisible(false);
 			}
 		});
 		
@@ -219,7 +225,7 @@ public class GameWindow {
 		label.setBounds(700, 72, 69, 20);
 		frame.getContentPane().add(label);
 		
-		JList<String> ownedTerritories = new JList<String>();
+		ownedTerritories = new JList<String>();
 		ownedTerritories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		ownedTerritories.setBorder(new LineBorder(Color.BLUE));
 		ownedTerritories.setBounds(817, 96, 211, 257);
@@ -237,13 +243,15 @@ public class GameWindow {
 		instructionsScrollPane.setBounds(1390, 16, 432, 736);
 		frame.getContentPane().add(instructionsScrollPane);
 		
-		JButton btnAddArmy = new JButton("Add Army");
-		btnAddArmy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnAddArmy = new JButton("Add Army");
 		btnAddArmy.setBounds(1051, 201, 115, 29);
 		frame.getContentPane().add(btnAddArmy);
+		
+		btnReinforcement = new JButton("Reinforce");
+		btnReinforcement.setBounds(1051, 201, 115, 29);
+		frame.getContentPane().add(btnReinforcement);
+		btnReinforcement.setVisible(false);
+		btnAddArmy.setVisible(false);
 		
 		playerJList.addListSelectionListener(new ListSelectionListener() {
 			
@@ -251,12 +259,17 @@ public class GameWindow {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				JList list = (JList) listSelectionEvent.getSource();
 				int selections[] = list.getSelectedIndices();
-				ArrayList<Territory> territories = playerList.get(selections[0]).getOwnedTerritories();
-				String[] territoryNames = new String[territories.size()];
-				for(int i=0;i<territories.size();i++) {
-					territoryNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
+				try {
+					ArrayList<Territory> territories = playerList.get(selections[0]).getOwnedTerritories();
+					String[] territoryNames = new String[territories.size()];
+					for(int i=0;i<territories.size();i++) {
+						territoryNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
+					}
+					ownedTerritories.setListData(territoryNames);
+				}catch (Exception e) {
+					// TODO: handle exception
 				}
-				ownedTerritories.setListData(territoryNames);				
+								
 			}
 		});
 		
@@ -433,11 +446,89 @@ public class GameWindow {
 				String returnMessage = controller.assignOneArmyToEachCountry(playerList, territories);
 				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
+				beginGame.setVisible(false);
+				btnAddArmy.setVisible(true);
+				instructions.setInstructions("Select a player and a territory and add armies to it, one bye one");
 			}
 		});
-		
+		/**
+		 * Add Armies to territories
+		 */
+		btnAddArmy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameController controller = new GameController();
+				boolean isSelected = isSelected();
+				if(isSelected) {
+					boolean isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex());
+					int selectedPlayerIndex = playerJList.getSelectedIndex();
+					int selectedTerIndex = ownedTerritories.getSelectedIndex();
+					if(isAdded) {
+						String instrMessage = "Player, " + playerList.get(selectedPlayerIndex).getName() + "("+ playerList.get(selectedPlayerIndex).getNumberOfArmies() +")" + 
+											  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
+											  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
+						instructions.setInstructions(instrMessage);
+					}else {
+						instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
+					}
+				}
+				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
+				if(isAddingCompleted) {
+					instructions.setInstructions("Adding is completed. Click on Reinforcement button");
+					btnAddArmy.setVisible(false);
+					btnReinforcement.setVisible(true);
+				}else {
+					btnAddArmy.setVisible(true);
+				}
+				updateOwnedTerritories(playerJList.getSelectedIndex());
+				updatePlayerJList();
+			}
+		});
 	}
-
+	/**
+	 * 
+	 * @param playerIndex
+	 * @param territoryIndex
+	 * @return
+	 */
+	protected boolean addArmyToTerritory(int playerIndex, int territoryIndex) {
+		boolean isAdded = false;
+		GameController controller = new GameController();		
+		isAdded = controller.addArmyToTerritory(playerList.get(playerIndex), playerList.get(playerIndex).getOwnedTerritories().get(territoryIndex));
+		return isAdded;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	protected boolean isSelected() {
+		boolean isSelected = false;
+		if(playerJList.getSelectedIndex() >= 0) {
+			if(ownedTerritories.getSelectedIndex() >= 0) {
+				isSelected = true;
+			}else {
+				JOptionPane.showMessageDialog(frame, "Select a territory as well");
+			}
+		}else {
+			JOptionPane.showMessageDialog(frame, "Select a Player");
+		}
+		return isSelected;
+	}
+	/**
+	 * 
+	 * @param playerIndex
+	 */
+	protected void updateOwnedTerritories(int playerIndex) {
+		try {
+			ArrayList<Territory> territories = playerList.get(playerIndex).getOwnedTerritories();
+			String[] territoryNames = new String[territories.size()];
+			for(int i=0;i<territories.size();i++) {
+				territoryNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
+			}
+			ownedTerritories.setListData(territoryNames);
+		}catch(Exception e) {
+			
+		}
+	}
 	/**
 	 * 
 	 */
