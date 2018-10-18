@@ -284,6 +284,9 @@ class GameControllerTests{
      */
     @Test
     @DisplayName("player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum => TRUE")
+    void validateFortifyNumberGreaterThanFortifyNum(){
+
+    }
 
      /**
      * Testing validateFortifyNumber() function return value
