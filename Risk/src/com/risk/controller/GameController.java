@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.risk.controller;
 
 import java.util.ArrayList;
@@ -12,12 +9,16 @@ import com.risk.model.Player;
 import com.risk.model.Territory;
 
 /**
- * @author Hareesh Kavumkulath
+ * Controller class for the game setup, players information and territories information
  *
+ * @author Hareesh Kavumkulath
+ * @version 1.1
  */
 public class GameController {
 
 	/**
+	 * Distribute players into corresponding territories
+	 *
 	 * @param playerList
 	 * @param territories
 	 * @return arrayList of Players
