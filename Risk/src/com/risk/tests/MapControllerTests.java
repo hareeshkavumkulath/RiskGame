@@ -99,6 +99,9 @@ public class MapControllerTests {
         assertTrue(mc.processTerritories(mapToString(noTerritories)));
     }
 
+    /**
+     * Testing territoriesToContinents function return value for Valid Map
+     */
     @Test
     @DisplayName("continentArray => NotNULL for Valid MAP")
     void territoriesToContinentsValid() {
