@@ -78,7 +78,9 @@ class GameControllerTests{
     		assertEquals(3,gc.getNumReinforcements(p));
     }
 
-   
+   /**
+     * Testing getPlayersArmies function return value for 17 Territories
+     */
     @Test
     @DisplayName("getPlayersArmies => for 17 Territories should equals 4")
     void getNumReinforcements17() {
