@@ -245,4 +245,9 @@ class GameControllerTests{
     }
 
     // =====================validateFortifyMove()=====================
+    /**
+     * Testing validateFortifyMove() function return value
+     * if (player.ownedTerritories[i].NumberOfArmies > 1)
+     * should be Equal to true
+     */
 }
