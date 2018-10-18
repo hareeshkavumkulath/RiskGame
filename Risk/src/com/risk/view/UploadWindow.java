@@ -203,6 +203,12 @@ public class UploadWindow {
 		frame.getContentPane().add(mapScrollPane);
 		
 		mapTextPane = new JTextPane();
+		mapTextPane.setText("[Continents]\n" +"<ContinentName1>=<ArmyNumber1>\n"+ "<ContinentName2>=<ArmyNumber2>\n" + "<ContinentName3>=<ArmyNumber3>\n" +
+							"...\n"+"...\n"+"...\n"+"\n"+ "[Territories]\n" + "<TerritoryName1>,0,0,<ContinentName1>,<adjacentTerritory1>,<adjacentTerritory2><adjacentTerritory3>\n"+
+							"<TerritoryName2>,0,0,<ContinentName2>,<adjacentTerritory1>,<adjacentTerritory2><adjacentTerritory3>\n"+
+							"<TerritoryName3>,0,0,<ContinentName3>,<adjacentTerritory1>,<adjacentTerritory2><adjacentTerritory3>\n"+"...\n"+"...\n"+"...\n"
+							
+);
 		mapTextPane.setEditable(true);
 		mapScrollPane.setViewportView(mapTextPane);
 		
