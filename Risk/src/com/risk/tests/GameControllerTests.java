@@ -141,6 +141,11 @@ class GameControllerTests{
     }
 
 
+     // =====================playersToTerritories()=====================
+    /**
+     * Testing playersToTerritories function return value
+     * ruler for returned territory list should exist in Player List
+     */
     @Test
     @DisplayName("playersToTerritories => ruler for returned territory list should exist in PlayerList")
     void playersToTerritories() {
