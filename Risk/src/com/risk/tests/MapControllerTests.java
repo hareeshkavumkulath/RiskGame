@@ -87,7 +87,7 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Territories => TRUE for Valid MAP")
     void proceeeTerritoriesValid() {
-        mapController.processContinents(mapToString(valid));
+    	mapController.processContinents(mapToString(valid));
         assertTrue(mapController.processTerritories(mapToString(valid)));
     }
 
@@ -98,7 +98,7 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
     void proceeeTerritoriesInValid() {
-        mapController.processContinents(mapToString(noTerritories));
+    	mapController.processContinents(mapToString(noTerritories));
         assertTrue(mapController.processTerritories(mapToString(noTerritories)));
     }
 
@@ -108,9 +108,9 @@ public class MapControllerTests {
     @Test
     @DisplayName("continentArray => NotNULL for Valid MAP")
     void territoriesToContinentsValid() {
-        mapController.processContinents(mapToString(valid));
-        mapController.processTerritories(mapToString(valid));
-        mapController.territoriesToContinents();
+    	mapController.processContinents(mapToString(valid));
+    	mapController.processTerritories(mapToString(valid));
+    	mapController.territoriesToContinents();
         assertNotNull(mapController.continentArray);
     }
     
@@ -121,9 +121,9 @@ public class MapControllerTests {
     @Test
     @DisplayName("continentArray => NULL for noContinent MAP")
     void territoriesToContinentsInValid() {
-        mapController.processContinents(mapToString(noContinent));
-        mapController.processTerritories(mapToString(noContinent));
-        mapController.territoriesToContinents();
+    	mapController.processContinents(mapToString(noContinent));
+    	mapController.processTerritories(mapToString(noContinent));
+    	mapController.territoriesToContinents();
         assertNotNull(mapController.continentArray);
     }
 
@@ -133,9 +133,9 @@ public class MapControllerTests {
     @Test
     @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
     void createContinentConnectionInValid() {
-        mapController.processContinents(mapToString(notConnected));
-        mapController.processTerritories(mapToString(notConnected));
-        mapController.territoriesToContinents();
+    	mapController.processContinents(mapToString(notConnected));
+    	mapController.processTerritories(mapToString(notConnected));
+    	mapController.territoriesToContinents();
         assertTrue(mapController.createContinentConnection());
     }
 
@@ -145,10 +145,10 @@ public class MapControllerTests {
     @Test
     @DisplayName("validateMap => TRUE for Valid MAP")
     void validateMapValid() {
-        mapController.processContinents(mapToString(valid));
-        mapController.processTerritories(mapToString(valid));
-        mapController.territoriesToContinents();
-        mapController.createContinentConnection();
+    	mapController.processContinents(mapToString(valid));
+    	mapController.processTerritories(mapToString(valid));
+    	mapController.territoriesToContinents();
+    	mapController.createContinentConnection();
         MapMessage anything = mapController.processFile(new File(valid));
         assertTrue(mapController.validateMap(anything.getTerritories()));
     }
@@ -160,10 +160,10 @@ public class MapControllerTests {
     @Test
     @DisplayName("validateMap => FALSE for NotConnected MAP")
     void validateMapInValid() {
-        mapController.processContinents(mapToString(notConnected));
-        mapController.processTerritories(mapToString(notConnected));
-        mapController.territoriesToContinents();
-        mapController.createContinentConnection();
+    	mapController.processContinents(mapToString(notConnected));
+    	mapController.processTerritories(mapToString(notConnected));
+    	mapController.territoriesToContinents();
+    	mapController.createContinentConnection();
         MapMessage anything = mapController.processFile(new File(notConnected));
         assertTrue(mapController.validateMap(anything.getTerritories()));
     }
@@ -174,8 +174,10 @@ public class MapControllerTests {
      * 
      * @param mapFile Map File Address as a String
      * @return Map Content to Strings
+     * @exception IOException if there is a problem with the Map File Address
      */
     private static String mapToString(String mapFile) {
+
         String mapInString = "";
         BufferedReader reader;
         try {
@@ -193,6 +195,7 @@ public class MapControllerTests {
         } catch (IOException e) {
             mapInString = null;
         }
+
         return mapInString;
     }
 
