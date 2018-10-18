@@ -113,7 +113,7 @@ public class MapControllerTests {
     
     /**
      * Testing territoriesToContinents function return value for InValid Map
-     * Which is map with no Continent
+     * Which is a map with no Continent
      */
     @Test
     @DisplayName("continentArray => NULL for noContinent MAP")
@@ -124,6 +124,9 @@ public class MapControllerTests {
         assertNotNull(mc.continentArray);
     }
 
+    /**
+     * Testing createContinentConnection function return value for Valid Map
+     */
     @Test
     @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
     void createContinentConnectionInValid() {
@@ -133,6 +136,9 @@ public class MapControllerTests {
         assertTrue(mc.createContinentConnection());
     }
 
+    /**
+     * Testing validateMap function return value for Valid Map
+     */
     @Test
     @DisplayName("validateMap => TRUE for Valid MAP")
     void validateMapValid() {
@@ -144,6 +150,10 @@ public class MapControllerTests {
         assertTrue(mc.validateMap(anything.getTerritories()));
     }
 
+    /**
+     * Testing validateMap function return value for InValid Map
+     * Which is a not connected map
+     */
     @Test
     @DisplayName("validateMap => FALSE for NotConnected MAP")
     void validateMapInValid() {
