@@ -130,8 +130,8 @@ public class GameController {
 	}
 	/**
 	 * The method is used to add the player's army to the territory he owned.
-	 * @param player
-	 * @param territory
+	 * @param player the player
+	 * @param territory the territory is owned by the player
 	 * @return
 	 */
 	public boolean addArmyToTerritory(Player player, Territory territory) {
@@ -153,7 +153,7 @@ public class GameController {
 	/**
 	 * The method is used to give the player certain number of armies  
 	 * at the start of the reinforcement stage.
-	 * @param player
+	 * @param player the player
 	 * @return the number of armies the player can get.
 	 */
 	public int getNumReinforcements(Player player) {
@@ -165,6 +165,32 @@ public class GameController {
 		}
 		return numReinforcements;
 	}
+	/**
+	 * The method is used to check whether the fortification is valid.
+	 * @param player the player
+	 * @return
+	 */
+	public boolean isValidFortify(Player player) {
+		boolean isValidFortify = false;
+		if(player.getOwnedTerritories().size() == 1) {
+			isValidFortify = false;
+		}else {
+			for(int i=0;i<player.getOwnedTerritories().size();i++) {
+				Territory territory = player.getOwnedTerritories().get(i);
+				if(territory.getNumberOfArmies() > 1) {
+					isValidFortify = true;
+					break;
+				}
+			}
+		}
+		return isValidFortify;
+	}
 	
-		
+	public boolean validateFortifyMove(Player player, int selectedIndex) {
+		boolean validMove = false;
+		if(player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies() > 1) {
+			validMove = true;
+		}
+		return validMove;
+	}
 }
