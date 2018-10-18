@@ -36,7 +36,7 @@ public class Map {
 	/**
 	 * Getter for continents
 	 * 
-	 * @return ArrayList of continents
+	 * @return ArrayList<Continent> ArrayList of continents
 	 */
 	public ArrayList<Continent> getContinents() {
 		return continents;
@@ -53,7 +53,7 @@ public class Map {
 	/**
 	 * Getter for territories 
 	 * 
-	 * @return ArrayList of territories
+	 * @return ArrayList<Territory> ArrayList of territories
 	 */
 	public ArrayList<Territory> getTerritories() {
 		return territories;
