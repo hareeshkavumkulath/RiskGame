@@ -555,8 +555,8 @@ public class MapController {
 	 * B and C and delete A from their adjacent territories list.
 	 * </p>
 	 * 
-	 * @param territoryName
-	 * @param adjacentTerritoryName
+	 * @param territoryName territoryName
+	 * @param adjacentTerritoryName adjacentTerritoryName
 	 */
 	public void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
 		for(int i = 0;i<territoriesArray.size();i++) {
@@ -569,8 +569,8 @@ public class MapController {
 	/**
 	 * Find the continent of a territory
 	 * 
-	 * @param territory
-	 * @return continent
+	 * @param territory territory object
+	 * @return continent continent object
 	 */
 	public Continent findContinentOfTerritory(Territory territory) {
 		Continent continent = null;
@@ -585,18 +585,18 @@ public class MapController {
 	/**
 	 * Remove territory from the continent
 	 * 
-	 * @param continent
-	 * @param territory
+	 * @param continent continent object
+	 * @param territory territory object
 	 */
 	public void removeTerritoryFromContinent(Continent continent, Territory territory) {
 		continent.getTerritories().remove(territory);	
 	}
 	
 	/**
-	 * Returns the Territory from the territoriesArray, ArrayList
+	 * Returns the Territory from the territoriesArray
 	 * 
-	 * @param territoryName
-	 * @return
+	 * @param territoryName territoryName
+	 * @return territory object
 	 */
 	public Territory getTerritoryFromArray(String territoryName) {
 		Territory territory = new Territory();
