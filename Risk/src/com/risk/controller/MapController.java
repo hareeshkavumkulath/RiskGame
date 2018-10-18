@@ -32,11 +32,11 @@ public class MapController {
 	/**
 	 * MapController constructor
 	 * 
-	 * @param fileContent
-	 * @param continentArray
-	 * @param territoriesArray
-	 * @param isValidMap
-	 * @param message
+	 * @param fileContent the file input
+	 * @param continentArray the arrayList of continents
+	 * @param territoriesArray the arrayList of territories
+	 * @param isValidMap shows whether the map is valid or not
+	 * @param message map message
 	 */
 	public MapController(StringBuffer fileContent, ArrayList<Continent> continentArray,
 			ArrayList<Territory> territoriesArray, boolean isValidMap, StringBuffer message) {
