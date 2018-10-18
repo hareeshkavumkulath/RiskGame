@@ -105,4 +105,32 @@ class GameControllerTests{
         assertEquals(4, gc.getNumReinforcements(p));
     }
 
+    @Test
+    @DisplayName("territoriesToPlayers => Sum of players.ownedTerritories Should = territories.size()")
+    void territoriesToPlayers() {
+        //Creating 5 Test Players
+        ArrayList<Player> playerList = new ArrayList<Player>();
+        Player p;
+        for (int j = 0; j < 5; j++) {
+            p = new Player("testPlayer"+j, false, 10+j);
+            playerList.add(p);
+        }
+        
+        //Creating 20 Test Territories
+        ArrayList<Territory> territories = new ArrayList<Territory>();
+        Territory temp;
+        for (int i = 0; i < 20; i++) {
+            temp = new Territory("testTerritory" + i, "testContinent" + i, i);
+            territories.add(temp);
+        }
+
+        ArrayList<Player> result = gc.territoriesToPlayers(playerList,territories);
+        int finalAssignedTerritories = 0;
+        for (Player pl : result){
+            finalAssignedTerritories+=pl.ownedTerritories.size();
+        }
+
+        assertEquals(territories.size(), finalAssignedTerritories);
+    }
+
 }
