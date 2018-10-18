@@ -41,7 +41,7 @@ public class MapMessage {
 	/**
 	 * Getter for territories
 	 * 
-	 * @return ArrayList of territories
+	 * @return ArrayList<Territory> ArrayList of territories
 	 */
 	public ArrayList<Territory> getTerritories() {
 		return territories;
@@ -57,7 +57,7 @@ public class MapMessage {
 	/**
 	 * Getter for continents
 	 * 
-	 * @return ArrayList of continents
+	 * @return ArrayList<Continent> ArrayList of continents
 	 */
 	public ArrayList<Continent> getContinents() {
 		return continents;
@@ -88,7 +88,7 @@ public class MapMessage {
 	}
 	/**
 	 * Getter for the message for invalid maps
-	 * @return String message
+	 * @return StringBuffer message
 	 */
 	public StringBuffer getMessage() {
 		return message;
