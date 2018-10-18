@@ -1,33 +1,32 @@
 package com.risk.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.risk.controller.GameController;
 import com.risk.model.Player;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JToggleButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 /**
+ * Fortify Window for users to fortify their armies.
  * 
  * @author Hareesh Kavumkulath
- *
+ * @version 1.0
  */
 public class FortifyWindow extends JFrame {
-
+	@SuppressWarnings("javadoc")
 	private JPanel contentPane;
+	@SuppressWarnings("javadoc")
 	private Player player;
+	@SuppressWarnings("javadoc")
 	private JTextField fortifyNumberField;
 
 	/**
@@ -116,7 +115,13 @@ public class FortifyWindow extends JFrame {
 		contentPane.add(btnFortify);		
 		
 	}
-	
+
+	/**
+	 * get number and name of player's territories.
+	 * 
+	 * @param player based on player it gets the information of players' territories. 
+	 * @return String[] territoryArray
+	 */
 	public String[] getTerritoryArray(Player player) {
 		String[] territoryArray = new String[player.getOwnedTerritories().size()];
 		for(int i=0;i<player.getOwnedTerritories().size();i++) {
