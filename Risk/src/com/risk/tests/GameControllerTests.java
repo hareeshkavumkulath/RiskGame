@@ -59,7 +59,7 @@ class GameControllerTests{
     }
 
      /**
-     * Testing getPlayersArmies function return value for 4 players
+     * Testing getPlayersArmies function return value for 6 players
      */
     @Test
     @DisplayName("getPlayersArmies => 6 for 20")
