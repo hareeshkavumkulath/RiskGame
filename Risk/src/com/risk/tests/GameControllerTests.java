@@ -105,6 +105,13 @@ class GameControllerTests{
         assertEquals(4, gc.getNumReinforcements(p));
     }
 
+    // =====================territoriesToPlayers()=====================
+    /**
+     * Testing territoriesToPlayers function return value
+     * For 5 test players and 10 test Territories,
+     * The Sum of players.ownedTerritories in returned ArrayList should equal the number of territories
+     */
+    
     @Test
     @DisplayName("territoriesToPlayers => Sum of players.ownedTerritories Should = territories.size()")
     void territoriesToPlayers() {
