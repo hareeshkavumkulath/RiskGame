@@ -79,7 +79,7 @@ public class MapControllerTests {
     }
 
     /**
-     * Testing proceeeTerritories function return value for Valid Map
+     * Testing processTerritories function return value for Valid Map
      */
     @Test
     @DisplayName("Process Territories => TRUE for Valid MAP")
