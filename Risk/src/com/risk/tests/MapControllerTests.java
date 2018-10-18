@@ -60,17 +60,18 @@ public class MapControllerTests {
     }
 
     /**
-     * Before Each Test it Creates a new object from Map Controller 
+     * Testing processContinent function return value for Valid Map
      */
     @Test
     @DisplayName("Process Continent => TRUE for Valid MAP")
-    void proceeeContinentValid() {
+    void processContinentValid() {
         assertTrue(mc.processContinents(mapToString(valid)));
     }
 
+    
     @Test
     @DisplayName("Process Continent => FALSE for noTag MAP")
-    void proceeeContinentInValid() {
+    void processContinentInValid() {
         assertTrue(mc.processContinents(mapToString(noTag)));
     }
 
