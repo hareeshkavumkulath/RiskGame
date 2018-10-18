@@ -15,7 +15,7 @@ public class InstructionsView extends JTextPane implements Observer{
 	/**
 	 * This is a constructor. It sets instructionsMsg messages in a certain format. 
 	 * 
-	 * @param instructionsMsg
+	 * @param instructionsMsg This is the message information and set it into a certain user interface
 	 */
 	public InstructionsView(String instructionsMsg) {
 		super();
