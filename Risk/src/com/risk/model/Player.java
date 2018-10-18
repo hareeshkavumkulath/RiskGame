@@ -39,7 +39,7 @@ public class Player {
 	/** 
 	 * Getter for the name of the Player
 	 * 
-	 * @return name of the player
+	 * @return String name of the player
 	 */
 	public String getName() {
 		return name;
@@ -55,7 +55,7 @@ public class Player {
 	/**
 	 * Getter for the number of armies
 	 * 
-	 * @return the number of armies
+	 * @return int the number of armies
 	 */
 	public int getNumberOfArmies() {
 		return numberOfArmies;
@@ -71,7 +71,7 @@ public class Player {
 	/**
 	 * Getter for the owned territories
 	 * 
-	 * @return ArrayList of the owned territories
+	 * @return ArrayList<Territory> ArrayList of the owned territories
 	 */
 	public ArrayList<Territory> getOwnedTerritories() {
 		return ownedTerritories;
@@ -87,7 +87,7 @@ public class Player {
 	/**
 	 * Getter for the Owned Continents
 	 * 
-	 * @return ArrayList of continents
+	 * @return ArrayList<Continent> ArrayList of continents
 	 */
 	public ArrayList<Continent> getOwnedContinents() {
 		return ownedContinents;
