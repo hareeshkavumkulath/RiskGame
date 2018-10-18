@@ -244,4 +244,5 @@ class GameControllerTests{
         assertTrue(gc.isValidFortify(p));
     }
 
+    // =====================validateFortifyMove()=====================
 }
