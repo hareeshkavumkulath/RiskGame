@@ -57,7 +57,6 @@ public class SelectMapWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 543, 714);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JList<String> mapFilesJList = new JList<String>();
