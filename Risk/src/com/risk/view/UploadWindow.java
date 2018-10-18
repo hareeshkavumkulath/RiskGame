@@ -151,7 +151,7 @@ public class UploadWindow {
 						JOptionPane.showMessageDialog(frame, "Please validate the Map.");
 					}
 				}else {
-					JOptionPane.showMessageDialog(frame, "Please validate the Map.");
+					JOptionPane.showMessageDialog(frame, "Please enter name for the map.");
 				}
 			}
 		});
