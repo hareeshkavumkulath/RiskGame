@@ -1,11 +1,12 @@
 package com.risk.tests;
-
 import com.risk.controller.MapController;
+import com.risk.model.MapMessage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.beans.Transient;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -121,7 +122,8 @@ public class MapControllerTests {
         mc.processTerritories(mapToString(valid));
         mc.territoriesToContinents();
         mc.createContinentConnection();
-        assertTrue(mc.validateMap(mc.territoriesArray));
+        MapMessage anything = mc.processFile(new File(valid));
+        assertTrue(mc.validateMap(anything.getTerritories()));
     }
 
     @Test
@@ -131,7 +133,8 @@ public class MapControllerTests {
         mc.processTerritories(mapToString(notConnected));
         mc.territoriesToContinents();
         mc.createContinentConnection();
-        assertTrue(mc.validateMap(mc.territoriesArray));
+        MapMessage anything = mc.processFile(new File(notConnected));
+        assertTrue(mc.validateMap(anything.getTerritories()));
     }
 
     /**
