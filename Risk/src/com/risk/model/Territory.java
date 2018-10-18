@@ -44,7 +44,7 @@ public class Territory {
 	/**
 	 * Getter for name
 	 * 
-	 * @return name of the Territory
+	 * @return String name of the Territory
 	 */
 	public String getName() {
 		return name;
@@ -62,7 +62,7 @@ public class Territory {
 	/**
 	 * Getter of continent
 	 * 
-	 * @return continent of the territory
+	 * @return String continent of the territory
 	 */
 	public String getContinent() {
 		return continent;
@@ -80,7 +80,7 @@ public class Territory {
 	/**
 	 * Getter for adjacent territories
 	 * 
-	 * @return Arraylist of adjacent territories
+	 * @return ArrayList<String> Arraylist of adjacent territories
 	 */
 	public ArrayList<String> getAdjacentTerritories() {
 		return adjacentTerritories;
@@ -98,7 +98,7 @@ public class Territory {
 	/**
 	 * Getter for Player/Ruler
 	 * 
-	 * @return player/ruler of the territory
+	 * @return Player player/ruler of the territory
 	 */
 	public Player getRuler() {
 		return ruler;
@@ -116,7 +116,7 @@ public class Territory {
 	/**
 	 * Getter for number of armies
 	 * 
-	 * @return number of armies
+	 * @return int number of armies
 	 */
 	public int getNumberOfArmies() {
 		return numberOfArmies;
