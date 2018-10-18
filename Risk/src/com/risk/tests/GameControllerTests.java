@@ -3,21 +3,15 @@ package com.risk.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.ArrayList;
 
 import com.risk.controller.GameController;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 
 /**
  * GameControllerTests
@@ -30,14 +24,15 @@ import org.junit.jupiter.api.BeforeAll;
 
 class GameControllerTests{
 
-    private GameController gc;
+    @SuppressWarnings("javadoc")
+	private GameController gameController;
 
     /**
      * Before Each Test it Creates a new object from Game Controller 
      */
     @BeforeEach
     void init() {
-        gc = new GameController();
+    	gameController = new GameController();
     }
 
     /**
@@ -46,7 +41,7 @@ class GameControllerTests{
     @Test
     @DisplayName("getPlayersArmies => 2 for 40")
     void getPlayersArmies2() {
-        assertEquals(40,gc.getPlayersArmies(2));
+        assertEquals(40,gameController.getPlayersArmies(2));
     }
     
     /**
@@ -55,7 +50,7 @@ class GameControllerTests{
     @Test
     @DisplayName("getPlayersArmies => 4 for 30")
     void getPlayersArmies4() {
-        assertEquals(30,gc.getPlayersArmies(4));
+        assertEquals(30,gameController.getPlayersArmies(4));
     }
 
      /**
@@ -64,7 +59,7 @@ class GameControllerTests{
     @Test
     @DisplayName("getPlayersArmies => 6 for 20")
     void getPlayersArmies6() {
-        assertEquals(20,gc.getPlayersArmies(4));
+        assertEquals(20,gameController.getPlayersArmies(4));
     }
     
     
@@ -84,7 +79,7 @@ class GameControllerTests{
     		}
     		p.ownedTerritories = t;
         
-    		assertEquals(3,gc.getNumReinforcements(p));
+    		assertEquals(3,gameController.getNumReinforcements(p));
     }
 
    /**
@@ -103,7 +98,7 @@ class GameControllerTests{
     		}
     		p.ownedTerritories = t;
         
-    		assertEquals(4,gc.getNumReinforcements(p));
+    		assertEquals(4,gameController.getNumReinforcements(p));
     }
 
 }
