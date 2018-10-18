@@ -216,12 +216,13 @@ class GameControllerTests{
      * should be Equal to false
      */
     @Test
+    @DisplayName("For player.ownedTerritories() == 1 => False")
     void isValidFortify1() {
         Player p = new Player("testPlayer", false, 10);
         Territory temp= new Territory("testTerritory", "testContinent", 10);
         p.ownedTerritories.add(temp);
 
-        assertFalse(gc.isValidFortify(p));
+        assertTrue(gc.isValidFortify(p));
     }
 
      /**
