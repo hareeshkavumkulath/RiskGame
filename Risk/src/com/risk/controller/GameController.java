@@ -193,4 +193,13 @@ public class GameController {
 		}
 		return validMove;
 	}
+
+	public boolean validateFortifyNumber(Player player, int selectedIndex, int fortifyNum) {
+		boolean isValidNumber = false;
+		int currentNumArmies = player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies();
+		if(currentNumArmies - 1 > fortifyNum) {
+			isValidNumber = true;
+		}
+		return isValidNumber;
+	}
 }
