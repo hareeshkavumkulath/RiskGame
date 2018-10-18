@@ -34,6 +34,7 @@ import java.awt.Window;
 
 /**
  * @author Hareesh Kavumkulath
+ * @version 1.1
  *
  */
 public class GameWindow {
@@ -65,6 +66,10 @@ public class GameWindow {
 	private GameInstructions instructions = new GameInstructions(instructionsMsg);
 	private AbstractButton btnAddArmy;
 	private JButton btnReinforcement;
+	private JButton btnFortify;
+	private boolean reinforceStatus = false;
+	private JButton btnEndFortify;
+
 	
 	/**
 	 * Launch the application.
