@@ -282,4 +282,10 @@ class GameControllerTests{
      * if (player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum)
      * should be Equal to TRUE
      */
+
+     /**
+     * Testing validateFortifyNumber() function return value
+     * if (player.ownedTerritories[i].NumberOfArmies - 1 < fortifyNum)
+     * should be Equal to FALSE
+     */
 }
