@@ -74,10 +74,9 @@ String name;
 ```
 ### Statements
 
-* ##### Braces are used with if, else, for, do and while statements, even when the body is empty or contains only a single statement.
-* ##### One statement per line.
+##### Braces are used with if, else, for, do and while statements, even when the body is empty or contains only a single statement. One statement per line.
 
 
 
 # References
-### [Google Java Style Guide] http://google.github.io/styleguide/javaguide.html
+* ### [Google Java Style Guide](http://google.github.io/styleguide/javaguide.html)
