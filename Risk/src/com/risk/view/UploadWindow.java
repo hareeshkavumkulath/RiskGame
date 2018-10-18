@@ -203,6 +203,13 @@ public class UploadWindow {
 		frame.getContentPane().add(mapScrollPane);
 		
 		mapTextPane = new JTextPane();
+		mapTextPane.setText("[Continents]\n" + "North America=5\n" + "South America=2\n" + "\n"+
+							"Africa=3\n" + "Europe=5\n" + "Asia=7\n" + "[Territories]\n" + 
+							"Alaska,70,126,North America,Venezuala,Iceland,Western Europe\n"+
+							"Venezuala,259,303,South America,Alaska,North Africa,Great Britain\n"+
+							"North Africa,420,264,Africa,Venezuala,Scandinavia\n"
+							
+);
 		mapTextPane.setEditable(true);
 		mapScrollPane.setViewportView(mapTextPane);
 		
