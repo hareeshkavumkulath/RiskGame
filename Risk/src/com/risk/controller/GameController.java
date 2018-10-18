@@ -193,4 +193,30 @@ public class GameController {
 		}
 		return validMove;
 	}
+
+	public boolean validateFortifyNumber(Player player, int selectedIndex, int fortifyNum) {
+		boolean isValidNumber = false;
+		int currentNumArmies = player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies();
+		if(currentNumArmies - 1 > fortifyNum) {
+			isValidNumber = true;
+		}
+		return isValidNumber;
+	}
+
+	public boolean fortify(Player player, int fromTerritoryIndex, int toTerritoryIndex, int fortifyNum) {
+		boolean status = false;
+		try {
+			int fromTerrNumArmies = player.getOwnedTerritories().get(fromTerritoryIndex).getNumberOfArmies();
+			int toTerrNumArmies = player.getOwnedTerritories().get(toTerritoryIndex).getNumberOfArmies();
+			fromTerrNumArmies = fromTerrNumArmies - fortifyNum;
+			toTerrNumArmies = toTerrNumArmies + fortifyNum;
+			player.getOwnedTerritories().get(fromTerritoryIndex).setNumberOfArmies(fromTerrNumArmies);
+			player.getOwnedTerritories().get(toTerritoryIndex).setNumberOfArmies(toTerrNumArmies);
+			player.setFortificationStatus(true);
+			status = true;
+		}catch(Exception e) {
+			status = false;
+		}
+		return status;
+	}	
 }
