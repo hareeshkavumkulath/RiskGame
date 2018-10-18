@@ -14,9 +14,6 @@ import java.awt.event.ActionEvent;
  * @author Jingya Pan
  * @version 1.0
  * 
- * @date 10-06-2018
- * @modifiedDate 10-07-2018
- * @modifiedBy jingya Pan
  */
 public class StartWindow {
 
@@ -24,6 +21,8 @@ public class StartWindow {
 
 	/**
 	 * Launch the application.
+	 * 
+	 * @param args default parameter for main function  
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

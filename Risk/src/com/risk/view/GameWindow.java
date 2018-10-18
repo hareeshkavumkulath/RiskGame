@@ -75,6 +75,7 @@ public class GameWindow {
 	
 	/**
 	 * Launch the application.
+	 * @param map input selected map from the SelectMapWindow
 	 */
 	public void main(Map map) {
 		EventQueue.invokeLater(new Runnable() {
@@ -93,7 +94,7 @@ public class GameWindow {
 
 	/**
 	 * Create the application.
-	 * @param newMap 
+	 * @param map pass map model to GameWindow.java
 	 */
 	public GameWindow(Map map) {
 		this.map = map;
@@ -282,7 +283,9 @@ public class GameWindow {
 	}
 
 	/**
-	 * @param number
+	 * It displays the setup player panel based on the number of players
+	 * 
+	 * @param number number of players
 	 */
 	protected void showPlayerSetupPanel(int number) {
 		
@@ -490,11 +493,13 @@ public class GameWindow {
 			}
 		});
 	}
+	
 	/**
+	 * Add army to the selected territory
 	 * 
-	 * @param playerIndex
-	 * @param territoryIndex
-	 * @return
+	 * @param playerIndex selected player index
+	 * @param territoryIndex selected territory index
+	 * @return boolean true if the added army function succeeds else false
 	 */
 	protected boolean addArmyToTerritory(int playerIndex, int territoryIndex) {
 		boolean isAdded = false;
@@ -502,9 +507,11 @@ public class GameWindow {
 		isAdded = controller.addArmyToTerritory(playerList.get(playerIndex), playerList.get(playerIndex).getOwnedTerritories().get(territoryIndex));
 		return isAdded;
 	}
+	
 	/**
+	 * Checks whether both players and territories are selected and shows alert if not
 	 * 
-	 * @return
+	 * @return boolean true if both are selected else false
 	 */
 	protected boolean isSelected() {
 		boolean isSelected = false;
@@ -520,8 +527,9 @@ public class GameWindow {
 		return isSelected;
 	}
 	/**
-	 * 
-	 * @param playerIndex
+	 * Updates owned territory JList field
+	 *  
+	 * @param playerIndex selected player index
 	 */
 	protected void updateOwnedTerritories(int playerIndex) {
 		try {
@@ -535,8 +543,9 @@ public class GameWindow {
 			
 		}
 	}
+	
 	/**
-	 * 
+	 * Updates players JList 
 	 */
 	protected void updatePlayerJList() {
 		String[] playerNames = new String[numberOfPlayers];
