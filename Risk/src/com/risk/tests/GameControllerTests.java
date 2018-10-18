@@ -172,7 +172,12 @@ class GameControllerTests{
         }
     }
 
-   
+    // =====================playersToTerritories()=====================
+    /**
+     * Testing assignOneArmyToEachCountry function return value
+     * Number of Assigned armies for  all territories returned territory list 
+     * should be Equal to 1
+     */
     @Test
     @DisplayName("assignOneArmyToEachCountry => Assigned armies for each returned territory list => = 1")
     void assignOneArmyToEachCountry() {
