@@ -203,11 +203,10 @@ public class UploadWindow {
 		frame.getContentPane().add(mapScrollPane);
 		
 		mapTextPane = new JTextPane();
-		mapTextPane.setText("[Continents]\n" + "North America=5\n" + "South America=2\n" + "\n"+
-							"Africa=3\n" + "Europe=5\n" + "Asia=7\n" + "[Territories]\n" + 
-							"Alaska,70,126,North America,Venezuala,Iceland,Western Europe\n"+
-							"Venezuala,259,303,South America,Alaska,North Africa,Great Britain\n"+
-							"North Africa,420,264,Africa,Venezuala,Scandinavia\n"
+		mapTextPane.setText("[Continents]\n" +"<ContinentName1>=<ArmyNumber1>\n"+ "<ContinentName2>=<ArmyNumber2>\n" + "<ContinentName3>=<ArmyNumber3>\n" +
+							"...\n"+"...\n"+"...\n"+"\n"+ "[Territories]\n" + "<TerritoryName1>,0,0,<ContinentName1>,<adjacentTerritory1>,<adjacentTerritory2><adjacentTerritory3>\n"+
+							"<TerritoryName2>,0,0,<ContinentName2>,<adjacentTerritory1>,<adjacentTerritory2><adjacentTerritory3>\n"+
+							"<TerritoryName3>,0,0,<ContinentName3>,<adjacentTerritory1>,<adjacentTerritory2><adjacentTerritory3>\n"+"...\n"+"...\n"+"...\n"
 							
 );
 		mapTextPane.setEditable(true);
