@@ -60,7 +60,7 @@ class GameControllerTests{
 
     
     @Test
-    @DisplayName("getPlayersArmies => 4 for 30")
+    @DisplayName("getPlayersArmies => 6 for 20")
     void getPlayersArmies6() {
         assertEquals(20,gc.getPlayersArmies(4));
     }
