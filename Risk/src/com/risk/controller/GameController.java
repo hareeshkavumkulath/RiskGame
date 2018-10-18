@@ -202,4 +202,21 @@ public class GameController {
 		}
 		return isValidNumber;
 	}
+
+	public boolean fortify(Player player, int fromTerritoryIndex, int toTerritoryIndex, int fortifyNum) {
+		boolean status = false;
+		try {
+			int fromTerrNumArmies = player.getOwnedTerritories().get(fromTerritoryIndex).getNumberOfArmies();
+			int toTerrNumArmies = player.getOwnedTerritories().get(toTerritoryIndex).getNumberOfArmies();
+			fromTerrNumArmies = fromTerrNumArmies - fortifyNum;
+			toTerrNumArmies = toTerrNumArmies + fortifyNum;
+			player.getOwnedTerritories().get(fromTerritoryIndex).setNumberOfArmies(fromTerrNumArmies);
+			player.getOwnedTerritories().get(toTerritoryIndex).setNumberOfArmies(toTerrNumArmies);
+			player.setFortificationStatus(true);
+			status = true;
+		}catch(Exception e) {
+			status = false;
+		}
+		return status;
+	}	
 }
