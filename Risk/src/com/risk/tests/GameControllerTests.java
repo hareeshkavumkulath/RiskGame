@@ -57,6 +57,15 @@ class GameControllerTests{
     void getPlayersArmies4() {
         assertEquals(30,gc.getPlayersArmies(4));
     }
+
+     /**
+     * Testing getPlayersArmies function return value for 6 players
+     */
+    @Test
+    @DisplayName("getPlayersArmies => 6 for 20")
+    void getPlayersArmies6() {
+        assertEquals(20,gc.getPlayersArmies(4));
+    }
     
     
     /**
