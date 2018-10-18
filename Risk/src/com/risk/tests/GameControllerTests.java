@@ -57,6 +57,13 @@ class GameControllerTests{
     void getPlayersArmies4() {
         assertEquals(30,gc.getPlayersArmies(4));
     }
+
+    
+    @Test
+    @DisplayName("getPlayersArmies => 4 for 30")
+    void getPlayersArmies6() {
+        assertEquals(20,gc.getPlayersArmies(4));
+    }
     
     
     /**
