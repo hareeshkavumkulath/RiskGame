@@ -24,6 +24,7 @@ import java.util.ArrayList;
  * Map Upload Window for the user to upload .map file. It validates and prints the map.
  * 
  * @author Anqi Wang
+ * @version 1.1
  */
 public class UploadWindow {
 
