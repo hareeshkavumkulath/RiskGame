@@ -231,4 +231,16 @@ class GameControllerTests{
      * should be Equal to true
      */
 
+   
+    void isValidFortify10() {
+        Player p = new Player("testPlayer", false, 10);
+        Territory temp;
+        for (int i=0;i<10;i++){
+            temp= new Territory("testTerritory"+i, "testContinent", 10+i);
+            p.ownedTerritories.add(temp);
+        }
+
+        assertTrue(gc.isValidFortify(p));
+    }
+
 }
