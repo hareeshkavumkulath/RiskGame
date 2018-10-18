@@ -60,20 +60,27 @@ public class MapControllerTests {
     }
 
     /**
-     * Before Each Test it Creates a new object from Map Controller 
+     * Testing processContinent function return value for Valid Map
      */
     @Test
     @DisplayName("Process Continent => TRUE for Valid MAP")
-    void proceeeContinentValid() {
+    void processContinentValid() {
         assertTrue(mc.processContinents(mapToString(valid)));
     }
 
+    /**
+     * Testing processContinent function return value for inValid Map
+     * which is a map with no [territories] tag
+     */
     @Test
     @DisplayName("Process Continent => FALSE for noTag MAP")
-    void proceeeContinentInValid() {
+    void processContinentInValid() {
         assertTrue(mc.processContinents(mapToString(noTag)));
     }
 
+    /**
+     * Testing processTerritories function return value for Valid Map
+     */
     @Test
     @DisplayName("Process Territories => TRUE for Valid MAP")
     void proceeeTerritoriesValid() {
@@ -81,6 +88,10 @@ public class MapControllerTests {
         assertTrue(mc.processTerritories(mapToString(valid)));
     }
 
+    /**
+     * Testing processTerritories function return value for InValid Map
+     * Which is map with no territories
+     */
     @Test
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
     void proceeeTerritoriesInValid() {
@@ -88,6 +99,9 @@ public class MapControllerTests {
         assertTrue(mc.processTerritories(mapToString(noTerritories)));
     }
 
+    /**
+     * Testing territoriesToContinents function return value for Valid Map
+     */
     @Test
     @DisplayName("continentArray => NotNULL for Valid MAP")
     void territoriesToContinentsValid() {
@@ -97,6 +111,10 @@ public class MapControllerTests {
         assertNotNull(mc.continentArray);
     }
     
+    /**
+     * Testing territoriesToContinents function return value for InValid Map
+     * Which is a map with no Continent
+     */
     @Test
     @DisplayName("continentArray => NULL for noContinent MAP")
     void territoriesToContinentsInValid() {
@@ -106,6 +124,9 @@ public class MapControllerTests {
         assertNotNull(mc.continentArray);
     }
 
+    /**
+     * Testing createContinentConnection function return value for Valid Map
+     */
     @Test
     @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
     void createContinentConnectionInValid() {
@@ -115,6 +136,9 @@ public class MapControllerTests {
         assertTrue(mc.createContinentConnection());
     }
 
+    /**
+     * Testing validateMap function return value for Valid Map
+     */
     @Test
     @DisplayName("validateMap => TRUE for Valid MAP")
     void validateMapValid() {
@@ -126,6 +150,10 @@ public class MapControllerTests {
         assertTrue(mc.validateMap(anything.getTerritories()));
     }
 
+    /**
+     * Testing validateMap function return value for InValid Map
+     * Which is a not connected map
+     */
     @Test
     @DisplayName("validateMap => FALSE for NotConnected MAP")
     void validateMapInValid() {
