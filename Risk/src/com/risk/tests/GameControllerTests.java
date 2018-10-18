@@ -312,5 +312,17 @@ class GameControllerTests{
      */
     @Test
     @DisplayName("fortifytest() should return => TRUE")
-    
+    void fortifytest(){
+
+        Player p = new Player("testPlayer", false, 10);
+        
+        Territory temp= new Territory("testTerritory1", "testContinent", 10);
+        p.ownedTerritories.add(temp);
+
+        Territory temp1= new Territory("testTerritory2", "testContinent", 3);
+        p.ownedTerritories.add(temp1);
+
+        assertTrue(gc.fortify(p,0,1,2));
+    }
+
 }
