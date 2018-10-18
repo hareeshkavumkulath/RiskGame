@@ -14,6 +14,8 @@ import com.risk.model.Territory;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -205,6 +207,41 @@ class GameControllerTests{
                 assertEquals(1,ter.getNumberOfArmies());
             }
         }
+    }
+
+    // =====================isValidFortify()=====================
+    /**
+     * Testing isValidFortify() function return value
+     * if (player.ownedTerritories() == 1)
+     * should be Equal to false
+     */
+    @Test
+    @DisplayName("For player.ownedTerritories() == 1 => False")
+    void isValidFortify1() {
+        Player p = new Player("testPlayer", false, 10);
+        Territory temp= new Territory("testTerritory", "testContinent", 10);
+        p.ownedTerritories.add(temp);
+
+        assertTrue(gc.isValidFortify(p));
+    }
+
+     /**
+     * Testing isValidFortify() function return value
+     * if (player.ownedTerritories() > 1)
+     * should be Equal to true
+     */
+
+    @Test
+    @DisplayName("For player.ownedTerritories() > 1 => True")
+    void isValidFortify10() {
+        Player p = new Player("testPlayer", false, 10);
+        Territory temp;
+        for (int i=0;i<10;i++){
+            temp= new Territory("testTerritory"+i, "testContinent", 10+i);
+            p.ownedTerritories.add(temp);
+        }
+
+        assertTrue(gc.isValidFortify(p));
     }
 
 }
