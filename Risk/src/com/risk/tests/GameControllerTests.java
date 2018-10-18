@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 
 class GameControllerTests{
-
+	@SuppressWarnings("javadoc")
     private GameController game_controller;
 
     /**
@@ -216,12 +216,11 @@ class GameControllerTests{
         assertTrue(game_controller.isValidFortify(p));
     }
 
-     /**
+    /**
      * Testing isValidFortify() function return value
      * if (player.ownedTerritories() > 1)
      * should be Equal to true
      */
-
     @Test
     @DisplayName("For player.ownedTerritories() > 1 => True")
     void isValidFortify10() {
@@ -252,7 +251,7 @@ class GameControllerTests{
         assertTrue(game_controller.validateFortifyMove(p,0));
     }
 
-      /**
+    /**
      * Testing validateFortifyMove() function return value
      * if (player.ownedTerritories[i].NumberOfArmies <= 1)
      * should be Equal to false
@@ -268,7 +267,7 @@ class GameControllerTests{
         assertTrue(game_controller.validateFortifyMove(p,0));
     }
      // =====================validateFortifyNumber()=====================
-     /**
+    /**
      * Testing validateFortifyNumber() function return value
      * if (player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum)
      * should be Equal to TRUE
@@ -283,7 +282,7 @@ class GameControllerTests{
         assertTrue(game_controller.validateFortifyNumber(p,0,3));
     }
 
-     /**
+    /**
      * Testing validateFortifyNumber() function return value
      * if (player.ownedTerritories[i].NumberOfArmies - 1 < fortifyNum)
      * should be Equal to FALSE
