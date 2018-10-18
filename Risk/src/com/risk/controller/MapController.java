@@ -78,6 +78,7 @@ public class MapController {
 	}
 	/**
 	 * Check the map is valid or not
+	 * 
 	 * @param mapInfo the text in the mapTextPane
 	 * @return MapMessage including territories,continents,message about the checking result
 	 */
@@ -233,9 +234,9 @@ public class MapController {
 	}
 	
 	/**
-	 * Function to return the index of the continent in the continent array
+	 * The method is used to return the index of the continent in the continent array
 	 * 
-	 * @param obj
+	 * @param obj continentName
 	 * @return index of the object
 	 */
 	public int indexOfContinent(Object obj) {
@@ -310,9 +311,9 @@ public class MapController {
 	/**
 	 * Check whether the adjacent territory of a territory located in the same continent
 	 * 
-	 * @param continentName
-	 * @param adjacentTerritory
-	 * @return 
+	 * @param continentName continentName
+	 * @param adjacentTerritory the name of the adjacent territory
+	 * @return true if the adjacent territory are in the same continent
 	 */
 	private boolean isAdjacentTerritoryInSameContinent(String continentName, String adjacentTerritory) {
 		Continent continent = new Continent();
@@ -333,8 +334,8 @@ public class MapController {
 	/**
 	 * Return the continent of the territory
 	 * 
-	 * @param adjacentTerritory
-	 * @return - Continent
+	 * @param adjacentTerritory adjacentTerritory
+	 * @return Continent
 	 */
 	private Continent getContinentFromTerritory(String adjacentTerritory) {
 		Continent continent = new Continent();
@@ -348,10 +349,10 @@ public class MapController {
 	}
 	
 	/**
-	 * Returns the Continent from the continentsArray, ArrayList
+	 * Returns the Continent from the continentsArray
 	 * 
-	 * @param continentName
-	 * @return
+	 * @param continentName continentName
+	 * @return Continent
 	 */
 	public Continent getContinentFromArray(String continentName) {
 		Continent continent = new Continent();
@@ -366,9 +367,9 @@ public class MapController {
 	/**
 	 * Check whether all the territories are well connected in the Map
 	 * Used DFS algorithm to check the connection and traversal of each territories
-	 * @param territoriesList 
-	 *  
-	 * @return
+	 * 
+	 * @param territoriesList territoriesList
+	 * @return true if the map is valid
 	 */
 	public boolean validateMap(ArrayList<Territory> territoriesList) {
 		boolean isConnected = false;
@@ -422,9 +423,9 @@ public class MapController {
 	/**
 	 * Return territory using the territoryName
 	 * 	
-	 * @param territoryName
-	 * @param territoriesList 
-	 * @return
+	 * @param territoryName territoryName
+	 * @param territoriesList territoriesList
+	 * @return territory
 	 */
 	public Territory getTerritory(String territoryName, ArrayList<Territory> territoriesList) {
 		Territory territory = null;
@@ -437,10 +438,10 @@ public class MapController {
 	}
 	
 	/**
-	 * Remove continent with name, continentName
+	 * Remove continent with continentName
 	 * 
-	 * @param continentName
-	 * @return
+	 * @param continentName continentName
+	 * @return MapMessage from the constructor of  MapMessage
 	 */
 	public MapMessage removeContinent(String continentName) {
 		boolean isRemoved = removeContinent(getContinentFromArray(continentName)); 
@@ -456,8 +457,8 @@ public class MapController {
 	 * <li>Remove all countries from the continent one by one</li>
 	 * </ul>
 	 * 
-	 * @param continent
-	 * @return
+	 * @param continent continent object
+	 * @return true if the continent has been removed
 	 */
 	public boolean removeContinent(Continent continent) {
 		boolean isRemoved = true;
@@ -479,7 +480,7 @@ public class MapController {
 	 * Then, go to continent A, B and C and remove X from their adjacent continents
 	 * </p> 
 	 * 
-	 * @param continent
+	 * @param continent continent object
 	 */
 	public void removeContinentAdjacency(Continent continent) {
 		for(int i=0;i<continentArray.size();i++) {
@@ -490,9 +491,9 @@ public class MapController {
 	}
 	
 	/**
-	 * Remove all territories of the continent
+	 * Remove all territories in the continent
 	 * 
-	 * @param continent
+	 * @param continent continent object
 	 */
 	public void removeTerritoriesFromContinent(Continent continent) {
 		ArrayList<Territory> territoriesInContinent = continent.getTerritories();
@@ -502,10 +503,10 @@ public class MapController {
 	}
 	
 	/**
-	 * Remove the territory with name, territoryName
+	 * Remove the territory with territoryName
 	 * 
 	 * @param territoryName
-	 * @return
+	 * @return MapMessage from the constructor of the MapMessage
 	 */
 	public MapMessage removeTerritory(String territoryName) {
 		boolean isRemoved = removeTerritory(getTerritoryFromArray(territoryName)); 
@@ -521,8 +522,8 @@ public class MapController {
 	 * <li>Remove the territory from the continent</li>
 	 * </ul>
 	 * 
-	 * @param territory
-	 * @return
+	 * @param territory territory object
+	 * @return true if it is removed
 	 */
 	public boolean removeTerritory(Territory territory) {
 		boolean isRemoved = true;
