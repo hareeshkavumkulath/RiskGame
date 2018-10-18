@@ -218,7 +218,7 @@ class GameControllerTests{
 
     /**
      * Testing isValidFortify() function return value
-     * if (player.ownedTerritories() > 1)
+     * if (player.ownedTerritories() is greater than 1)
      * should be Equal to true
      */
     @Test
@@ -237,7 +237,7 @@ class GameControllerTests{
     // =====================validateFortifyMove()=====================
     /**
      * Testing validateFortifyMove() function return value
-     * if (player.ownedTerritories[i].NumberOfArmies > 1)
+     * if (player.ownedTerritories[i].NumberOfArmies is greater than 1)
      * should be Equal to true
      */
 
@@ -253,7 +253,7 @@ class GameControllerTests{
 
     /**
      * Testing validateFortifyMove() function return value
-     * if (player.ownedTerritories[i].NumberOfArmies <= 1)
+     * if (player.ownedTerritories[i].NumberOfArmies is less and equal to 1)
      * should be Equal to false
      */
 
@@ -269,11 +269,11 @@ class GameControllerTests{
      // =====================validateFortifyNumber()=====================
     /**
      * Testing validateFortifyNumber() function return value
-     * if (player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum)
+     * if (player.ownedTerritories[i].NumberOfArmies - 1 is greater than fortifyNum)
      * should be Equal to TRUE
      */
     @Test
-    @DisplayName("player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum => TRUE")
+    @DisplayName("player.ownedTerritories[i].NumberOfArmies - 1 is greater than fortifyNum => TRUE")
     void validateFortifyNumberGreaterThanFortifyNum(){
         Player p = new Player("testPlayer", false, 10);
         Territory temp= new Territory("testTerritory", "testContinent", 10);
@@ -284,7 +284,7 @@ class GameControllerTests{
 
     /**
      * Testing validateFortifyNumber() function return value
-     * if (player.ownedTerritories[i].NumberOfArmies - 1 < fortifyNum)
+     * if (player.ownedTerritories[i].NumberOfArmies - 1 is less than fortifyNum)
      * should be Equal to FALSE
      */
     @Test
