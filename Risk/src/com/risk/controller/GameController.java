@@ -12,7 +12,7 @@ import com.risk.model.Territory;
  * Controller class for the game setup, players information and territories information
  *
  * @author Hareesh Kavumkulath
- * @version 1.1
+ * @version 1.2
  */
 public class GameController {
 
