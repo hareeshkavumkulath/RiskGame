@@ -34,11 +34,10 @@ import javax.swing.JTextField;
 import java.awt.Font;
 
 /**
- * This class helps
+ * This class implements Game Window pages functionalities and design user interface.
  * 
  * @author Hareesh Kavumkulath
  * @version 1.1
- *
  */
 public class GameWindow {
 
@@ -100,10 +99,10 @@ public class GameWindow {
 	private boolean reinforceStatus = false;
 	@SuppressWarnings("javadoc")
 	private JButton btnEndFortify;
-
 	
 	/**
 	 * Launch the application.
+	 * 
 	 * @param map input selected map from the SelectMapWindow
 	 */
 	public void main(Map map) {
@@ -123,6 +122,7 @@ public class GameWindow {
 
 	/**
 	 * Create the application.
+	 * 
 	 * @param map pass map model to GameWindow.java
 	 */
 	public GameWindow(Map map) {
@@ -181,7 +181,7 @@ public class GameWindow {
 		continentJList.setListData(continentNames);
 		
 		continentJList.addListSelectionListener(new ListSelectionListener() {
-			
+		
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				int selections[] = continentJList.getSelectedIndices();
