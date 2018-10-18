@@ -358,7 +358,7 @@ public class UploadWindow {
 	 * 
 	 * @param fileName fileName we created
 	 * @param text text from mapTextPane
-	 * @throws IOException
+	 * @throws IOException if the file have output error 
 	 */
 	public void writeFile(File fileName, String text) throws IOException
 	{
