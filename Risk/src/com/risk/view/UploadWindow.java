@@ -71,10 +71,8 @@ public class UploadWindow {
     }
 
     public void initialize() {
-    	GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-    	frame = new JFrame();
-		//frame.setBounds(100, 100, 1735, 1075);
-    	device.setFullScreenWindow(frame);
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1735, 1075);
 		frame.getContentPane().setLayout(null);	
 		frame.setTitle("Upload Map File");
 		
