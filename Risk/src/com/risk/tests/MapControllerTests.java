@@ -23,13 +23,19 @@ import org.junit.jupiter.api.BeforeAll;
  */
 
 public class MapControllerTests {
-
+	@SuppressWarnings("javadoc")
     private  static String mapFolder;
+	@SuppressWarnings("javadoc")
     private  static String valid;
+	@SuppressWarnings("javadoc")
     private  static String noTag;
+	@SuppressWarnings("javadoc")
     private  static String noTerritories;
+	@SuppressWarnings("javadoc")
     private  static String noContinent;
+	@SuppressWarnings("javadoc")
     private  static String notConnected;
+	@SuppressWarnings("javadoc")
     private  MapController map_controller;
 
     /**
@@ -164,7 +170,7 @@ public class MapControllerTests {
      * Function for reading a map file and convert that into String
      * 
      * @param mapFile Map File Address as a String
-     * @return Map Content to Strings
+     * @return String Map Content to Strings
      */
     private static String mapToString(String mapFile) {
         String mapInString = "";
