@@ -231,7 +231,8 @@ class GameControllerTests{
      * should be Equal to true
      */
 
-   
+    @Test
+    @DisplayName("For player.ownedTerritories() > 1 => True")
     void isValidFortify10() {
         Player p = new Player("testPlayer", false, 10);
         Territory temp;
