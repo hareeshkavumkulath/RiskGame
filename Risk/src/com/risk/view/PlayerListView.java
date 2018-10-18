@@ -4,14 +4,11 @@
 package com.risk.view;
 
 import java.awt.Color;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
-import com.risk.model.Player;
 
 /**
  * @author Hareesh Kavumkulath
