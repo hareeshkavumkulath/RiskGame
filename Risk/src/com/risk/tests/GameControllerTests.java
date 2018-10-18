@@ -111,7 +111,7 @@ class GameControllerTests{
      * For 5 test players and 10 test Territories,
      * The Sum of players.ownedTerritories in returned ArrayList should equal the number of territories
      */
-    
+
     @Test
     @DisplayName("territoriesToPlayers => Sum of players.ownedTerritories Should = territories.size()")
     void territoriesToPlayers() {
@@ -138,6 +138,33 @@ class GameControllerTests{
         }
 
         assertEquals(territories.size(), finalAssignedTerritories);
+    }
+
+
+    @Test
+    @DisplayName("playersToTerritories => ruler for returned territory list should exist in PlayerList")
+    void playersToTerritories() {
+        //Creating 5 Test Players
+        ArrayList<Player> playerList = new ArrayList<Player>();
+        Player p;
+        for (int j = 0; j < 5; j++) {
+            p = new Player("testPlayer"+j, false, 10+j);
+            playerList.add(p);
+        }
+        
+        //Creating 20 Test Territories
+        ArrayList<Territory> territories = new ArrayList<Territory>();
+        Territory temp;
+        for (int i = 0; i < 20; i++) {
+            temp = new Territory("testTerritory" + i, "testContinent" + i, i);
+            territories.add(temp);
+        }
+
+        ArrayList<Player> result = gc.territoriesToPlayers(playerList,territories);
+        
+        for (Territory ter : gc.playersToTerritories(result,territories)){
+            assertNotEquals(-1,result.indexOf(ter.getRuler()));
+        }
     }
 
 }
