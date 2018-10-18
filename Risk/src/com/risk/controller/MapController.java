@@ -49,11 +49,11 @@ public class MapController {
 	}
 
 	/**
-	 * Process the .map file and checks whether its valid or not. 
+	 * Process the .map file and checks whether its valid or not 
 	 * If it is valid return territories and continents
 	 * If there is any error, return error message 
 	 * 
-	 * @param file
+	 * @param file the input file
 	 * @return MapMessage with information about the Map
 	 */
 	public MapMessage processFile(File file) {
@@ -76,7 +76,11 @@ public class MapController {
 		MapMessage mapMessage = validateMap(fileContent.toString());
 		return mapMessage;
 	}
-	
+	/**
+	 * Check the map is valid or not
+	 * @param mapInfo the text in the mapTextPane
+	 * @return MapMessage including territories,continents,message about the checking result
+	 */
 	public MapMessage validateMap(String mapInfo) {
 		
 		// Processing continents - Whether the continents are available in the .map file
@@ -121,8 +125,8 @@ public class MapController {
 	 * Function to process the content of the .map file and see whether there are Continents available 
 	 * If yes, it will get added to ArrayList of Continents
 	 * 
-	 * @param mapInfo
-	 * @return
+	 * @param mapInfo the text from mapTextPane
+	 * @return true if the continents are valid
 	 */
 	public boolean processContinents(String mapInfo) {
 		boolean valid = false;
@@ -158,8 +162,8 @@ public class MapController {
 	 * Function to process the content of the .map file and see whether there are Territories are available
 	 * If yes it will return ArrayList of Territories 
 	 * 
-	 * @param mapInfo
-	 * @return
+	 * @param mapInfo the text from mapTextPane
+	 * @return true if the territories are valid
 	 */
 	public boolean processTerritories(String mapInfo) {
 		boolean isValidTerritories = false;
