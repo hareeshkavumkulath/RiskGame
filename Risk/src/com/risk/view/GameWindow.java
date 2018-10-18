@@ -35,7 +35,7 @@ import java.awt.Font;
 import java.awt.Window;
 
 /**
- * This class
+ * This class helps
  * 
  * @author Hareesh Kavumkulath
  * @version 1.1
