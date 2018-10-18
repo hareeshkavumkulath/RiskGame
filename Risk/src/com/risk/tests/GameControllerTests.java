@@ -282,6 +282,8 @@ class GameControllerTests{
      * if (player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum)
      * should be Equal to TRUE
      */
+    @Test
+    @DisplayName("player.ownedTerritories[i].NumberOfArmies-1 > fortifyNum => TRUE")
 
      /**
      * Testing validateFortifyNumber() function return value
