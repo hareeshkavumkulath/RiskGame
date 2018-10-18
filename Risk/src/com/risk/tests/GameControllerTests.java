@@ -64,7 +64,7 @@ class GameControllerTests{
      */
     @Test
     @DisplayName("getPlayersArmies => less than 3 Territories should equals 3")
-    void getNumReinforcements() {
+    void getNumReinforcements3() {
     		Player p = new Player("testPlayer",false,10);
     		ArrayList<Territory> t = new ArrayList<Territory>();
     		Territory temp;
@@ -78,10 +78,10 @@ class GameControllerTests{
     		assertEquals(3,gc.getNumReinforcements(p));
     }
 
-    
+   
     @Test
     @DisplayName("getPlayersArmies => for 17 Territories should equals 4")
-    void getNumReinforcements() {
+    void getNumReinforcements17() {
     		Player p = new Player("testPlayer",false,10);
     		ArrayList<Territory> t = new ArrayList<Territory>();
     		Territory temp;
