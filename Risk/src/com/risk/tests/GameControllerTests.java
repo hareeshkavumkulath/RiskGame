@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import com.risk.controller.GameController;
+import com.risk.model.Player;
+import com.risk.model.Territory;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,13 +59,25 @@ class GameControllerTests{
     }
     
 
+    
+    
     /**
-     * Testing getPlayersArmies function return value for more than 6 players
+     * Testing getPlayersArmies function return value for than 3 Territories
      */
     @Test
-    @DisplayName("getPlayersArmies => Greater than 6 for 20")
-    void getPlayersArmies6() {
-        assertEquals(20,gc.getPlayersArmies(7));
+    @DisplayName("getPlayersArmies => less than 3 Territories should equals 3")
+    void getNumReinforcements() {
+    		Player p = new Player("testPlayer",false,10);
+    		ArrayList<Territory> t = new ArrayList<Territory>();
+    		Territory temp;
+    		for (int i=0;i<3;i++)
+    		{
+    			temp = new Territory("testTerritory"+i,"testContinent"+i,i);
+    			t.add(temp);
+    		}
+    		p.ownedTerritories = t;
+        
+    		assertEquals(3,gc.getNumReinforcements(p));
     }
 
 }
