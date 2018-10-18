@@ -55,4 +55,13 @@ class GameControllerTests{
     }
     
 
+    /**
+     * Testing getPlayersArmies function return value for more than 6 players
+     */
+    @Test
+    @DisplayName("getPlayersArmies => Greater than 6 for 20")
+    void getPlayersArmies() {
+        assertEquals(20,gc.getPlayersArmies(7));
+    }
+
 }
