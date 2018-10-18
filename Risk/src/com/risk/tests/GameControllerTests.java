@@ -250,4 +250,10 @@ class GameControllerTests{
      * if (player.ownedTerritories[i].NumberOfArmies > 1)
      * should be Equal to true
      */
+
+      /**
+     * Testing validateFortifyMove() function return value
+     * if (player.ownedTerritories[i].NumberOfArmies <= 1)
+     * should be Equal to false
+     */
 }
