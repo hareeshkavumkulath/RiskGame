@@ -125,7 +125,7 @@ public class MapControllerTests {
     }
 
     /**
-     * Testing createContinentConnection function return value for Valid Map
+     * Testing createContinentConnection function return value
      */
     @Test
     @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
