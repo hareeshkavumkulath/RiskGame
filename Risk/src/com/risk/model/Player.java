@@ -71,7 +71,7 @@ public class Player {
 	/**
 	 * Getter for the owned territories
 	 * 
-	 * @return ArrayList<Territory> ArrayList of the owned territories
+	 * @return ArrayList list of the owned territories
 	 */
 	public ArrayList<Territory> getOwnedTerritories() {
 		return ownedTerritories;
@@ -87,7 +87,7 @@ public class Player {
 	/**
 	 * Getter for the Owned Continents
 	 * 
-	 * @return ArrayList<Continent> ArrayList of continents
+	 * @return ArrayList list of continents
 	 */
 	public ArrayList<Continent> getOwnedContinents() {
 		return ownedContinents;
