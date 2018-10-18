@@ -117,7 +117,7 @@ public class FortifyWindow extends JFrame {
 	}
 
 	/**
-	 * get number and name of player's territory.
+	 * get number and name of player's territories.
 	 * 
 	 * @param player based on player it gets the information of players' territories. 
 	 * @return String[] territoryArray
