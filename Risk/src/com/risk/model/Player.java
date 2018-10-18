@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.risk.model;
 
 import java.util.ArrayList;
@@ -16,11 +13,13 @@ public class Player {
 	public ArrayList<Territory> ownedTerritories = new ArrayList<Territory>();
 	public ArrayList<Continent> ownedContinents = new ArrayList<Continent>();
 	public boolean isComputer;
+	public boolean fortificationStatus;
 	
 	public Player(String name, boolean isComputer, int numberOfArmies) {
 		this.name = name;
 		this.isComputer = isComputer;
 		this.numberOfArmies = numberOfArmies;
+		this.fortificationStatus = false;
 	}
 	public String getName() {
 		return name;
@@ -51,6 +50,12 @@ public class Player {
 	}
 	public void setComputer(boolean isComputer) {
 		this.isComputer = isComputer;
+	}
+	public boolean isFortificationStatus() {
+		return fortificationStatus;
+	}
+	public void setFortificationStatus(boolean fortificationStatus) {
+		this.fortificationStatus = fortificationStatus;
 	}	
 
 }

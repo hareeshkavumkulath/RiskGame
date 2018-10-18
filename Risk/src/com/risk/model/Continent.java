@@ -4,13 +4,10 @@ import java.util.ArrayList;
 
 /**
  * Model class for Continent
+ * 
  * @author Hareesh Kavumkulath
  * @version 1.0
  * 
- * @date 10-07-2018
- * @modifiedDate 10-07-2018
- * @modifiedBy jingya Pan
- *
  */
 public class Continent {
 	

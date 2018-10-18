@@ -1,7 +1,11 @@
 package com.risk.model;
 
 import java.util.Observable;
-
+/**
+ * 
+ * @author Hareesh Kavumkulath
+ *
+ */
 public class GameInstructions extends Observable{
 	
 	public String instructions;
