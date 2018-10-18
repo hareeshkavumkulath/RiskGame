@@ -253,13 +253,7 @@ class GameControllerTests{
 
     @Test
     @DisplayName("For player.ownedTerritories[i].NumberOfArmies > 1 => TRUE")
-    void validateFortifyMove2() {
-        Player p = new Player("testPlayer", false, 10);
-        Territory temp= new Territory("testTerritory", "testContinent", 2);
-        p.ownedTerritories.add(temp);
-
-        assertTrue(gc.validateFortifyMove2(p,0));
-    }
+    
 
       /**
      * Testing validateFortifyMove() function return value
