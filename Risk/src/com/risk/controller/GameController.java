@@ -21,7 +21,7 @@ public class GameController {
 	 *
 	 * @param playerList ArrayList of players
 	 * @param territories ArrayList of territories
-	 * @return ArrayList<Player> arrayList of Players
+	 * @return ArrayList arrayList of Players
 	 */
 	public ArrayList<Player> territoriesToPlayers(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		int count = 0;
@@ -48,7 +48,7 @@ public class GameController {
 	 * 
 	 * @param playerList ArrayList of Players
 	 * @param territories ArrayList of territories
-	 * @return ArrayList<Territory> territory list After adding player/ruler to each territory
+	 * @return ArrayList territory list After adding player/ruler to each territory
 	 */
 	public ArrayList<Territory> playersToTerritories(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		for(int i=0;i<playerList.size();i++) {
