@@ -22,7 +22,7 @@ import org.junit.jupiter.api.BeforeAll;
  * @author Hamid
  */
 
-public class mapControllerTests {
+public class MapControllerTests {
 
     private  static String mapFolder;
     private  static String map1;
