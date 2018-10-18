@@ -40,70 +40,69 @@ class GameControllerTests{
         gc = new GameController();
     }
 
+    // =====================getPlayersArmies()=====================
     /**
      * Testing getPlayersArmies function return value for 2 players
      */
     @Test
     @DisplayName("getPlayersArmies => 2 for 40")
     void getPlayersArmies2() {
-        assertEquals(40,gc.getPlayersArmies(2));
+        assertEquals(40, gc.getPlayersArmies(2));
     }
-    
+
     /**
      * Testing getPlayersArmies function return value for 4 players
      */
     @Test
     @DisplayName("getPlayersArmies => 4 for 30")
     void getPlayersArmies4() {
-        assertEquals(30,gc.getPlayersArmies(4));
+        assertEquals(30, gc.getPlayersArmies(4));
     }
 
-     /**
+    /**
      * Testing getPlayersArmies function return value for 6 players
      */
     @Test
     @DisplayName("getPlayersArmies => 6 for 20")
     void getPlayersArmies6() {
-        assertEquals(20,gc.getPlayersArmies(4));
-    }
-    
-    
-    /**
-     * Testing getPlayersArmies function return value for less than 3 Territories
-     */
-    @Test
-    @DisplayName("getPlayersArmies => less than 3 Territories should equals 3")
-    void getNumReinforcements3() {
-    		Player p = new Player("testPlayer",false,10);
-    		ArrayList<Territory> t = new ArrayList<Territory>();
-    		Territory temp;
-    		for (int i=0;i<3;i++)
-    		{
-    			temp = new Territory("testTerritory"+i,"testContinent"+i,i);
-    			t.add(temp);
-    		}
-    		p.ownedTerritories = t;
-        
-    		assertEquals(3,gc.getNumReinforcements(p));
+        assertEquals(20, gc.getPlayersArmies(6));
     }
 
-   /**
-     * Testing getPlayersArmies function return value for 17 Territories
+    // =====================getNumReinforcements()=====================
+    /**
+     * Testing getNumReinforcements function return value for less than 3 Territories
      */
     @Test
-    @DisplayName("getPlayersArmies => for 17 Territories should equals 4")
+    @DisplayName("getNumReinforcements => less than 3 Territories should equals 3")
+    void getNumReinforcements3() {
+        Player p = new Player("testPlayer", false, 10);
+        ArrayList<Territory> t = new ArrayList<Territory>();
+        Territory temp;
+        for (int i = 0; i < 3; i++) {
+            temp = new Territory("testTerritory" + i, "testContinent" + i, i);
+            t.add(temp);
+        }
+        p.ownedTerritories = t;
+
+        assertEquals(3, gc.getNumReinforcements(p));
+    }
+
+    /**
+     * Testing getNumReinforcements function return value for 17 Territories
+     */
+    @Test
+    @DisplayName("getNumReinforcements => for 17 Territories should equals 4")
     void getNumReinforcements17() {
-    		Player p = new Player("testPlayer",false,10);
-    		ArrayList<Territory> t = new ArrayList<Territory>();
-    		Territory temp;
-    		for (int i=0;i<17;i++)
-    		{
-    			temp = new Territory("testTerritory"+i,"testContinent"+i,i);
-    			t.add(temp);
-    		}
-    		p.ownedTerritories = t;
-        
-    		assertEquals(4,gc.getNumReinforcements(p));
+        Player p = new Player("testPlayer", false, 10);
+        ArrayList<Territory> t = new ArrayList<Territory>();
+        Territory temp;
+        for (int i = 0; i < 17; i++) {
+            temp = new Territory("testTerritory" + i, "testContinent" + i, i);
+            t.add(temp);
+        }
+        p.ownedTerritories = t;
+
+        assertEquals(4, gc.getNumReinforcements(p));
     }
 
 }
