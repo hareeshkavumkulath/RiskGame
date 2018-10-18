@@ -30,12 +30,13 @@ COMMA_JOINER
 ```
 index, fileContent
 ```
+<br/>
 
 # Layout
 
 ##### A source file consists of, in order:
 
-* ##### Package statement: which is not line-wrapped
+* ##### Package statement: which is not line-wrapped.
 * ##### Import statement: No wildcard imports and No line wrapping.
 * ##### Class Declaration: Exactly one top level class declaration.
 
@@ -76,9 +77,6 @@ String name;
 
 ##### Braces are used with if, else, for, do and while statements, even when the body is empty or contains only a single statement. One statement per line.
 
-
-
-
-
+<br/><br/>
 # References
 * ### [Google Java Style Guide](http://google.github.io/styleguide/javaguide.html)
