@@ -13,6 +13,7 @@ import com.risk.model.Territory;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -198,9 +199,11 @@ class GameControllerTests{
         }
 
         ArrayList<Player> result = gc.territoriesToPlayers(playerList,territories);
-        
-        for (Territory ter : gc.playersToTerritories(result,territories)){
-            assertNotEquals(-1,result.indexOf(ter.getRuler()));
+        gc.assignOneArmyToEachCountry(result,territories);
+        for (Player pll : result){
+            for (Territory ter : pll.getOwnedTerritories()){
+                assertEquals(1,ter.getNumberOfArmies());
+            }
         }
     }
 
