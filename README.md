@@ -30,3 +30,27 @@ COMMA_JOINER
 ```
 index, fileContent
 ```
+
+# Layout
+
+##### A source file consists of, in order:
+
+1.	##### Package statement: which is not line-wrapped
+2.	##### Import statement: No wildcard imports and No line wrapping.
+3.	##### Class Declaration: Exactly one top level class declaration.
+
+### Comments
+##### Javadoc Comments: The basic format of Javadoc comment is as follows
+```
+/**
+ * {Name of this Class}
+ *  
+ * {Purpose of this Class}
+ *  
+ * {Other notes relating to the class}
+ *  
+ * @author Hareesh Kavumkulath
+ * @version 
+ */
+```
+
