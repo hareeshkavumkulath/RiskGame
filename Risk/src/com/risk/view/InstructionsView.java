@@ -2,12 +2,21 @@ package com.risk.view;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JTextPane;
 import java.awt.Color;
-
+/**
+ * The InstructionsView class shows instructions for player to play this game.
+ * This class sets up the user interface for instructions.  
+ * 
+ * @author Hareesh Kavumkulath
+ * @version 1.1
+ */
 public class InstructionsView extends JTextPane implements Observer{
-	
+	/**
+	 * This is a constructor. It sets instructionsMsg messages in a certain format. 
+	 * 
+	 * @param instructionsMsg
+	 */
 	public InstructionsView(String instructionsMsg) {
 		super();
 		setForeground(Color.RED);
@@ -17,6 +26,12 @@ public class InstructionsView extends JTextPane implements Observer{
 	}
 
 	@Override
+	/**
+	 * This is a function calling the update method. It shows the latest situation.
+	 * 
+	 * @param o This is a name "o" by using Observable class
+	 * @param arg This is a name "arg" by using java Object class
+	 */
 	public void update(Observable o, Object arg) {
 		String message = getText();
 		message = message + "\r\n" + arg.toString();
