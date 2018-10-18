@@ -1,5 +1,6 @@
 package com.risk.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,5 +35,15 @@ class GameControllerTests{
     void init() {
         gc = new GameController();
     }
+
+    /**
+     * Testing getPlayersArmies function return value for 2 players
+     */
+    @Test
+    @DisplayName("getPlayersArmies => 2 for 40")
+    void getPlayersArmies() {
+        assertEquals(40,gc.getPlayersArmies(2));
+    }
+    
 
 }
