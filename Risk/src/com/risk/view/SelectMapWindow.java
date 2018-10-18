@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.risk.controller.MapController;
 import com.risk.model.Map;
@@ -19,13 +18,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
 /**
+ * SelectMapWindow is used to select the map you uploaded and saved in the previous page
+ * 
  * @author Hareesh Kavumkulath
+ * @version 1.1
  *
  */
 public class SelectMapWindow {
 
+	@SuppressWarnings("javadoc")
 	private JFrame frame;
 
 	/**
