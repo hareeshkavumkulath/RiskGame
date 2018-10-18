@@ -14,6 +14,8 @@ import com.risk.model.Territory;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -213,7 +215,14 @@ class GameControllerTests{
      * if (player.ownedTerritories() == 1)
      * should be Equal to false
      */
+    @Test
+    void isValidFortify1() {
+        Player p = new Player("testPlayer", false, 10);
+        Territory temp= new Territory("testTerritory", "testContinent", 10);
+        p.ownedTerritories.add(temp);
 
+        assertFalse(gc.isValidFortify(p));
+    }
 
      /**
      * Testing isValidFortify() function return value
