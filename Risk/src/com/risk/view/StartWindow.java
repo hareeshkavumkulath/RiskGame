@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
  */
 public class StartWindow {
 
+	@SuppressWarnings("javadoc")
 	private JFrame frame;
 
 	/**
