@@ -210,7 +210,7 @@ class GameControllerTests{
     // =====================isValidFortify()=====================
     /**
      * Testing isValidFortify() function return value
-     * if (player.getOwnedTerritories().size() == 1)
+     * if (player.ownedTerritories() == 1)
      * should be Equal to false
      */
 
