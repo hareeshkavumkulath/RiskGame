@@ -90,7 +90,7 @@ public class MapControllerTests {
 
     /**
      * Testing processTerritories function return value for InValid Map
-     * Which is map with not territories
+     * Which is map with no territories
      */
     @Test
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
@@ -111,6 +111,10 @@ public class MapControllerTests {
         assertNotNull(mc.continentArray);
     }
     
+    /**
+     * Testing territoriesToContinents function return value for InValid Map
+     * Which is map with no Continent
+     */
     @Test
     @DisplayName("continentArray => NULL for noContinent MAP")
     void territoriesToContinentsInValid() {
