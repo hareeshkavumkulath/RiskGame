@@ -54,3 +54,30 @@ index, fileContent
  */
 ```
 
+### Methods,
+```
+/**
+* Returns an Image object that can then be painted on the screen. 
+* The url argument must specify an absolute {@link URL}. The name
+* argument is a specifier that is relative to the url argument. 
+*
+* @param url <explanation>
+* @param name <explanation>
+* @return <return_type> <explanation>
+*/
+```
+### Variables,
+```
+For global variables, use,
+    @SuppressWarnings("javadoc")
+String name;
+```
+### Statements
+
+* ##### Braces are used with if, else, for, do and while statements, even when the body is empty or contains only a single statement.
+* ##### One statement per line.
+
+
+
+# References
+### [Google Java Style Guide] http://google.github.io/styleguide/javaguide.html
