@@ -24,32 +24,32 @@ import java.util.ArrayList;
  * Map Upload Window for the user to upload .map file. It validates and prints the map.
  * 
  * @author Anqi Wang
- * @version 1.0
- * 
- * @date 10-07-2018
- * @modifiedDate 10-08-2018
- * @modifiedBy Jingya Pan
- * @modifiedBy Anqi Wang
- * @modifiedBy Hareesh Kavumkulath
- *
+ * @version 1.1
  */
 public class UploadWindow {
 
-
+	@SuppressWarnings("javadoc") 
     private JFrame frame;
+	@SuppressWarnings("javadoc")
     private JTextField fileName;
+	@SuppressWarnings("javadoc")
     private File file;
+	@SuppressWarnings("javadoc")
     private JButton uploadButton;
+	@SuppressWarnings("javadoc")
     private MapMessage mapMessage;
+	@SuppressWarnings("javadoc")
     private JTextField mapName;
+	@SuppressWarnings("javadoc")
     private boolean mapStatus = false;
+	@SuppressWarnings("javadoc")
     private JTextPane mapTextPane;
+	@SuppressWarnings("javadoc")
     private String mapStringAfterValidation;
     
     /**
      * Launch the application.
      */
-    //public void displayUploadMapWindow() {
     public void main() {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -69,7 +69,9 @@ public class UploadWindow {
     public UploadWindow() {
         initialize();
     }
-
+    /**
+     * The method is used to initialize
+     */
     public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1735, 1075);
@@ -285,7 +287,6 @@ public class UploadWindow {
         
         /* Territory Selection Action --> Display Adjacent Territories - Start */
         territoriesJList.addListSelectionListener(new ListSelectionListener() {
-			
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				JList list = (JList) listSelectionEvent.getSource();
@@ -311,7 +312,11 @@ public class UploadWindow {
         /* Remove Territory Button Action - End */  
         
     }
-
+    /**
+     * The method is used to read form the file and show the text in mapTextPane
+     * 
+     * @param tempMapMessage mapMessage
+     */
 	protected void populateEditField(MapMessage tempMapMessage) {
 		if(tempMapMessage.isValidMap) {
 			ArrayList<Continent> continents = new ArrayList<Continent>();
@@ -348,7 +353,13 @@ public class UploadWindow {
 			
 		}
 	}
-	
+	/**
+	 * The method is used to write the file from the text given in the mapTextPane
+	 * 
+	 * @param fileName fileName we created
+	 * @param text text from mapTextPane
+	 * @throws IOException
+	 */
 	public void writeFile(File fileName, String text) throws IOException
 	{
 		BufferedWriter out = new BufferedWriter(new FileWriter(fileName)); 
