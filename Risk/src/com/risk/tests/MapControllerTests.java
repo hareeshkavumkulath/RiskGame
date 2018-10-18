@@ -88,6 +88,10 @@ public class MapControllerTests {
         assertTrue(mc.processTerritories(mapToString(valid)));
     }
 
+    /**
+     * Testing processTerritories function return value for InValid Map
+     * Which is map with not territories
+     */
     @Test
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
     void proceeeTerritoriesInValid() {
