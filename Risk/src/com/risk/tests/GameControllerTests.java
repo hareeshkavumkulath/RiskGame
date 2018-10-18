@@ -58,11 +58,9 @@ class GameControllerTests{
         assertEquals(30,gc.getPlayersArmies(4));
     }
     
-
-    
     
     /**
-     * Testing getPlayersArmies function return value for than 3 Territories
+     * Testing getPlayersArmies function return value for less than 3 Territories
      */
     @Test
     @DisplayName("getPlayersArmies => less than 3 Territories should equals 3")
@@ -78,6 +76,23 @@ class GameControllerTests{
     		p.ownedTerritories = t;
         
     		assertEquals(3,gc.getNumReinforcements(p));
+    }
+
+    
+    @Test
+    @DisplayName("getPlayersArmies => for 17 Territories should equals 4")
+    void getNumReinforcements() {
+    		Player p = new Player("testPlayer",false,10);
+    		ArrayList<Territory> t = new ArrayList<Territory>();
+    		Territory temp;
+    		for (int i=0;i<17;i++)
+    		{
+    			temp = new Territory("testTerritory"+i,"testContinent"+i,i);
+    			t.add(temp);
+    		}
+    		p.ownedTerritories = t;
+        
+    		assertEquals(4,gc.getNumReinforcements(p));
     }
 
 }
