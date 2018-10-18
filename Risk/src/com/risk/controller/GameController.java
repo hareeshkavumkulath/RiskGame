@@ -21,7 +21,7 @@ public class GameController {
 	 *
 	 * @param playerList ArrayList of players
 	 * @param territories ArrayList of territories
-	 * @return arrayList of Players
+	 * @return ArrayList<Player> arrayList of Players
 	 */
 	public ArrayList<Player> territoriesToPlayers(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		int count = 0;
