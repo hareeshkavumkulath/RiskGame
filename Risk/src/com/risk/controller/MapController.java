@@ -59,7 +59,7 @@ public class MapController {
 	 * If there is any error, return error message 
 	 * 
 	 * @param file the input file
-	 * @return MapMessage with information about the Map
+	 * @return MapMessage information about the Map
 	 */
 	public MapMessage processFile(File file) {
 		try {
@@ -85,7 +85,7 @@ public class MapController {
 	 * Check the map is valid or not
 	 * 
 	 * @param mapInfo the text in the mapTextPane
-	 * @return MapMessage including territories,continents,message about the checking result
+	 * @return MapMessage message including territories,continents,message about the checking result
 	 */
 	public MapMessage validateMap(String mapInfo) {
 		
@@ -132,7 +132,7 @@ public class MapController {
 	 * If yes, it will get added to ArrayList of Continents
 	 * 
 	 * @param mapInfo the text from mapTextPane
-	 * @return true if the continents are valid
+	 * @return boolean true if the continents are valid
 	 */
 	public boolean processContinents(String mapInfo) {
 		boolean valid = false;
@@ -169,7 +169,7 @@ public class MapController {
 	 * If yes it will return ArrayList of Territories 
 	 * 
 	 * @param mapInfo the text from mapTextPane
-	 * @return true if the territories are valid
+	 * @return boolean true if the territories are valid
 	 */
 	public boolean processTerritories(String mapInfo) {
 		boolean isValidTerritories = false;
@@ -208,7 +208,7 @@ public class MapController {
 	/**
 	 * Add each Territories to the corresponding Continents
 	 * 
-	 * @return true if all territories are assigned to Continents, if there is any territory left return false
+	 * @return boolean true if all territories are assigned to Continents, if there is any territory left return false
 	 */
 	public boolean territoriesToContinents() {
 		boolean valid = false;
@@ -242,7 +242,7 @@ public class MapController {
 	 * The method is used to return the index of the continent in the continent array
 	 * 
 	 * @param obj continentName
-	 * @return index of the object
+	 * @return int index of the object
 	 */
 	public int indexOfContinent(Object obj) {
 		if (obj == null) {
@@ -266,7 +266,7 @@ public class MapController {
 	 * If there is any adjacency from a territory A in continent X to a territory in Y.
 	 * Then there is adjacency between continent X and continent Y.
 	 * 
-	 * @return true if there is no exception.
+	 * @return boolean true if there is no exception.
 	 */
 	public boolean createContinentConnection() {
 		boolean isConnected = false;
@@ -318,7 +318,7 @@ public class MapController {
 	 * 
 	 * @param continentName continentName
 	 * @param adjacentTerritory the name of the adjacent territory
-	 * @return true if the adjacent territory are in the same continent
+	 * @return boolean true if the adjacent territory are in the same continent
 	 */
 	private boolean isAdjacentTerritoryInSameContinent(String continentName, String adjacentTerritory) {
 		Continent continent = new Continent();
@@ -337,10 +337,10 @@ public class MapController {
 	}
 	
 	/**
-	 * Return the continent of the territory
+	 * Returns the continent of the territory
 	 * 
 	 * @param adjacentTerritory adjacentTerritory
-	 * @return Continent
+	 * @return Continent continent object
 	 */
 	private Continent getContinentFromTerritory(String adjacentTerritory) {
 		Continent continent = new Continent();
@@ -357,7 +357,7 @@ public class MapController {
 	 * Returns the Continent from the continentsArray
 	 * 
 	 * @param continentName continentName
-	 * @return Continent
+	 * @return Continent continent object
 	 */
 	public Continent getContinentFromArray(String continentName) {
 		Continent continent = new Continent();
@@ -374,7 +374,7 @@ public class MapController {
 	 * Used DFS algorithm to check the connection and traversal of each territories
 	 * 
 	 * @param territoriesList territoriesList
-	 * @return true if the map is valid
+	 * @return boolean true if the map is valid
 	 */
 	public boolean validateMap(ArrayList<Territory> territoriesList) {
 		boolean isConnected = false;
@@ -430,7 +430,7 @@ public class MapController {
 	 * 	
 	 * @param territoryName territoryName
 	 * @param territoriesList territoriesList
-	 * @return territory
+	 * @return Territory territory object
 	 */
 	public Territory getTerritory(String territoryName, ArrayList<Territory> territoriesList) {
 		Territory territory = null;
@@ -446,7 +446,7 @@ public class MapController {
 	 * Remove continent with continentName
 	 * 
 	 * @param continentName continentName
-	 * @return MapMessage from the constructor of  MapMessage
+	 * @return MapMessage message from the constructor of  MapMessage
 	 */
 	public MapMessage removeContinent(String continentName) {
 		boolean isRemoved = removeContinent(getContinentFromArray(continentName)); 
@@ -463,7 +463,7 @@ public class MapController {
 	 * </ul>
 	 * 
 	 * @param continent continent object
-	 * @return true if the continent has been removed
+	 * @return boolean true if the continent has been removed
 	 */
 	public boolean removeContinent(Continent continent) {
 		boolean isRemoved = true;
@@ -511,7 +511,7 @@ public class MapController {
 	 * Remove the territory with territoryName
 	 * 
 	 * @param territoryName territoryName
-	 * @return MapMessage from the constructor of the MapMessage
+	 * @return MapMessage message from the constructor of the MapMessage
 	 */
 	public MapMessage removeTerritory(String territoryName) {
 		boolean isRemoved = removeTerritory(getTerritoryFromArray(territoryName)); 
@@ -528,7 +528,7 @@ public class MapController {
 	 * </ul>
 	 * 
 	 * @param territory territory object
-	 * @return true if it is removed
+	 * @return boolean true if it is removed
 	 */
 	public boolean removeTerritory(Territory territory) {
 		boolean isRemoved = true;
@@ -575,7 +575,7 @@ public class MapController {
 	 * Find the continent of a territory
 	 * 
 	 * @param territory territory object
-	 * @return continent continent object
+	 * @return Continent continent object
 	 */
 	public Continent findContinentOfTerritory(Territory territory) {
 		Continent continent = null;
@@ -601,7 +601,7 @@ public class MapController {
 	 * Returns the Territory from the territoriesArray
 	 * 
 	 * @param territoryName territoryName
-	 * @return territory object
+	 * @return Territory territory object
 	 */
 	public Territory getTerritoryFromArray(String territoryName) {
 		Territory territory = new Territory();
