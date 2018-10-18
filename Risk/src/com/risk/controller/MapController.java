@@ -505,7 +505,7 @@ public class MapController {
 	/**
 	 * Remove the territory with territoryName
 	 * 
-	 * @param territoryName
+	 * @param territoryName territoryName
 	 * @return MapMessage from the constructor of the MapMessage
 	 */
 	public MapMessage removeTerritory(String territoryName) {
