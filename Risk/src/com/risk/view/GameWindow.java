@@ -32,7 +32,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.Window;
 
 /**
  * This class helps
@@ -43,35 +42,63 @@ import java.awt.Window;
  */
 public class GameWindow {
 
+	@SuppressWarnings("javadoc")
 	private JFrame frame;
+	@SuppressWarnings("javadoc")
 	private Map map;
+	@SuppressWarnings("javadoc")
 	private int numberOfPlayers;
+	@SuppressWarnings("javadoc")
 	private JButton playerButton; 
+	@SuppressWarnings("javadoc")
 	private JButton beginGame;
 	
+	@SuppressWarnings("javadoc")
 	private JTextField player1;
+	@SuppressWarnings("javadoc")
 	private JTextField player2;
+	@SuppressWarnings("javadoc")
 	private JTextField player3 = null;
+	@SuppressWarnings("javadoc")
 	private JTextField player4 = null;
+	@SuppressWarnings("javadoc")
 	private JTextField player5;
+	@SuppressWarnings("javadoc")
 	private JTextField player6;
-	private JComboBox playerType3 = null;
-	private JComboBox playerType4 = null;
-	private JComboBox playerType5;
-	private JComboBox playerType6;
+	@SuppressWarnings("javadoc")
+	private JComboBox<String> playerType3 = null;
+	@SuppressWarnings("javadoc")
+	private JComboBox<String> playerType4 = null;
+	@SuppressWarnings("javadoc")
+	private JComboBox<String> playerType5;
+	@SuppressWarnings("javadoc")
+	private JComboBox<String> playerType6;
+	@SuppressWarnings("javadoc")
 	private JList<String> territoriesJList;
+	@SuppressWarnings("javadoc")
 	private PlayerListView playerJList;
+	@SuppressWarnings("javadoc")
 	private JList<String> ownedTerritories;
 	
+	@SuppressWarnings("javadoc")
 	public ArrayList<Player> playerList = new ArrayList<Player>();
+	@SuppressWarnings("javadoc")
 	public ArrayList<Continent> continents;
+	@SuppressWarnings("javadoc")
 	public ArrayList<Territory> territories;
+	@SuppressWarnings("javadoc")
 	private String instructionsMsg = "Let's Start Conquering the world.\r\nPlease select the number of Players";
+	@SuppressWarnings("javadoc")
 	private GameInstructions instructions = new GameInstructions(instructionsMsg);
+	@SuppressWarnings("javadoc")
 	private AbstractButton btnAddArmy;
+	@SuppressWarnings("javadoc")
 	private JButton btnReinforcement;
+	@SuppressWarnings("javadoc")
 	private JButton btnFortify;
+	@SuppressWarnings("javadoc")
 	private boolean reinforceStatus = false;
+	@SuppressWarnings("javadoc")
 	private JButton btnEndFortify;
 
 	
@@ -157,8 +184,7 @@ public class GameWindow {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				JList list = (JList) listSelectionEvent.getSource();
-				int selections[] = list.getSelectedIndices();
+				int selections[] = continentJList.getSelectedIndices();
 				ArrayList<Territory> territories = map.getContinents().get(selections[0]).getTerritories();
 				String[] territoryNames = new String[territories.size()];
 				for(int i=0;i<territories.size();i++) {
@@ -172,8 +198,7 @@ public class GameWindow {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				JList list = (JList) listSelectionEvent.getSource();
-				String selection = (String) list.getSelectedValue();
+				String selection = (String) territoriesJList.getSelectedValue();
 				ArrayList<Territory> territories = map.getTerritories();
 				Territory selectedTerritory = null;
 				for(int i=0;i<territories.size();i++) {
@@ -255,19 +280,28 @@ public class GameWindow {
 		btnAddArmy = new JButton("Add Army");
 		btnAddArmy.setBounds(1051, 201, 115, 29);
 		frame.getContentPane().add(btnAddArmy);
+		btnAddArmy.setVisible(false);
 		
 		btnReinforcement = new JButton("Reinforce");
 		btnReinforcement.setBounds(1051, 201, 115, 29);
 		frame.getContentPane().add(btnReinforcement);
 		btnReinforcement.setVisible(false);
-		btnAddArmy.setVisible(false);
+		
+		btnFortify = new JButton("Fortify");
+		btnFortify.setBounds(1051, 201, 115, 29);
+		frame.getContentPane().add(btnFortify);
+		
+		btnEndFortify = new JButton("End Fortify");
+		btnEndFortify.setBounds(1194, 201, 115, 29);
+		frame.getContentPane().add(btnEndFortify);
+		btnFortify.setVisible(false);
+		btnEndFortify.setVisible(false);
 		
 		playerJList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				JList list = (JList) listSelectionEvent.getSource();
-				int selections[] = list.getSelectedIndices();
+				int selections[] = playerJList.getSelectedIndices();
 				try {
 					ArrayList<Territory> territories = playerList.get(selections[0]).getOwnedTerritories();
 					String[] territoryNames = new String[territories.size()];
@@ -276,7 +310,7 @@ public class GameWindow {
 					}
 					ownedTerritories.setListData(territoryNames);
 				}catch (Exception e) {
-					// TODO: handle exception
+					System.out.println("Exception in player selection from list:"+e.toString());
 				}
 								
 			}
@@ -316,13 +350,13 @@ public class GameWindow {
 		playerFrame.getContentPane().add(player2);
 		player2.setColumns(10);
 		
-		JComboBox playerType1 = new JComboBox();
-		playerType1.setModel(new DefaultComboBoxModel(new String[] {"Human", "Computer"}));
+		JComboBox<String> playerType1 = new JComboBox<String>();
+		playerType1.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
 		playerType1.setBounds(182, 52, 117, 26);
 		playerFrame.getContentPane().add(playerType1);
 		
-		JComboBox playerType2 = new JComboBox();
-		playerType2.setModel(new DefaultComboBoxModel(new String[] {"Human", "Computer"}));
+		JComboBox<String> playerType2 = new JComboBox<String>();
+		playerType2.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
 		playerType2.setBounds(182, 94, 117, 26);
 		playerFrame.getContentPane().add(playerType2);
 		
@@ -333,8 +367,8 @@ public class GameWindow {
 			player3.setBounds(15, 136, 152, 26);
 			playerFrame.getContentPane().add(player3);
 
-			playerType3 = new JComboBox();
-			playerType3.setModel(new DefaultComboBoxModel(new String[] {"Human", "Computer"}));
+			playerType3 = new JComboBox<String>();
+			playerType3.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
 			playerType3.setBounds(182, 136, 117, 26);
 			playerFrame.getContentPane().add(playerType3);
 		}
@@ -346,8 +380,8 @@ public class GameWindow {
 			player4.setBounds(15, 178, 152, 26);
 			playerFrame.getContentPane().add(player4);	
 			
-			playerType4 = new JComboBox();
-			playerType4.setModel(new DefaultComboBoxModel(new String[] {"Human", "Computer"}));
+			playerType4 = new JComboBox<String>();
+			playerType4.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
 			playerType4.setBounds(182, 178, 117, 26);
 			playerFrame.getContentPane().add(playerType4);
 		}
@@ -359,8 +393,8 @@ public class GameWindow {
 			player5.setBounds(15, 220, 152, 26);
 			playerFrame.getContentPane().add(player5);
 			
-			playerType5 = new JComboBox();
-			playerType5.setModel(new DefaultComboBoxModel(new String[] {"Human", "Computer"}));
+			playerType5 = new JComboBox<String>();
+			playerType5.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
 			playerType5.setBounds(182, 220, 117, 26);
 			playerFrame.getContentPane().add(playerType5);
 		}
@@ -372,8 +406,8 @@ public class GameWindow {
 			player6.setBounds(15, 262, 152, 26);
 			playerFrame.getContentPane().add(player6);
 			
-			playerType6 = new JComboBox();
-			playerType6.setModel(new DefaultComboBoxModel(new String[] {"Human", "Computer"}));
+			playerType6 = new JComboBox<String>();
+			playerType6.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
 			playerType6.setBounds(182, 262, 117, 26);
 			playerFrame.getContentPane().add(playerType6);
 		}	
@@ -462,9 +496,8 @@ public class GameWindow {
 				instructions.setInstructions("Select a player and a territory and add armies to it, one bye one");
 			}
 		});
-		/**
-		 * Add Armies to territories
-		 */
+		
+		// Add Armies to territories
 		btnAddArmy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameController controller = new GameController();
@@ -484,9 +517,17 @@ public class GameWindow {
 				}
 				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
 				if(isAddingCompleted) {
-					instructions.setInstructions("Adding is completed. Click on Reinforcement button");
-					btnAddArmy.setVisible(false);
-					btnReinforcement.setVisible(true);
+					if(reinforceStatus) {
+						btnAddArmy.setVisible(false);
+						btnReinforcement.setVisible(false);
+						btnFortify.setVisible(true);
+						btnEndFortify.setVisible(true);
+						instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");
+					}else {
+						instructions.setInstructions("Adding is completed. Click on Reinforcement button");
+						btnAddArmy.setVisible(false);
+						btnReinforcement.setVisible(true);
+					}
 				}else {
 					btnAddArmy.setVisible(true);
 				}
@@ -494,14 +535,72 @@ public class GameWindow {
 				updatePlayerJList();
 			}
 		});
+		
+		btnEndFortify.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				btnFortify.setVisible(false);
+				btnEndFortify.setVisible(false);
+				instructions.setInstructions("Attack!!!");
+			}
+		});
+		
+		btnReinforcement.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameController controller = new GameController();
+				for(int i=0;i<playerList.size();i++) {
+					int reinforcementArmy = controller.getNumReinforcements(playerList.get(i));
+					instructions.setInstructions("Player, " + playerList.get(i).getName() + " has " + reinforcementArmy + " armies.");
+					playerList.get(i).setNumberOfArmies(reinforcementArmy);
+					btnAddArmy.setVisible(true);
+					updateOwnedTerritories(playerJList.getSelectedIndex());
+					updatePlayerJList();
+					btnAddArmy.setVisible(true);
+					reinforceStatus = true;
+				}
+			}
+		});
+		
+		btnFortify.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				GameController controller = new GameController(); 
+				boolean isSelected = isSelectedPlayer();
+				if(isSelected) {
+					int selectedPlayerIndex = playerJList.getSelectedIndex();
+					Player player = playerList.get(selectedPlayerIndex);
+					if(player.fortificationStatus) {
+						instructions.setInstructions("Player, " + player.getName() + ", sorry only one fortification is permitted.");
+						JOptionPane.showMessageDialog(frame, "Player, " + player.getName() + ", sorry only one fortification is permitted.");
+					}else {
+						boolean isValidFortify = controller.isValidFortify(player);
+						if(isValidFortify) {
+							try {
+								FortifyWindow frame = new FortifyWindow(player);
+								frame.setVisible(true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}else {
+							instructions.setInstructions("Invalid Fortify Option for Player, " + player.getName());
+						}
+					}
+				}else {
+					instructions.setInstructions("Please select a Player");
+				}
+			}
+		});
 	}
 	
 	/**
-	 * Add army to the selected territory
+	 * Add armies to the territory
 	 * 
-	 * @param playerIndex selected player index
-	 * @param territoryIndex selected territory index
-	 * @return boolean true if the added army function succeeds else false
+	 * @param playerIndex index of player selected
+	 * @param territoryIndex index of territory selected
+	 * @return boolean true if added army to the territory else false
 	 */
 	protected boolean addArmyToTerritory(int playerIndex, int territoryIndex) {
 		boolean isAdded = false;
@@ -509,11 +608,11 @@ public class GameWindow {
 		isAdded = controller.addArmyToTerritory(playerList.get(playerIndex), playerList.get(playerIndex).getOwnedTerritories().get(territoryIndex));
 		return isAdded;
 	}
-	
+
 	/**
-	 * Checks whether both players and territories are selected and shows alert if not
+	 * Returns true if selected both territory and player
 	 * 
-	 * @return boolean true if both are selected else false
+	 * @return boolean if both player and territory selected then return true, else false
 	 */
 	protected boolean isSelected() {
 		boolean isSelected = false;
@@ -528,10 +627,23 @@ public class GameWindow {
 		}
 		return isSelected;
 	}
+
 	/**
-	 * Updates owned territory JList field
-	 *  
-	 * @param playerIndex selected player index
+	 * Updates the JList of players
+	 * 
+	 */
+	protected void updatePlayerJList() {
+		String[] playerNames = new String[numberOfPlayers];
+		for(int i=0;i<playerList.size();i++) {
+			playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
+		}
+		playerJList.setListData(playerNames);
+	}	
+	
+	/**
+	 * Updates the list of owned territories with new number of armies
+	 * 
+	 * @param playerIndex index of the player selected
 	 */
 	protected void updateOwnedTerritories(int playerIndex) {
 		try {
@@ -547,13 +659,17 @@ public class GameWindow {
 	}
 	
 	/**
-	 * Updates players JList 
+	 * Checks whether you selected a player or not
+	 * 
+	 * @return boolean true if selected, else false
 	 */
-	protected void updatePlayerJList() {
-		String[] playerNames = new String[numberOfPlayers];
-		for(int i=0;i<playerList.size();i++) {
-			playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
+	protected boolean isSelectedPlayer() {
+		boolean isSelected = false;
+		if(playerJList.getSelectedIndex() >= 0) {
+			isSelected = true;
+		}else {
+			JOptionPane.showMessageDialog(frame, "Select a Player");
 		}
-		playerJList.setListData(playerNames);
+		return isSelected;
 	}
 }
