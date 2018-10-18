@@ -132,21 +132,25 @@ public class UploadWindow {
 		JButton btnSaveMap = new JButton("Save Map");
 		btnSaveMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(mapStringAfterValidation.equals(mapTextPane.getText())) {
-					if(mapStatus) {
-						File fileName = new File(".\\Maps\\" + mapName.getText() + ".txt");
-						try {
-							writeFile(fileName, mapTextPane.getText());
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						frame.dispose();
-					}else {
+				if(!mapName.getText().equals("")) {
+					if(mapStringAfterValidation.equals(mapTextPane.getText())) {
+						if(mapStatus) {
+							File fileName = new File(".\\Maps\\" + mapName.getText() + ".txt");
+							try {
+								writeFile(fileName, mapTextPane.getText());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							frame.dispose();
+						}else {
+							JOptionPane.showMessageDialog(frame, "Please validate the Map.");
+						}				
+					}
+					else {
 						JOptionPane.showMessageDialog(frame, "Please validate the Map.");
-					}				
-				}
-				else {
+					}
+				}else {
 					JOptionPane.showMessageDialog(frame, "Please validate the Map.");
 				}
 			}
