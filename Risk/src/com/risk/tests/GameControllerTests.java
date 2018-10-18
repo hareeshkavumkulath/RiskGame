@@ -172,4 +172,31 @@ class GameControllerTests{
         }
     }
 
+   
+    @Test
+    @DisplayName("assignOneArmyToEachCountry => Assigned armies for each returned territory list => = 1")
+    void assignOneArmyToEachCountry() {
+        //Creating 5 Test Players
+        ArrayList<Player> playerList = new ArrayList<Player>();
+        Player p;
+        for (int j = 0; j < 5; j++) {
+            p = new Player("testPlayer"+j, false, 10+j);
+            playerList.add(p);
+        }
+        
+        //Creating 20 Test Territories
+        ArrayList<Territory> territories = new ArrayList<Territory>();
+        Territory temp;
+        for (int i = 0; i < 20; i++) {
+            temp = new Territory("testTerritory" + i, "testContinent" + i, i);
+            territories.add(temp);
+        }
+
+        ArrayList<Player> result = gc.territoriesToPlayers(playerList,territories);
+        
+        for (Territory ter : gc.playersToTerritories(result,territories)){
+            assertNotEquals(-1,result.indexOf(ter.getRuler()));
+        }
+    }
+
 }
