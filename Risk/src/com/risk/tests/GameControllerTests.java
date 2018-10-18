@@ -285,7 +285,11 @@ class GameControllerTests{
     @Test
     @DisplayName("player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum => TRUE")
     void validateFortifyNumberGreaterThanFortifyNum(){
+        Player p = new Player("testPlayer", false, 10);
+        Territory temp= new Territory("testTerritory", "testContinent", 10);
+        p.ownedTerritories.add(temp);
 
+        assertTrue(gc.validateFortifyNumber(p,0,3));
     }
 
      /**
