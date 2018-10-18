@@ -79,7 +79,7 @@ public class Territory {
 	/**
 	 * Getter for adjacent territories
 	 * 
-	 * @return ArrayList<String> Arraylist of adjacent territories
+	 * @return ArrayList list of adjacent territories
 	 */
 	public ArrayList<String> getAdjacentTerritories() {
 		return adjacentTerritories;
