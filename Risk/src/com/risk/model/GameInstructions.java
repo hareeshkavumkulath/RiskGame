@@ -5,7 +5,7 @@ import java.util.Observable;
  * Class GameInstructions an observable class for the player to view the game instructions and logs
  * 
  * @author Hareesh Kavumkulath
- *
+ * @version 1.0
  */
 public class GameInstructions extends Observable{
 	

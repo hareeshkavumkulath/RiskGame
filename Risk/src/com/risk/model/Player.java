@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Model class for Player
  * 
  * @author Hareesh Kavumkulath
- *
+ * @version 1.0
  */
 public class Player {
 	
