@@ -266,4 +266,7 @@ class GameControllerTests{
      * if (player.ownedTerritories[i].NumberOfArmies <= 1)
      * should be Equal to false
      */
+
+    @Test
+    @DisplayName("For player.ownedTerritories[i].NumberOfArmies <= 1 => False")
 }
