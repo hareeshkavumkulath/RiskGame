@@ -35,9 +35,9 @@ index, fileContent
 
 ##### A source file consists of, in order:
 
-1.	##### Package statement: which is not line-wrapped
-2.	##### Import statement: No wildcard imports and No line wrapping.
-3.	##### Class Declaration: Exactly one top level class declaration.
+* ##### Package statement: which is not line-wrapped
+* ##### Import statement: No wildcard imports and No line wrapping.
+* ##### Class Declaration: Exactly one top level class declaration.
 
 ### Comments
 ##### Javadoc Comments: The basic format of Javadoc comment is as follows
@@ -49,7 +49,7 @@ index, fileContent
  *  
  * {Other notes relating to the class}
  *  
- * @author Hareesh Kavumkulath
+ * @author
  * @version 
  */
 ```
