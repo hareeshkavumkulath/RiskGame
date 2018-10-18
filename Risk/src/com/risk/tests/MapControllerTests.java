@@ -68,7 +68,10 @@ public class MapControllerTests {
         assertTrue(mc.processContinents(mapToString(valid)));
     }
 
-    
+    /**
+     * Testing processContinent function return value for inValid Map
+     * which is a map with no [territories] tag
+     */
     @Test
     @DisplayName("Process Continent => FALSE for noTag MAP")
     void processContinentInValid() {
