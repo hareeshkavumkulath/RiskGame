@@ -35,6 +35,8 @@ import java.awt.Font;
 import java.awt.Window;
 
 /**
+ * This class
+ * 
  * @author Hareesh Kavumkulath
  * @version 1.1
  *
