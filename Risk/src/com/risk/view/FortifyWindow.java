@@ -30,8 +30,10 @@ public class FortifyWindow extends JFrame {
 	private Player player;
 	private JTextField fortifyNumberField;
 
-	 /**
-	 * Create the frame.
+	/**
+	 * Constructor to create the Fortify Window frame 
+	 * 
+	 * @param player based on the player it displayes the Fortify Window
 	 */
 	public FortifyWindow(Player player) {
 		setBounds(100, 100, 912, 259);

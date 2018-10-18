@@ -19,8 +19,8 @@ public class GameController {
 	/**
 	 * Distribute players into corresponding territories
 	 *
-	 * @param playerList
-	 * @param territories
+	 * @param playerList ArrayList of players
+	 * @param territories ArrayList of territories
 	 * @return arrayList of Players
 	 */
 	public ArrayList<Player> territoriesToPlayers(ArrayList<Player> playerList, ArrayList<Territory> territories) {
@@ -44,8 +44,11 @@ public class GameController {
 	}
 
 	/**
-	 * @param playerList
-	 * @param territories
+	 * Function to assign players to every territories
+	 * 
+	 * @param playerList ArrayList of Players
+	 * @param territories ArrayList of territories
+	 * @return ArrayList of territory After adding player/ruler to each territory
 	 */
 	public ArrayList<Territory> playersToTerritories(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		for(int i=0;i<playerList.size();i++) {
@@ -58,9 +61,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param numTerritories
-	 * @param assignedIndexes
-	 * @return
+	 * Function to random number from given limit
+	 * 
+	 * @param numTerritories limit 
+	 * @return int random number in the limit 
 	 */
 	private int[] getRandomIndex(int numTerritories) {
 		Random random = new Random();
@@ -79,7 +83,9 @@ public class GameController {
 	}
 
 	/**
-	 * @param number
+	 * Get number of armies each players get based on the Risk rule
+	 * 
+	 * @param number number of players in the game
 	 * @return number of armies each player get on setup
 	 */
 	public int getPlayersArmies(int number) {
@@ -97,8 +103,11 @@ public class GameController {
 	}
 
 	/**
-	 * @param playerList
-	 * @param territories
+	 * Automatically assign one army to each territory of every player
+	 * 
+	 * @param playerList ArrayList of players
+	 * @param territories ArrayList of territories
+	 * @return string as the status message
 	 */
 	public String assignOneArmyToEachCountry(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		String message = "";
@@ -114,7 +123,8 @@ public class GameController {
 	}	
 	/**
 	 * The method is used to check whether the player still have the armies to add.
-	 * @param playerList
+	 * 
+	 * @param playerList ArrayList of players
 	 * @return true the adding is completed, false is still in processing
 	 */
 	public boolean isAddingCompleted(ArrayList<Player> playerList) {
@@ -133,7 +143,7 @@ public class GameController {
 	 * The method is used to add the player's army to the territory he owned.
 	 * @param player the player
 	 * @param territory the territory is owned by the player
-	 * @return
+	 * @return boolean status
 	 */
 	public boolean addArmyToTerritory(Player player, Territory territory) {
 		boolean isAdded = false;
@@ -152,8 +162,8 @@ public class GameController {
 		return isAdded;		
 	}
 	/**
-	 * The method is used to give the player certain number of armies  
-	 * at the start of the reinforcement stage.
+	 * The method is used to give the player certain number of armies at the start of the reinforcement stage.
+	 * 
 	 * @param player the player
 	 * @return the number of armies the player can get.
 	 */
@@ -169,7 +179,7 @@ public class GameController {
 	/**
 	 * The method is used to check whether the fortification is valid.
 	 * @param player the player
-	 * @return
+	 * @return boolean true if the fortification is valid for the player else false
 	 */
 	public boolean isValidFortify(Player player) {
 		boolean isValidFortify = false;
@@ -187,6 +197,13 @@ public class GameController {
 		return isValidFortify;
 	}
 	
+	/**
+	 * Check the player has more than one number of army
+	 * 
+	 * @param player player who do the fortify
+	 * @param selectedIndex Index of the fortify from territory
+	 * @return boolean returns true if the move is valid
+	 */
 	public boolean validateFortifyMove(Player player, int selectedIndex) {
 		boolean validMove = false;
 		if(player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies() > 1) {
@@ -195,6 +212,14 @@ public class GameController {
 		return validMove;
 	}
 
+	/**
+	 * Check the player has enough number of armies to fortify 
+	 * 
+	 * @param player Player
+	 * @param selectedIndex Index of selected From Territory
+	 * @param fortifyNum Number of armies wants to move
+	 * @return true if the number is less than the number of armies in the territory
+	 */
 	public boolean validateFortifyNumber(Player player, int selectedIndex, int fortifyNum) {
 		boolean isValidNumber = false;
 		int currentNumArmies = player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies();
@@ -204,6 +229,15 @@ public class GameController {
 		return isValidNumber;
 	}
 
+	/**
+	 * Fortify with the fortifyNumber
+	 * 
+	 * @param player Player
+	 * @param fromTerritoryIndex Index of selected From Territory
+	 * @param toTerritoryIndex Index of selected To Territory
+	 * @param fortifyNum number of fortifying armies
+	 * @return true if fortify function is completed else false
+	 */
 	public boolean fortify(Player player, int fromTerritoryIndex, int toTerritoryIndex, int fortifyNum) {
 		boolean status = false;
 		try {
