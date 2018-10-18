@@ -38,7 +38,7 @@ public class Continent {
 
 	/**
 	 * Getter for name of the continent
-	 * @return name as a string
+	 * @return String name as a string
 	 */
 	public String getName() {
 		return name;
@@ -72,7 +72,7 @@ public class Continent {
 	/**
 	 * Getter for adjacent continents
 	 * 
-	 * @return return ArrayList of continents
+	 * @return ArrayList<Continent> ArrayList of continents
 	 */
 	public ArrayList<Continent> getAdjacentContinents() {
 		return adjacentContinents;
@@ -90,7 +90,7 @@ public class Continent {
 	/**
 	 * Getter for territories
 	 * 
-	 * @return ArrayList of territories
+	 * @return ArrayList<Territory> ArrayList of territories
 	 */
 	public ArrayList<Territory> getTerritories() {
 		return territories;
