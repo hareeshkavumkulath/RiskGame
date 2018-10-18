@@ -11,13 +11,19 @@ import javax.swing.border.LineBorder;
 
 
 /**
+ * 
+ * 
  * @author Hareesh Kavumkulath
- *
+ * @version 1.0
  */
 public class PlayerListView extends JList<String> {
 	
 	int numberOfPlayers;
-	
+	/**
+	 * constructor of player list view class.
+	 * 
+	 * @param numberOfPlayers number of players.
+	 */
 	public PlayerListView(int numberOfPlayers) {
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setBorder(new LineBorder(Color.BLUE));
