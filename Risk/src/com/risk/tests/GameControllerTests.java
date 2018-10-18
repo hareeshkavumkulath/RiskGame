@@ -258,7 +258,7 @@ class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 2);
         p.ownedTerritories.add(temp);
 
-        assertTrue(gc.validateFortifyMove2(p,0));
+        assertTrue(gc.validateFortifyMove(p,0));
     }
 
       /**
@@ -274,6 +274,6 @@ class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 1);
         p.ownedTerritories.add(temp);
 
-        assertTrue(gc.validateFortifyMove2(p,0));
+        assertTrue(gc.validateFortifyMove(p,0));
     }
 }
