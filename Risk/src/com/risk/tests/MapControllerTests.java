@@ -78,6 +78,9 @@ public class MapControllerTests {
         assertTrue(mc.processContinents(mapToString(noTag)));
     }
 
+    /**
+     * Testing proceeeTerritories function return value for Valid Map
+     */
     @Test
     @DisplayName("Process Territories => TRUE for Valid MAP")
     void proceeeTerritoriesValid() {
