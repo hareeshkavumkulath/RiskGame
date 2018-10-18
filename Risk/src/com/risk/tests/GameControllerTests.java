@@ -310,4 +310,7 @@ class GameControllerTests{
     /**
      * Testing fortify() function return value
      */
+    @Test
+    @DisplayName("fortifytest() should return => TRUE")
+    
 }
