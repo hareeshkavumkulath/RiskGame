@@ -15,9 +15,6 @@ import com.risk.model.Territory;
  * @author Hareesh Kavumkulath
  * @version 1.1
  * 
- * @date 10-08-2018
- * @modifiedDate 10-09-2018
- * @modifiedBy Hareesh Kavumkulath
  */
 public class MapController {
 	
@@ -26,7 +23,9 @@ public class MapController {
 	public ArrayList<Territory> territoriesArray = new ArrayList<Territory>();
 	public boolean isValidMap = false;
 	public StringBuffer message = new StringBuffer();	
-	
+	/**
+	 * default constructor of the class MapController
+	 */
 	public MapController() {
 	}
 	
