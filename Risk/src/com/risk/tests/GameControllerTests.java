@@ -207,4 +207,7 @@ class GameControllerTests{
         }
     }
 
+    // =====================isValidFortify()=====================
+    
+
 }
