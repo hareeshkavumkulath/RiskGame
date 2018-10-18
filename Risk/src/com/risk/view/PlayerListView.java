@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.risk.view;
 
 import java.awt.Color;
@@ -11,7 +8,7 @@ import javax.swing.border.LineBorder;
 
 
 /**
- * 
+ * Player list view is used to show all players.
  * 
  * @author Hareesh Kavumkulath
  * @version 1.0
