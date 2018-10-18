@@ -41,7 +41,7 @@ class GameControllerTests{
      */
     @Test
     @DisplayName("getPlayersArmies => 2 for 40")
-    void getPlayersArmies() {
+    void getPlayersArmies2() {
         assertEquals(40,gc.getPlayersArmies(2));
     }
     
@@ -50,7 +50,7 @@ class GameControllerTests{
      */
     @Test
     @DisplayName("getPlayersArmies => 4 for 30")
-    void getPlayersArmies() {
+    void getPlayersArmies4() {
         assertEquals(30,gc.getPlayersArmies(4));
     }
     
@@ -60,7 +60,7 @@ class GameControllerTests{
      */
     @Test
     @DisplayName("getPlayersArmies => Greater than 6 for 20")
-    void getPlayersArmies() {
+    void getPlayersArmies6() {
         assertEquals(20,gc.getPlayersArmies(7));
     }
 
