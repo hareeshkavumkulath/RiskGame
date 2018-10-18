@@ -6,8 +6,7 @@ import java.util.ArrayList;
  * Model class for the Territory
  * 
  * @author Hareesh Kavumkulath
- * @version 1.0
- * 
+ * @version 1.0 
  */
 public class Territory {
 	
