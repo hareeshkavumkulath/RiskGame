@@ -1,19 +1,13 @@
 package com.risk.tests;
 import com.risk.controller.MapController;
 import com.risk.model.MapMessage;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.beans.Transient;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
