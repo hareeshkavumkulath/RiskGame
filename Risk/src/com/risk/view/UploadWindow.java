@@ -26,12 +26,6 @@ import java.util.ArrayList;
  * @author Anqi Wang
  * @version 1.0
  * 
- * @date 10-07-2018
- * @modifiedDate 10-08-2018
- * @modifiedBy Jingya Pan
- * @modifiedBy Anqi Wang
- * @modifiedBy Hareesh Kavumkulath
- *
  */
 public class UploadWindow {
 

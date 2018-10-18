@@ -18,10 +18,15 @@ import com.risk.model.Territory;
  */
 public class MapController {
 	
+	@SuppressWarnings("javadoc")
 	public StringBuffer fileContent = new StringBuffer();
+	@SuppressWarnings("javadoc")
 	public ArrayList<Continent> continentArray = new ArrayList<Continent>();
+	@SuppressWarnings("javadoc")
 	public ArrayList<Territory> territoriesArray = new ArrayList<Territory>();
+	@SuppressWarnings("javadoc")
 	public boolean isValidMap = false;
+	@SuppressWarnings("javadoc")
 	public StringBuffer message = new StringBuffer();	
 	/**
 	 * default constructor of the class MapController

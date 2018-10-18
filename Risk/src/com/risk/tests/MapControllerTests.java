@@ -171,10 +171,8 @@ public class MapControllerTests {
      * 
      * @param mapFile Map File Address as a String
      * @return Map Content to Strings
-     * @exception IOException if there is a problem with the Map File Address
      */
     private static String mapToString(String mapFile) {
-
         String mapInString = "";
         BufferedReader reader;
         try {
@@ -192,7 +190,6 @@ public class MapControllerTests {
         } catch (IOException e) {
             mapInString = null;
         }
-
         return mapInString;
     }
 
