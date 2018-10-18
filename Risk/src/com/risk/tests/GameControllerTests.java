@@ -307,4 +307,7 @@ class GameControllerTests{
         assertTrue(gc.validateFortifyNumber(p,0,3));
     }
     // =====================fortify()=====================
+    /**
+     * Testing fortify() function return value
+     */
 }
