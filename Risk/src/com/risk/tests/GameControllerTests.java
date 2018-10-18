@@ -276,4 +276,34 @@ class GameControllerTests{
 
         assertTrue(gc.validateFortifyMove(p,0));
     }
+     // =====================validateFortifyNumber()=====================
+     /**
+     * Testing validateFortifyNumber() function return value
+     * if (player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum)
+     * should be Equal to TRUE
+     */
+    @Test
+    @DisplayName("player.ownedTerritories[i].NumberOfArmies - 1 > fortifyNum => TRUE")
+    void validateFortifyNumberGreaterThanFortifyNum(){
+        Player p = new Player("testPlayer", false, 10);
+        Territory temp= new Territory("testTerritory", "testContinent", 10);
+        p.ownedTerritories.add(temp);
+
+        assertTrue(gc.validateFortifyNumber(p,0,3));
+    }
+
+     /**
+     * Testing validateFortifyNumber() function return value
+     * if (player.ownedTerritories[i].NumberOfArmies - 1 < fortifyNum)
+     * should be Equal to FALSE
+     */
+    @Test
+    @DisplayName("player.ownedTerritories[i].NumberOfArmies - 1 < fortifyNum => FALSE")
+    void validateFortifyNumberLessThanFortifyNum(){
+        Player p = new Player("testPlayer", false, 10);
+        Territory temp= new Territory("testTerritory", "testContinent", 2);
+        p.ownedTerritories.add(temp);
+
+        assertTrue(gc.validateFortifyNumber(p,0,3));
+    }
 }
