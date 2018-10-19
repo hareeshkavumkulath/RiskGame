@@ -21,11 +21,11 @@ import com.risk.model.Player;
  * @author Hareesh Kavumkulath
  * @version 1.0
  */
-@SuppressWarnings("serial")
+
 public class FortifyWindow extends JFrame {
 	@SuppressWarnings("javadoc")
 	private JPanel contentPane;
-	@SuppressWarnings({ "javadoc", "unused" })
+	@SuppressWarnings({ "javadoc"})
 	private Player player;
 	@SuppressWarnings("javadoc")
 	private JTextField fortifyNumberField;
