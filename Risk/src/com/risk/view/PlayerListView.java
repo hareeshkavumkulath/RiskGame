@@ -13,6 +13,7 @@ import javax.swing.border.LineBorder;
  * @author Hareesh Kavumkulath
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class PlayerListView extends JList<String> {
 	
 	int numberOfPlayers;
