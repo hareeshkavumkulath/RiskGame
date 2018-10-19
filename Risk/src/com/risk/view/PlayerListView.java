@@ -19,6 +19,7 @@ public class PlayerListView extends JList<String> {
 	 * created a random serial version ID by Renpeng.
 	 */
 	private static final long serialVersionUID = 5574954950632961945L;
+	@SuppressWarnings("javadoc")
 	int numberOfPlayers;
 	/**
 	 * constructor of player list view class.
