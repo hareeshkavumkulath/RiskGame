@@ -30,6 +30,11 @@ COMMA_JOINER
 ```
 index, fileContent
 ```
+### Tag Names on GitHub
+##### All lower case letter followed by version
+```
+mcv1.0 = map controller version 1.0
+```
 <br/>
 
 # Layout
