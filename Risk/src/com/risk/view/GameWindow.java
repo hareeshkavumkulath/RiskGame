@@ -466,7 +466,7 @@ public class GameWindow {
 				}
 				playerJList.setListData(playerNames);
 				//Set new instruction
-				instructions.setInstructions("Players and countries are assigned.\r\nPlease click Begin Conquest to Start the game");
+				instructions.setInstructions("Players and territories are assigned.\r\nPlease click Begin Conquest to Start the game");
 				//Display begin conquest button
 				beginGame.setVisible(true);
 			}
@@ -487,8 +487,8 @@ public class GameWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GameController controller = new GameController();
-				//Assign one armies to each countries
-				String returnMessage = controller.assignOneArmyToEachCountry(playerList, territories);
+				//Assign one armies to each territories
+				String returnMessage = controller.assignOneArmyToEachTerritory(playerList, territories);
 				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
 				beginGame.setVisible(false);

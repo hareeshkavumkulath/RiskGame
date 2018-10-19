@@ -174,7 +174,7 @@ class GameControllerTests{
      */
     @Test
     @DisplayName("assignOneArmyToEachCountry => Assigned armies for each returned territory list => = 1")
-    void assignOneArmyToEachCountry() {
+    void assignOneArmyToEachTerritory() {
         //Creating 5 Test Players
         ArrayList<Player> playerList = new ArrayList<Player>();
         Player p;
@@ -192,7 +192,7 @@ class GameControllerTests{
         }
 
         ArrayList<Player> result = gameController.territoriesToPlayers(playerList,territories);
-        gameController.assignOneArmyToEachCountry(result,territories);
+        gameController.assignOneArmyToEachTerritory(result,territories);
         for (Player pll : result){
             for (Territory ter : pll.getOwnedTerritories()){
                 assertEquals(1,ter.getNumberOfArmies());
