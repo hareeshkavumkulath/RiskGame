@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
@@ -95,13 +96,17 @@ public class SelectMapWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String fileName = mapFilesJList.getSelectedValue();
-				File file = new File(".\\Maps\\" + fileName);
-				MapController controller = new MapController();
-				MapMessage message = controller.processFile(file);
-				if(message.isValidMap()) {
-					Map map = new Map(message.getContinents(), message.getTerritories());
-					GameWindow beginGame = new GameWindow(map);		
-					beginGame.main(map);
+				File file = new File(".\\Maps\\" + fileName);  
+				if(fileName == null) {
+					JOptionPane.showMessageDialog(frame, "Please select the map.");
+				} else {
+					MapController controller = new MapController();
+					MapMessage message = controller.processFile(file);
+					if(message.isValidMap()) {
+						Map map = new Map(message.getContinents(), message.getTerritories());
+						GameWindow beginGame = new GameWindow(map);		
+						beginGame.main(map);
+					}
 				}
 			}
 		});
