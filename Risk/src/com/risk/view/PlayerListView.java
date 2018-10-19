@@ -13,9 +13,12 @@ import javax.swing.border.LineBorder;
  * @author Hareesh Kavumkulath
  * @version 1.0
  */
-@SuppressWarnings("serial")
+
 public class PlayerListView extends JList<String> {
-	
+	/**
+	 * created a random serial version ID by Renpeng.
+	 */
+	private static final long serialVersionUID = 5574954950632961945L;
 	int numberOfPlayers;
 	/**
 	 * constructor of player list view class.
