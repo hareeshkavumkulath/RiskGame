@@ -23,10 +23,12 @@ import com.risk.model.Player;
  */
 
 public class FortifyWindow extends JFrame {
+	/**
+	 * created a random serial version ID by Renpeng.
+	 */
+	private static final long serialVersionUID = -3174204953083961860L;
 	@SuppressWarnings("javadoc")
 	private JPanel contentPane;
-	@SuppressWarnings({ "javadoc"})
-	private Player player;
 	@SuppressWarnings("javadoc")
 	private JTextField fortifyNumberField;
 
@@ -43,7 +45,6 @@ public class FortifyWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		this.player = player;
 		String[] territoryArray = new String[player.getOwnedTerritories().size()];
 		territoryArray = getTerritoryArray(player);
 		
