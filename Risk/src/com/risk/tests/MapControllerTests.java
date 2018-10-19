@@ -36,7 +36,7 @@ public class MapControllerTests {
 	@SuppressWarnings("javadoc")
     private  static String notConnected;
 	@SuppressWarnings("javadoc")
-    private  MapController map_controller;
+    private  MapController mapController;
 
     /**
      * Before All sets the local address for Valid and Invalid maps 
@@ -56,7 +56,7 @@ public class MapControllerTests {
      */
     @BeforeEach
     void init() {
-        map_controller = new MapController();
+        mapController = new MapController();
     }
 
     /**
@@ -65,7 +65,7 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Continent => TRUE for Valid MAP")
     void processContinentValid() {
-        assertTrue(map_controller.processContinents(mapToString(valid)));
+        assertTrue(mapController.processContinents(mapToString(valid)));
     }
 
     /**
@@ -75,7 +75,7 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Continent => FALSE for noTag MAP")
     void processContinentInValid() {
-        assertTrue(map_controller.processContinents(mapToString(noTag)));
+        assertTrue(mapController.processContinents(mapToString(noTag)));
     }
 
     /**
@@ -84,8 +84,8 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Territories => TRUE for Valid MAP")
     void proceeeTerritoriesValid() {
-        map_controller.processContinents(mapToString(valid));
-        assertTrue(map_controller.processTerritories(mapToString(valid)));
+        mapController.processContinents(mapToString(valid));
+        assertTrue(mapController.processTerritories(mapToString(valid)));
     }
 
     /**
@@ -95,8 +95,8 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
     void proceeeTerritoriesInValid() {
-        map_controller.processContinents(mapToString(noTerritories));
-        assertTrue(map_controller.processTerritories(mapToString(noTerritories)));
+        mapController.processContinents(mapToString(noTerritories));
+        assertTrue(mapController.processTerritories(mapToString(noTerritories)));
     }
 
     /**
@@ -105,10 +105,10 @@ public class MapControllerTests {
     @Test
     @DisplayName("continentArray => NotNULL for Valid MAP")
     void territoriesToContinentsValid() {
-        map_controller.processContinents(mapToString(valid));
-        map_controller.processTerritories(mapToString(valid));
-        map_controller.territoriesToContinents();
-        assertNotNull(map_controller.continentArray);
+        mapController.processContinents(mapToString(valid));
+        mapController.processTerritories(mapToString(valid));
+        mapController.territoriesToContinents();
+        assertNotNull(mapController.continentArray);
     }
     
     /**
@@ -118,10 +118,10 @@ public class MapControllerTests {
     @Test
     @DisplayName("continentArray => NULL for noContinent MAP")
     void territoriesToContinentsInValid() {
-        map_controller.processContinents(mapToString(noContinent));
-        map_controller.processTerritories(mapToString(noContinent));
-        map_controller.territoriesToContinents();
-        assertNotNull(map_controller.continentArray);
+        mapController.processContinents(mapToString(noContinent));
+        mapController.processTerritories(mapToString(noContinent));
+        mapController.territoriesToContinents();
+        assertNotNull(mapController.continentArray);
     }
 
     /**
@@ -130,10 +130,10 @@ public class MapControllerTests {
     @Test
     @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
     void createContinentConnectionInValid() {
-        map_controller.processContinents(mapToString(notConnected));
-        map_controller.processTerritories(mapToString(notConnected));
-        map_controller.territoriesToContinents();
-        assertTrue(map_controller.createContinentConnection());
+        mapController.processContinents(mapToString(notConnected));
+        mapController.processTerritories(mapToString(notConnected));
+        mapController.territoriesToContinents();
+        assertTrue(mapController.createContinentConnection());
     }
 
     /**
@@ -142,12 +142,12 @@ public class MapControllerTests {
     @Test
     @DisplayName("validateMap => TRUE for Valid MAP")
     void validateMapValid() {
-        map_controller.processContinents(mapToString(valid));
-        map_controller.processTerritories(mapToString(valid));
-        map_controller.territoriesToContinents();
-        map_controller.createContinentConnection();
-        MapMessage anything = map_controller.processFile(new File(valid));
-        assertTrue(map_controller.validateMap(anything.getTerritories()));
+        mapController.processContinents(mapToString(valid));
+        mapController.processTerritories(mapToString(valid));
+        mapController.territoriesToContinents();
+        mapController.createContinentConnection();
+        MapMessage anything = mapController.processFile(new File(valid));
+        assertTrue(mapController.validateMap(anything.getTerritories()));
     }
 
     /**
@@ -157,12 +157,12 @@ public class MapControllerTests {
     @Test
     @DisplayName("validateMap => FALSE for NotConnected MAP")
     void validateMapInValid() {
-        map_controller.processContinents(mapToString(notConnected));
-        map_controller.processTerritories(mapToString(notConnected));
-        map_controller.territoriesToContinents();
-        map_controller.createContinentConnection();
-        MapMessage anything = map_controller.processFile(new File(notConnected));
-        assertTrue(map_controller.validateMap(anything.getTerritories()));
+        mapController.processContinents(mapToString(notConnected));
+        mapController.processTerritories(mapToString(notConnected));
+        mapController.territoriesToContinents();
+        mapController.createContinentConnection();
+        MapMessage anything = mapController.processFile(new File(notConnected));
+        assertTrue(mapController.validateMap(anything.getTerritories()));
     }
 
     /**
