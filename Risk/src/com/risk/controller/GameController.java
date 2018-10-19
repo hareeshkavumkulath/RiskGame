@@ -109,7 +109,7 @@ public class GameController {
 	 * @param territories ArrayList of territories
 	 * @return string status message
 	 */
-	public String assignOneArmyToEachCountry(ArrayList<Player> playerList, ArrayList<Territory> territories) {
+	public String assignOneArmyToEachTerritory(ArrayList<Player> playerList, ArrayList<Territory> territories) {
 		String message = "";
 		for(int i = 0;i<playerList.size();i++) {
 			for(int j=0;j<playerList.get(i).getOwnedTerritories().size();j++) {
