@@ -11,6 +11,7 @@ import java.awt.Color;
  * @author Hareesh Kavumkulath
  * @version 1.1
  */
+@SuppressWarnings("serial")
 public class InstructionsView extends JTextPane implements Observer{
 	/**
 	 * This is a constructor. It sets instructionsMsg messages in a certain format. 
