@@ -272,7 +272,7 @@ public class UploadWindow {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				String[] adjTerritoryNames = {};
 				adjTerritoriesJList.setListData(adjTerritoryNames);
-				JList list = (JList) listSelectionEvent.getSource();
+				JList<?> list = (JList<?>) listSelectionEvent.getSource();
 				int selections[] = list.getSelectedIndices();
 				ArrayList<Territory> territories = mapMessage.getContinents().get(selections[0]).getTerritories();
 				String[] territoryNames = new String[territories.size()];
@@ -289,7 +289,7 @@ public class UploadWindow {
         territoriesJList.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				JList list = (JList) listSelectionEvent.getSource();
+				JList<?> list = (JList<?>) listSelectionEvent.getSource();
 				String selection = (String) list.getSelectedValue();
 				ArrayList<Territory> territories = mapMessage.getTerritories();
 				Territory selectedTerritory = null;
