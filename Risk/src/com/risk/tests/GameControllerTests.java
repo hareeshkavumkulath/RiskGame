@@ -24,14 +24,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GameControllerTests{
 	@SuppressWarnings("javadoc")
-    private GameController game_controller;
+    private GameController gameController;
 
     /**
      * Before Each Test it Creates a new object from Game Controller 
      */
     @BeforeEach
     void init() {
-        game_controller = new GameController();
+        gameController = new GameController();
     }
 
     // =====================getPlayersArmies()=====================
@@ -41,7 +41,7 @@ class GameControllerTests{
     @Test
     @DisplayName("getPlayersArmies => 2 for 40")
     void getPlayersArmies2() {
-        assertEquals(40, game_controller.getPlayersArmies(2));
+        assertEquals(40, gameController.getPlayersArmies(2));
     }
 
     /**
@@ -50,7 +50,7 @@ class GameControllerTests{
     @Test
     @DisplayName("getPlayersArmies => 4 for 30")
     void getPlayersArmies4() {
-        assertEquals(30, game_controller.getPlayersArmies(4));
+        assertEquals(30, gameController.getPlayersArmies(4));
     }
 
     /**
@@ -59,7 +59,7 @@ class GameControllerTests{
     @Test
     @DisplayName("getPlayersArmies => 6 for 20")
     void getPlayersArmies6() {
-        assertEquals(20, game_controller.getPlayersArmies(6));
+        assertEquals(20, gameController.getPlayersArmies(6));
     }
 
     // =====================getNumReinforcements()=====================
@@ -78,7 +78,7 @@ class GameControllerTests{
         }
         p.ownedTerritories = t;
 
-        assertEquals(3, game_controller.getNumReinforcements(p));
+        assertEquals(3, gameController.getNumReinforcements(p));
     }
 
     /**
@@ -96,7 +96,7 @@ class GameControllerTests{
         }
         p.ownedTerritories = t;
 
-        assertEquals(4, game_controller.getNumReinforcements(p));
+        assertEquals(4, gameController.getNumReinforcements(p));
     }
 
     // =====================territoriesToPlayers()=====================
@@ -125,7 +125,7 @@ class GameControllerTests{
             territories.add(temp);
         }
 
-        ArrayList<Player> result = game_controller.territoriesToPlayers(playerList,territories);
+        ArrayList<Player> result = gameController.territoriesToPlayers(playerList,territories);
         int finalAssignedTerritories = 0;
         for (Player pl : result){
             finalAssignedTerritories+=pl.ownedTerritories.size();
@@ -159,9 +159,9 @@ class GameControllerTests{
             territories.add(temp);
         }
 
-        ArrayList<Player> result = game_controller.territoriesToPlayers(playerList,territories);
+        ArrayList<Player> result = gameController.territoriesToPlayers(playerList,territories);
         
-        for (Territory ter : game_controller.playersToTerritories(result,territories)){
+        for (Territory ter : gameController.playersToTerritories(result,territories)){
             assertNotEquals(-1,result.indexOf(ter.getRuler()));
         }
     }
@@ -191,8 +191,8 @@ class GameControllerTests{
             territories.add(temp);
         }
 
-        ArrayList<Player> result = game_controller.territoriesToPlayers(playerList,territories);
-        game_controller.assignOneArmyToEachCountry(result,territories);
+        ArrayList<Player> result = gameController.territoriesToPlayers(playerList,territories);
+        gameController.assignOneArmyToEachCountry(result,territories);
         for (Player pll : result){
             for (Territory ter : pll.getOwnedTerritories()){
                 assertEquals(1,ter.getNumberOfArmies());
@@ -213,7 +213,7 @@ class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 10);
         p.ownedTerritories.add(temp);
 
-        assertTrue(game_controller.isValidFortify(p));
+        assertTrue(gameController.isValidFortify(p));
     }
 
     /**
@@ -231,7 +231,7 @@ class GameControllerTests{
             p.ownedTerritories.add(temp);
         }
 
-        assertTrue(game_controller.isValidFortify(p));
+        assertTrue(gameController.isValidFortify(p));
     }
 
     // =====================validateFortifyMove()=====================
@@ -248,7 +248,7 @@ class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 2);
         p.ownedTerritories.add(temp);
 
-        assertTrue(game_controller.validateFortifyMove(p,0));
+        assertTrue(gameController.validateFortifyMove(p,0));
     }
 
     /**
@@ -264,7 +264,7 @@ class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 1);
         p.ownedTerritories.add(temp);
 
-        assertTrue(game_controller.validateFortifyMove(p,0));
+        assertTrue(gameController.validateFortifyMove(p,0));
     }
      // =====================validateFortifyNumber()=====================
     /**
@@ -279,7 +279,7 @@ class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 10);
         p.ownedTerritories.add(temp);
 
-        assertTrue(game_controller.validateFortifyNumber(p,0,3));
+        assertTrue(gameController.validateFortifyNumber(p,0,3));
     }
 
     /**
@@ -294,7 +294,7 @@ class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 2);
         p.ownedTerritories.add(temp);
 
-        assertTrue(game_controller.validateFortifyNumber(p,0,3));
+        assertTrue(gameController.validateFortifyNumber(p,0,3));
     }
     // =====================fortify()=====================
     /**
@@ -312,7 +312,7 @@ class GameControllerTests{
         Territory temp1= new Territory("testTerritory2", "testContinent", 3);
         p.ownedTerritories.add(temp1);
 
-        assertTrue(game_controller.fortify(p,0,1,2));
+        assertTrue(gameController.fortify(p,0,1,2));
     }
 
 }
