@@ -1,12 +1,15 @@
 package com.risk.tests.view;
 
 import com.risk.model.Player;
+import com.risk.model.Territory;
 import com.risk.view.FortifyWindow;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
 
 /**
  * FortifyWindowTest
@@ -35,4 +38,6 @@ public class FortifyWindowTest{
         fortifyWindow = new FortifyWindow(player);
     }
 
+     // =====================playersToTerritories()=====================
+    
 }
