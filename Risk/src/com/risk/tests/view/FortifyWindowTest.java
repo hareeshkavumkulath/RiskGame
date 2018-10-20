@@ -39,7 +39,10 @@ public class FortifyWindowTest{
     }
 
      // =====================playersToTerritories()=====================
-    
+    /**
+     * Testing getTerritoryArrayTest function return value
+     * Its should be an array of String from all the Territories that a player owns
+     */
     @Test
     @DisplayName("getTerritoryArray => Returns String[] of player.OwnedTerritories.Names")
     void getTerritoryArrayTest() {
