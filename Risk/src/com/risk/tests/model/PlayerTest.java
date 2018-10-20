@@ -19,6 +19,8 @@ import com.risk.model.Player;
 public class PlayerTest{
 
     
+    @Test
+    @DisplayName("Player(...) => Right Values for Class Members")
     void playerConstructorTest() {
         
         Player player = new Player("testPlayer", true, 10);
