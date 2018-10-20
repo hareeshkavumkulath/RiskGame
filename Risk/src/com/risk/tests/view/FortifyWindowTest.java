@@ -40,6 +40,8 @@ public class FortifyWindowTest{
 
      // =====================playersToTerritories()=====================
     
+    @Test
+    @DisplayName("getTerritoryArray => Returns String[] of player.OwnedTerritories.Names")
     void getTerritoryArrayTest() {
         
         //Creating 20 Test Territories
