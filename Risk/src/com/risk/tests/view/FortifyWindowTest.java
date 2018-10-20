@@ -40,4 +40,23 @@ public class FortifyWindowTest{
 
      // =====================playersToTerritories()=====================
     
+    void getTerritoryArrayTest() {
+        
+        //Creating 20 Test Territories
+        Territory temp;
+        for (int i = 0; i < 20; i++) {
+            temp = new Territory("testTerritory" + i, "testContinent" + i, i);
+            //Adding territories to player    
+            player.ownedTerritories.add(temp);
+        }
+
+        String[] result = fortifyWindow.getTerritoryArray(player);
+
+        for(int i=0;i<player.ownedTerritories.size();i++){
+            String res = player.getOwnedTerritories().get(i).getName() + "(" + player.getOwnedTerritories().get(i).getNumberOfArmies() + ")";
+            assertEquals(result[i],res);
+        }
+        
+    }
+
 }
