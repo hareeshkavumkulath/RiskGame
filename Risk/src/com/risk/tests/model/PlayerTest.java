@@ -2,8 +2,10 @@ package com.risk.tests.model;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.risk.model.Player;
 
 /**
  * PlayerTest
@@ -15,5 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class PlayerTest{
+
+    
+    void playerConstructorTest() {
+        
+        Player player = new Player("testPlayer", true, 10);
+
+        assertEquals(player.name,"testPlayer");
+        assertTrue(player.isComputer);
+        assertEquals(player.numberOfArmies, 10);
+    }
 
 }
