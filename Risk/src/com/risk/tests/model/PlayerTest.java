@@ -21,6 +21,7 @@ public class PlayerTest{
     /**
      * Testing Player(....) [Constructor for the Model];
      * <code>Player("testPlayer", true, 10)</code>
+     * 
      * Should set the Right values for:
      * <li>player.name => testPlayer </li>
      * <li>player.isComputer => true </li>
