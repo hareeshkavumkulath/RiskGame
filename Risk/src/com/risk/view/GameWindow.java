@@ -15,6 +15,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.risk.controller.GameController;
+import com.risk.controller.MapController;
 import com.risk.model.Continent;
 import com.risk.model.GameInstructions;
 import com.risk.model.Map;
@@ -156,18 +157,24 @@ public class GameWindow {
 		continentJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		continentJList.setBorder(new LineBorder(Color.BLUE));
 		continentJList.setBounds(15, 40, 154, 313);
-		frame.getContentPane().add(continentJList);
+		//frame.getContentPane().add(continentJList);
+		
+		//Adding scroll pane to continents List
+		JScrollPane continentScrollPane = new JScrollPane(continentJList);
+		continentScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		continentScrollPane.setBounds(15, 40, 173, 313);
+		frame.getContentPane().add(continentScrollPane);
 		
 		territoriesJList = new JList<String>();
 		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		territoriesJList.setBorder(new LineBorder(Color.BLUE));
-		territoriesJList.setBounds(184, 40, 211, 313);
+		territoriesJList.setBounds(196, 41, 211, 313);
 		frame.getContentPane().add(territoriesJList);
 		
 		JList<String> adjTerritoriesJList = new JList<String>();
 		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
-		adjTerritoriesJList.setBounds(410, 40, 211, 313);
+		adjTerritoriesJList.setBounds(422, 41, 211, 313);
 		frame.getContentPane().add(adjTerritoriesJList);
 		
 		// Loading values in JLists
@@ -189,6 +196,9 @@ public class GameWindow {
 				String[] territoryNames = new String[territories.size()];
 				for(int i=0;i<territories.size();i++) {
 					territoryNames[i] = territories.get(i).getName();
+					if(territories.get(i).getRuler() != null) {
+						territoryNames[i] = territoryNames[i] + "(" + territories.get(i).getRuler().getName() + ")";
+					}
 				}
 				territoriesJList.setListData(territoryNames);				
 			}
@@ -199,17 +209,24 @@ public class GameWindow {
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				String selection = (String) territoriesJList.getSelectedValue();
-				ArrayList<Territory> territories = map.getTerritories();
-				Territory selectedTerritory = null;
-				for(int i=0;i<territories.size();i++) {
-					if(territories.get(i).getName().equals(selection)) {
-						selectedTerritory = territories.get(i);
-					}
-				}
 				try {
+					selection = selection.replaceAll("\\(.+?\\)", "");
+					ArrayList<Territory> territories = map.getTerritories();
+					Territory selectedTerritory = null;
+					for(int i=0;i<territories.size();i++) {
+						if(territories.get(i).getName().equals(selection)) {
+							selectedTerritory = territories.get(i);
+						}
+					}
+				
+					MapController mapController = new MapController();
 					String[] adjTerritoryNames = new String[selectedTerritory.getAdjacentTerritories().size()];
 					for(int i=0;i<selectedTerritory.getAdjacentTerritories().size();i++) {
-						adjTerritoryNames[i] = selectedTerritory.getAdjacentTerritories().get(i);
+						Territory adjTerritory = mapController.getTerritory(selectedTerritory.getAdjacentTerritories().get(i), territories);
+						adjTerritoryNames[i] = adjTerritory.getName();
+						if(adjTerritory.getRuler() != null) {
+							adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName() + ")";
+						}
 					}
 					adjTerritoriesJList.setListData(adjTerritoryNames);
 				} catch(Exception e) {
@@ -465,6 +482,8 @@ public class GameWindow {
 					playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
 				}
 				playerJList.setListData(playerNames);
+				// Set territories and Adjacent territories with Player details
+				
 				//Set new instruction
 				instructions.setInstructions("Players and territories are assigned.\r\nPlease click Begin Conquest to Start the game");
 				//Display begin conquest button
