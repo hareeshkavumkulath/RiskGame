@@ -156,18 +156,24 @@ public class GameWindow {
 		continentJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		continentJList.setBorder(new LineBorder(Color.BLUE));
 		continentJList.setBounds(15, 40, 154, 313);
-		frame.getContentPane().add(continentJList);
+		//frame.getContentPane().add(continentJList);
+		
+		//Adding scroll pane to continents List
+		JScrollPane continentScrollPane = new JScrollPane(continentJList);
+		continentScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		continentScrollPane.setBounds(15, 40, 173, 313);
+		frame.getContentPane().add(continentScrollPane);
 		
 		territoriesJList = new JList<String>();
 		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		territoriesJList.setBorder(new LineBorder(Color.BLUE));
-		territoriesJList.setBounds(184, 40, 211, 313);
+		territoriesJList.setBounds(196, 41, 211, 313);
 		frame.getContentPane().add(territoriesJList);
 		
 		JList<String> adjTerritoriesJList = new JList<String>();
 		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
-		adjTerritoriesJList.setBounds(410, 40, 211, 313);
+		adjTerritoriesJList.setBounds(422, 41, 211, 313);
 		frame.getContentPane().add(adjTerritoriesJList);
 		
 		// Loading values in JLists
