@@ -100,6 +100,8 @@ public class GameWindow {
 	private boolean reinforceStatus = false;
 	@SuppressWarnings("javadoc")
 	private JButton btnEndFortify;
+	@SuppressWarnings("javadoc")
+	private JTextField numArmiesText;
 	
 	/**
 	 * Launch the application.
@@ -294,8 +296,14 @@ public class GameWindow {
 		instructionsScrollPane.setBounds(1390, 16, 432, 736);
 		frame.getContentPane().add(instructionsScrollPane);
 		
+		numArmiesText = new JTextField();
+		numArmiesText.setBounds(1078, 202, 80, 26);
+		frame.getContentPane().add(numArmiesText);
+		numArmiesText.setColumns(10);
+		numArmiesText.setVisible(false);
+		
 		btnAddArmy = new JButton("Add Army");
-		btnAddArmy.setBounds(1051, 201, 115, 29);
+		btnAddArmy.setBounds(1194, 201, 115, 29);
 		frame.getContentPane().add(btnAddArmy);
 		btnAddArmy.setVisible(false);
 		
@@ -512,6 +520,7 @@ public class GameWindow {
 				instructions.setInstructions(returnMessage);
 				beginGame.setVisible(false);
 				btnAddArmy.setVisible(true);
+				numArmiesText.setVisible(true);
 				instructions.setInstructions("Select a player and a territory and add armies to it, one bye one");
 			}
 		});
@@ -538,6 +547,7 @@ public class GameWindow {
 				if(isAddingCompleted) {
 					if(reinforceStatus) {
 						btnAddArmy.setVisible(false);
+						numArmiesText.setVisible(false);
 						btnReinforcement.setVisible(false);
 						btnFortify.setVisible(true);
 						btnEndFortify.setVisible(true);
@@ -545,10 +555,12 @@ public class GameWindow {
 					}else {
 						instructions.setInstructions("Adding is completed. Click on Reinforcement button");
 						btnAddArmy.setVisible(false);
+						numArmiesText.setVisible(false);
 						btnReinforcement.setVisible(true);
 					}
 				}else {
 					btnAddArmy.setVisible(true);
+					numArmiesText.setVisible(true);
 				}
 				updateOwnedTerritories(playerJList.getSelectedIndex());
 				updatePlayerJList();
@@ -574,9 +586,9 @@ public class GameWindow {
 					instructions.setInstructions("Player, " + playerList.get(i).getName() + " has " + reinforcementArmy + " armies.");
 					playerList.get(i).setNumberOfArmies(reinforcementArmy);
 					btnAddArmy.setVisible(true);
+					numArmiesText.setVisible(true);
 					updateOwnedTerritories(playerJList.getSelectedIndex());
 					updatePlayerJList();
-					btnAddArmy.setVisible(true);
 					reinforceStatus = true;
 				}
 			}
