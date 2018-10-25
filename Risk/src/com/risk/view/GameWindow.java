@@ -531,16 +531,21 @@ public class GameWindow {
 				GameController controller = new GameController();
 				boolean isSelected = isSelected();
 				if(isSelected) {
-					boolean isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex());
+					int numArmies = Integer.parseInt(numArmiesText.getText());
 					int selectedPlayerIndex = playerJList.getSelectedIndex();
 					int selectedTerIndex = ownedTerritories.getSelectedIndex();
-					if(isAdded) {
-						String instrMessage = "Player, " + playerList.get(selectedPlayerIndex).getName() + "("+ playerList.get(selectedPlayerIndex).getNumberOfArmies() +")" + 
-											  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
-											  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
-						instructions.setInstructions(instrMessage);
+					if(playerList.get(selectedPlayerIndex).getNumberOfArmies() >= numArmies) {
+						boolean isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex(),numArmies);
+						if(isAdded) {
+							String instrMessage = "Player, " + playerList.get(selectedPlayerIndex).getName() + "("+ playerList.get(selectedPlayerIndex).getNumberOfArmies() +")" + 
+												  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
+												  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
+							instructions.setInstructions(instrMessage);
+						}else {
+							instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
+						}
 					}else {
-						instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
+						instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " doesn't have enough armies");
 					}
 				}
 				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
@@ -631,12 +636,13 @@ public class GameWindow {
 	 * 
 	 * @param playerIndex index of player selected
 	 * @param territoryIndex index of territory selected
+	 * @param numArmies 
 	 * @return boolean true if added army to the territory else false
 	 */
-	protected boolean addArmyToTerritory(int playerIndex, int territoryIndex) {
+	protected boolean addArmyToTerritory(int playerIndex, int territoryIndex, int numArmies) {
 		boolean isAdded = false;
 		GameController controller = new GameController();		
-		isAdded = controller.addArmyToTerritory(playerList.get(playerIndex), playerList.get(playerIndex).getOwnedTerritories().get(territoryIndex));
+		isAdded = controller.addArmyToTerritory(playerList.get(playerIndex), playerList.get(playerIndex).getOwnedTerritories().get(territoryIndex), numArmies);
 		return isAdded;
 	}
 
@@ -649,7 +655,7 @@ public class GameWindow {
 		boolean isSelected = false;
 		if(playerJList.getSelectedIndex() >= 0) {
 			if(ownedTerritories.getSelectedIndex() >= 0) {
-				isSelected = true;
+				isSelected = isEnteredNumber();
 			}else {
 				JOptionPane.showMessageDialog(frame, "Select a territory as well");
 			}
@@ -702,5 +708,24 @@ public class GameWindow {
 			JOptionPane.showMessageDialog(frame, "Select a Player");
 		}
 		return isSelected;
+	}
+	
+	/**
+	 * Checks the number of armies text field is null or not
+	 * 
+	 * @return boolean true if it is not null(number) false if it is empty or contains any string
+	 */
+	private boolean isEnteredNumber() {
+		try {
+			if(Integer.parseInt(numArmiesText.getText()) > 0) {
+				return true;
+			}else {
+				JOptionPane.showMessageDialog(frame, "Enter a number greater than 0");
+				return false;
+			}
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(frame, "Enter a number");
+			return false;
+		}
 	}
 }
