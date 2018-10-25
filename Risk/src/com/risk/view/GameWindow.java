@@ -541,11 +541,13 @@ public class GameWindow {
 												  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
 												  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
 							instructions.setInstructions(instrMessage);
+							numArmiesText.setText("");
 						}else {
 							instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
 						}
 					}else {
 						instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " doesn't have enough armies");
+						numArmiesText.setText("");
 					}
 				}
 				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
@@ -721,10 +723,12 @@ public class GameWindow {
 				return true;
 			}else {
 				JOptionPane.showMessageDialog(frame, "Enter a number greater than 0");
+				numArmiesText.setText("");
 				return false;
 			}
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(frame, "Enter a number");
+			numArmiesText.setText("");
 			return false;
 		}
 	}
