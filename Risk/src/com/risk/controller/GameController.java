@@ -143,17 +143,18 @@ public class GameController {
 	 * The method is used to add the player's army to the territory he owned.
 	 * @param player the player
 	 * @param territory the territory is owned by the player
+	 * @param numArmies 
 	 * @return boolean status
 	 */
-	public boolean addArmyToTerritory(Player player, Territory territory) {
+	public boolean addArmyToTerritory(Player player, Territory territory, int numArmies) {
 		boolean isAdded = false;
 		try {
 			int territoryIndex = player.getOwnedTerritories().indexOf(territory);
 			int currentNum = player.getOwnedTerritories().get(territoryIndex).getNumberOfArmies();
 			int currentNumberOfArmies = player.getNumberOfArmies();
 			if(currentNumberOfArmies > 0) {
-				player.getOwnedTerritories().get(territoryIndex).setNumberOfArmies(currentNum+1);
-				player.setNumberOfArmies(currentNumberOfArmies-1);
+				player.getOwnedTerritories().get(territoryIndex).setNumberOfArmies(currentNum + numArmies);
+				player.setNumberOfArmies(currentNumberOfArmies-numArmies);
 				isAdded = true;
 			}			
 		}catch(Exception e) {
@@ -223,7 +224,7 @@ public class GameController {
 	public boolean validateFortifyNumber(Player player, int selectedIndex, int fortifyNum) {
 		boolean isValidNumber = false;
 		int currentNumArmies = player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies();
-		if(currentNumArmies - 1 > fortifyNum) {
+		if(currentNumArmies > fortifyNum) {
 			isValidNumber = true;
 		}
 		return isValidNumber;
