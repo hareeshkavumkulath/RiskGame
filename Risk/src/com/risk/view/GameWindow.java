@@ -108,7 +108,7 @@ public class GameWindow {
 	 * 
 	 * @param map input selected map from the SelectMapWindow
 	 */
-	public void main() {
+	public void main(Map map) {
 		EventQueue.invokeLater(new Runnable() {
 			private Map newMap = map;
 

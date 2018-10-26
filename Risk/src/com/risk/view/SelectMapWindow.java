@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
-import com.risk.controller.GameEngine;
 import com.risk.controller.MapController;
 import com.risk.model.Map;
 import com.risk.model.MapMessage;
@@ -105,8 +104,8 @@ public class SelectMapWindow {
 					MapMessage message = controller.processFile(file);
 					if(message.isValidMap()) {
 						Map map = new Map(message.getContinents(), message.getTerritories());
-						GameEngine gameEngine = new GameEngine(map);		
-						gameEngine.start();
+						GameWindow beginGame = new GameWindow(map);		
+						beginGame.main(map);
 					}
 				}
 			}
