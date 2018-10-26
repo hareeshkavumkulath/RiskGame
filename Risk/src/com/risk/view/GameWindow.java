@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Component;
 
 /**
  * This class implements Game Window pages functionalities and design user interface.
@@ -172,6 +173,7 @@ public class GameWindow {
 		territoriesJList.setBorder(new LineBorder(Color.BLUE));
 		territoriesJList.setBounds(196, 41, 211, 313);
 		frame.getContentPane().add(territoriesJList);
+		
 		
 		JList<String> adjTerritoriesJList = new JList<String>();
 		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -319,6 +321,16 @@ public class GameWindow {
 		btnEndFortify = new JButton("End Fortify");
 		btnEndFortify.setBounds(1194, 201, 115, 29);
 		frame.getContentPane().add(btnEndFortify);
+		
+		JScrollPane scrollPane = new JScrollPane(territoriesJList);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(196, 40, 211, 313);
+		frame.getContentPane().add(scrollPane);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(adjTerritoriesJList);
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setBounds(422, 40, 211, 313);
+		frame.getContentPane().add(scrollPane_1);
 		btnFortify.setVisible(false);
 		btnEndFortify.setVisible(false);
 		
