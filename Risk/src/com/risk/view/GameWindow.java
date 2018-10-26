@@ -143,9 +143,9 @@ public class GameWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel continentlabel = new JLabel("Continents");
-		continentlabel.setBounds(38, 16, 115, 20);
-		frame.getContentPane().add(continentlabel);
+		JLabel continentLabel = new JLabel("Continents");
+		continentLabel.setBounds(38, 16, 115, 20);
+		frame.getContentPane().add(continentLabel);
 		
 		JLabel territoriesLabel = new JLabel("Territories");
 		territoriesLabel.setBounds(247, 16, 115, 20);
