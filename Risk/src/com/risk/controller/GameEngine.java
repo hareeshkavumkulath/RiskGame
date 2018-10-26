@@ -3,6 +3,8 @@
  */
 package com.risk.controller;
 
+import com.risk.model.Map;
+
 /**
  * Main class which controls the game in phase by phase
  * 
@@ -12,6 +14,18 @@ package com.risk.controller;
  */
 public class GameEngine {
 
+	@SuppressWarnings("javadoc")
+	private Map map;
+
+	/**
+	 * Constructor for GameEngine
+	 * 
+	 * @param map Map input from select map window
+	 */
+	public GameEngine(Map map) {
+		this.map = map;
+	}
+	
 	
 	
 }
