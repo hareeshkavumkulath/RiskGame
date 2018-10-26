@@ -4,6 +4,7 @@
 package com.risk.controller;
 
 import com.risk.model.Map;
+import com.risk.view.GameWindow;
 
 /**
  * Main class which controls the game in phase by phase
@@ -24,6 +25,14 @@ public class GameEngine {
 	 */
 	public GameEngine(Map map) {
 		this.map = map;
+	}
+
+	/**
+	 * 
+	 */
+	public void start() {
+		GameWindow gameWindow = new GameWindow(map);
+		gameWindow.main();
 	}
 	
 	
