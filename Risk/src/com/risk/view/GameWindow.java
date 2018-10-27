@@ -299,6 +299,8 @@ public class GameWindow {
 		frame.getContentPane().add(instructionsScrollPane);
 		
 		numArmiesText = new JTextField();
+		numArmiesText.setEditable(false);
+		numArmiesText.setText("1");
 		numArmiesText.setBounds(1078, 202, 80, 26);
 		frame.getContentPane().add(numArmiesText);
 		numArmiesText.setColumns(10);
@@ -533,6 +535,8 @@ public class GameWindow {
 				beginGame.setVisible(false);
 				btnAddArmy.setVisible(true);
 				numArmiesText.setVisible(true);
+				int nextIndex = territories.size() % numberOfPlayers;
+				playerJList.setSelectedIndex(nextIndex);
 				instructions.setInstructions("Select a player and a territory and add armies to it, one bye one");
 			}
 		});
@@ -540,26 +544,27 @@ public class GameWindow {
 		// Add Armies to territories
 		btnAddArmy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean isAdded = false;
 				GameController controller = new GameController();
 				boolean isSelected = isSelected();
+				int selectedPlayerIndex = playerJList.getSelectedIndex();
 				if(isSelected) {
 					int numArmies = Integer.parseInt(numArmiesText.getText());
-					int selectedPlayerIndex = playerJList.getSelectedIndex();
 					int selectedTerIndex = ownedTerritories.getSelectedIndex();
 					if(playerList.get(selectedPlayerIndex).getNumberOfArmies() >= numArmies) {
-						boolean isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex(),numArmies);
+						isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex(),numArmies);
 						if(isAdded) {
 							String instrMessage = "Player, " + playerList.get(selectedPlayerIndex).getName() + "("+ playerList.get(selectedPlayerIndex).getNumberOfArmies() +")" + 
 												  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
 												  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
 							instructions.setInstructions(instrMessage);
-							numArmiesText.setText("");
+							numArmiesText.setText("1");
 						}else {
 							instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
 						}
 					}else {
 						instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " doesn't have enough armies");
-						numArmiesText.setText("");
+						numArmiesText.setText("1");
 					}
 				}
 				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
@@ -583,6 +588,17 @@ public class GameWindow {
 				}
 				updateOwnedTerritories(playerJList.getSelectedIndex());
 				updatePlayerJList();
+				int nextIndex;
+				if(isAdded) {
+					if(selectedPlayerIndex == numberOfPlayers -1) {
+						nextIndex = 0;
+					}else {
+						nextIndex = selectedPlayerIndex+1;
+					}
+				}else {
+					nextIndex = selectedPlayerIndex;
+				}
+				playerJList.setSelectedIndex(nextIndex);
 			}
 		});
 		
@@ -735,12 +751,12 @@ public class GameWindow {
 				return true;
 			}else {
 				JOptionPane.showMessageDialog(frame, "Enter a number greater than 0");
-				numArmiesText.setText("");
+				numArmiesText.setText("1");
 				return false;
 			}
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(frame, "Enter a number");
-			numArmiesText.setText("");
+			numArmiesText.setText("1");
 			return false;
 		}
 	}
