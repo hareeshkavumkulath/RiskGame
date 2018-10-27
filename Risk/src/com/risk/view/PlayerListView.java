@@ -27,6 +27,7 @@ public class PlayerListView extends JList<String> {
 	 * @param numberOfPlayers number of players.
 	 */
 	public PlayerListView(int numberOfPlayers) {
+		setEnabled(false);
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setBorder(new LineBorder(Color.BLUE));
 		setBounds(648, 96, 154, 257);
