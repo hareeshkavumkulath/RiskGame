@@ -147,6 +147,7 @@ public class GameController {
 	 * @return boolean status
 	 */
 	public boolean addArmyToTerritory(Player player, Territory territory, int numArmies) {
+		System.out.println(numArmies);
 		boolean isAdded = false;
 		try {
 			int territoryIndex = player.getOwnedTerritories().indexOf(territory);
