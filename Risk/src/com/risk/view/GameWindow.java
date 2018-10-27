@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Component;
 
 /**
  * This class implements Game Window pages functionalities and design user interface.
@@ -173,6 +174,7 @@ public class GameWindow {
 		territoriesJList.setBounds(196, 41, 211, 313);
 		frame.getContentPane().add(territoriesJList);
 		
+		
 		JList<String> adjTerritoriesJList = new JList<String>();
 		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
@@ -297,6 +299,8 @@ public class GameWindow {
 		frame.getContentPane().add(instructionsScrollPane);
 		
 		numArmiesText = new JTextField();
+		numArmiesText.setEditable(false);
+		numArmiesText.setText("1");
 		numArmiesText.setBounds(1078, 202, 80, 26);
 		frame.getContentPane().add(numArmiesText);
 		numArmiesText.setColumns(10);
@@ -319,6 +323,16 @@ public class GameWindow {
 		btnEndFortify = new JButton("End Fortify");
 		btnEndFortify.setBounds(1194, 201, 115, 29);
 		frame.getContentPane().add(btnEndFortify);
+		
+		JScrollPane scrollPane = new JScrollPane(territoriesJList);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(196, 40, 211, 313);
+		frame.getContentPane().add(scrollPane);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(adjTerritoriesJList);
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setBounds(422, 40, 211, 313);
+		frame.getContentPane().add(scrollPane_1);
 		btnFortify.setVisible(false);
 		btnEndFortify.setVisible(false);
 		
@@ -521,6 +535,8 @@ public class GameWindow {
 				beginGame.setVisible(false);
 				btnAddArmy.setVisible(true);
 				numArmiesText.setVisible(true);
+				int nextIndex = territories.size() % numberOfPlayers;
+				playerJList.setSelectedIndex(nextIndex);
 				instructions.setInstructions("Select a player and a territory and add armies to it, one bye one");
 			}
 		});
@@ -528,26 +544,27 @@ public class GameWindow {
 		// Add Armies to territories
 		btnAddArmy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean isAdded = false;
 				GameController controller = new GameController();
 				boolean isSelected = isSelected();
+				int selectedPlayerIndex = playerJList.getSelectedIndex();
 				if(isSelected) {
 					int numArmies = Integer.parseInt(numArmiesText.getText());
-					int selectedPlayerIndex = playerJList.getSelectedIndex();
 					int selectedTerIndex = ownedTerritories.getSelectedIndex();
 					if(playerList.get(selectedPlayerIndex).getNumberOfArmies() >= numArmies) {
-						boolean isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex(),numArmies);
+						isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex(),numArmies);
 						if(isAdded) {
 							String instrMessage = "Player, " + playerList.get(selectedPlayerIndex).getName() + "("+ playerList.get(selectedPlayerIndex).getNumberOfArmies() +")" + 
 												  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
 												  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
 							instructions.setInstructions(instrMessage);
-							numArmiesText.setText("");
+							numArmiesText.setText("1");
 						}else {
 							instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
 						}
 					}else {
 						instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " doesn't have enough armies");
-						numArmiesText.setText("");
+						numArmiesText.setText("1");
 					}
 				}
 				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
@@ -571,6 +588,17 @@ public class GameWindow {
 				}
 				updateOwnedTerritories(playerJList.getSelectedIndex());
 				updatePlayerJList();
+				int nextIndex;
+				if(isAdded) {
+					if(selectedPlayerIndex == numberOfPlayers -1) {
+						nextIndex = 0;
+					}else {
+						nextIndex = selectedPlayerIndex+1;
+					}
+				}else {
+					nextIndex = selectedPlayerIndex;
+				}
+				playerJList.setSelectedIndex(nextIndex);
 			}
 		});
 		
@@ -723,12 +751,12 @@ public class GameWindow {
 				return true;
 			}else {
 				JOptionPane.showMessageDialog(frame, "Enter a number greater than 0");
-				numArmiesText.setText("");
+				numArmiesText.setText("1");
 				return false;
 			}
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(frame, "Enter a number");
-			numArmiesText.setText("");
+			numArmiesText.setText("1");
 			return false;
 		}
 	}
