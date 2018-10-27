@@ -284,7 +284,7 @@ public class GameWindow {
 		ownedTerritories = new JList<String>();
 		ownedTerritories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		ownedTerritories.setBorder(new LineBorder(Color.BLUE));
-		ownedTerritories.setBounds(817, 96, 211, 257);
+		ownedTerritories.setBounds(812, 108, 211, 257);
 		frame.getContentPane().add(ownedTerritories);
 		
 		JLabel lblOwnedTerritories = new JLabel("Owned Territories");
@@ -334,6 +334,11 @@ public class GameWindow {
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setBounds(422, 40, 211, 313);
 		frame.getContentPane().add(scrollPane_1);
+		
+		JScrollPane scrollPane_2 = new JScrollPane(ownedTerritories);
+		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_2.setBounds(812, 108, 211, 257);
+		frame.getContentPane().add(scrollPane_2);
 		btnFortify.setVisible(false);
 		btnEndFortify.setVisible(false);
 		

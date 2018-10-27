@@ -1,3 +1,4 @@
 *.class
 /bin/
 test.java
+.idea/vcs.xml
