@@ -17,6 +17,7 @@ import javax.swing.event.ListSelectionListener;
 import com.risk.controller.GameController;
 import com.risk.controller.MapController;
 import com.risk.model.Continent;
+import com.risk.model.Game;
 import com.risk.model.GameInstructions;
 import com.risk.model.Map;
 import com.risk.model.Player;
@@ -46,6 +47,8 @@ public class GameWindow {
 
 	@SuppressWarnings("javadoc")
 	private JFrame frame;
+	@SuppressWarnings("javadoc")
+	private Game game;
 	@SuppressWarnings("javadoc")
 	private Map map;
 	@SuppressWarnings("javadoc")
@@ -115,7 +118,6 @@ public class GameWindow {
 	public void main(Map map) {
 		EventQueue.invokeLater(new Runnable() {
 			private Map newMap = map;
-
 			public void run() {
 				try {
 					GameWindow window = new GameWindow(newMap);
@@ -141,6 +143,7 @@ public class GameWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		game = new Game(map);
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.GREEN);
 		frame.setBounds(100, 100, 1859, 824);
@@ -505,6 +508,8 @@ public class GameWindow {
 				GameController controller = new GameController();
 				playerList = controller.territoriesToPlayers(playerList, territories);
 				territories = controller.playersToTerritories(playerList, territories);
+				
+				game.setPlayers(playerList);
 				
 				playerFrame.setVisible(false);
 				String[] playerNames = new String[numberOfPlayers];
