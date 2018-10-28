@@ -204,7 +204,7 @@ public class GameWindow {
 				for(int i=0;i<territories.size();i++) {
 					territoryNames[i] = territories.get(i).getName();
 					if(territories.get(i).getRuler() != null) {
-						territoryNames[i] = territoryNames[i] + "(" + territories.get(i).getRuler().getName() + ")";
+						territoryNames[i] = territoryNames[i] + "(" + territories.get(i).getRuler().getName() + " - " + territories.get(i).getNumberOfArmies() +")";
 					}
 				}
 				territoriesJList.setListData(territoryNames);				
@@ -232,7 +232,7 @@ public class GameWindow {
 						Territory adjTerritory = mapController.getTerritory(selectedTerritory.getAdjacentTerritories().get(i), territories);
 						adjTerritoryNames[i] = adjTerritory.getName();
 						if(adjTerritory.getRuler() != null) {
-							adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName() + ")";
+							adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName() + " - " + adjTerritory.getNumberOfArmies() +")";
 						}
 					}
 					adjTerritoriesJList.setListData(adjTerritoryNames);
