@@ -104,6 +104,8 @@ public class GameWindow {
 	private JButton btnEndFortify;
 	@SuppressWarnings("javadoc")
 	private JTextField numArmiesText;
+	@SuppressWarnings("javadoc")
+	private InstructionsView instructionsPane;
 	
 	/**
 	 * Launch the application.
@@ -291,12 +293,12 @@ public class GameWindow {
 		lblOwnedTerritories.setBounds(844, 72, 164, 20);
 		frame.getContentPane().add(lblOwnedTerritories);
 		
-		InstructionsView instructionsPane = new InstructionsView(instructionsMsg);
+		instructionsPane = new InstructionsView(instructionsMsg);
 		instructions.addObserver(instructionsPane);
 		
 		JScrollPane instructionsScrollPane = new JScrollPane(instructionsPane);
 		instructionsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		instructionsScrollPane.setBounds(1390, 16, 432, 736);
+		instructionsScrollPane.setBounds(1390, 16, 432, 337);
 		frame.getContentPane().add(instructionsScrollPane);
 		
 		numArmiesText = new JTextField();
@@ -337,7 +339,7 @@ public class GameWindow {
 		
 		JScrollPane scrollPane_2 = new JScrollPane(ownedTerritories);
 		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane_2.setBounds(812, 108, 211, 257);
+		scrollPane_2.setBounds(809, 96, 211, 257);
 		frame.getContentPane().add(scrollPane_2);
 		btnFortify.setVisible(false);
 		btnEndFortify.setVisible(false);
@@ -533,6 +535,10 @@ public class GameWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				instructions.setInstructions("");
+				instructions.setInstructions("Add Armies Phase");
+				instructions.setInstructions("****************");
+				instructions.setInstructions("Select a player and a territory and add armies to it, one bye one");
 				GameController controller = new GameController();
 				//Assign one armies to each territories
 				String returnMessage = controller.assignOneArmyToEachTerritory(playerList, territories);
@@ -543,7 +549,6 @@ public class GameWindow {
 				numArmiesText.setVisible(true);
 				int nextIndex = territories.size() % numberOfPlayers;
 				playerJList.setSelectedIndex(nextIndex);
-				instructions.setInstructions("Select a player and a territory and add armies to it, one bye one");
 			}
 		});
 		
@@ -581,12 +586,18 @@ public class GameWindow {
 						btnReinforcement.setVisible(false);
 						btnFortify.setVisible(true);
 						btnEndFortify.setVisible(true);
+						instructions.setInstructions("");
+						instructions.setInstructions("Fortification Phase");
+						instructions.setInstructions("*******************");
 						instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");
 					}else {
-						instructions.setInstructions("Adding is completed. Click on Reinforcement button");
 						btnAddArmy.setVisible(false);
 						numArmiesText.setVisible(false);
 						btnReinforcement.setVisible(true);
+						instructions.setInstructions("");
+						instructions.setInstructions("Reinforcement Phase");
+						instructions.setInstructions("*******************");
+						instructions.setInstructions("Adding is completed. Click on Reinforcement button");
 					}
 				}else {
 					btnAddArmy.setVisible(true);
