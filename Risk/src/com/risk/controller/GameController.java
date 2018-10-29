@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import com.risk.model.Continent;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 
@@ -254,5 +255,45 @@ public class GameController {
 			status = false;
 		}
 		return status;
+	}
+
+	/**
+	 * Get Domination of a player in a continent
+	 * 
+	 * @param continent Continent
+	 * @param player Player
+	 * @return double as percentage
+	 */
+	public double getDomination(Continent continent, Player player) {
+		double percentage = 0;
+		int totalNumTerritories = continent.getTerritories().size();
+		int count = 0;
+		for(int i=0;i<continent.getTerritories().size();i++) {
+			if(continent.getTerritories().get(i).getRuler() == player) {
+				count++;
+			}
+		}
+		percentage = (count * 100) / totalNumTerritories;
+		return percentage;
+	}
+
+	/**
+	 * Get Domination of a Player in the Map
+	 * 
+	 * @param player Player
+	 * @param territories Total territories
+	 * @return double as percentage
+	 */
+	public double getDomination(Player player, ArrayList<Territory> territories) {
+		double percentage = 0;
+		int totalNumTerritories = territories.size();
+		int count = 0;
+		for(int i=0;i<territories.size();i++) {
+			if(territories.get(i).getRuler() == player) {
+				count++;
+			}
+		}
+		percentage = (count * 100) / totalNumTerritories;
+		return percentage;
 	}	
 }

@@ -30,12 +30,10 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.Component;
 
 /**
  * This class implements Game Window pages functionalities and design user interface.
@@ -344,6 +342,7 @@ public class GameWindow {
 		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_2.setBounds(809, 96, 211, 257);
 		frame.getContentPane().add(scrollPane_2);
+		
 		btnFortify.setVisible(false);
 		btnEndFortify.setVisible(false);
 		
@@ -554,6 +553,14 @@ public class GameWindow {
 				numArmiesText.setVisible(true);
 				int nextIndex = territories.size() % numberOfPlayers;
 				playerJList.setSelectedIndex(nextIndex);
+				
+				//Display Player World Domination
+				WorldDominationView worldDomViewPanel = new WorldDominationView(game);
+				worldDomViewPanel.setBounds(15, 381, 618, 371);
+				frame.getContentPane().add(worldDomViewPanel);
+				
+				game.addObserver(worldDomViewPanel);
+				
 			}
 		});
 		
@@ -574,6 +581,7 @@ public class GameWindow {
 												  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
 												  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
 							instructions.setInstructions(instrMessage);
+							game.update();
 							numArmiesText.setText("1");
 						}else {
 							instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
