@@ -655,6 +655,9 @@ public class GameWindow {
 					updateOwnedTerritories(playerJList.getSelectedIndex());
 					updatePlayerJList();
 					reinforceStatus = true;
+					btnReinforcement.setVisible(false);
+					int nextIndex = 0;
+					playerJList.setSelectedIndex(nextIndex);
 				}
 			}
 		});
