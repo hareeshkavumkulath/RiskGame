@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import com.risk.model.Card;
 import com.risk.model.Continent;
 import com.risk.model.Player;
 import com.risk.model.Territory;
@@ -295,5 +296,30 @@ public class GameController {
 		}
 		percentage = (count * 100) / totalNumTerritories;
 		return percentage;
+	}
+
+	/**
+	 * Create cards
+	 * 
+	 * @return ArrayList of Cards
+	 */
+	public ArrayList<Card> getCards() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		for(int i=0;i<14;i++) {
+			Card newCard = new Card("Infantry");
+			newCard.addArmy("Infantry");
+			cards.add(newCard);
+		}
+		for(int i=0;i<14;i++) {
+			Card newCard = new Card("Cavalry");
+			newCard.addArmy("Cavalry");
+			cards.add(newCard);
+		}
+		for(int i=0;i<14;i++) {
+			Card newCard = new Card("Infantry");
+			newCard.addArmy("Artillery");
+			cards.add(newCard);
+		}
+		return cards;
 	}	
 }

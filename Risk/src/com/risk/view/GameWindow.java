@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.risk.controller.GameController;
 import com.risk.controller.MapController;
+import com.risk.model.Card;
 import com.risk.model.Continent;
 import com.risk.model.Game;
 import com.risk.model.GameInstructions;
@@ -82,6 +83,7 @@ public class GameWindow {
 	private PlayerListView playerJList;
 	@SuppressWarnings("javadoc")
 	private JList<String> ownedTerritories;
+	private ArrayList<Card> cards;
 	
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> playerList = new ArrayList<Player>();
@@ -536,7 +538,7 @@ public class GameWindow {
 		
 		// Begin Game - Start 
 		beginGame.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				instructions.setInstructions("");
@@ -546,6 +548,8 @@ public class GameWindow {
 				GameController controller = new GameController();
 				//Assign one armies to each territories
 				String returnMessage = controller.assignOneArmyToEachTerritory(playerList, territories);
+				cards = controller.getCards();
+				game.setCards(cards);
 				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
 				beginGame.setVisible(false);

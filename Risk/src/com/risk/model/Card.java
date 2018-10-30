@@ -14,7 +14,11 @@ public class Card {
 
 	public String armyType;
 	public int numArmies;
-	public Territory territory;
+	
+	public Card(String armyType) {
+		super();
+		this.armyType = armyType;
+	}
 	
 	public String getArmyType() {
 		return armyType;
@@ -27,12 +31,6 @@ public class Card {
 	}
 	public void setNumArmies(int numArmies) {
 		this.numArmies = numArmies;
-	}
-	public Territory getTerritory() {
-		return territory;
-	}
-	public void setTerritory(Territory territory) {
-		this.territory = territory;
 	}
 	
 	public void addArmy(String armyType) {
