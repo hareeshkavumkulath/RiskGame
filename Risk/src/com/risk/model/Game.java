@@ -19,6 +19,7 @@ public class Game extends Observable{
 	public Map map;
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> players;
+	public ArrayList<Card> cards;
 	
 	/**
 	 * Constructor for Game
@@ -68,6 +69,14 @@ public class Game extends Observable{
 	public void update() {
 		setChanged();
 		notifyObservers(this);
+	}
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
 	}
 
 }

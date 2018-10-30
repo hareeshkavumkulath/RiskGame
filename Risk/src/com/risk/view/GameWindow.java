@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.risk.controller.GameController;
 import com.risk.controller.MapController;
+import com.risk.model.Card;
 import com.risk.model.Continent;
 import com.risk.model.Game;
 import com.risk.model.GameInstructions;
@@ -82,6 +83,7 @@ public class GameWindow {
 	private PlayerListView playerJList;
 	@SuppressWarnings("javadoc")
 	private JList<String> ownedTerritories;
+	private ArrayList<Card> cards;
 	
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> playerList = new ArrayList<Player>();
@@ -107,6 +109,7 @@ public class GameWindow {
 	private JTextField numArmiesText;
 	@SuppressWarnings("javadoc")
 	private InstructionsView instructionsPane;
+	private JButton startGame;
 	
 	/**
 	 * Launch the application.
@@ -279,6 +282,14 @@ public class GameWindow {
 		beginGame.setBounds(1118, 16, 235, 48);
 		beginGame.setVisible(false);
 		frame.getContentPane().add(beginGame);
+		
+		startGame = new JButton("Attack!!!");
+		startGame.setBackground(Color.WHITE);
+		startGame.setForeground(Color.GREEN);
+		startGame.setFont(new Font("Tahoma", Font.BOLD, 22));
+		startGame.setBounds(1118, 298, 235, 48);
+		startGame.setVisible(false);
+		frame.getContentPane().add(startGame);
 		
 		JLabel label = new JLabel("Players");
 		label.setBounds(700, 72, 69, 20);
@@ -536,7 +547,7 @@ public class GameWindow {
 		
 		// Begin Game - Start 
 		beginGame.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				instructions.setInstructions("");
@@ -546,6 +557,8 @@ public class GameWindow {
 				GameController controller = new GameController();
 				//Assign one armies to each territories
 				String returnMessage = controller.assignOneArmyToEachTerritory(playerList, territories);
+				cards = controller.loadCards();
+				game.setCards(cards);
 				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
 				beginGame.setVisible(false);
@@ -639,6 +652,8 @@ public class GameWindow {
 				btnFortify.setVisible(false);
 				btnEndFortify.setVisible(false);
 				instructions.setInstructions("Attack!!!");
+				playerJList.setSelectedIndex(0);
+				startGame.setVisible(true);
 			}
 		});
 		
@@ -690,6 +705,14 @@ public class GameWindow {
 				}else {
 					instructions.setInstructions("Please select a Player");
 				}
+			}
+		});
+		
+		startGame.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AttackView attackView = new AttackView(playerList.get(playerJList.getSelectedIndex()));
 			}
 		});
 	}
