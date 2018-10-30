@@ -303,7 +303,7 @@ public class GameController {
 	 * 
 	 * @return ArrayList of Cards
 	 */
-	public ArrayList<Card> getCards() {
+	public ArrayList<Card> loadCards() {
 		ArrayList<Card> cards = new ArrayList<Card>();
 		for(int i=0;i<14;i++) {
 			Card newCard = new Card("Infantry");
