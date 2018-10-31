@@ -18,13 +18,19 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 /**
+ * Attack View Window JFrame
+ * 
  * @author Hareesh Kavumkulath
+ * @version 1.0
  *
  */
 public class AttackView extends JFrame {
 
+	@SuppressWarnings("javadoc")
 	private JPanel contentPane;
+	@SuppressWarnings("javadoc")
 	private JTextField textField;
+	@SuppressWarnings("javadoc")
 	private JTextField textField_1;
 
 	
