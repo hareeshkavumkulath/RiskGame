@@ -3,12 +3,12 @@
  */
 package com.risk.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.risk.model.Player;
+
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import java.awt.Component;
@@ -27,26 +27,17 @@ public class AttackView extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 
+	
+	private JTextField attackingArmy;
+	private JTextField attackedArmy;
+	private Player player;
+	
 	/**
-	 * Launch the application.
+	 * Create the frame. This is a constructor assigning values.
+	 * 
+	 * @param player Define the player information.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AttackView frame = new AttackView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public AttackView() {
+	public AttackView(Player player) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1148, 590);
 		contentPane = new JPanel();

@@ -20,7 +20,6 @@ public class GameInstructions extends Observable{
 	 * @param instructions instructions to players or log for the player inputs 
 	 */
 	public GameInstructions(String instructions) {
-		super();
 		this.instructions = instructions;
 	}
 

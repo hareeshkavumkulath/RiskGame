@@ -13,58 +13,62 @@ import java.util.Observable;
  * @version 1.0
  *
  */
-public class Game extends Observable{
-	
+public class Game extends Observable {
+
 	@SuppressWarnings("javadoc")
 	public Map map;
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> players;
+	@SuppressWarnings("javadoc")
 	public ArrayList<Card> cards;
-	
+
 	/**
 	 * Constructor for Game
 	 * 
 	 * @param map
 	 */
 	public Game(Map map) {
-		super();
 		this.map = map;
 	}
-	
+
 	/**
 	 * Getter for map
-	 * @return Map 
+	 * 
+	 * @return Map
 	 */
 	public Map getMap() {
 		return map;
 	}
-	
+
 	/**
 	 * Setter for Map
+	 * 
 	 * @param map pass map object
 	 */
 	public void setMap(Map map) {
 		this.map = map;
 	}
-	
+
 	/**
 	 * Getter for Players
+	 * 
 	 * @return
 	 */
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	
+
 	/**
 	 * Setter for Players
+	 * 
 	 * @param players
 	 */
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
-	
+
 	/**
-	 * Update  
+	 * Update
 	 */
 	public void update() {
 		setChanged();

@@ -109,6 +109,7 @@ public class GameWindow {
 	private JTextField numArmiesText;
 	@SuppressWarnings("javadoc")
 	private InstructionsView instructionsPane;
+	@SuppressWarnings("javadoc")
 	private JButton startGame;
 	
 	/**
