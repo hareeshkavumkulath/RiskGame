@@ -30,7 +30,9 @@ public class AttackView extends JFrame {
 	private JTextField attackedArmy;
 	private Player player;
 	/**
-	 * Create the frame.
+	 * Create the frame. This is a constructor assigning values.
+	 * 
+	 * @param player Define the player information.
 	 */
 	public AttackView(Player player) {
 		
