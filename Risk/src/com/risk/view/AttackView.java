@@ -28,11 +28,13 @@ public class AttackView extends JFrame {
 	private JPanel contentPane;
 	private JTextField attackingArmy;
 	private JTextField attackedArmy;
-	
+	private Player player;
 	/**
 	 * Create the frame.
 	 */
 	public AttackView(Player player) {
+		
+		this.player = player;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1215, 590);
