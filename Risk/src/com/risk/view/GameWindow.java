@@ -714,6 +714,7 @@ public class GameWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AttackView attackView = new AttackView(playerList.get(playerJList.getSelectedIndex()));
+				attackView.setVisible(true);
 			}
 		});
 	}
