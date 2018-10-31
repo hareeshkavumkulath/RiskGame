@@ -43,8 +43,7 @@ public class Game extends Observable {
 	/**
 	 * Setter for Map
 	 * 
-	 * @param map
-	 *            pass map object
+	 * @param map pass map object
 	 */
 	public void setMap(Map map) {
 		this.map = map;
