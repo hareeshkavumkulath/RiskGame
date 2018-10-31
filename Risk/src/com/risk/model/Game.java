@@ -19,6 +19,7 @@ public class Game extends Observable{
 	public Map map;
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> players;
+	@SuppressWarnings("javadoc")
 	public ArrayList<Card> cards;
 	
 	/**
