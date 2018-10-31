@@ -713,7 +713,7 @@ public class GameWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AttackView(playerList.get(playerJList.getSelectedIndex()));
+				AttackView attackView = new AttackView(playerList.get(playerJList.getSelectedIndex()));
 			}
 		});
 	}
