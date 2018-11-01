@@ -114,7 +114,7 @@ public class GameWindow {
 	/**
 	 * Launch the application.
 	 * 
-	 * @param map input selected map from the SelectMapWindow
+	 * @param map Map input selected map from the SelectMapWindow
 	 */
 	public void main(Map map) {
 		EventQueue.invokeLater(new Runnable() {
@@ -133,7 +133,7 @@ public class GameWindow {
 	/**
 	 * Create the application.
 	 * 
-	 * @param map pass map model to GameWindow.java
+	 * @param map Map pass map model to GameWindow.java
 	 */
 	public GameWindow(Map map) {
 		this.map = map;
