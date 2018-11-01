@@ -660,8 +660,11 @@ public class GameWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GameController controller = new GameController();
+				playerList = controller.getOwnedContinents(continents, playerList);
 				for(int i=0;i<playerList.size();i++) {
 					int reinforcementArmy = controller.getNumReinforcements(playerList.get(i));
+					int numArmiesFromContinents = controller.getNumArmiesFromContinents(playerList.get(i));
+					reinforcementArmy = reinforcementArmy + numArmiesFromContinents;
 					instructions.setInstructions("Player, " + playerList.get(i).getName() + " has " + reinforcementArmy + " armies.");
 					playerList.get(i).setNumberOfArmies(reinforcementArmy);
 					btnAddArmy.setVisible(true);
