@@ -63,7 +63,11 @@ public class Card {
 		this.numArmies = numArmies;
 	}
 	
-	
+	/**
+	 * Add number of armies based on the army type
+	 * 
+	 * @param armyType String armyType
+	 */
 	public void addArmy(String armyType) {
 		if(armyType.equalsIgnoreCase("Infantry")) {
 			this.numArmies = 1;
