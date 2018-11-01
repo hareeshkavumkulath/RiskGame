@@ -37,6 +37,13 @@ public class Player {
 		this.fortificationStatus = false;
 	}
 	
+	/**
+	 * 
+	 */
+	public Player() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/** 
 	 * Getter for the name of the Player
 	 * 
