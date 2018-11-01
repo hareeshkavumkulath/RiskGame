@@ -3,19 +3,19 @@
  */
 package com.risk.view;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.risk.model.Player;
-
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import java.awt.Component;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import java.awt.Component;
 
 /**
  * Attack View Window JFrame
@@ -45,13 +45,13 @@ public class AttackView extends JFrame {
 	 */
 	public AttackView(Player player) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1148, 590);
+		setBounds(100, 100, 1228, 598);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Attacking Country");
+		JLabel lblNewLabel = new JLabel("Attacking Territory");
 		lblNewLabel.setBounds(244, 16, 151, 20);
 		contentPane.add(lblNewLabel);
 		
@@ -59,48 +59,71 @@ public class AttackView extends JFrame {
 		label.setBounds(15, 16, 151, 20);
 		contentPane.add(label);
 		
-		JLabel lblAttackedCountry = new JLabel("Attacked Country");
+		JLabel lblAttackedCountry = new JLabel("Attacked Territory");
 		lblAttackedCountry.setBounds(563, 16, 151, 20);
 		contentPane.add(lblAttackedCountry);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(15, 57, 69, 20);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblPlayer = new JLabel(player.getName());
+		lblPlayer.setBounds(15, 57, 69, 20);
+		contentPane.add(lblPlayer);
 		
-		JScrollPane scrollPane = new JScrollPane((Component) null);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(244, 52, 247, 303);
-		contentPane.add(scrollPane);
+		JList attackingTerr = new JList();
+		attackingTerr.setBounds(1, 1, 219, 301);
+		contentPane.add(attackingTerr);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setText("");
-		scrollPane.setViewportView(textPane);
+		JScrollPane attackingTerrPane = new JScrollPane(attackingTerr);
+		attackingTerrPane.setBounds(244, 51, 247, 303);
+		attackingTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		contentPane.add(attackingTerrPane);
 		
-		JScrollPane scrollPane_1 = new JScrollPane((Component) null);
-		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane_1.setBounds(563, 52, 247, 303);
-		contentPane.add(scrollPane_1);
+		JList attackedTerr = new JList();
+		attackedTerr.setBounds(1, 1, 219, 301);
+		contentPane.add(attackedTerr);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setText("");
-		scrollPane_1.setViewportView(textPane_1);
+		JScrollPane attackedTerrPane = new JScrollPane(attackedTerr);
+		attackedTerrPane.setBounds(563, 52, 247, 303);
+		attackedTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		contentPane.add(attackedTerrPane);
 		
-		textField = new JTextField();
-		textField.setBounds(244, 371, 247, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		attackingArmy = new JTextField();
+		attackingArmy.setBounds(244, 371, 247, 26);
+		contentPane.add(attackingArmy);
+		attackingArmy.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(563, 371, 247, 26);
-		contentPane.add(textField_1);
+		attackedArmy = new JTextField();
+		attackedArmy.setBounds(563, 371, 247, 26);
+		attackedArmy.setColumns(10);
+		contentPane.add(attackedArmy);
 		
 		JLabel lblNumberOfDices = new JLabel("Number of Dices");
 		lblNumberOfDices.setBounds(15, 374, 167, 20);
 		contentPane.add(lblNumberOfDices);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(695, 428, 115, 29);
-		contentPane.add(btnNewButton);
+		JButton btnAttack = new JButton("Attack");
+		btnAttack.setBounds(695, 428, 115, 29);
+		contentPane.add(btnAttack);
+		
+		JButton btnEndAttack = new JButton("End Attack");
+		btnEndAttack.setBounds(856, 428, 123, 29);
+		contentPane.add(btnEndAttack);
+		
+		JTextPane statusPanel = new JTextPane();
+		statusPanel.setText("");
+		
+		JScrollPane StatusScrollPane = new JScrollPane(statusPanel);
+		StatusScrollPane.setBounds(891, 51, 268, 303);
+		StatusScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		StatusScrollPane.setViewportView(statusPanel);
+		contentPane.add(StatusScrollPane);
+		
+		JLabel lblStatus = new JLabel("Status information");
+		lblStatus.setBounds(891, 16, 195, 21);
+		contentPane.add(lblStatus);
+		
+		
+		
+		
+		
+		
 	}
 }
