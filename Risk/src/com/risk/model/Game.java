@@ -75,10 +75,20 @@ public class Game extends Observable {
 		notifyObservers(this);
 	}
 
+	/**
+	 * Returns all cards
+	 * 
+	 * @return ArrayList of Cards
+	 */
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
 
+	/**
+	 * Setter for cards
+	 * 
+	 * @param cards ArrayList of Cards
+	 */
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
