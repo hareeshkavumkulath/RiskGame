@@ -32,11 +32,7 @@ public class AttackView extends JFrame {
 
 	@SuppressWarnings("javadoc")
 	private JPanel contentPane;
-	@SuppressWarnings("javadoc")
-	private JTextField textField;
-	@SuppressWarnings("javadoc")
-	private JTextField textField_1;
-
+	
 	@SuppressWarnings("javadoc")
 	private JTextField attackingArmy;
 	@SuppressWarnings("javadoc")
