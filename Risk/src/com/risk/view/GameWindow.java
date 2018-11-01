@@ -15,7 +15,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.risk.controller.GameController;
-import com.risk.controller.MapController;
 import com.risk.model.Card;
 import com.risk.model.Continent;
 import com.risk.model.Game;
@@ -231,10 +230,9 @@ public class GameWindow {
 						}
 					}
 				
-					MapController mapController = new MapController();
 					String[] adjTerritoryNames = new String[selectedTerritory.getAdjacentTerritories().size()];
 					for(int i=0;i<selectedTerritory.getAdjacentTerritories().size();i++) {
-						Territory adjTerritory = mapController.getTerritory(selectedTerritory.getAdjacentTerritories().get(i), territories);
+						Territory adjTerritory = selectedTerritory.getAdjacentTerritories().get(i);
 						adjTerritoryNames[i] = adjTerritory.getName();
 						if(adjTerritory.getRuler() != null) {
 							adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName() + " - " + adjTerritory.getNumberOfArmies() +")";

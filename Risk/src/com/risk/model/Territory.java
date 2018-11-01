@@ -15,7 +15,7 @@ public class Territory {
 	@SuppressWarnings("javadoc")
 	String continent;
 	@SuppressWarnings("javadoc")
-	ArrayList<String> adjacentTerritories;
+	ArrayList<Territory> adjacentTerritories;
 	@SuppressWarnings("javadoc")
 	Player ruler;
 	@SuppressWarnings("javadoc")
@@ -81,7 +81,7 @@ public class Territory {
 	 * 
 	 * @return ArrayList list of adjacent territories
 	 */
-	public ArrayList<String> getAdjacentTerritories() {
+	public ArrayList<Territory> getAdjacentTerritories() {
 		return adjacentTerritories;
 	}
 	
@@ -90,7 +90,7 @@ public class Territory {
 	 * 
 	 * @param adjacentTerritories ArrayList of adjacent territories
 	 */
-	public void setAdjacentTerritories(ArrayList<String> adjacentTerritories) {
+	public void setAdjacentTerritories(ArrayList<Territory> adjacentTerritories) {
 		this.adjacentTerritories = adjacentTerritories;
 	}
 
