@@ -154,7 +154,7 @@ public class AttackView extends JFrame {
 					Player attackedPlayer = attackingTerritories.get(selectedIndexAttacker).getAdjacentTerritories().get(selectedIndexAttacked).getRuler();
 					if(player == attackedPlayer) {
 						JOptionPane.showMessageDialog(null, "Both Attacking and Attacked Players should not be same. Choose a different territory", "Alert", JOptionPane.ERROR_MESSAGE);
-						attackedTerr.setSelectedIndex(-1);
+						attackedTerr.clearSelection();
 					}
 				}catch(Exception e) {
 					System.out.println("Exception in attacked Territory list selection handler:"+e.toString());
