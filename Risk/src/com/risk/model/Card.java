@@ -57,11 +57,12 @@ public class Card {
 	/**
 	 * Setter for the name of the player
 	 * 
-	 * @param name of the player
+	 * @param numArmies set the number of armies of the card
 	 */
 	public void setNumArmies(int numArmies) {
 		this.numArmies = numArmies;
 	}
+	
 	
 	public void addArmy(String armyType) {
 		if(armyType.equalsIgnoreCase("Infantry")) {

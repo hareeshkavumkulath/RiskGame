@@ -135,6 +135,7 @@ public class Player {
 	public boolean isFortificationStatus() {
 		return fortificationStatus;
 	}
+	
 	/**
 	 * Sets true if the player has completed fortification else false
 	 * 
