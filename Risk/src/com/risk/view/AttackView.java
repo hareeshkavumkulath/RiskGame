@@ -38,8 +38,6 @@ public class AttackView extends JFrame {
 	@SuppressWarnings("javadoc")
 	private JTextField attackedArmy;
 	@SuppressWarnings("javadoc")
-	private Player player;
-	@SuppressWarnings("javadoc")
 	public ArrayList<Territory> attackingTerritories;
 	
 	/**
@@ -48,7 +46,6 @@ public class AttackView extends JFrame {
 	 * @param player Define the player information.
 	 */
 	public AttackView(Player player) {
-		this.player = player;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1228, 598);
 		contentPane = new JPanel();
