@@ -84,6 +84,11 @@ public class Game extends Observable {
 		return cards;
 	}
 
+	/**
+	 * Setter for cards
+	 * 
+	 * @param cards ArrayList of Cards
+	 */
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
