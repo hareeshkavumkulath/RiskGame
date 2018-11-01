@@ -26,9 +26,9 @@ public class Player {
 	/**
 	 * Constructor for Player
 	 * 
-	 * @param name name of the player
-	 * @param isComputer true or false based on whether the player is computer or human
-	 * @param numberOfArmies number of armies allocated to player
+	 * @param name String name of the player
+	 * @param isComputer boolean true or false based on whether the player is computer or human
+	 * @param numberOfArmies int number of armies allocated to player
 	 */
 	public Player(String name, boolean isComputer, int numberOfArmies) {
 		this.name = name;
@@ -49,7 +49,7 @@ public class Player {
 	/**
 	 * Setter for the name of the player
 	 * 
-	 * @param name pass the name of the player
+	 * @param name String pass the name of the player
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -67,7 +67,7 @@ public class Player {
 	/**
 	 * Setter for the number of armies
 	 * 
-	 * @param numberOfArmies pass the number of armies to setter
+	 * @param numberOfArmies int pass the number of armies to setter
 	 */
 	public void setNumberOfArmies(int numberOfArmies) {
 		this.numberOfArmies = numberOfArmies;
@@ -139,7 +139,7 @@ public class Player {
 	/**
 	 * Sets true if the player has completed fortification, else false
 	 * 
-	 * @param fortificationStatus true or false
+	 * @param fortificationStatus boolean true or false
 	 */
 	public void setFortificationStatus(boolean fortificationStatus) {
 		this.fortificationStatus = fortificationStatus;
