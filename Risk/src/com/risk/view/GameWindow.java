@@ -289,7 +289,7 @@ public class GameWindow {
 		startGame.setForeground(Color.GREEN);
 		startGame.setFont(new Font("Tahoma", Font.BOLD, 22));
 		startGame.setBounds(1118, 298, 235, 48);
-		startGame.setVisible(false);
+		startGame.setVisible(true);
 		frame.getContentPane().add(startGame);
 		
 		JLabel label = new JLabel("Players");
@@ -713,7 +713,7 @@ public class GameWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AttackView attackView = new AttackView(playerList.get(playerJList.getSelectedIndex()));
+				AttackView attackView = new AttackView(playerList.get(0));
 				attackView.setVisible(true);
 			}
 		});
