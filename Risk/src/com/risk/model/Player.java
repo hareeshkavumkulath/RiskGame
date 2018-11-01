@@ -130,16 +130,16 @@ public class Player {
 	/**
 	 * Gets the current fortification status
 	 * 
-	 * @return boolean true or false 
+	 * @return boolean true or false of the fortification status
 	 */
 	public boolean isFortificationStatus() {
 		return fortificationStatus;
 	}
 	
 	/**
-	 * Sets true if the player has completed fortification else false
+	 * Sets true if the player has completed fortification, else false
 	 * 
-	 * @param fortificationStatus true/false
+	 * @param fortificationStatus true or false
 	 */
 	public void setFortificationStatus(boolean fortificationStatus) {
 		this.fortificationStatus = fortificationStatus;
