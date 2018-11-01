@@ -27,8 +27,8 @@ public class Player {
 	 * Constructor for Player
 	 * 
 	 * @param name name of the player
-	 * @param isComputer true/false based on whether the player is computer or human
-	 * @param numberOfArmies number of armies alloated to player
+	 * @param isComputer true or false based on whether the player is computer or human
+	 * @param numberOfArmies number of armies allocated to player
 	 */
 	public Player(String name, boolean isComputer, int numberOfArmies) {
 		this.name = name;
@@ -49,7 +49,7 @@ public class Player {
 	/**
 	 * Setter for the name of the player
 	 * 
-	 * @param name of the player
+	 * @param name pass the name of the player
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -63,66 +63,74 @@ public class Player {
 	public int getNumberOfArmies() {
 		return numberOfArmies;
 	}
+	
 	/**
 	 * Setter for the number of armies
 	 * 
-	 * @param numberOfArmies int number of armies
+	 * @param numberOfArmies pass the number of armies to setter
 	 */
 	public void setNumberOfArmies(int numberOfArmies) {
 		this.numberOfArmies = numberOfArmies;
 	}
+	
 	/**
-	 * Getter for the owned territories
+	 * Get the owned territories in the array list
 	 * 
-	 * @return ArrayList list of the owned territories
+	 * @return ArrayList the list of the owned territories
 	 */
 	public ArrayList<Territory> getOwnedTerritories() {
 		return ownedTerritories;
 	}
+	
 	/**
-	 * Setter for the owned territories
+	 * Set for the owned territories through array list
 	 * 
 	 * @param ownedTerritories ArrayList of owned territories
 	 */
 	public void setOwnedTerritories(ArrayList<Territory> ownedTerritories) {
 		this.ownedTerritories = ownedTerritories;
 	}
+	
 	/**
-	 * Getter for the Owned Continents
+	 * Get the Owned Continents through array list continent
 	 * 
 	 * @return ArrayList list of continents
 	 */
 	public ArrayList<Continent> getOwnedContinents() {
 		return ownedContinents;
 	}
+	
 	/**
-	 * Setter for the Owned Continents
+	 * Set for the Owned Continents through array list
 	 * 
 	 * @param ownedContinents ArrayList of Continents
 	 */
 	public void setOwnedContinents(ArrayList<Continent> ownedContinents) {
 		this.ownedContinents = ownedContinents;
 	}
+	
 	/**
 	 * Returns whether the player is computer or human
 	 * 
-	 * @return boolean true/false
+	 * @return boolean true or false if the player is computer
 	 */
 	public boolean isComputer() {
 		return isComputer;
 	}
+	
 	/**
 	 * Sets true is the player is computer else false
 	 * 
-	 * @param isComputer boolean true/false
+	 * @param isComputer boolean true or false 
 	 */
 	public void setComputer(boolean isComputer) {
 		this.isComputer = isComputer;
 	}
+	
 	/**
 	 * Gets the current fortification status
 	 * 
-	 * @return boolean true/false
+	 * @return boolean true or false 
 	 */
 	public boolean isFortificationStatus() {
 		return fortificationStatus;
