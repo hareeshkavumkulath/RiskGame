@@ -114,7 +114,7 @@ public class GameWindow {
 	/**
 	 * Launch the application.
 	 * 
-	 * @param map input selected map from the SelectMapWindow
+	 * @param map Map input selected map from the SelectMapWindow
 	 */
 	public void main(Map map) {
 		EventQueue.invokeLater(new Runnable() {
@@ -133,7 +133,7 @@ public class GameWindow {
 	/**
 	 * Create the application.
 	 * 
-	 * @param map pass map model to GameWindow.java
+	 * @param map Map pass map model to GameWindow.java
 	 */
 	public GameWindow(Map map) {
 		this.map = map;
@@ -380,7 +380,7 @@ public class GameWindow {
 	/**
 	 * It displays the setup player panel based on the number of players
 	 * 
-	 * @param number number of players
+	 * @param number int number of players
 	 */
 	protected void showPlayerSetupPanel(int number) {
 		
@@ -720,9 +720,9 @@ public class GameWindow {
 	/**
 	 * Add armies to the territory
 	 * 
-	 * @param playerIndex index of player selected
-	 * @param territoryIndex index of territory selected
-	 * @param numArmies 
+	 * @param playerIndex int index of player selected
+	 * @param territoryIndex int index of territory selected
+	 * @param numArmies int the number of armies selected
 	 * @return boolean true if added army to the territory else false
 	 */
 	protected boolean addArmyToTerritory(int playerIndex, int territoryIndex, int numArmies) {
@@ -766,7 +766,7 @@ public class GameWindow {
 	/**
 	 * Updates the list of owned territories with new number of armies
 	 * 
-	 * @param playerIndex index of the player selected
+	 * @param playerIndex int index of the player selected
 	 */
 	protected void updateOwnedTerritories(int playerIndex) {
 		try {
