@@ -20,7 +20,7 @@ public class Card {
 	/**
 	 * Constructor with parameter for Card class.
 	 * 
-	 * @param armyType the armyType variable will be initialized by constructor
+	 * @param armyType String the armyType variable will be initialized by constructor
 	 */
 	public Card(String armyType) {
 		super();
@@ -39,7 +39,7 @@ public class Card {
 	/**
 	 * Setter for the armyType of the Card class
 	 * 
-	 * @param armyType set the armyType of the card
+	 * @param armyType String set the armyType of the card
 	 */
 	public void setArmyType(String armyType) {
 		this.armyType = armyType;
@@ -57,7 +57,7 @@ public class Card {
 	/**
 	 * Setter for the name of the player
 	 * 
-	 * @param numArmies set the number of armies of the card
+	 * @param numArmies int set the number of armies of the card
 	 */
 	public void setNumArmies(int numArmies) {
 		this.numArmies = numArmies;
