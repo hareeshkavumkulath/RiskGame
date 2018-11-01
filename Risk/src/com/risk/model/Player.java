@@ -36,6 +36,7 @@ public class Player {
 		this.numberOfArmies = numberOfArmies;
 		this.fortificationStatus = false;
 	}
+	
 	/** 
 	 * Getter for the name of the Player
 	 * 
@@ -44,6 +45,7 @@ public class Player {
 	public String getName() {
 		return name;
 	}
+	
 	/**
 	 * Setter for the name of the player
 	 * 
@@ -52,6 +54,7 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	/**
 	 * Getter for the number of armies
 	 * 
