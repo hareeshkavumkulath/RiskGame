@@ -300,22 +300,28 @@ public class GameController {
 
 	/**
 	 * Create cards
+	 * @param numPlayers 
+	 * @param numTerritories 
 	 * 
 	 * @return ArrayList of Cards
 	 */
-	public ArrayList<Card> loadCards() {
+	public ArrayList<Card> loadCards(int numTerritories, int numPlayers) {
+		int eachType = numTerritories / numPlayers;
+		if((numTerritories % numPlayers) > 0) {
+			eachType++;
+		}
 		ArrayList<Card> cards = new ArrayList<Card>();
-		for(int i=0;i<14;i++) {
+		for(int i=0;i<eachType;i++) {
 			Card newCard = new Card("Infantry");
 			newCard.addArmy("Infantry");
 			cards.add(newCard);
 		}
-		for(int i=0;i<14;i++) {
+		for(int i=0;i<eachType;i++) {
 			Card newCard = new Card("Cavalry");
 			newCard.addArmy("Cavalry");
 			cards.add(newCard);
 		}
-		for(int i=0;i<14;i++) {
+		for(int i=0;i<eachType;i++) {
 			Card newCard = new Card("Infantry");
 			newCard.addArmy("Artillery");
 			cards.add(newCard);
