@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -143,7 +144,24 @@ public class AttackView extends JFrame {
 			}
 		});
 		
-		
+		attackedTerr.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				try {
+					int selectedIndexAttacker = attackingTerr.getSelectedIndex();
+					int selectedIndexAttacked = attackedTerr.getSelectedIndex();
+					Player attackedPlayer = attackingTerritories.get(selectedIndexAttacker).getAdjacentTerritories().get(selectedIndexAttacked).getRuler();
+					if(player == attackedPlayer) {
+						JOptionPane.showMessageDialog(null, "Both Attacking and Attacked Players should not be same. Choose a different territory", "Alert", JOptionPane.ERROR_MESSAGE);
+						attackedTerr.setSelectedIndex(-1);
+					}
+				}catch(Exception e) {
+					System.out.println("Exception in attacked Territory list selection handler:"+e.toString());
+				}
+			}
+			
+		});
 		
 		
 	}
