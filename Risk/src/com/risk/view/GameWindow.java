@@ -713,7 +713,7 @@ public class GameWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AttackView attackView = new AttackView(playerList.get(0));
+				AttackView attackView = new AttackView(playerList.get(0), territories);
 				attackView.setVisible(true);
 			}
 		});

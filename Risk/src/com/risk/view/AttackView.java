@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.risk.controller.MapController;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 
@@ -43,13 +44,16 @@ public class AttackView extends JFrame {
 	private JTextField attackedArmy;
 	private Player player;
 	public ArrayList<Territory> attackingTerritories;
+	public ArrayList<Territory> territories;
 	
 	/**
 	 * Create the frame. This is a constructor assigning values.
 	 * 
 	 * @param player Define the player information.
 	 */
-	public AttackView(Player player) {
+	public AttackView(Player player, ArrayList<Territory> territories) {
+		this.player = player;
+		this.territories = territories;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1228, 598);
 		contentPane = new JPanel();
@@ -136,12 +140,14 @@ public class AttackView extends JFrame {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
+				MapController controller = new MapController();
 				int selectedIndex = attackingTerr.getSelectedIndex();
 				ArrayList<String> attackedTerritories = new ArrayList<String>();
 				attackedTerritories = attackingTerritories.get(selectedIndex).getAdjacentTerritories();
 				String[] attackedTerrNames = new String[attackedTerritories.size()];
 				for(int i = 0;i<attackedTerritories.size();i++) {
-					attackedTerrNames[i] = attackedTerritories.get(i);
+					Territory tempTerritory = controller.getTerritory(attackedTerritories.get(i), territories);
+					attackedTerrNames[i] = tempTerritory.getName() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
 				}
 				attackedTerr.setListData(attackedTerrNames);
 			}
