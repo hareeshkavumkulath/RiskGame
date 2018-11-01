@@ -41,17 +41,14 @@ public class AttackView extends JFrame {
 	private Player player;
 	@SuppressWarnings("javadoc")
 	public ArrayList<Territory> attackingTerritories;
-	@SuppressWarnings("javadoc")
-	public ArrayList<Territory> territories;
 	
 	/**
 	 * Create the frame. This is a constructor assigning values.
 	 * 
 	 * @param player Define the player information.
 	 */
-	public AttackView(Player player, ArrayList<Territory> territories) {
+	public AttackView(Player player) {
 		this.player = player;
-		this.territories = territories;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1228, 598);
 		contentPane = new JPanel();
