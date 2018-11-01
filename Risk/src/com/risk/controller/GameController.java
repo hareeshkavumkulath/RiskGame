@@ -327,5 +327,57 @@ public class GameController {
 			cards.add(newCard);
 		}
 		return cards;
+	}
+
+	/**
+	 * Function to check whether the player has their own continents
+	 * 
+	 * @param continents ArrayList of continents
+	 * @param playerList ArrayList of Players
+	 * @return ArrayList<Players> Players after adding the continents
+	 */
+	public ArrayList<Player> getOwnedContinents(ArrayList<Continent> continents, ArrayList<Player> playerList) {
+		for(int i=0;i<continents.size();i++) {
+			Player player = getRulerOfContinent(continents.get(i));
+			if(player != null) {
+				int index = playerList.indexOf(player);
+				ArrayList ownedContinents = playerList.get(index).getOwnedContinents();
+				ownedContinents.add(continents.get(i));
+				playerList.get(index).setOwnedContinents(ownedContinents);
+			}
+		}
+		return playerList;
+	}
+
+	/**
+	 * @param continent
+	 * @return
+	 */
+	private static Player getRulerOfContinent(Continent continent) {
+		ArrayList<Territory> territories = continent.getTerritories();
+		Player player = territories.get(0).getRuler();
+		boolean status =  true;
+		for(int i=1;i<territories.size();i++) {
+			Player tempPlayer = territories.get(i).getRuler();
+			if(player != tempPlayer) {
+				status = false;
+			}
+		}
+		if(status)
+			return player;
+		else
+			return null;
+	}
+
+	/**
+	 * @param player
+	 * @return
+	 */
+	public int getNumArmiesFromContinents(Player player) {
+		int numArmies = 0;
+		for(int i=0;i<player.getOwnedContinents().size();i++) {
+			numArmies = numArmies + player.getOwnedContinents().get(i).getNumberOfArmies();
+		}
+		return numArmies;
 	}	
 }
