@@ -37,11 +37,15 @@ public class AttackView extends JFrame {
 	@SuppressWarnings("javadoc")
 	private JTextField textField_1;
 
-	
+	@SuppressWarnings("javadoc")
 	private JTextField attackingArmy;
+	@SuppressWarnings("javadoc")
 	private JTextField attackedArmy;
+	@SuppressWarnings("javadoc")
 	private Player player;
+	@SuppressWarnings("javadoc")
 	public ArrayList<Territory> attackingTerritories;
+	@SuppressWarnings("javadoc")
 	public ArrayList<Territory> territories;
 	
 	/**
