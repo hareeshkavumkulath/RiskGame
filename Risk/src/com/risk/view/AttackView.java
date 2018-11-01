@@ -38,8 +38,6 @@ public class AttackView extends JFrame {
 	@SuppressWarnings("javadoc")
 	private JTextField attackedArmy;
 	@SuppressWarnings("javadoc")
-	private Player player;
-	@SuppressWarnings("javadoc")
 	public ArrayList<Territory> attackingTerritories;
 	
 	/**
