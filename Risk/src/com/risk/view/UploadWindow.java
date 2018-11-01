@@ -301,7 +301,7 @@ public class UploadWindow {
 				try {
 					String[] adjTerritoryNames = new String[selectedTerritory.getAdjacentTerritories().size()];
 					for(int i=0;i<selectedTerritory.getAdjacentTerritories().size();i++) {
-						adjTerritoryNames[i] = selectedTerritory.getAdjacentTerritories().get(i);
+						adjTerritoryNames[i] = selectedTerritory.getAdjacentTerritories().get(i).getName();
 					}
 					adjTerritoriesJList.setListData(adjTerritoryNames);
 				} catch(Exception e) {
@@ -338,7 +338,7 @@ public class UploadWindow {
 				if(territories.get(i).getAdjacentTerritories().size() > 0) {
 					mapText = mapText.append(",");
 					for(int j=0;j<territories.get(i).getAdjacentTerritories().size();j++) {
-						mapText = mapText.append(territories.get(i).getAdjacentTerritories().get(j));
+						mapText = mapText.append(territories.get(i).getAdjacentTerritories().get(j).getName());
 						if(j != territories.get(i).getAdjacentTerritories().size() - 1) {
 							mapText = mapText.append(",");
 						}

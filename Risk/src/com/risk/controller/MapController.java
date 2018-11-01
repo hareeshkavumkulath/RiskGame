@@ -97,23 +97,30 @@ public class MapController {
 			boolean isValidTerritories = false;
 			isValidTerritories = processTerritories(mapInfo);
 			if(isValidTerritories) {
-				//connecting territories to continents
-				boolean valid = false;
-				valid = territoriesToContinents();
-				if(valid) {
-					// Check the adjacency of continents and added connection between continents
-					boolean isContinentConnected = false;
-					isContinentConnected = createContinentConnection();
-					if(isContinentConnected) {
-						// Check all the territories in the Map are connected or not
-						boolean isMapConnected = false;
-						isMapConnected = validateMap(territoriesArray);
-						if(isMapConnected) {
-							isValidMap = true;
-						}
-					}else {
-						isValidMap = false;
-					}					
+				boolean addAdjacentTerritories = false;
+				//Adding adjacent territories
+				addAdjacentTerritories = addAdjacentTerritories(mapInfo, territoriesArray);
+				if(addAdjacentTerritories) {
+					//connecting territories to continents
+					boolean valid = false;
+					valid = territoriesToContinents();
+					if(valid) {
+						// Check the adjacency of continents and added connection between continents
+						boolean isContinentConnected = false;
+						isContinentConnected = createContinentConnection();
+						if(isContinentConnected) {
+							// Check all the territories in the Map are connected or not
+							boolean isMapConnected = false;
+							isMapConnected = validateMap(territoriesArray);
+							if(isMapConnected) {
+								isValidMap = true;
+							}
+						}else {
+							isValidMap = false;
+						}					
+					}
+				}else {
+					isValidMap = false;
 				}
 			}else { // else of isValidTerritories
 				isValidMap = false;
@@ -184,12 +191,6 @@ public class MapController {
 					territoryDetails[0] = territoryDetails[0].trim();
 					territoryDetails[3] = territoryDetails[3].trim();
 		    		Territory newTerritory = new Territory(territoryDetails[0], territoryDetails[3],0);
-		    		ArrayList<String> adjacentTerritories = new ArrayList<String>();
-		    		for(int j=4;j<territoryDetails.length;j++) {
-		    			territoryDetails[j] = territoryDetails[j].trim();
-		    			adjacentTerritories.add(territoryDetails[j]);
-		    		}
-		    		newTerritory.setAdjacentTerritories(adjacentTerritories);
 		    		territoriesArray.add(newTerritory);
 				}
 				isValidTerritories = true;
@@ -278,7 +279,7 @@ public class MapController {
 				for(int j = 0;j < continent.getTerritories().size();j++) {
 					Territory territory = continent.getTerritories().get(j);
 					for(int k = 0; k < territory.getAdjacentTerritories().size(); k++) {
-						String adjacentTerritory = territory.getAdjacentTerritories().get(k);
+						String adjacentTerritory = territory.getAdjacentTerritories().get(k).getName();
 						if(!isAdjacentTerritoryInSameContinent(continent.getName(), adjacentTerritory)) {
 							Continent adjacentTerritoryContinent = getContinentFromTerritory(adjacentTerritory);
 							if(temp == 0) {
@@ -391,7 +392,7 @@ public class MapController {
 			while(!checkedTerritories.isEmpty()) {
 				Territory newTerritory = getTerritory(checkedTerritories.get(0), territoriesList);
 				for(int k = 0;k < newTerritory.getAdjacentTerritories().size();k++) {
-					String adjacentTerritory = newTerritory.getAdjacentTerritories().get(k);
+					String adjacentTerritory = newTerritory.getAdjacentTerritories().get(k).getName();
 					if(visitedTerritories.indexOf(adjacentTerritory) < 0 ) {
 						visitedTerritories.add(adjacentTerritory);
 					}
@@ -537,9 +538,9 @@ public class MapController {
 			for(int i = 0;i<territoriesArray.size();i++) {
 				Territory newTerritory = (Territory)territoriesArray.get(i);
 				if(territory.equals(newTerritory)) {
-					ArrayList<String> adjacentTerritories = newTerritory.getAdjacentTerritories();
+					ArrayList<Territory> adjacentTerritories = newTerritory.getAdjacentTerritories();
 					for(int j = 0;j<adjacentTerritories.size();j++) {
-						String adjacenTerritoryName = adjacentTerritories.get(j);
+						String adjacenTerritoryName = adjacentTerritories.get(j).getName();
 						// Remove the adjacency between two territories
 						removeTerritoryAdjacency(territoryName, adjacenTerritoryName);
 					}
@@ -566,7 +567,7 @@ public class MapController {
 	public void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
 		for(int i = 0;i<territoriesArray.size();i++) {
 			if(adjacentTerritoryName.equals(territoriesArray.get(i).getName())) {
-				territoriesArray.get(i).getAdjacentTerritories().remove(territoryName);
+				//territoriesArray.get(i).getAdjacentTerritories().remove(territoryName);
 			}
 		}
 	}
@@ -611,6 +612,45 @@ public class MapController {
 			}
 		}
 		return territory;
+	}
+	
+	/**
+	 * Add adjacent territories to each territories
+	 * 
+	 * @param mapInfo String content of file
+	 * @param territories ArrayList of territories
+	 * @return true/false
+	 */
+	public boolean addAdjacentTerritories(String mapInfo, ArrayList<Territory> territories) {
+		boolean isValidTerritories = false;
+		if(mapInfo.contains("[Territories]")) {
+			try {
+				int indexOfTerritories = mapInfo.indexOf("[Territories]");
+				String territoryStrings = mapInfo.substring(indexOfTerritories);
+				String territoryInfo[] = territoryStrings.split("\n");
+				for(int i=1;i<territoryInfo.length;i++) {
+					territoryInfo[i].trim();
+					String[] territoryDetails = territoryInfo[i].split(",");
+					Territory newTerritory = getTerritory(territoryDetails[0], territories);
+		    		ArrayList<Territory> adjacentTerritories = new ArrayList<Territory>();
+		    		for(int j=4;j<territoryDetails.length;j++) {
+		    			territoryDetails[j] = territoryDetails[j].trim();
+		    			Territory adjTerr = getTerritory(territoryDetails[j].trim(), territories);
+		    			adjacentTerritories.add(adjTerr);
+		    		}
+		    		newTerritory.setAdjacentTerritories(adjacentTerritories);
+				}
+				isValidTerritories = true;
+			}catch(Exception e) {
+				System.out.println(e.toString());
+				message.append("There is some error in the syntax of the territories, Please recheck");
+				isValidTerritories = false;
+			}			
+		}else {
+			message.append("Map has no territories");
+			isValidTerritories = false;
+		}
+		return isValidTerritories;
 	}
 	
 }

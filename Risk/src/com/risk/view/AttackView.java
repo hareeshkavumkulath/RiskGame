@@ -15,12 +15,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.risk.controller.MapController;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 
 import javax.swing.JTextPane;
-import java.awt.Component;
 import java.util.ArrayList;
 
 /**
@@ -140,13 +138,11 @@ public class AttackView extends JFrame {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				MapController controller = new MapController();
 				int selectedIndex = attackingTerr.getSelectedIndex();
-				ArrayList<String> attackedTerritories = new ArrayList<String>();
-				attackedTerritories = attackingTerritories.get(selectedIndex).getAdjacentTerritories();
+				ArrayList<Territory> attackedTerritories = player.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
 				String[] attackedTerrNames = new String[attackedTerritories.size()];
-				for(int i = 0;i<attackedTerritories.size();i++) {
-					Territory tempTerritory = controller.getTerritory(attackedTerritories.get(i), territories);
+				for(int i = 0;i<attackedTerrNames.length;i++) {
+					Territory tempTerritory = attackedTerritories.get(i);
 					attackedTerrNames[i] = tempTerritory.getName() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
 				}
 				attackedTerr.setListData(attackedTerrNames);
