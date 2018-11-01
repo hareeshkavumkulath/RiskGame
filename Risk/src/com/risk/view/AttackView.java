@@ -12,10 +12,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.risk.model.Player;
+import com.risk.model.Territory;
+
 import javax.swing.JTextPane;
 import java.awt.Component;
+import java.util.ArrayList;
 
 /**
  * Attack View Window JFrame
@@ -37,6 +42,7 @@ public class AttackView extends JFrame {
 	private JTextField attackingArmy;
 	private JTextField attackedArmy;
 	private Player player;
+	public ArrayList<Territory> attackingTerritories;
 	
 	/**
 	 * Create the frame. This is a constructor assigning values.
@@ -67,8 +73,14 @@ public class AttackView extends JFrame {
 		lblPlayer.setBounds(15, 57, 69, 20);
 		contentPane.add(lblPlayer);
 		
-		JList attackingTerr = new JList();
+		JList<String> attackingTerr = new JList<String>();
 		attackingTerr.setBounds(1, 1, 219, 301);
+		attackingTerritories = player.getOwnedTerritories();
+		String[] attackingTerrNames = new String[attackingTerritories.size()];
+		for(int i = 0;i<attackingTerritories.size();i++) {
+			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
+		}
+		attackingTerr.setListData(attackingTerrNames);
 		contentPane.add(attackingTerr);
 		
 		JScrollPane attackingTerrPane = new JScrollPane(attackingTerr);
@@ -76,7 +88,7 @@ public class AttackView extends JFrame {
 		attackingTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(attackingTerrPane);
 		
-		JList attackedTerr = new JList();
+		JList<String> attackedTerr = new JList<String>();
 		attackedTerr.setBounds(1, 1, 219, 301);
 		contentPane.add(attackedTerr);
 		
@@ -120,7 +132,20 @@ public class AttackView extends JFrame {
 		lblStatus.setBounds(891, 16, 195, 21);
 		contentPane.add(lblStatus);
 		
-		
+		attackingTerr.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				int selectedIndex = attackingTerr.getSelectedIndex();
+				ArrayList<String> attackedTerritories = new ArrayList<String>();
+				attackedTerritories = attackingTerritories.get(selectedIndex).getAdjacentTerritories();
+				String[] attackedTerrNames = new String[attackedTerritories.size()];
+				for(int i = 0;i<attackedTerritories.size();i++) {
+					attackedTerrNames[i] = attackedTerritories.get(i);
+				}
+				attackedTerr.setListData(attackedTerrNames);
+			}
+		});
 		
 		
 		
