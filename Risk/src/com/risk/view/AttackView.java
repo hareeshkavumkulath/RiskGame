@@ -4,7 +4,6 @@
 package com.risk.view;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -29,11 +28,8 @@ import java.util.ArrayList;
  * @version 1.0
  *
  */
-public class AttackView extends JFrame {
+public class AttackView extends JPanel {
 
-	@SuppressWarnings("javadoc")
-	private JPanel contentPane;
-	
 	@SuppressWarnings("javadoc")
 	private JTextField attackingArmy;
 	@SuppressWarnings("javadoc")
@@ -47,28 +43,25 @@ public class AttackView extends JFrame {
 	 * @param player Define the player information.
 	 */
 	public AttackView(Player player) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1228, 598);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBounds(100, 100, 846, 494);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Attacking Territory");
 		lblNewLabel.setBounds(244, 16, 151, 20);
-		contentPane.add(lblNewLabel);
+		add(lblNewLabel);
 		
 		JLabel label = new JLabel("Player Name");
 		label.setBounds(15, 16, 151, 20);
-		contentPane.add(label);
+		add(label);
 		
 		JLabel lblAttackedCountry = new JLabel("Attacked Territory");
 		lblAttackedCountry.setBounds(563, 16, 151, 20);
-		contentPane.add(lblAttackedCountry);
+		add(lblAttackedCountry);
 		
 		JLabel lblPlayer = new JLabel(player.getName());
 		lblPlayer.setBounds(15, 57, 69, 20);
-		contentPane.add(lblPlayer);
+		add(lblPlayer);
 		
 		JList<String> attackingTerr = new JList<String>();
 		attackingTerr.setBounds(1, 1, 219, 301);
@@ -78,56 +71,43 @@ public class AttackView extends JFrame {
 			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
 		}
 		attackingTerr.setListData(attackingTerrNames);
-		contentPane.add(attackingTerr);
+		add(attackingTerr);
 		
 		JScrollPane attackingTerrPane = new JScrollPane(attackingTerr);
 		attackingTerrPane.setBounds(244, 51, 247, 303);
 		attackingTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		contentPane.add(attackingTerrPane);
+		add(attackingTerrPane);
 		
 		JList<String> attackedTerr = new JList<String>();
 		attackedTerr.setBounds(1, 1, 219, 301);
-		contentPane.add(attackedTerr);
+		add(attackedTerr);
 		
 		JScrollPane attackedTerrPane = new JScrollPane(attackedTerr);
 		attackedTerrPane.setBounds(563, 52, 247, 303);
 		attackedTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		contentPane.add(attackedTerrPane);
+		add(attackedTerrPane);
 		
 		attackingArmy = new JTextField();
 		attackingArmy.setBounds(244, 371, 247, 26);
-		contentPane.add(attackingArmy);
+		add(attackingArmy);
 		attackingArmy.setColumns(10);
 		
 		attackedArmy = new JTextField();
 		attackedArmy.setBounds(563, 371, 247, 26);
 		attackedArmy.setColumns(10);
-		contentPane.add(attackedArmy);
+		add(attackedArmy);
 		
 		JLabel lblNumberOfDices = new JLabel("Number of Dices");
 		lblNumberOfDices.setBounds(15, 374, 167, 20);
-		contentPane.add(lblNumberOfDices);
+		add(lblNumberOfDices);
 		
 		JButton btnAttack = new JButton("Attack");
-		btnAttack.setBounds(695, 428, 115, 29);
-		contentPane.add(btnAttack);
+		btnAttack.setBounds(502, 428, 115, 29);
+		add(btnAttack);
 		
 		JButton btnEndAttack = new JButton("End Attack");
-		btnEndAttack.setBounds(856, 428, 123, 29);
-		contentPane.add(btnEndAttack);
-		
-		JTextPane statusPanel = new JTextPane();
-		statusPanel.setText("");
-		
-		JScrollPane StatusScrollPane = new JScrollPane(statusPanel);
-		StatusScrollPane.setBounds(891, 51, 268, 303);
-		StatusScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		StatusScrollPane.setViewportView(statusPanel);
-		contentPane.add(StatusScrollPane);
-		
-		JLabel lblStatus = new JLabel("Status information");
-		lblStatus.setBounds(891, 16, 195, 21);
-		contentPane.add(lblStatus);
+		btnEndAttack.setBounds(686, 428, 123, 29);
+		add(btnEndAttack);
 		
 		attackingTerr.addListSelectionListener(new ListSelectionListener() {
 			
