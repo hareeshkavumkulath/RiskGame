@@ -715,7 +715,8 @@ public class GameWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AttackView attackView = new AttackView(playerList.get(0));
-				attackView.setVisible(true);
+				attackView.setBounds(648, 383, 846, 494);
+				frame.getContentPane().add(attackView);
 			}
 		});
 	}

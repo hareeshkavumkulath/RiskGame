@@ -1,0 +1,18 @@
+[Continents]
+North America=5
+South America=2
+Africa=3
+Europe=5
+Asia=7
+
+
+[Territories]
+Alaska,0,0,North America,Venezuala,Iceland,Western Europe
+Venezuala,0,0,South America,Alaska,North Africa,Great Britain
+North Africa,0,0,Africa,Venezuala,Scandinavia
+Iceland,0,0,Europe,Alaska,Great Britain
+Great Britain,0,0,Europe,Venezuala,Iceland
+Western Europe,0,0,Europe,Middle East,Alaska
+Scandinavia,0,0,Europe,North Africa
+Middle East,0,0,Asia,Western Europe
+
