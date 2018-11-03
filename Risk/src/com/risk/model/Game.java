@@ -65,6 +65,8 @@ public class Game extends Observable {
 	 */
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
+		setChanged();
+		notifyObservers(this);
 	}
 
 	/**

@@ -85,6 +85,7 @@ public class GameWindow {
 	@SuppressWarnings("javadoc")
 	private JList<String> ownedTerritories;
 	private ArrayList<Card> cards;
+	int currentIndex = 0;
 	
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> playerList = new ArrayList<Player>();
@@ -163,6 +164,7 @@ public class GameWindow {
 	 */
 	private void initialize() {
 		game = new Game(map);
+		game.setMap(map);
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.GREEN);
 		frame.setBounds(100, 100, 1926, 909);
@@ -323,7 +325,7 @@ public class GameWindow {
 		frame.getContentPane().add(instructionsScrollPane);
 		
 		numArmiesText = new JTextField();
-		numArmiesText.setEditable(false);
+		numArmiesText.setEditable(true);
 		numArmiesText.setText("1");
 		numArmiesText.setBounds(1078, 202, 80, 26);
 		frame.getContentPane().add(numArmiesText);
@@ -911,6 +913,7 @@ public class GameWindow {
 		for(int i=0;i<playerList.size();i++) {
 			if(playerList.get(i).getStrategy().equals("ATTACK")) {
 				currentPlayer = playerList.get(i);
+				currentIndex = i;
 				break;
 			}
 		}
@@ -967,30 +970,32 @@ public class GameWindow {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					GameController controller = new GameController();
-					int numAttackingArmies = 0;
-					int numAttackedArmies = 0;
+					int numAttackerArmies = 0;
+					int numOpponentArmies = 0;
 					int selectedIndex1 = attackingTerr.getSelectedIndex();
 					int selectedIndex2 = attackedTerr.getSelectedIndex();
-					Territory attacker = currentPlayer.getOwnedTerritories().get(selectedIndex1);
-					Territory opponent = attacker.getAdjacentTerritories().get(selectedIndex2);
+					Territory attackerTerr = currentPlayer.getOwnedTerritories().get(selectedIndex1);
+					Territory opponentTerr = attackerTerr.getAdjacentTerritories().get(selectedIndex2);
+					Player attacker = attackerTerr.getRuler();
+					Player opponent = opponentTerr.getRuler();
 					boolean canAttack = false;
 					try {
-						numAttackingArmies = Integer.parseInt(attackingArmy.getText());
-						numAttackedArmies = Integer.parseInt(attackedArmy.getText());
+						numAttackerArmies = Integer.parseInt(attackingArmy.getText());
+						numOpponentArmies = Integer.parseInt(attackedArmy.getText());
 					}catch(Exception ex) {
 						JOptionPane.showMessageDialog(null, "Please enter numbers", "Alert", JOptionPane.ERROR_MESSAGE);
 					}
-					if(numAttackingArmies < 2 || numAttackingArmies > 3) {
+					if(numAttackerArmies < 2 || numAttackerArmies > 3) {
 						JOptionPane.showMessageDialog(null, "Please enter either 2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
 					}else {
-						if(numAttackingArmies == 3) {
-							if(numAttackedArmies < 1 || numAttackedArmies > 2) {
+						if(numAttackerArmies == 3) {
+							if(numOpponentArmies < 1 || numOpponentArmies > 2) {
 								JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
 							}else {
 								canAttack = true;
 							}
 						}else {
-							if(numAttackedArmies == 1) {
+							if(numOpponentArmies == 1) {
 								canAttack = true;
 							}else {
 								JOptionPane.showMessageDialog(null, "Please enter 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
@@ -1001,38 +1006,21 @@ public class GameWindow {
 						btnEndAttack.setVisible(false);
 						attackingTerr.setEnabled(false);
 						attackedTerr.setEnabled(false);
-						instructions.setInstructions(attacker.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponent.getName() + "(" + opponent.getRuler().getName() + ")");
-						AttackStatus attackStatus = currentPlayer.attack(selectedIndex1, selectedIndex2, numAttackingArmies, numAttackedArmies, playerList);
-						playerList = attackStatus.getPlayerList();
-						if(attackStatus.hasWon) {
-							System.out.println(attackStatus.getWinner() + " has won");
-							instructions.setInstructions(attackStatus.getStatusMessage().toString());
-							if(attackStatus.getWinner() == currentPlayer) {
-								System.out.println("Inside if");
-								opponent.getRuler().getOwnedTerritories().remove(opponent);
-								currentPlayer.getOwnedTerritories().add(opponent);
-							}else {
-								System.out.println("Inside else");
-								currentPlayer.getOwnedTerritories().remove(attacker);
-								opponent.getRuler().getOwnedTerritories().add(attacker);
-							}
+						instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
+						AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies, game);
+						game = status.getGame();
+						instructions.setInstructions(status.getStatusMessage().toString());
+						game.update();
+						if(status.hasWon) {
 							attackingTerr.setEnabled(true);
 							attackedTerr.setEnabled(true);
 							btnEndAttack.setVisible(true);
+							updateJList(currentIndex, selectedIndex1, 0);
 						}else {
-							attackingTerr.setEnabled(true);
-							attackedTerr.setEnabled(true);
-							btnEndAttack.setVisible(true);
-							System.out.println("Nobody won,, game continues");
-							instructions.setInstructions(attackStatus.getStatusMessage().toString());
+							attackingTerr.setEnabled(false);
+							attackedTerr.setEnabled(false);
 							btnEndAttack.setVisible(false);
-						}
-						if(attackStatus.hasWon) {
-							updatePlayerJList();
-							playerJList.setEnabled(true);
-							updateJList(currentPlayer, selectedIndex1, 0);
-						}else {
-							updateJList(currentPlayer, selectedIndex1, selectedIndex2);
+							updateJList(currentIndex, selectedIndex1, selectedIndex2);
 						}
 						if(currentPlayer.getOwnedTerritories().size() == 0) {
 							displayAttackPanel();
@@ -1047,12 +1035,15 @@ public class GameWindow {
 	}
 
 	/**
+	 * @param currPlayer 
 	 * @param currentPlayer2
 	 * @param selectedIndex1
+	 * @param selectedIndex2 
 	 * @param i
 	 */
-	protected void updateJList(Player currPlayer, int selectedIndex1, int selectedIndex2) {
-		ArrayList<Territory> attackingTerritories = currentPlayer.getOwnedTerritories();
+	protected void updateJList(int currentIndex, int selectedIndex1, int selectedIndex2) {
+		System.out.println(selectedIndex1);
+		ArrayList<Territory> attackingTerritories = game.getPlayers().get(currentIndex).getOwnedTerritories();
 		String[] attackingTerrNames = new String[attackingTerritories.size()];
 		for(int i = 0;i<attackingTerritories.size();i++) {
 			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
@@ -1064,7 +1055,7 @@ public class GameWindow {
 			String[] attackedTerrNames = {};
 			attackedTerr.setListData(attackedTerrNames);
 		}else {
-			ArrayList<Territory> attackedTerritories = currPlayer.getOwnedTerritories().get(selectedIndex1).getAdjacentTerritories();
+			ArrayList<Territory> attackedTerritories = game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getAdjacentTerritories();
 			String[] attackedTerrNames = new String[attackedTerritories.size()];
 			for(int i = 0;i<attackedTerrNames.length;i++) {
 				Territory tempTerritory = attackedTerritories.get(i);

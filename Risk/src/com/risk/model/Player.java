@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
+import com.risk.controller.GameController;
+
 /**
  * Model class for Player
  * 
@@ -168,136 +170,82 @@ public class Player {
 	}
 
 	/**
-	 * Attack 
-	 * 
-	 * @param attacker  
-	 * @param opponent Player against whom playing
-	 * @param numAttackingArmies int number of attacking armies
-	 * @param numAttackedArmies int number of attacked armies
-	 * @return AttackStatus statusMessage with winner
+	 * @param attackerTerr
+	 * @param opponentTerr
+	 * @param numAttackerArmies
+	 * @param numOpponentArmies
 	 */
-	public AttackStatus attack(int selectedIndex1, int selectedIndex2,int numAttackingArmies, int numAttackedArmies, ArrayList<Player> playerList) {
+	public static AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies, Game game) {
 		
-		/* Set up objects of Attacker */
-		Player attacker = this;
-		Territory attackingTerritory = this.getOwnedTerritories().get(selectedIndex1);
-		int indexOfAttacker = playerList.indexOf(attacker);
-		int numArmyAttacker = attacker.getNumberOfArmies();
-		int numArmyAttTerr = attackingTerritory.getNumberOfArmies();
-		int indexOfAttackerTerritory = attacker.getOwnedTerritories().indexOf(attackingTerritory);
-		
-		/* Set up objects of Opponent */
-		Territory opponentTerritory = attackingTerritory.getAdjacentTerritories().get(selectedIndex2);
-		Player opponent = opponentTerritory.getRuler();
-		int indexOfOpponent = playerList.indexOf(opponent);
-		int numArmyOpponent = opponent.getNumberOfArmies();
-		int numArmyOppTerr = opponentTerritory.getNumberOfArmies();
-		int indexOfOpponentTerritory = attackingTerritory.getAdjacentTerritories().indexOf(opponentTerritory);
+		StringBuffer message = new StringBuffer();
 		
 		AttackStatus status = new AttackStatus();
-		StringBuffer message = status.getStatusMessage();
+		GameController controller = new GameController();
 		
-		/*Logic for Attacking - Start */
-		Integer[] firstDices = new Integer[numAttackingArmies];
-		Integer[] secondDices = new Integer[numAttackedArmies];
+		int numArmyAttacker = attackerTerr.getNumberOfArmies();
+		int numArmyOpponent = opponentTerr.getNumberOfArmies();
 		
-		//Roll Dices
-		for(int i=0;i<numAttackingArmies;i++) {
+		Integer[] firstDices = new Integer[numAttackerArmies];
+		Integer[] secondDices = new Integer[numOpponentArmies];
+		
+		for(int i=0;i<numAttackerArmies;i++) {
 			firstDices[i] = new Random().nextInt(6) + 1;
 		}
 		
-		for(int i=0;i<numAttackedArmies;i++) {
+		for(int i=0;i<numOpponentArmies;i++) {
 			secondDices[i] = new Random().nextInt(6) + 1;
 		}
 		
 		Arrays.sort(firstDices, Collections.reverseOrder());
 		Arrays.sort(secondDices, Collections.reverseOrder());
 		
-		message.append(attacker.getName() + " has "+ numAttackingArmies +" dices \n");
-		System.out.println(attacker.getName() + " has "+ numAttackingArmies +" dices \n");
-		for(int i=0;i<numAttackingArmies;i++) {
-			message.append(firstDices[i] + "\n");
+		message.append(attackerTerr.getRuler().getName() + " has "+ numAttackerArmies +" dices \n");
+		for(int i=0;i<numAttackerArmies;i++) {
+			System.out.println(firstDices[i]);
 		}
 		
-		message.append(opponent.getName() + " has " + numAttackedArmies + " dices \n");
-		System.out.println(opponent.getName() + " has " + numAttackedArmies + " dices \n");
-		for(int i=0;i<numAttackedArmies;i++) {
-			message.append(secondDices[i] + "\n");
+		message.append(opponentTerr.getRuler().getName() + " has " + numOpponentArmies + " dices \n");
+		for(int i=0;i<numOpponentArmies;i++) {
+			System.out.println(secondDices[i]);
 		}
 		
-		//Comparing dices
-		for(int i=0;i<numAttackedArmies;i++) {
+		for(int i=0;i<numOpponentArmies;i++) {
 			boolean win = compareDices(firstDices[i], secondDices[i]);
-			System.out.println("Comparing " + firstDices[i] + "," + secondDices[i] + "\n");
+			System.out.println("Comparing " + firstDices[i] + "," + secondDices[i]);
 			message.append("Comparing " + firstDices[i] + "," + secondDices[i] + "\n");
 			if(win) {
-				System.out.println(this.getName() + " won.\n");
-				message.append(this.getName() + " won.\n");
-				numAttackedArmies--;
+				message.append(opponentTerr.getRuler().getName() + " lost an army.\n");
 				numArmyOpponent--;
-				numArmyOppTerr--;
 			}else {
-				System.out.println("Inside else");
-				System.out.println(opponent.getName() + " won.\n");
-				message.append(opponent.getName() + " won.\n");
-				numAttackingArmies--;
+				message.append(attackerTerr.getRuler().getName() + " lost an army.\n");
 				numArmyAttacker--;
-				numArmyAttTerr--;
 			}
 		}
 		
-		//Result
-		if(numAttackingArmies == 0) {
-			
-			if(numArmyAttacker == 0) {
-				playerList.remove(indexOfAttacker);
-				attackingTerritory.setNumberOfArmies(1);
-				playerList.get(indexOfOpponent).getOwnedTerritories().add(attackingTerritory);
-				status.setWinner(opponent);
-				status.hasWon(true);
-			}else if(numArmyAttTerr == 0) {
-				playerList.get(indexOfAttacker).getOwnedTerritories().remove(indexOfAttackerTerritory);
-				attackingTerritory.setNumberOfArmies(1);
-				playerList.get(indexOfOpponent).getOwnedTerritories().add(attackingTerritory);
-				status.setWinner(opponent);
-				status.hasWon(true);
-			}else {
-				status.setWinner(null);
-				status.hasWon(false);
-			}
-			System.out.println(opponent.getName() + " won and balance armies " + (numAttackedArmies) + "\n");
-			message.append(opponent.getName() + " won and balance armies " + (numAttackedArmies) + "\n");
-		}else if(numAttackedArmies == 0) {
-			if(numArmyOpponent == 0) {
-				playerList.remove(indexOfOpponent);
-				opponentTerritory.setNumberOfArmies(1);
-				//playerList.get(indexOfAttacker).getOwnedTerritories().add(opponentTerritory);
-				status.setWinner(attacker);
-				status.hasWon(true);
-			}else if(numArmyOppTerr == 0) {
-				playerList.get(indexOfOpponent).getOwnedTerritories().remove(indexOfOpponentTerritory);
-				opponentTerritory.setNumberOfArmies(1);
-				//playerList.get(indexOfAttacker).getOwnedTerritories().add(opponentTerritory);
-				status.setWinner(attacker);
-				status.hasWon(true);
-			}else {
-				status.setWinner(null);
-				status.hasWon(false);
-			}
-			System.out.println(attacker.getName() + " won and balance armies " + (numAttackingArmies) + "\n");
-			message.append(attacker.getName() + " won and balance armies " + (numAttackingArmies) + "\n");
+		attackerTerr.setNumberOfArmies(numArmyAttacker);
+		opponentTerr.setNumberOfArmies(numArmyOpponent);
+		
+		System.out.println(attackerTerr.getRuler().getName() + " has balance armies in " + attackerTerr.getName() + " is " + numArmyAttacker);
+		System.out.println(opponentTerr.getRuler().getName() + " has balance armies in " + opponentTerr.getName() + " is " + numArmyOpponent);
+		
+		game = controller.updateGame(attackerTerr, opponentTerr, game);
+		
+		if(numArmyOpponent <= 0) {
+			status.setHasWon(true);
+			status.setWinner(attackerTerr.getRuler());
+			message.append(attackerTerr.getRuler().getName() + " won and balance armies " + (numArmyAttacker) + "\n");
+		}else if(numArmyAttacker <= 0) {
+			status.setHasWon(true);
+			status.setWinner(opponentTerr.getRuler());
+			message.append(opponentTerr.getRuler().getName() + " won and balance armies " + (numArmyOpponent) + "\n");
+		}else {
+			status.setHasWon(false);
 		}
-		else {
-			status.setWinner(null);
-			status.hasWon(false);
-		}
-		status.setPlayerList(playerList);
 		status.setStatusMessage(message);
-		
-		
-		
+		status.setGame(game);
 		return status;
-	}	
+		
+	}
 	
 	public static boolean compareDices(int i, int j) {
 		if(i>j) {
