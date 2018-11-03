@@ -7,6 +7,8 @@ import java.util.Set;
 
 import com.risk.model.Card;
 import com.risk.model.Continent;
+import com.risk.model.Game;
+import com.risk.model.Map;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 
@@ -379,5 +381,90 @@ public class GameController {
 			numArmies = numArmies + player.getOwnedContinents().get(i).getNumberOfArmies();
 		}
 		return numArmies;
-	}	
+	}
+
+	/**
+	 * @param currentPlayer
+	 * @param ruler
+	 * @param playerList
+	 * @return
+	 */
+	public ArrayList<Player> updatePlayerList(Player attackerPlayer, Player opponentPlayer, ArrayList<Player> playerList) {
+		for(int i=0;i<playerList.size();i++) {
+			if(playerList.get(i).getName() == attackerPlayer.getName()) {
+				playerList.remove(i);
+				playerList.add(i, attackerPlayer);
+			}else if(playerList.get(i).getName() == opponentPlayer.getName()) {
+				playerList.remove(i);
+				playerList.add(i, opponentPlayer);
+			}
+		}
+		for(int i=0;i<playerList.size();i++) {
+			if(playerList.get(i).getOwnedTerritories().size() == 0) {
+				playerList.remove(i);
+			}
+		}
+		return playerList;
+	}
+
+	/**
+	 * @param attackerTerr
+	 * @param opponentTerr
+	 * @param game
+	 * @return
+	 */
+	public Game updateGame(Territory attackerTerr, Territory opponentTerr, Game game) {
+		if(attackerTerr.getNumberOfArmies() == 0) {
+			game = updateTerritoryRuler(attackerTerr, opponentTerr.getRuler(), game, 0);
+			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
+			game = updatePlayerList(opponentTerr, attackerTerr, game);
+		}else if(opponentTerr.getNumberOfArmies() == 0) {
+			game = updateTerritoryRuler(opponentTerr, attackerTerr.getRuler(), game, 0);
+			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
+			game = updatePlayerList(attackerTerr, opponentTerr, game);
+		}else {
+			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
+			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
+		}
+		game = updatePlayerList(game);
+		return game;
+	}
+
+	/**
+	 * @return
+	 */
+	private Game updatePlayerList(Game game) {
+		for(int i=0;i<game.getPlayers().size();i++) {
+			Player currPlayer = game.getPlayers().get(i);
+			if(currPlayer.getOwnedTerritories().size() == 0) {
+				game.getPlayers().remove(i);
+			}
+		}
+		return game;		
+	}
+
+	/**
+	 * @param opponentTerr
+	 * @param attackerTerr
+	 * @return
+	 */
+	private Game updatePlayerList(Territory addTerr, Territory removeTerr, Game game) {
+		int addIndex = game.getPlayers().indexOf(addTerr.getRuler());
+		int removeIndex = game.getPlayers().indexOf(removeTerr.getRuler());
+		game.getPlayers().get(addIndex).getOwnedTerritories().add(addTerr);
+		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(removeIndex);
+		return game;
+	}
+
+	/**
+	 * @param terr
+	 * @param ruler
+	 */
+	private Game updateTerritoryRuler(Territory territory, Player ruler, Game game, int numArmy) {
+		int index = game.getMap().getTerritories().indexOf(territory);
+		game.getMap().getTerritories().get(index).setRuler(ruler);
+		game.getMap().getTerritories().get(index).setNumberOfArmies(numArmy);
+		return game;
+	}
+	
 }
