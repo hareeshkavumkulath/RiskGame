@@ -379,5 +379,31 @@ public class GameController {
 			numArmies = numArmies + player.getOwnedContinents().get(i).getNumberOfArmies();
 		}
 		return numArmies;
-	}	
+	}
+
+	/**
+	 * @param currentPlayer
+	 * @param ruler
+	 * @param playerList
+	 * @return
+	 */
+	public ArrayList<Player> updatePlayerList(Player attackerPlayer, Player opponentPlayer, ArrayList<Player> playerList) {
+		for(int i=0;i<playerList.size();i++) {
+			if(playerList.get(i).getName() == attackerPlayer.getName()) {
+				playerList.remove(i);
+				playerList.add(i, attackerPlayer);
+			}else if(playerList.get(i).getName() == opponentPlayer.getName()) {
+				playerList.remove(i);
+				playerList.add(i, opponentPlayer);
+			}
+		}
+		for(int i=0;i<playerList.size();i++) {
+			if(playerList.get(i).getOwnedTerritories().size() == 0) {
+				playerList.remove(i);
+			}
+		}
+		return playerList;
+	}
+
+	
 }
