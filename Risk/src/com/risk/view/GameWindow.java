@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -109,7 +110,23 @@ public class GameWindow {
 	@SuppressWarnings("javadoc")
 	private InstructionsView instructionsPane;
 	@SuppressWarnings("javadoc")
-	private JButton startGame;
+	private JPanel attackPanel;
+	@SuppressWarnings("javadoc")
+	private JTextField attackingArmy;
+	@SuppressWarnings("javadoc")
+	private JTextField attackedArmy;
+	@SuppressWarnings("javadoc")
+	Player currentPlayer = null;
+	@SuppressWarnings("javadoc")
+	private JLabel lblPlayer;
+	@SuppressWarnings("javadoc")
+	private JList<String> attackingTerr;
+	@SuppressWarnings("javadoc")
+	private JList<String> attackedTerr;
+	@SuppressWarnings("javadoc")
+	private JButton btnAttack;
+	@SuppressWarnings("javadoc")
+	private JButton btnEndAttack;
 	
 	/**
 	 * Launch the application.
@@ -147,7 +164,7 @@ public class GameWindow {
 		game = new Game(map);
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.GREEN);
-		frame.setBounds(100, 100, 1859, 824);
+		frame.setBounds(100, 100, 1926, 909);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -282,14 +299,6 @@ public class GameWindow {
 		beginGame.setVisible(false);
 		frame.getContentPane().add(beginGame);
 		
-		startGame = new JButton("Attack!!!");
-		startGame.setBackground(Color.WHITE);
-		startGame.setForeground(Color.GREEN);
-		startGame.setFont(new Font("Tahoma", Font.BOLD, 22));
-		startGame.setBounds(1118, 298, 235, 48);
-		startGame.setVisible(true);
-		frame.getContentPane().add(startGame);
-		
 		JLabel label = new JLabel("Players");
 		label.setBounds(700, 72, 69, 20);
 		frame.getContentPane().add(label);
@@ -352,6 +361,72 @@ public class GameWindow {
 		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_2.setBounds(809, 96, 211, 257);
 		frame.getContentPane().add(scrollPane_2);
+		
+		attackPanel = new JPanel();
+		attackPanel.setBounds(635, 369, 824, 468);
+		frame.getContentPane().add(attackPanel);
+		attackPanel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Attack View");
+		lblNewLabel_1.setBounds(15, 16, 138, 20);
+		attackPanel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("Attacking Territory");
+		lblNewLabel.setBounds(253, 52, 151, 20);
+		attackPanel.add(lblNewLabel);
+		
+		JLabel labelName = new JLabel("Player Name");
+		labelName.setBounds(15, 52, 151, 20);
+		attackPanel.add(labelName);
+		
+		JLabel lblAttackedCountry = new JLabel("Attacked Territory");
+		lblAttackedCountry.setBounds(560, 52, 151, 20);
+		attackPanel.add(lblAttackedCountry);
+		
+		lblPlayer = new JLabel("");
+		lblPlayer.setBounds(15, 88, 69, 20);
+		attackPanel.add(lblPlayer);
+		
+		attackingTerr = new JList<String>();
+		attackingTerr.setBounds(1, 1, 219, 301);
+		attackPanel.add(attackingTerr);
+		
+		JScrollPane attackingTerrPane = new JScrollPane(attackingTerr);
+		attackingTerrPane.setBounds(247, 88, 247, 271);
+		attackingTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		attackPanel.add(attackingTerrPane);
+		
+		attackedTerr = new JList<String>();
+		attackedTerr.setBounds(1, 1, 219, 301);
+		attackPanel.add(attackedTerr);
+		
+		JScrollPane attackedTerrPane = new JScrollPane(attackedTerr);
+		attackedTerrPane.setBounds(563, 88, 247, 267);
+		attackedTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		attackPanel.add(attackedTerrPane);
+		
+		attackingArmy = new JTextField();
+		attackingArmy.setBounds(247, 371, 247, 26);
+		attackPanel.add(attackingArmy);
+		attackingArmy.setColumns(10);
+		
+		attackedArmy = new JTextField();
+		attackedArmy.setBounds(563, 371, 247, 26);
+		attackedArmy.setColumns(10);
+		attackPanel.add(attackedArmy);
+		
+		JLabel lblNumberOfDices = new JLabel("Number of Dices");
+		lblNumberOfDices.setBounds(15, 374, 167, 20);
+		attackPanel.add(lblNumberOfDices);
+		
+		btnAttack = new JButton("Attack");
+		btnAttack.setBounds(502, 428, 115, 29);
+		attackPanel.add(btnAttack);
+		
+		btnEndAttack = new JButton("End Attack");
+		btnEndAttack.setBounds(686, 428, 123, 29);
+		attackPanel.add(btnEndAttack);
+		attackPanel.setVisible(false);
 		
 		btnFortify.setVisible(false);
 		btnEndFortify.setVisible(false);
@@ -482,34 +557,34 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				String name1 = player1.getText();
 				boolean isComputer1 = isComputer(playerType1.getSelectedIndex());
-				Player firstPlayer = new Player(name1, isComputer1, numArmies);
+				Player firstPlayer = new Player(name1, isComputer1, numArmies, "REINFORCEMENT");
 				String name2 = player2.getText();
 				boolean isComputer2 = isComputer(playerType2.getSelectedIndex());
-				Player secondPlayer = new Player(name2, isComputer2, numArmies);
+				Player secondPlayer = new Player(name2, isComputer2, numArmies, "REINFORCEMENT");
 				playerList.add(firstPlayer);
 				playerList.add(secondPlayer);
 				if(number > 2) {
 					String name = player3.getText();
 					boolean isComputer = isComputer(playerType3.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies);
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
 					playerList.add(newPlayer);
 				}
 				if(number > 3) {
 					String name = player4.getText();
 					boolean isComputer = isComputer(playerType4.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies);
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
 					playerList.add(newPlayer);
 				}
 				if(number > 4) {
 					String name = player5.getText();
 					boolean isComputer = isComputer(playerType5.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies);
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
 					playerList.add(newPlayer);
 				}
 				if(number > 5) {
 					String name = player5.getText();
 					boolean isComputer = isComputer(playerType5.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies);
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
 					playerList.add(newPlayer);
 				}
 				
@@ -609,12 +684,18 @@ public class GameWindow {
 						btnAddArmy.setVisible(false);
 						numArmiesText.setVisible(false);
 						btnReinforcement.setVisible(false);
-						btnFortify.setVisible(true);
+						updatePlayerStrategy("ATTACK");
+						instructions.setInstructions("");
+						instructions.setInstructions("Attacking Phase");
+						instructions.setInstructions("*******************");
+						displayAttackPanel();
+						/*btnFortify.setVisible(true);
 						btnEndFortify.setVisible(true);
 						instructions.setInstructions("");
 						instructions.setInstructions("Fortification Phase");
 						instructions.setInstructions("*******************");
-						instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");
+						instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");*/
+						
 					}else {
 						btnAddArmy.setVisible(false);
 						numArmiesText.setVisible(false);
@@ -652,7 +733,6 @@ public class GameWindow {
 				btnEndFortify.setVisible(false);
 				instructions.setInstructions("Attack!!!");
 				playerJList.setSelectedIndex(0);
-				startGame.setVisible(true);
 			}
 		});
 		
@@ -710,17 +790,8 @@ public class GameWindow {
 			}
 		});
 		
-		startGame.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AttackView attackView = new AttackView(playerList.get(0));
-				attackView.setBounds(648, 383, 846, 494);
-				frame.getContentPane().add(attackView);
-			}
-		});
 	}
-	
+
 	/**
 	 * Add armies to the territory
 	 * 
@@ -818,6 +889,79 @@ public class GameWindow {
 			JOptionPane.showMessageDialog(frame, "Enter a number");
 			numArmiesText.setText("1");
 			return false;
+		}
+	}
+	
+	/**
+	 * Update strategy of the player
+	 * 
+	 * @param strategy strategy string
+	 */
+	protected void updatePlayerStrategy(String strategy) {
+		for(int i=0;i<playerList.size();i++) {
+			playerList.get(i).setStrategy(strategy);
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	protected void displayAttackPanel() {
+		for(int i=0;i<playerList.size();i++) {
+			if(playerList.get(i).getStrategy().equals("ATTACK")) {
+				currentPlayer = playerList.get(i);
+				break;
+			}
+		}
+		if(currentPlayer != null) {
+			attackPanel.setVisible(true);
+			instructions.setInstructions("It's " + currentPlayer.getName() + "'s turn!!! Select a territories and click Attack Button");
+			ArrayList<Territory> attackingTerritories;
+			
+			lblPlayer.setText(currentPlayer.getName());
+			
+			attackingTerritories = currentPlayer.getOwnedTerritories();
+			String[] attackingTerrNames = new String[attackingTerritories.size()];
+			for(int i = 0;i<attackingTerritories.size();i++) {
+				attackingTerrNames[i] = attackingTerritories.get(i).getName() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
+			}
+			attackingTerr.setListData(attackingTerrNames);
+			
+			attackingTerr.addListSelectionListener(new ListSelectionListener() {
+				
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					int selectedIndex = attackingTerr.getSelectedIndex();
+					ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
+					String[] attackedTerrNames = new String[attackedTerritories.size()];
+					for(int i = 0;i<attackedTerrNames.length;i++) {
+						Territory tempTerritory = attackedTerritories.get(i);
+						attackedTerrNames[i] = tempTerritory.getName() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
+					}
+					attackedTerr.setListData(attackedTerrNames);
+				}
+			});
+			
+			attackedTerr.addListSelectionListener(new ListSelectionListener() {
+	
+				@Override
+				public void valueChanged(ListSelectionEvent arg0) {
+					try {
+						int selectedIndexAttacker = attackingTerr.getSelectedIndex();
+						int selectedIndexAttacked = attackedTerr.getSelectedIndex();
+						Player attackedPlayer = attackingTerritories.get(selectedIndexAttacker).getAdjacentTerritories().get(selectedIndexAttacked).getRuler();
+						if(currentPlayer == attackedPlayer) {
+							JOptionPane.showMessageDialog(null, "Both Attacking and Attacked Players should not be same. Choose a different territory", "Alert", JOptionPane.ERROR_MESSAGE);
+							attackedTerr.clearSelection();
+						}
+					}catch(Exception e) {
+						System.out.println("Exception in attacked Territory list selection handler:"+e.toString());
+					}
+				}
+				
+			});
+		}else {
+			attackPanel.setVisible(false);
 		}
 	}
 }

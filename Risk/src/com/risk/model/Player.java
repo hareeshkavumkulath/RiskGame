@@ -22,6 +22,8 @@ public class Player {
 	public boolean isComputer;
 	@SuppressWarnings("javadoc")
 	public boolean fortificationStatus;
+	@SuppressWarnings("javadoc")
+	public String strategy;
 	
 	/**
 	 * Constructor for Player
@@ -29,12 +31,14 @@ public class Player {
 	 * @param name String name of the player
 	 * @param isComputer boolean true or false based on whether the player is computer or human
 	 * @param numberOfArmies int number of armies allocated to player
+	 * @param string 
 	 */
-	public Player(String name, boolean isComputer, int numberOfArmies) {
+	public Player(String name, boolean isComputer, int numberOfArmies, String strategy) {
 		this.name = name;
 		this.isComputer = isComputer;
 		this.numberOfArmies = numberOfArmies;
 		this.fortificationStatus = false;
+		this.strategy = strategy;
 	}
 	
 	/**
@@ -150,6 +154,14 @@ public class Player {
 	 */
 	public void setFortificationStatus(boolean fortificationStatus) {
 		this.fortificationStatus = fortificationStatus;
+	}
+
+	public String getStrategy() {
+		return strategy;
+	}
+
+	public void setStrategy(String strategy) {
+		this.strategy = strategy;
 	}	
 
 }
