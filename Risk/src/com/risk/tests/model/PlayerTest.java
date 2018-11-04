@@ -31,7 +31,7 @@ public class PlayerTest{
     @DisplayName("Player(...) => Right Values for Class Members")
     void playerConstructorTest() {
         
-        Player player = new Player("testPlayer", true, 10);
+        Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
 
         assertEquals(player.name,"testPlayer");
         assertTrue(player.isComputer);

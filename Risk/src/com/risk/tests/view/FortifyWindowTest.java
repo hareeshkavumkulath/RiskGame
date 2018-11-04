@@ -33,7 +33,7 @@ public class FortifyWindowTest{
      */
     @BeforeEach
     void init() {
-        player = new Player("testPlayer",false,10);
+        player = new Player("testPlayer",false,10,"REINFORCEMENT");
         fortifyWindow = new FortifyWindow(player);
     }
 
