@@ -935,14 +935,18 @@ public class GameWindow {
 				
 				@Override
 				public void valueChanged(ListSelectionEvent e) {
-					int selectedIndex = attackingTerr.getSelectedIndex();
-					ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
-					String[] attackedTerrNames = new String[attackedTerritories.size()];
-					for(int i = 0;i<attackedTerrNames.length;i++) {
-						Territory tempTerritory = attackedTerritories.get(i);
-						attackedTerrNames[i] = tempTerritory.getName() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
+					try {
+						int selectedIndex = attackingTerr.getSelectedIndex();
+						ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
+						String[] attackedTerrNames = new String[attackedTerritories.size()];
+						for(int i = 0;i<attackedTerrNames.length;i++) {
+							Territory tempTerritory = attackedTerritories.get(i);
+							attackedTerrNames[i] = tempTerritory.getName() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
+						}
+						attackedTerr.setListData(attackedTerrNames);
+					}catch(Exception ex) {
+						System.out.println("Exception in attacking territory JList" + ex.toString());
 					}
-					attackedTerr.setListData(attackedTerrNames);
 				}
 			});
 			
@@ -1015,12 +1019,16 @@ public class GameWindow {
 							attackingTerr.setEnabled(true);
 							attackedTerr.setEnabled(true);
 							btnEndAttack.setVisible(true);
-							updateJList(currentIndex, selectedIndex1, 0);
+							updateJList(currentIndex, selectedIndex1, -1);
 						}else {
-							attackingTerr.setEnabled(false);
-							attackedTerr.setEnabled(false);
-							btnEndAttack.setVisible(false);
 							updateJList(currentIndex, selectedIndex1, selectedIndex2);
+							if(game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getNumberOfArmies() <= 1) {
+								attackingTerr.setEnabled(true);
+								attackedTerr.setEnabled(true);
+								btnEndAttack.setVisible(true);
+							}else {
+								btnEndAttack.setVisible(false);
+							}
 						}
 						if(currentPlayer.getOwnedTerritories().size() == 0) {
 							displayAttackPanel();
@@ -1042,7 +1050,6 @@ public class GameWindow {
 	 * @param i
 	 */
 	protected void updateJList(int currentIndex, int selectedIndex1, int selectedIndex2) {
-		System.out.println(selectedIndex1);
 		ArrayList<Territory> attackingTerritories = game.getPlayers().get(currentIndex).getOwnedTerritories();
 		String[] attackingTerrNames = new String[attackingTerritories.size()];
 		for(int i = 0;i<attackingTerritories.size();i++) {
@@ -1051,7 +1058,7 @@ public class GameWindow {
 		attackingTerr.setListData(attackingTerrNames);
 		attackingTerr.setSelectedIndex(selectedIndex1);
 		
-		if(selectedIndex2 == 0) {
+		if(selectedIndex2 == -1) {
 			String[] attackedTerrNames = {};
 			attackedTerr.setListData(attackedTerrNames);
 		}else {

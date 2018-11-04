@@ -96,7 +96,7 @@ public class FortifyWindow extends JFrame {
 							int fortifyNum = Integer.parseInt(fortifyNumberField.getText());
 							boolean isValidNumber = controller.validateFortifyNumber(player, territoryFrom.getSelectedIndex(), fortifyNum);
 							if(isValidNumber) {
-								boolean fortifyStatus = controller.fortify(player, territoryFrom.getSelectedIndex(), territoryTo.getSelectedIndex(), fortifyNum);
+								boolean fortifyStatus = controller.fortify(player, player.getOwnedTerritories().get(territoryFrom.getSelectedIndex()), player.getOwnedTerritories().get(territoryFrom.getSelectedIndex()), fortifyNum);
 								if(fortifyStatus) {
 									JOptionPane.showMessageDialog(null, "Fortification is done", "Success Message", JOptionPane.INFORMATION_MESSAGE);
 								}else {
