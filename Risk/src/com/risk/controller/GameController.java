@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import com.risk.model.Card;
 import com.risk.model.Continent;
 import com.risk.model.Game;
@@ -414,23 +416,40 @@ public class GameController {
 	 * @return
 	 */
 	public Game updateGame(Territory attackerTerr, Territory opponentTerr, Game game) {
+		Player opponentRuler = opponentTerr.getRuler();
 		int numArmy = 0;
 		if(attackerTerr.getNumberOfArmies() == 0) {
+			System.out.println("Opponent has won");
 			if(opponentTerr.getNumberOfArmies() == 2) {
 				numArmy = 1;
+			}else if(opponentTerr.getNumberOfArmies() > 2){
+				int minLimit = 1;
+				int maxLimit = opponentTerr.getNumberOfArmies() - 1;
+				String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
+				        JOptionPane.WARNING_MESSAGE);
+				numArmy = Integer.parseInt(input);
+				opponentTerr.setNumberOfArmies(opponentTerr.getNumberOfArmies() - numArmy);
 			}
 			game = updateTerritoryRuler(attackerTerr, opponentTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
 			game = updateAddPlayerList(attackerTerr, opponentTerr.getRuler(), game);
-			game = updateRemovePlayerList(opponentTerr, attackerTerr.getRuler(), game);
+			game = updateRemovePlayerList(attackerTerr, attackerTerr.getRuler(), game);
 		}else if(opponentTerr.getNumberOfArmies() == 0) {
+			System.out.println("Attacker has won");
 			if(attackerTerr.getNumberOfArmies() == 2) {
 				numArmy = 1;
+			}else if(attackerTerr.getNumberOfArmies() > 2){
+				int minLimit = 1;
+				int maxLimit = attackerTerr.getNumberOfArmies() - 1;
+				String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
+				        JOptionPane.WARNING_MESSAGE);
+				numArmy = Integer.parseInt(input);
+				attackerTerr.setNumberOfArmies(attackerTerr.getNumberOfArmies() - numArmy);
 			}
 			game = updateTerritoryRuler(opponentTerr, attackerTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
 			game = updateAddPlayerList(opponentTerr, attackerTerr.getRuler(), game);
-			game = updateRemovePlayerList(attackerTerr, attackerTerr.getRuler(), game);
+			game = updateRemovePlayerList(opponentTerr, opponentRuler, game);
 		}else {
 			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
 			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
@@ -448,6 +467,7 @@ public class GameController {
 	private Game updateRemovePlayerList(Territory territory, Player ruler, Game game) {
 		int removeIndex = game.getPlayers().indexOf(ruler);
 		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(territory);
+		System.out.println(territory.getName() + " is removed from " + ruler.getName());
 		return game;
 	}
 
@@ -460,6 +480,7 @@ public class GameController {
 	public Game updateAddPlayerList(Territory territory, Player ruler, Game game) {
 		int addIndex = game.getPlayers().indexOf(ruler);
 		game.getPlayers().get(addIndex).getOwnedTerritories().add(territory);
+		System.out.println(territory.getName() + " is added to " + ruler.getName());
 		return game;
 	}
 
@@ -474,25 +495,6 @@ public class GameController {
 			}
 		}
 		return game;		
-	}
-
-	/**
-	 * @param opponentTerr
-	 * @param attackerTerr
-	 * @return
-	 */
-	private Game updatePlayerList(Territory addTerr, Territory removeTerr, Game game) {
-		int addIndex = game.getPlayers().indexOf(addTerr.getRuler());
-		int removeIndex = game.getPlayers().indexOf(removeTerr.getRuler());
-		System.out.println("Adding territory:" + addTerr.getName());
-		System.out.println("Before adding: size : " + game.getPlayers().get(addIndex).getOwnedTerritories().size());
-		game.getPlayers().get(addIndex).getOwnedTerritories().add(addTerr);
-		System.out.println("After adding: size : " + game.getPlayers().get(addIndex).getOwnedTerritories().size());
-		System.out.println("Removing territory:" + removeTerr.getName());
-		System.out.println("Before removing: size : " + game.getPlayers().get(removeIndex).getOwnedTerritories().size());
-		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(removeIndex);
-		System.out.println("After removing: size : " + game.getPlayers().get(removeIndex).getOwnedTerritories().size());
-		return game;
 	}
 
 	/**
@@ -522,6 +524,23 @@ public class GameController {
 		}else {
 			return true;
 		}
+	}
+
+	/**
+	 * @param winner
+	 * @param cards
+	 * @param game
+	 * @return
+	 */
+	public Game getCard(Player winner, ArrayList<Card> cards, Game game) {
+		int size = cards.size();
+		int indexOfPlayer = game.getPlayers().indexOf(winner);
+		int randomIndex = new Random().nextInt(size);
+		System.out.println(cards.get(randomIndex).getArmyType());
+		game.getPlayers().get(indexOfPlayer).getCards().add(cards.get(randomIndex));
+		cards.remove(randomIndex);
+		game.setCards(cards);
+		return game;
 	}
 	
 }

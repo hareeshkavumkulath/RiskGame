@@ -20,7 +20,7 @@ public class Game extends Observable {
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> players;
 	@SuppressWarnings("javadoc")
-	public ArrayList<Card> cards;
+	public ArrayList<Card> cards = new ArrayList<Card>();
 
 	/**
 	 * Constructor for Game

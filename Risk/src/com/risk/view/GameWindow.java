@@ -86,6 +86,7 @@ public class GameWindow {
 	private JList<String> ownedTerritories;
 	private ArrayList<Card> cards;
 	int currentIndex = 0;
+	boolean won = false;
 	
 	@SuppressWarnings("javadoc")
 	public ArrayList<Player> playerList = new ArrayList<Player>();
@@ -917,6 +918,7 @@ public class GameWindow {
 				break;
 			}
 		}
+		won = false;
 		if(currentPlayer != null) {
 			attackPanel.setVisible(true);
 			instructions.setInstructions("It's " + currentPlayer.getName() + "'s turn!!! Select territories and click Attack Button");
@@ -989,8 +991,8 @@ public class GameWindow {
 					}catch(Exception ex) {
 						JOptionPane.showMessageDialog(null, "Please enter numbers", "Alert", JOptionPane.ERROR_MESSAGE);
 					}
-					if(numAttackerArmies < 2 || numAttackerArmies > 3) {
-						JOptionPane.showMessageDialog(null, "Please enter either 2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+					if(numAttackerArmies > 3 || numAttackerArmies < 1) {
+						JOptionPane.showMessageDialog(null, "Please enter either 1,2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
 					}else {
 						if(numAttackerArmies == 3) {
 							if(numOpponentArmies < 1 || numOpponentArmies > 2) {
@@ -1017,6 +1019,11 @@ public class GameWindow {
 							instructions.setInstructions(status.getStatusMessage().toString());
 							game.update();
 							if(status.hasWon) {
+								Player winner = status.getWinner();
+								System.out.println("Winner is "+ winner);
+								if(attacker == winner) {
+									playerList.get(currentIndex).hasWon = true;
+								}
 								attackingTerr.setEnabled(true);
 								attackedTerr.setEnabled(true);
 								btnEndAttack.setVisible(true);
@@ -1038,6 +1045,23 @@ public class GameWindow {
 							JOptionPane.showMessageDialog(null, "Not enough armies", "Alert", JOptionPane.ERROR_MESSAGE);
 						}
 					}
+				}
+			});
+			
+			btnEndAttack.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					GameController controller = new GameController();
+					game = controller.getCard(playerList.get(currentIndex), cards, game);
+					playerList.get(currentIndex).hasWon = false;
+					System.out.println(playerList.get(currentIndex).getCards().get(0).getArmyType());
+					btnFortify.setVisible(true);
+					btnEndFortify.setVisible(true);
+					instructions.setInstructions("");
+					instructions.setInstructions("Fortification Phase");
+					instructions.setInstructions("*******************");
+					instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");
 				}
 			});
 			
