@@ -1007,31 +1007,35 @@ public class GameWindow {
 						}
 					}
 					if(canAttack) {
-						btnEndAttack.setVisible(false);
-						attackingTerr.setEnabled(false);
-						attackedTerr.setEnabled(false);
-						instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
-						AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies, game);
-						game = status.getGame();
-						instructions.setInstructions(status.getStatusMessage().toString());
-						game.update();
-						if(status.hasWon) {
-							attackingTerr.setEnabled(true);
-							attackedTerr.setEnabled(true);
-							btnEndAttack.setVisible(true);
-							updateJList(currentIndex, selectedIndex1, -1);
-						}else {
-							updateJList(currentIndex, selectedIndex1, selectedIndex2);
-							if(game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getNumberOfArmies() <= 1) {
+						if(controller.hasEnoughArmies(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies)) {
+							btnEndAttack.setVisible(false);
+							attackingTerr.setEnabled(false);
+							attackedTerr.setEnabled(false);
+							instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
+							AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies, game);
+							game = status.getGame();
+							instructions.setInstructions(status.getStatusMessage().toString());
+							game.update();
+							if(status.hasWon) {
 								attackingTerr.setEnabled(true);
 								attackedTerr.setEnabled(true);
 								btnEndAttack.setVisible(true);
+								updateJList(currentIndex, selectedIndex1, -1);
 							}else {
-								btnEndAttack.setVisible(false);
+								updateJList(currentIndex, selectedIndex1, selectedIndex2);
+								if(game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getNumberOfArmies() <= 1) {
+									attackingTerr.setEnabled(true);
+									attackedTerr.setEnabled(true);
+									btnEndAttack.setVisible(true);
+								}else {
+									btnEndAttack.setVisible(false);
+								}
 							}
-						}
-						if(currentPlayer.getOwnedTerritories().size() == 0) {
-							displayAttackPanel();
+							if(currentPlayer.getOwnedTerritories().size() == 0) {
+								displayAttackPanel();
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "Not enough armies", "Alert", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}
