@@ -505,5 +505,23 @@ public class GameController {
 		game.getMap().getTerritories().get(index).setNumberOfArmies(numArmy);
 		return game;
 	}
+
+	/**
+	 * @param attackerTerr
+	 * @param opponentTerr
+	 * @param numAttackerArmies
+	 * @param numOpponentArmies
+	 * @return
+	 */
+	public boolean hasEnoughArmies(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,
+			int numOpponentArmies) {
+		if(attackerTerr.getNumberOfArmies() <= numAttackerArmies) {
+			return false;
+		}else if(opponentTerr.getNumberOfArmies() < numOpponentArmies) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 	
 }
