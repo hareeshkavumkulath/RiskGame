@@ -1050,6 +1050,10 @@ public class GameWindow {
 	 * @param i
 	 */
 	protected void updateJList(int currentIndex, int selectedIndex1, int selectedIndex2) {
+		String[] emptyArray = {};
+		attackingTerr.setListData(emptyArray);
+		attackedTerr.setListData(emptyArray);
+		
 		ArrayList<Territory> attackingTerritories = game.getPlayers().get(currentIndex).getOwnedTerritories();
 		String[] attackingTerrNames = new String[attackingTerritories.size()];
 		for(int i = 0;i<attackingTerritories.size();i++) {

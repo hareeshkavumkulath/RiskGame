@@ -421,19 +421,45 @@ public class GameController {
 			}
 			game = updateTerritoryRuler(attackerTerr, opponentTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
-			game = updatePlayerList(attackerTerr, attackerTerr, game);
+			game = updateAddPlayerList(attackerTerr, opponentTerr.getRuler(), game);
+			game = updateRemovePlayerList(opponentTerr, attackerTerr.getRuler(), game);
 		}else if(opponentTerr.getNumberOfArmies() == 0) {
 			if(attackerTerr.getNumberOfArmies() == 2) {
 				numArmy = 1;
 			}
 			game = updateTerritoryRuler(opponentTerr, attackerTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
-			game = updatePlayerList(opponentTerr, opponentTerr, game);
+			game = updateAddPlayerList(opponentTerr, attackerTerr.getRuler(), game);
+			game = updateRemovePlayerList(attackerTerr, attackerTerr.getRuler(), game);
 		}else {
 			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
 			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
 		}
 		game = updatePlayerList(game);
+		return game;
+	}
+
+	/**
+	 * @param territory
+	 * @param ruler
+	 * @param game
+	 * @return
+	 */
+	private Game updateRemovePlayerList(Territory territory, Player ruler, Game game) {
+		int removeIndex = game.getPlayers().indexOf(ruler);
+		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(territory);
+		return game;
+	}
+
+	/**
+	 * @param territory
+	 * @param ruler
+	 * @param game
+	 * @return
+	 */
+	public Game updateAddPlayerList(Territory territory, Player ruler, Game game) {
+		int addIndex = game.getPlayers().indexOf(ruler);
+		game.getPlayers().get(addIndex).getOwnedTerritories().add(territory);
 		return game;
 	}
 
