@@ -238,20 +238,20 @@ public class GameController {
 	 * Fortify with the fortifyNumber
 	 * 
 	 * @param player Player
-	 * @param fromTerritoryIndex Index of selected From Territory
-	 * @param toTerritoryIndex Index of selected To Territory
+	 * @param territoryFrom From Territory
+	 * @param territoryTo To Territory
 	 * @param fortifyNum number of fortifying armies
 	 * @return boolean true if fortify function is completed else false
 	 */
-	public boolean fortify(Player player, int fromTerritoryIndex, int toTerritoryIndex, int fortifyNum) {
+	public boolean fortify(Player player, Territory territoryFrom, Territory territoryTo, int fortifyNum) {
 		boolean status = false;
 		try {
-			int fromTerrNumArmies = player.getOwnedTerritories().get(fromTerritoryIndex).getNumberOfArmies();
-			int toTerrNumArmies = player.getOwnedTerritories().get(toTerritoryIndex).getNumberOfArmies();
+			int fromTerrNumArmies = territoryFrom.getNumberOfArmies();
+			int toTerrNumArmies = territoryTo.getNumberOfArmies();
 			fromTerrNumArmies = fromTerrNumArmies - fortifyNum;
 			toTerrNumArmies = toTerrNumArmies + fortifyNum;
-			player.getOwnedTerritories().get(fromTerritoryIndex).setNumberOfArmies(fromTerrNumArmies);
-			player.getOwnedTerritories().get(toTerritoryIndex).setNumberOfArmies(toTerrNumArmies);
+			territoryFrom.setNumberOfArmies(fromTerrNumArmies);
+			territoryTo.setNumberOfArmies(toTerrNumArmies);
 			player.setFortificationStatus(true);
 			status = true;
 		}catch(Exception e) {
@@ -414,14 +414,21 @@ public class GameController {
 	 * @return
 	 */
 	public Game updateGame(Territory attackerTerr, Territory opponentTerr, Game game) {
+		int numArmy = 0;
 		if(attackerTerr.getNumberOfArmies() == 0) {
-			game = updateTerritoryRuler(attackerTerr, opponentTerr.getRuler(), game, 0);
+			if(opponentTerr.getNumberOfArmies() == 2) {
+				numArmy = 1;
+			}
+			game = updateTerritoryRuler(attackerTerr, opponentTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
-			game = updatePlayerList(opponentTerr, attackerTerr, game);
+			game = updatePlayerList(attackerTerr, attackerTerr, game);
 		}else if(opponentTerr.getNumberOfArmies() == 0) {
-			game = updateTerritoryRuler(opponentTerr, attackerTerr.getRuler(), game, 0);
+			if(attackerTerr.getNumberOfArmies() == 2) {
+				numArmy = 1;
+			}
+			game = updateTerritoryRuler(opponentTerr, attackerTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
-			game = updatePlayerList(attackerTerr, opponentTerr, game);
+			game = updatePlayerList(opponentTerr, opponentTerr, game);
 		}else {
 			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
 			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
@@ -451,8 +458,14 @@ public class GameController {
 	private Game updatePlayerList(Territory addTerr, Territory removeTerr, Game game) {
 		int addIndex = game.getPlayers().indexOf(addTerr.getRuler());
 		int removeIndex = game.getPlayers().indexOf(removeTerr.getRuler());
+		System.out.println("Adding territory:" + addTerr.getName());
+		System.out.println("Before adding: size : " + game.getPlayers().get(addIndex).getOwnedTerritories().size());
 		game.getPlayers().get(addIndex).getOwnedTerritories().add(addTerr);
+		System.out.println("After adding: size : " + game.getPlayers().get(addIndex).getOwnedTerritories().size());
+		System.out.println("Removing territory:" + removeTerr.getName());
+		System.out.println("Before removing: size : " + game.getPlayers().get(removeIndex).getOwnedTerritories().size());
 		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(removeIndex);
+		System.out.println("After removing: size : " + game.getPlayers().get(removeIndex).getOwnedTerritories().size());
 		return game;
 	}
 
