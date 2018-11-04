@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.risk.model;
-
-import java.util.ArrayList;
 
 /**
  * @author Hareesh Kavumkulath
