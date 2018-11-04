@@ -29,6 +29,8 @@ public class Player {
 	public boolean fortificationStatus;
 	@SuppressWarnings("javadoc")
 	public String strategy;
+	public ArrayList<Card> cards;
+	public boolean hasWon = false;
 	
 	/**
 	 * Constructor for Player
@@ -253,6 +255,22 @@ public class Player {
 		}else {
 			return false;
 		}
+	}
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
+	}
+
+	public boolean isHasWon() {
+		return hasWon;
+	}
+
+	public void setHasWon(boolean hasWon) {
+		this.hasWon = hasWon;
 	}
 
 }
