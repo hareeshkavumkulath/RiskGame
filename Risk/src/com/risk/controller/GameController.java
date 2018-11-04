@@ -268,7 +268,7 @@ public class GameController {
 	 * @return double as percentage
 	 */
 	public double getDomination(Continent continent, Player player) {
-		double percentage = 0;
+		double percentage = 0.0;
 		int totalNumTerritories = continent.getTerritories().size();
 		int count = 0;
 		for(int i=0;i<continent.getTerritories().size();i++) {
@@ -276,7 +276,7 @@ public class GameController {
 				count++;
 			}
 		}
-		percentage = (count * 100) / totalNumTerritories;
+		percentage = (double)((count * 100) / totalNumTerritories);
 		return percentage;
 	}
 
@@ -288,7 +288,7 @@ public class GameController {
 	 * @return double as percentage
 	 */
 	public double getDomination(Player player, ArrayList<Territory> territories) {
-		double percentage = 0;
+		double percentage = 0.0;
 		int totalNumTerritories = territories.size();
 		int count = 0;
 		for(int i=0;i<territories.size();i++) {
@@ -296,7 +296,7 @@ public class GameController {
 				count++;
 			}
 		}
-		percentage = (count * 100) / totalNumTerritories;
+		percentage = (double)(count * 100) / (double)totalNumTerritories;
 		return percentage;
 	}
 
