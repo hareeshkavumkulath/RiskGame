@@ -3,6 +3,7 @@
  */
 package com.risk.view;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -106,6 +107,7 @@ public class WorldDominationView extends JPanel implements Observer{
 			for(int j=0;j<players.size();j++) {
 				Player player = players.get(j);
 				double percentage = controller.getDomination(continent, player);
+				percentage = Double.parseDouble(new DecimalFormat("##.####").format(percentage));
 				continentDomStr.append(player.getName()+ " - " + percentage + "%\n");
 			}
 			continentDomStr.append("******************************\n");
