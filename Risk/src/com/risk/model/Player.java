@@ -29,7 +29,7 @@ public class Player {
 	public boolean fortificationStatus;
 	@SuppressWarnings("javadoc")
 	public String strategy;
-	public ArrayList<Card> cards;
+	public ArrayList<Card> cards = new ArrayList<Card>();
 	public boolean hasWon = false;
 	
 	/**
