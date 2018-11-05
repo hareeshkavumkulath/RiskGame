@@ -352,4 +352,19 @@ class GameControllerTests{
     		int opponent_armies = 2;
     		assertTrue(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
     }
+    
+    @Test
+    @DisplayName("Check the number of turn In Armies")
+    void getNumberOfArmiesTest() {
+    	assertEquals(4, gameController.getNumberOfArmies(1));
+    	assertEquals(6, gameController.getNumberOfArmies(2));
+    	assertEquals(8, gameController.getNumberOfArmies(3));
+    	assertEquals(10, gameController.getNumberOfArmies(4));
+    	assertEquals(12, gameController.getNumberOfArmies(5));
+    	assertEquals(15, gameController.getNumberOfArmies(6));
+    	assertEquals(20, gameController.getNumberOfArmies(3));
+    	assertEquals(25, gameController.getNumberOfArmies(4));
+    	assertEquals(30, gameController.getNumberOfArmies(5));
+    	assertEquals(35, gameController.getNumberOfArmies(6));
+    }
 }

@@ -31,6 +31,7 @@ public class Player {
 	public String strategy;
 	public ArrayList<Card> cards = new ArrayList<Card>();
 	public boolean hasWon = false;
+	public int turnInCards;
 	
 	/**
 	 * Constructor for Player
@@ -46,6 +47,7 @@ public class Player {
 		this.numberOfArmies = numberOfArmies;
 		this.fortificationStatus = false;
 		this.strategy = strategy;
+		this.turnInCards = 1;
 	}
 	
 	/**
@@ -233,11 +235,13 @@ public class Player {
 		message.append(attackerTerr.getRuler().getName() + " has "+ numAttackerArmies +" dices \n");
 		for(int i=0;i<numAttackerArmies;i++) {
 			System.out.println(firstDices[i]);
+			message.append(firstDices[i] + "\n");
 		}
 		
 		message.append(opponentTerr.getRuler().getName() + " has " + numOpponentArmies + " dices \n");
 		for(int i=0;i<numOpponentArmies;i++) {
 			System.out.println(secondDices[i]);
+			message.append(secondDices[i] + "\n");
 		}
 		
 		for(int i=0;i<numOpponentArmies;i++) {
@@ -331,5 +335,19 @@ public class Player {
 			status = false;
 		}
 		return status;
+	}
+
+	/**
+	 * @return the turnInCards
+	 */
+	public int getTurnInCards() {
+		return turnInCards;
+	}
+
+	/**
+	 * @param turnInCards the turnInCards to set
+	 */
+	public void setTurnInCards(int turnInCards) {
+		this.turnInCards = turnInCards;
 	}
 }
