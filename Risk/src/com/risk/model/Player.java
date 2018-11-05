@@ -293,4 +293,19 @@ public class Player {
 		this.hasWon = hasWon;
 	}
 
+	/**
+	 * Reinforce function
+	 * 
+	 * @param game 
+	 * @return Player this.player
+	 */
+	public Player reinforce(Game game) {
+		GameController controller = new GameController();
+		int reinforcementArmy = controller.getNumReinforcements(this);
+		int numArmiesFromContinents = controller.getNumArmiesFromContinents(this);
+		reinforcementArmy = reinforcementArmy + numArmiesFromContinents;
+		this.setNumberOfArmies(reinforcementArmy);
+		return this;
+	}
+
 }
