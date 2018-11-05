@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.risk.controller.GameController;
 import com.risk.model.Player;
+import com.risk.model.Territory;
 /**
  * Fortify Window for users to fortify their armies.
  * 
@@ -95,8 +96,10 @@ public class FortifyWindow extends JFrame {
 						try {
 							int fortifyNum = Integer.parseInt(fortifyNumberField.getText());
 							boolean isValidNumber = controller.validateFortifyNumber(player, territoryFrom.getSelectedIndex(), fortifyNum);
+							Territory fromTerritory = player.getOwnedTerritories().get(territoryFrom.getSelectedIndex());
+							Territory toTerritory = player.getOwnedTerritories().get(territoryTo.getSelectedIndex());
 							if(isValidNumber) {
-								boolean fortifyStatus = controller.fortify(player, player.getOwnedTerritories().get(territoryFrom.getSelectedIndex()), player.getOwnedTerritories().get(territoryFrom.getSelectedIndex()), fortifyNum);
+								boolean fortifyStatus = player.fortify(fromTerritory, toTerritory, fortifyNum);
 								if(fortifyStatus) {
 									JOptionPane.showMessageDialog(null, "Fortification is done", "Success Message", JOptionPane.INFORMATION_MESSAGE);
 								}else {

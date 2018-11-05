@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionListener;
 import com.risk.controller.GameController;
 import com.risk.model.AttackStatus;
 import com.risk.model.Card;
+import com.risk.model.CardsObservable;
 import com.risk.model.Continent;
 import com.risk.model.Game;
 import com.risk.model.GameInstructions;
@@ -36,6 +37,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Component;
 
 /**
  * This class implements Game Window pages functionalities and design user interface.
@@ -99,6 +101,8 @@ public class GameWindow {
 	@SuppressWarnings("javadoc")
 	private GameInstructions instructions = new GameInstructions(instructionsMsg);
 	@SuppressWarnings("javadoc")
+	private CardsObservable cardsObject = new CardsObservable();
+	@SuppressWarnings("javadoc")
 	private AbstractButton btnAddArmy;
 	@SuppressWarnings("javadoc")
 	private AbstractButton btnAddReinforceArmy;
@@ -132,6 +136,7 @@ public class GameWindow {
 	private JButton btnAttack;
 	@SuppressWarnings("javadoc")
 	private JButton btnEndAttack;
+	private CardsJList cardsPanel;
 	
 	/**
 	 * Launch the application.
@@ -330,32 +335,32 @@ public class GameWindow {
 		numArmiesText = new JTextField();
 		numArmiesText.setEditable(true);
 		numArmiesText.setText("1");
-		numArmiesText.setBounds(1078, 202, 80, 26);
+		numArmiesText.setBounds(1051, 325, 27, 26);
 		frame.getContentPane().add(numArmiesText);
 		numArmiesText.setColumns(10);
 		numArmiesText.setVisible(false);
 		
-		btnAddArmy = new JButton("Add Army");
-		btnAddArmy.setBounds(1194, 201, 115, 29);
+		btnAddArmy = new JButton("Add");
+		btnAddArmy.setBounds(1158, 324, 69, 29);
 		frame.getContentPane().add(btnAddArmy);
 		btnAddArmy.setVisible(false);
 		
-		btnAddReinforceArmy = new JButton("Add Reinforce Army");
-		btnAddReinforceArmy.setBounds(1194, 201, 183, 29);
+		btnAddReinforceArmy = new JButton("Add Reinforce");
+		btnAddReinforceArmy.setBounds(1237, 324, 138, 29);
 		frame.getContentPane().add(btnAddReinforceArmy);
 		btnAddReinforceArmy.setVisible(false);
 		
 		btnReinforcement = new JButton("Reinforce");
-		btnReinforcement.setBounds(1051, 201, 115, 29);
+		btnReinforcement.setBounds(1051, 324, 99, 29);
 		frame.getContentPane().add(btnReinforcement);
 		btnReinforcement.setVisible(false);
 		
 		btnFortify = new JButton("Fortify");
-		btnFortify.setBounds(1051, 201, 115, 29);
+		btnFortify.setBounds(1475, 369, 115, 29);
 		frame.getContentPane().add(btnFortify);
 		
 		btnEndFortify = new JButton("End Fortify");
-		btnEndFortify.setBounds(1194, 201, 115, 29);
+		btnEndFortify.setBounds(1618, 369, 115, 29);
 		frame.getContentPane().add(btnEndFortify);
 		
 		JScrollPane scrollPane = new JScrollPane(territoriesJList);
@@ -437,7 +442,12 @@ public class GameWindow {
 		btnEndAttack = new JButton("End Attack");
 		btnEndAttack.setBounds(686, 428, 123, 29);
 		attackPanel.add(btnEndAttack);
-		attackPanel.setVisible(false);
+		
+		cardsPanel = new CardsJList();
+		frame.getContentPane().add(cardsPanel);
+		cardsPanel.setVisible(false);
+		
+		cardsObject.addObserver(cardsPanel);
 		
 		btnFortify.setVisible(false);
 		btnEndFortify.setVisible(false);
@@ -664,6 +674,8 @@ public class GameWindow {
 				}
 				
 				currentPlayer = playerList.get(0);
+				game.setCurrentPlayer(currentPlayer);
+				cardsObject.setPlayer(currentPlayer);
 				
 			}
 		});
@@ -761,7 +773,6 @@ public class GameWindow {
 					onGame();
 					
 				}else {
-					btnAddArmy.setVisible(true);
 					numArmiesText.setVisible(true);
 				}
 			}
@@ -775,6 +786,8 @@ public class GameWindow {
 				btnEndFortify.setVisible(false);
 				currentPlayer.setStrategy("REINFORCEMENT");
 				currentPlayer = nextPlayer();
+				cardsObject.setPlayer(currentPlayer);
+				game.setCurrentPlayer(currentPlayer);
 				int nextIndex;
 				int selectedPlayerIndex = playerJList.getSelectedIndex();
 				if(selectedPlayerIndex == (playerList.size() -1)) {
@@ -799,6 +812,7 @@ public class GameWindow {
 				updatePlayerJList();
 				reinforceStatus = true;
 				btnReinforcement.setVisible(false);
+				cardsPanel.setVisible(false);
 				playerJList.setSelectedIndex(playerList.indexOf(currentPlayer));
 			}
 		});
@@ -1055,7 +1069,7 @@ public class GameWindow {
 									Player winner = status.getWinner();
 									System.out.println("Winner is "+ winner);
 									if(attacker == winner) {
-										playerList.get(currentIndex).hasWon = true;
+										currentPlayer.hasWon = true;
 									}
 									attackingTerr.setEnabled(true);
 									attackedTerr.setEnabled(true);
@@ -1086,10 +1100,11 @@ public class GameWindow {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					GameController controller = new GameController();
-					game = controller.getCard(playerList.get(currentIndex), cards, game);
-					playerList.get(currentIndex).hasWon = false;
-					System.out.println(playerList.get(currentIndex).getCards().get(0).getArmyType());
+					if(currentPlayer.hasWon) {
+						GameController controller = new GameController();
+						game = controller.addCard(playerList.get(currentIndex), cards, game);
+						currentPlayer.hasWon = false;
+					}
 					btnFortify.setVisible(true);
 					btnEndFortify.setVisible(true);
 					playerList.get(currentIndex).setStrategy("FORTIFY");
@@ -1176,6 +1191,7 @@ public class GameWindow {
 		btnAddArmy.setVisible(false);
 		numArmiesText.setVisible(false);
 		btnReinforcement.setVisible(true);
+		cardsPanel.setVisible(true);
 		instructions.setInstructions("");
 		instructions.setInstructions("Reinforcement Phase");
 		instructions.setInstructions("*******************");
@@ -1196,5 +1212,4 @@ public class GameWindow {
 			
 		}
 	}
-
 }
