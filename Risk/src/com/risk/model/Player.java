@@ -49,7 +49,7 @@ public class Player {
 	}
 	
 	/**
-	 * 
+	 *  Empty default constructor 
 	 */
 	public Player() {
 		// TODO Auto-generated constructor stub
@@ -163,19 +163,32 @@ public class Player {
 		this.fortificationStatus = fortificationStatus;
 	}
 
+	/**
+	 * Getter Strategy method
+	 * 
+	 * @return String of the strategy
+	 */
 	public String getStrategy() {
 		return strategy;
 	}
 
+	/**
+	 * Setter to set strategy
+	 * 
+	 * @param strategy set and define the strategy
+	 */
 	public void setStrategy(String strategy) {
 		this.strategy = strategy;
 	}
 
 	/**
-	 * @param attackerTerr
-	 * @param opponentTerr
-	 * @param numAttackerArmies
-	 * @param numOpponentArmies
+	 * Attack method implements the attack phase and define the variables, number of armies, show status messages 
+	 * 
+	 * @param attackerTerr pass the attacker territory into attack function
+	 * @param opponentTerr pass the opponent territory into the attack method
+	 * @param numAttackerArmies pass the number of attacker armies into attack and update it
+	 * @param numOpponentArmies pass the number of opponent armies into attack and update it
+	 * @return AttackStatus of the current attack status
 	 */
 	public static AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies, Game game) {
 		
@@ -249,6 +262,13 @@ public class Player {
 		
 	}
 	
+	/**
+	 * This compare dices method executes the comparison result of dices number
+	 * 
+	 * @param i the number of dices of player 1
+	 * @param j the number of dices of player 2
+	 * @return boolean true of false if player 1 has more dices than player 2
+	 */
 	public static boolean compareDices(int i, int j) {
 		if(i>j) {
 			return true;

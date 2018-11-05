@@ -315,5 +315,41 @@ class GameControllerTests{
 
         assertTrue(gameController.fortify(p,0,1,2));
     }*/
-
+ // =====================hasEnoughArmies()=====================
+    /**
+     * Testing hasEnoughArmies() function return value
+     */
+    @Test
+    @DisplayName("hasEnoughArmies() should return => TRUE")
+    void hasEnoughArmiesTest(){
+    		Territory attacker= new Territory("testTerritory", "testContinent", 10);
+    		Territory opponent= new Territory("testTerritory", "testContinent", 10);
+    		int attacker_armies = 2;
+    		int opponent_armies = 2;
+    		assertTrue(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
+    }
+    /**
+     * Testing hasEnoughArmies() function return value
+     */
+    @Test
+    @DisplayName("hasEnoughArmies() Opponent Army < Chosen Dice => FALSE")
+    void hasEnoughArmiesOpponentLessDice(){
+    		Territory attacker= new Territory("testTerritory", "testContinent", 10);
+    		Territory opponent= new Territory("testTerritory", "testContinent", 1);
+    		int attacker_armies = 2;
+    		int opponent_armies = 2;
+    		assertTrue(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
+    }
+    /**
+     * Testing hasEnoughArmies() function return value
+     */
+    @Test
+    @DisplayName("hasEnoughArmies() Attacker Army < Chosen Dice => FALSE")
+    void hasEnoughArmiesAttackerLessDice(){
+    		Territory attacker= new Territory("testTerritory", "testContinent", 1);
+    		Territory opponent= new Territory("testTerritory", "testContinent", 10);
+    		int attacker_armies = 2;
+    		int opponent_armies = 2;
+    		assertTrue(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
+    }
 }
