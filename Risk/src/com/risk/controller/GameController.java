@@ -278,7 +278,7 @@ public class GameController {
 				count++;
 			}
 		}
-		percentage = (double)((count * 100) / totalNumTerritories);
+		percentage = (double)(count * 100) / (double)totalNumTerritories;
 		return percentage;
 	}
 
