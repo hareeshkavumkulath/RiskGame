@@ -717,7 +717,7 @@ public class GameWindow {
 				updatePlayerJList();
 				int nextIndex;
 				if(isAdded) {
-					if(selectedPlayerIndex == numberOfPlayers -1) {
+					if(selectedPlayerIndex == (playerList.size() -1)) {
 						nextIndex = 0;
 					}else {
 						nextIndex = selectedPlayerIndex+1;
@@ -735,8 +735,16 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				btnFortify.setVisible(false);
 				btnEndFortify.setVisible(false);
-				instructions.setInstructions("Attack!!!");
-				playerJList.setSelectedIndex(0);
+				playerList.get(playerJList.getSelectedIndex()).setStrategy("REINFORCEMENT");
+				int nextIndex;
+				int selectedPlayerIndex = playerJList.getSelectedIndex();
+				if(selectedPlayerIndex == (playerList.size() -1)) {
+					nextIndex = 0;					
+				}else {
+					nextIndex = selectedPlayerIndex+1;
+				}
+				playerJList.setSelectedIndex(nextIndex);
+				displayAttackPanel();
 			}
 		});
 		
@@ -911,6 +919,7 @@ public class GameWindow {
 	 * 
 	 */
 	protected void displayAttackPanel() {
+		currentPlayer = null;
 		for(int i=0;i<playerList.size();i++) {
 			if(playerList.get(i).getStrategy().equals("ATTACK")) {
 				currentPlayer = playerList.get(i);
@@ -920,6 +929,7 @@ public class GameWindow {
 		}
 		won = false;
 		if(currentPlayer != null) {
+			System.out.println("Current Player:" + currentPlayer.getName());
 			attackPanel.setVisible(true);
 			instructions.setInstructions("It's " + currentPlayer.getName() + "'s turn!!! Select territories and click Attack Button");
 			ArrayList<Territory> attackingTerritories;
@@ -950,25 +960,6 @@ public class GameWindow {
 						System.out.println("Exception in attacking territory JList" + ex.toString());
 					}
 				}
-			});
-			
-			attackedTerr.addListSelectionListener(new ListSelectionListener() {
-	
-				@Override
-				public void valueChanged(ListSelectionEvent arg0) {
-					try {
-						int selectedIndexAttacker = attackingTerr.getSelectedIndex();
-						int selectedIndexAttacked = attackedTerr.getSelectedIndex();
-						Player attackedPlayer = attackingTerritories.get(selectedIndexAttacker).getAdjacentTerritories().get(selectedIndexAttacked).getRuler();
-						if(currentPlayer == attackedPlayer) {
-							JOptionPane.showMessageDialog(null, "Both Attacking and Attacked Players should not be same. Choose a different territory", "Alert", JOptionPane.ERROR_MESSAGE);
-							attackedTerr.clearSelection();
-						}
-					}catch(Exception e) {
-						System.out.println("Exception in attacked Territory list selection handler:"+e.toString());
-					}
-				}
-				
 			});
 			
 			btnAttack.addActionListener(new ActionListener() {
@@ -1008,42 +999,44 @@ public class GameWindow {
 							}
 						}
 					}
-					if(canAttack) {
-						if(controller.hasEnoughArmies(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies)) {
-							btnEndAttack.setVisible(false);
-							attackingTerr.setEnabled(false);
-							attackedTerr.setEnabled(false);
-							instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
-							AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies, game);
-							game = status.getGame();
-							instructions.setInstructions(status.getStatusMessage().toString());
-							game.update();
-							if(status.hasWon) {
-								Player winner = status.getWinner();
-								System.out.println("Winner is "+ winner);
-								if(attacker == winner) {
-									playerList.get(currentIndex).hasWon = true;
-								}
-								attackingTerr.setEnabled(true);
-								attackedTerr.setEnabled(true);
-								btnEndAttack.setVisible(true);
-								updateJList(currentIndex, selectedIndex1, -1);
-							}else {
-								updateJList(currentIndex, selectedIndex1, selectedIndex2);
-								if(game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getNumberOfArmies() <= 1) {
+					if(samePlayer(attackerTerr, opponentTerr)) {
+						if(canAttack) {
+							if(controller.hasEnoughArmies(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies)) {
+								btnEndAttack.setVisible(false);
+								attackingTerr.setEnabled(false);
+								attackedTerr.setEnabled(false);
+								instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
+								AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies, game);
+								game = status.getGame();
+								instructions.setInstructions(status.getStatusMessage().toString());
+								game.update();
+								if(status.hasWon) {
+									Player winner = status.getWinner();
+									System.out.println("Winner is "+ winner);
+									if(attacker == winner) {
+										playerList.get(currentIndex).hasWon = true;
+									}
 									attackingTerr.setEnabled(true);
 									attackedTerr.setEnabled(true);
 									btnEndAttack.setVisible(true);
+									updateJList(currentIndex, selectedIndex1, -1);
 								}else {
-									btnEndAttack.setVisible(false);
+									updateJList(currentIndex, selectedIndex1, selectedIndex2);
+									if(game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getNumberOfArmies() <= 1) {
+										attackingTerr.setEnabled(true);
+										attackedTerr.setEnabled(true);
+										btnEndAttack.setVisible(true);
+									}else {
+										btnEndAttack.setVisible(false);
+									}
 								}
+							}else {
+								JOptionPane.showMessageDialog(null, "Not enough armies", "Alert", JOptionPane.ERROR_MESSAGE);
 							}
-							if(currentPlayer.getOwnedTerritories().size() == 0) {
-								displayAttackPanel();
-							}
-						}else {
-							JOptionPane.showMessageDialog(null, "Not enough armies", "Alert", JOptionPane.ERROR_MESSAGE);
 						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Both Attacking and Attacked Players should not be same. Choose a different territory", "Alert", JOptionPane.ERROR_MESSAGE);
+						attackedTerr.clearSelection();
 					}
 				}
 			});
@@ -1058,6 +1051,8 @@ public class GameWindow {
 					System.out.println(playerList.get(currentIndex).getCards().get(0).getArmyType());
 					btnFortify.setVisible(true);
 					btnEndFortify.setVisible(true);
+					playerList.get(currentIndex).setStrategy("FORTIFY");
+					attackPanel.setVisible(false);
 					instructions.setInstructions("");
 					instructions.setInstructions("Fortification Phase");
 					instructions.setInstructions("*******************");
@@ -1067,6 +1062,21 @@ public class GameWindow {
 			
 		}else {
 			attackPanel.setVisible(false);
+		}
+	}
+
+	/**
+	 * @param attackerTerr
+	 * @param opponentTerr
+	 * @return
+	 */
+	protected boolean samePlayer(Territory attackerTerr, Territory opponentTerr) {
+		System.out.println("Attacker: " + attackerTerr.getName() + ", " + attackerTerr.getRuler().getName());
+		System.out.println("Opponent: " + opponentTerr.getName() + ", " + opponentTerr.getRuler().getName());
+		if(attackerTerr.getRuler() == opponentTerr.getRuler()) {
+			return false;
+		}else {
+			return true;
 		}
 	}
 
