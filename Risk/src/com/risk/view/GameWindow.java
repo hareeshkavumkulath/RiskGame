@@ -101,6 +101,8 @@ public class GameWindow {
 	@SuppressWarnings("javadoc")
 	private AbstractButton btnAddArmy;
 	@SuppressWarnings("javadoc")
+	private AbstractButton btnAddReinforceArmy;
+	@SuppressWarnings("javadoc")
 	private JButton btnReinforcement;
 	@SuppressWarnings("javadoc")
 	private JButton btnFortify;
@@ -337,6 +339,11 @@ public class GameWindow {
 		btnAddArmy.setBounds(1194, 201, 115, 29);
 		frame.getContentPane().add(btnAddArmy);
 		btnAddArmy.setVisible(false);
+		
+		btnAddReinforceArmy = new JButton("Add Reinforce Army");
+		btnAddReinforceArmy.setBounds(1194, 201, 183, 29);
+		frame.getContentPane().add(btnAddReinforceArmy);
+		btnAddReinforceArmy.setVisible(false);
 		
 		btnReinforcement = new JButton("Reinforce");
 		btnReinforcement.setBounds(1051, 201, 115, 29);
@@ -652,6 +659,12 @@ public class GameWindow {
 				
 				game.addObserver(worldDomViewPanel);
 				
+				for(int i=0;i<playerList.size();i++) {
+					playerList.get(i).setStrategy("REINFORCEMENT");
+				}
+				
+				currentPlayer = playerList.get(0);
+				
 			}
 		});
 		
@@ -682,37 +695,7 @@ public class GameWindow {
 						numArmiesText.setText("1");
 					}
 				}
-				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
-				if(isAddingCompleted) {
-					if(reinforceStatus) {
-						btnAddArmy.setVisible(false);
-						numArmiesText.setVisible(false);
-						btnReinforcement.setVisible(false);
-						updatePlayerStrategy("ATTACK");
-						instructions.setInstructions("");
-						instructions.setInstructions("Attacking Phase");
-						instructions.setInstructions("*******************");
-						displayAttackPanel();
-						/*btnFortify.setVisible(true);
-						btnEndFortify.setVisible(true);
-						instructions.setInstructions("");
-						instructions.setInstructions("Fortification Phase");
-						instructions.setInstructions("*******************");
-						instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");*/
-						
-					}else {
-						btnAddArmy.setVisible(false);
-						numArmiesText.setVisible(false);
-						btnReinforcement.setVisible(true);
-						instructions.setInstructions("");
-						instructions.setInstructions("Reinforcement Phase");
-						instructions.setInstructions("*******************");
-						instructions.setInstructions("Adding is completed. Click on Reinforcement button");
-					}
-				}else {
-					btnAddArmy.setVisible(true);
-					numArmiesText.setVisible(true);
-				}
+				
 				updateOwnedTerritories(playerJList.getSelectedIndex());
 				updatePlayerJList();
 				int nextIndex;
@@ -726,6 +709,61 @@ public class GameWindow {
 					nextIndex = selectedPlayerIndex;
 				}
 				playerJList.setSelectedIndex(nextIndex);
+				
+				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
+				if(isAddingCompleted) {
+					
+					onGame();
+					
+				}else {
+					btnAddArmy.setVisible(true);
+					numArmiesText.setVisible(true);
+				}
+			}
+		});
+		
+		// Add Armies to territories
+		btnAddReinforceArmy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean isAdded = false;
+				GameController controller = new GameController();
+				boolean isSelected = isSelected();
+				int selectedPlayerIndex = playerJList.getSelectedIndex();
+				if(isSelected) {
+					int numArmies = Integer.parseInt(numArmiesText.getText());
+					int selectedTerIndex = ownedTerritories.getSelectedIndex();
+					if(playerList.get(selectedPlayerIndex).getNumberOfArmies() >= numArmies) {
+						isAdded = addArmyToTerritory(playerJList.getSelectedIndex(), ownedTerritories.getSelectedIndex(),numArmies);
+						if(isAdded) {
+							String instrMessage = "Player, " + playerList.get(selectedPlayerIndex).getName() + "("+ playerList.get(selectedPlayerIndex).getNumberOfArmies() +")" + 
+												  " Added an army to territory, " + playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getName() +
+												  "("+ playerList.get(selectedPlayerIndex).getOwnedTerritories().get(selectedTerIndex).getNumberOfArmies() +")";
+							instructions.setInstructions(instrMessage);
+							game.update();
+							numArmiesText.setText("1");
+						}else {
+							instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " Invalid Move");
+						}
+					}else {
+						instructions.setInstructions("Player, " + playerJList.getSelectedValue() + " doesn't have enough armies");
+						numArmiesText.setText("1");
+					}
+				}
+				
+				updateOwnedTerritories(playerJList.getSelectedIndex());
+				updatePlayerJList();
+				playerJList.setSelectedIndex(selectedPlayerIndex);
+				
+				boolean isAddingCompleted = controller.isAddingCompleted(playerList);
+				currentPlayer.setStrategy("ATTACK");
+				if(isAddingCompleted) {
+					
+					onGame();
+					
+				}else {
+					btnAddArmy.setVisible(true);
+					numArmiesText.setVisible(true);
+				}
 			}
 		});
 		
@@ -735,7 +773,8 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				btnFortify.setVisible(false);
 				btnEndFortify.setVisible(false);
-				playerList.get(playerJList.getSelectedIndex()).setStrategy("REINFORCEMENT");
+				currentPlayer.setStrategy("REINFORCEMENT");
+				currentPlayer = nextPlayer();
 				int nextIndex;
 				int selectedPlayerIndex = playerJList.getSelectedIndex();
 				if(selectedPlayerIndex == (playerList.size() -1)) {
@@ -744,30 +783,23 @@ public class GameWindow {
 					nextIndex = selectedPlayerIndex+1;
 				}
 				playerJList.setSelectedIndex(nextIndex);
-				displayAttackPanel();
+				onGame();
 			}
 		});
 		
 		btnReinforcement.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				currentPlayer = currentPlayer.reinforce(game);
 				GameController controller = new GameController();
 				playerList = controller.getOwnedContinents(continents, playerList);
-				for(int i=0;i<playerList.size();i++) {
-					int reinforcementArmy = controller.getNumReinforcements(playerList.get(i));
-					int numArmiesFromContinents = controller.getNumArmiesFromContinents(playerList.get(i));
-					reinforcementArmy = reinforcementArmy + numArmiesFromContinents;
-					instructions.setInstructions("Player, " + playerList.get(i).getName() + " has " + reinforcementArmy + " armies.");
-					playerList.get(i).setNumberOfArmies(reinforcementArmy);
-					btnAddArmy.setVisible(true);
-					numArmiesText.setVisible(true);
-					updateOwnedTerritories(playerJList.getSelectedIndex());
-					updatePlayerJList();
-					reinforceStatus = true;
-					btnReinforcement.setVisible(false);
-					int nextIndex = 0;
-					playerJList.setSelectedIndex(nextIndex);
-				}
+				btnAddReinforceArmy.setVisible(true);
+				numArmiesText.setVisible(true);
+				updateOwnedTerritories(playerJList.getSelectedIndex());
+				updatePlayerJList();
+				reinforceStatus = true;
+				btnReinforcement.setVisible(false);
+				playerJList.setSelectedIndex(playerList.indexOf(currentPlayer));
 			}
 		});
 		
@@ -802,6 +834,19 @@ public class GameWindow {
 			}
 		});
 		
+	}
+
+	/**
+	 * @return
+	 */
+	protected Player nextPlayer() {
+		int index = playerList.indexOf(currentPlayer);
+		if(index == (playerList.size() - 1)) {
+			index = 0;
+		}else {
+			index++;
+		}
+		return playerList.get(index);
 	}
 
 	/**
@@ -917,17 +962,14 @@ public class GameWindow {
 	
 	/**
 	 * 
+	 * Display current player's attack panel
+	 * 
 	 */
 	protected void displayAttackPanel() {
-		currentPlayer = null;
-		for(int i=0;i<playerList.size();i++) {
-			if(playerList.get(i).getStrategy().equals("ATTACK")) {
-				currentPlayer = playerList.get(i);
-				currentIndex = i;
-				break;
-			}
-		}
+		playerJList.setEnabled(true);
+		hideAddButtons();
 		won = false;
+		currentIndex = playerList.indexOf(currentPlayer);
 		if(currentPlayer != null) {
 			System.out.println("Current Player:" + currentPlayer.getName());
 			attackPanel.setVisible(true);
@@ -974,7 +1016,6 @@ public class GameWindow {
 					Territory attackerTerr = currentPlayer.getOwnedTerritories().get(selectedIndex1);
 					Territory opponentTerr = attackerTerr.getAdjacentTerritories().get(selectedIndex2);
 					Player attacker = attackerTerr.getRuler();
-					Player opponent = opponentTerr.getRuler();
 					boolean canAttack = false;
 					try {
 						numAttackerArmies = Integer.parseInt(attackingArmy.getText());
@@ -1064,6 +1105,18 @@ public class GameWindow {
 			attackPanel.setVisible(false);
 		}
 	}
+	
+	/**
+	 * Hide add buttons
+	 * 
+	 */
+	public void hideAddButtons() {
+		btnFortify.setVisible(false);
+		btnEndFortify.setVisible(false);
+		btnAddArmy.setVisible(false);
+		btnAddReinforceArmy.setVisible(false);
+		numArmiesText.setVisible(false);
+	}
 
 	/**
 	 * @param attackerTerr
@@ -1112,6 +1165,35 @@ public class GameWindow {
 			}
 			attackedTerr.setListData(attackedTerrNames);
 			attackedTerr.setSelectedIndex(selectedIndex2);
+		}
+	}
+	
+	/**
+	 * Display Reinforcement buttons
+	 */
+	protected void displayReinforcement() {
+		playerJList.setEnabled(false);
+		btnAddArmy.setVisible(false);
+		numArmiesText.setVisible(false);
+		btnReinforcement.setVisible(true);
+		instructions.setInstructions("");
+		instructions.setInstructions("Reinforcement Phase");
+		instructions.setInstructions("*******************");
+		instructions.setInstructions("Adding is completed. Click on Reinforcement button");		
+	}
+	
+	/**
+	 * Game in step by step
+	 */
+	protected void onGame() {
+		System.out.println("Current Player:" +currentPlayer.getName());
+		System.out.println("Strategy:" + currentPlayer.getStrategy());
+		if(currentPlayer.getStrategy().equals("REINFORCEMENT")) {
+			displayReinforcement();
+		}else if(currentPlayer.getStrategy().equals("ATTACK")) {
+			displayAttackPanel();
+		}else if(currentPlayer.getStrategy().equals("FORTIFY")) {
+			
 		}
 	}
 

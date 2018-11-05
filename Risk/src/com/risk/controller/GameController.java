@@ -345,7 +345,7 @@ public class GameController {
 			Player player = getRulerOfContinent(continents.get(i));
 			if(player != null) {
 				int index = playerList.indexOf(player);
-				ArrayList ownedContinents = playerList.get(index).getOwnedContinents();
+				ArrayList<Continent> ownedContinents = playerList.get(index).getOwnedContinents();
 				ownedContinents.add(continents.get(i));
 				playerList.get(index).setOwnedContinents(ownedContinents);
 			}
