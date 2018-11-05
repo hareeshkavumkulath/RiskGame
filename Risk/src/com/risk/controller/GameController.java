@@ -2,6 +2,7 @@ package com.risk.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -482,7 +483,9 @@ public class GameController {
 	}
 
 	/**
-	 * @param terr
+	 * Update ruler of the territory
+	 * 
+	 * @param terr 
 	 * @param ruler
 	 */
 	private Game updateTerritoryRuler(Territory territory, Player ruler, Game game, int numArmy) {
@@ -493,6 +496,8 @@ public class GameController {
 	}
 
 	/**
+	 * Check for enough armies
+	 * 
 	 * @param attackerTerr
 	 * @param opponentTerr
 	 * @param numAttackerArmies
@@ -524,6 +529,47 @@ public class GameController {
 		cards.remove(randomIndex);
 		game.setCards(cards);
 		return game;
+	}
+
+	/**
+	 * Turn In Cards - Add armies based on the attempt
+	 * 
+	 * @param currentPlayer Player - Current Player
+	 * @param selectedValuesList - List<String> list of selected values
+	 * @return Player currentPlayer
+	 */
+	public Player turnInCards(Player currentPlayer, List<String> selectedValuesList) {
+		int turn = currentPlayer.getTurnInCards();
+		int numberOfArmies = getNumberOfArmies(turn);
+		currentPlayer.setNumberOfArmies(numberOfArmies);
+		//Remove cards
+		for(String param : selectedValuesList) {
+			for(int i=0;i<currentPlayer.getCards().size();i++) {
+				if(param.equals(currentPlayer.getCards().get(i).getArmyType())) {
+					currentPlayer.getCards().remove(i);
+					break;
+				}
+			}
+		}
+		return currentPlayer;
+	}
+
+	/**
+	 * Returns number of armies based on the number of turning in attempts
+	 * 
+	 * @param turn number of turns
+	 * @return int number of armies
+	 */
+	public int getNumberOfArmies(int turn) {
+		if(turn == 1) {
+			return 4;
+		}else if(turn > 1 && turn <= 6) {
+			return (4 + (turn -1) * 2);
+		}else if(turn == 6) {
+			return 15;
+		}else {
+			return (15 + (turn-6) * 5);
+		}
 	}
 	
 }

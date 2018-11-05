@@ -26,6 +26,7 @@ import com.risk.model.Player;
 public class CardsJList extends JPanel implements Observer{
 	
 	private JList<String> list = new JList<String>();
+	JButton btnNewButton = new JButton("Turn In");
 
 	public CardsJList() {
 		super();
@@ -41,7 +42,6 @@ public class CardsJList extends JPanel implements Observer{
 		scrollPane_4.setBounds(15, 16, 156, 173);
 		add(scrollPane_4);
 		
-		JButton btnNewButton = new JButton("Turn In");
 		btnNewButton.setBounds(186, 160, 115, 29);
 		add(btnNewButton);
 	}
@@ -59,6 +59,14 @@ public class CardsJList extends JPanel implements Observer{
 			cardTypes[i] = cards.get(i).getArmyType();
 		}
 		list.setListData(cardTypes);
+	}
+
+	public JButton getBtnNewButton() {
+		return btnNewButton;
+	}
+
+	public JList<String> getList() {
+		return list;
 	}
 
 }

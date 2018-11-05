@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -110,8 +113,6 @@ public class GameWindow {
 	private JButton btnReinforcement;
 	@SuppressWarnings("javadoc")
 	private JButton btnFortify;
-	@SuppressWarnings("javadoc")
-	private boolean reinforceStatus = false;
 	@SuppressWarnings("javadoc")
 	private JButton btnEndFortify;
 	@SuppressWarnings("javadoc")
@@ -382,6 +383,7 @@ public class GameWindow {
 		attackPanel.setBounds(635, 369, 824, 468);
 		frame.getContentPane().add(attackPanel);
 		attackPanel.setLayout(null);
+		attackPanel.setVisible(false);
 		
 		JLabel lblNewLabel_1 = new JLabel("Attack View");
 		lblNewLabel_1.setBounds(15, 16, 138, 20);
@@ -803,17 +805,21 @@ public class GameWindow {
 		btnReinforcement.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				currentPlayer = currentPlayer.reinforce(game);
-				GameController controller = new GameController();
-				playerList = controller.getOwnedContinents(continents, playerList);
-				btnAddReinforceArmy.setVisible(true);
-				numArmiesText.setVisible(true);
-				updateOwnedTerritories(playerJList.getSelectedIndex());
-				updatePlayerJList();
-				reinforceStatus = true;
-				btnReinforcement.setVisible(false);
-				cardsPanel.setVisible(false);
-				playerJList.setSelectedIndex(playerList.indexOf(currentPlayer));
+				if(currentPlayer.getCards().size() < 5) {
+					currentPlayer = currentPlayer.reinforce(game);
+					GameController controller = new GameController();
+					playerList = controller.getOwnedContinents(continents, playerList);
+					btnAddReinforceArmy.setVisible(true);
+					numArmiesText.setVisible(true);
+					updateOwnedTerritories(playerJList.getSelectedIndex());
+					updatePlayerJList();
+					btnReinforcement.setVisible(false);
+					cardsPanel.setVisible(false);
+					playerJList.setSelectedIndex(playerList.indexOf(currentPlayer));
+				}else {
+					instructions.setInstructions("Player, " + currentPlayer.getName() + " has 5 or more cards turn in cards before clicking reinforcement");
+					JOptionPane.showMessageDialog(frame, "Player, " + currentPlayer.getName() + " has 5 or more cards turn in cards before clicking reinforcement");
+				}
 			}
 		});
 		
@@ -848,10 +854,52 @@ public class GameWindow {
 			}
 		});
 		
+		cardsPanel.getBtnNewButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameController controller = new GameController();
+				if(currentPlayer.getCards().size() < 3) {
+					JOptionPane.showMessageDialog(frame, "Player, " + currentPlayer.getName() + ", don't have sufficient cards.");
+				}else {
+					if(cardsPanel.getList().getSelectedIndices().length < 3 || cardsPanel.getList().getSelectedIndices().length > 3) {
+						JOptionPane.showMessageDialog(frame, "Select 3 cards.");
+					}else {
+						if(validateSelectedCards(cardsPanel.getList().getSelectedValuesList())) {
+							currentPlayer = controller.turnInCards(currentPlayer, cardsPanel.getList().getSelectedValuesList());
+							updatePlayerJList();
+						}else {
+							JOptionPane.showMessageDialog(frame, "Select 3 different cards or 3 same cards");
+						}
+					}
+				}
+			}
+		});
+		
 	}
 
 	/**
-	 * @return
+	 * Validate Selected values of Cards JList
+	 * 
+	 * @param selectedValuesList List<String> selected values
+	 * @return boolean true/if based on the selection
+	 */
+	protected boolean validateSelectedCards(List<String> selectedValuesList) {
+		Set<String> setToReturn = new HashSet<String>(); 
+		for (String param : selectedValuesList)
+		{
+			setToReturn.add(param);
+		}
+		if(setToReturn.size() == 3 || setToReturn.size() == 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	/**
+	 * Sets the next player to current player
+	 * @return Player next Player
 	 */
 	protected Player nextPlayer() {
 		int index = playerList.indexOf(currentPlayer);
@@ -1066,6 +1114,7 @@ public class GameWindow {
 								instructions.setInstructions(status.getStatusMessage().toString());
 								game.update();
 								if(status.hasWon) {
+									checkWinner();
 									Player winner = status.getWinner();
 									System.out.println("Winner is "+ winner);
 									if(attacker == winner) {
@@ -1105,20 +1154,37 @@ public class GameWindow {
 						game = controller.addCard(playerList.get(currentIndex), cards, game);
 						currentPlayer.hasWon = false;
 					}
-					btnFortify.setVisible(true);
-					btnEndFortify.setVisible(true);
 					playerList.get(currentIndex).setStrategy("FORTIFY");
 					attackPanel.setVisible(false);
-					instructions.setInstructions("");
-					instructions.setInstructions("Fortification Phase");
-					instructions.setInstructions("*******************");
-					instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");
+					onGame();
 				}
 			});
 			
 		}else {
 			attackPanel.setVisible(false);
 		}
+	}
+	
+	/**
+	 * Checks whether the game is over
+	 */
+	protected void checkWinner() {
+		if(game.getPlayers().size() == 1) {
+			System.out.println(game.getPlayers().get(0).getName() + " has conquered the Map.");
+			JOptionPane.showMessageDialog(null, game.getPlayers().get(0).getName() + " has conquered the Map.", "Message", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	/**
+	 * Display Fortify Panel
+	 */
+	public void displayFortify() {
+		btnFortify.setVisible(true);
+		btnEndFortify.setVisible(true);
+		instructions.setInstructions("");
+		instructions.setInstructions("Fortification Phase");
+		instructions.setInstructions("*******************");
+		instructions.setInstructions("It is time to fortify... Click End Fortify if you finished fortification");
 	}
 	
 	/**
@@ -1149,11 +1215,12 @@ public class GameWindow {
 	}
 
 	/**
-	 * @param currPlayer 
-	 * @param currentPlayer2
-	 * @param selectedIndex1
-	 * @param selectedIndex2 
-	 * @param i
+	 * 
+	 * Update JList of Players in Attack Panel
+	 * 
+	 * @param currentIndex index of selected Player
+	 * @param selectedIndex1 index of attacking territory
+	 * @param selectedIndex2 index of opponent territory
 	 */
 	protected void updateJList(int currentIndex, int selectedIndex1, int selectedIndex2) {
 		String[] emptyArray = {};
@@ -1209,7 +1276,7 @@ public class GameWindow {
 		}else if(currentPlayer.getStrategy().equals("ATTACK")) {
 			displayAttackPanel();
 		}else if(currentPlayer.getStrategy().equals("FORTIFY")) {
-			
+			displayFortify();
 		}
 	}
 }
