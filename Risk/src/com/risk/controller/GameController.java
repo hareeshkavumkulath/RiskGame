@@ -237,32 +237,6 @@ public class GameController {
 	}
 
 	/**
-	 * Fortify with the fortifyNumber
-	 * 
-	 * @param player Player
-	 * @param territoryFrom From Territory
-	 * @param territoryTo To Territory
-	 * @param fortifyNum number of fortifying armies
-	 * @return boolean true if fortify function is completed else false
-	 */
-	public boolean fortify(Player player, Territory territoryFrom, Territory territoryTo, int fortifyNum) {
-		boolean status = false;
-		try {
-			int fromTerrNumArmies = territoryFrom.getNumberOfArmies();
-			int toTerrNumArmies = territoryTo.getNumberOfArmies();
-			fromTerrNumArmies = fromTerrNumArmies - fortifyNum;
-			toTerrNumArmies = toTerrNumArmies + fortifyNum;
-			territoryFrom.setNumberOfArmies(fromTerrNumArmies);
-			territoryTo.setNumberOfArmies(toTerrNumArmies);
-			player.setFortificationStatus(true);
-			status = true;
-		}catch(Exception e) {
-			status = false;
-		}
-		return status;
-	}
-
-	/**
 	 * Get Domination of a player in a continent
 	 * 
 	 * @param continent Continent
@@ -417,6 +391,7 @@ public class GameController {
 	 */
 	public Game updateGame(Territory attackerTerr, Territory opponentTerr, Game game) {
 		Player opponentRuler = opponentTerr.getRuler();
+		Player attackerRuler = attackerTerr.getRuler();
 		int numArmy = 0;
 		if(attackerTerr.getNumberOfArmies() == 0) {
 			System.out.println("Opponent has won");
@@ -445,6 +420,13 @@ public class GameController {
 				        JOptionPane.WARNING_MESSAGE);
 				numArmy = Integer.parseInt(input);
 				attackerTerr.setNumberOfArmies(attackerTerr.getNumberOfArmies() - numArmy);
+			}if(opponentRuler.getOwnedTerritories().size() == 0) {
+				ArrayList<Card> cards = opponentRuler.getCards();
+				if(cards != null) {
+					for(int i=0;i<cards.size();i++) {
+						attackerRuler.getCards().add(cards.get(i));
+					}
+				}
 			}
 			game = updateTerritoryRuler(opponentTerr, attackerTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), game, attackerTerr.getNumberOfArmies());
@@ -485,6 +467,8 @@ public class GameController {
 	}
 
 	/**
+	 * Update player list - If any player who don't have army it will get deleted from the list
+	 * 
 	 * @return
 	 */
 	private Game updatePlayerList(Game game) {
@@ -532,11 +516,10 @@ public class GameController {
 	 * @param game
 	 * @return
 	 */
-	public Game getCard(Player winner, ArrayList<Card> cards, Game game) {
+	public Game addCard(Player winner, ArrayList<Card> cards, Game game) {
 		int size = cards.size();
 		int indexOfPlayer = game.getPlayers().indexOf(winner);
 		int randomIndex = new Random().nextInt(size);
-		System.out.println(cards.get(randomIndex).getArmyType());
 		game.getPlayers().get(indexOfPlayer).getCards().add(cards.get(randomIndex));
 		cards.remove(randomIndex);
 		game.setCards(cards);

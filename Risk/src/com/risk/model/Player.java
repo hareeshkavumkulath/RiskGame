@@ -180,6 +180,22 @@ public class Player {
 	public void setStrategy(String strategy) {
 		this.strategy = strategy;
 	}
+	
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
+	}
+
+	public boolean isHasWon() {
+		return hasWon;
+	}
+
+	public void setHasWon(boolean hasWon) {
+		this.hasWon = hasWon;
+	}
 
 	/**
 	 * Attack method implements the attack phase and define the variables, number of armies, show status messages 
@@ -277,22 +293,6 @@ public class Player {
 		}
 	}
 
-	public ArrayList<Card> getCards() {
-		return cards;
-	}
-
-	public void setCards(ArrayList<Card> cards) {
-		this.cards = cards;
-	}
-
-	public boolean isHasWon() {
-		return hasWon;
-	}
-
-	public void setHasWon(boolean hasWon) {
-		this.hasWon = hasWon;
-	}
-
 	/**
 	 * Reinforce function
 	 * 
@@ -308,4 +308,28 @@ public class Player {
 		return this;
 	}
 
+	/**
+	 * Fortify with the fortifyNumber
+	 * 
+	 * @param territoryFrom From Territory
+	 * @param territoryTo To Territory
+	 * @param fortifyNum number of fortifying armies
+	 * @return boolean true if fortify function is completed else false
+	 */
+	public boolean fortify(Territory territoryFrom, Territory territoryTo, int fortifyNum) {
+		boolean status = false;
+		try {
+			int fromTerrNumArmies = territoryFrom.getNumberOfArmies();
+			int toTerrNumArmies = territoryTo.getNumberOfArmies();
+			fromTerrNumArmies = fromTerrNumArmies - fortifyNum;
+			toTerrNumArmies = toTerrNumArmies + fortifyNum;
+			territoryFrom.setNumberOfArmies(fromTerrNumArmies);
+			territoryTo.setNumberOfArmies(toTerrNumArmies);
+			this.setFortificationStatus(true);
+			status = true;
+		}catch(Exception e) {
+			status = false;
+		}
+		return status;
+	}
 }

@@ -21,6 +21,8 @@ public class Game extends Observable {
 	public ArrayList<Player> players;
 	@SuppressWarnings("javadoc")
 	public ArrayList<Card> cards = new ArrayList<Card>();
+	@SuppressWarnings("javadoc")
+	public Player currentPlayer;
 
 	/**
 	 * Constructor for Game
@@ -93,6 +95,14 @@ public class Game extends Observable {
 	 */
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
+	}
+
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
 	}
 
 }
