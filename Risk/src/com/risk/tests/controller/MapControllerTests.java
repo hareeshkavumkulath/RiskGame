@@ -147,7 +147,7 @@ public class MapControllerTests {
         mapController.territoriesToContinents();
         mapController.createContinentConnection();
         MapMessage anything = mapController.processFile(new File(valid));
-        assertTrue(mapController.validateMap(anything.getTerritories()));
+        assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
     }
 
     /**
@@ -162,7 +162,7 @@ public class MapControllerTests {
         mapController.territoriesToContinents();
         mapController.createContinentConnection();
         MapMessage anything = mapController.processFile(new File(notConnected));
-        assertTrue(mapController.validateMap(anything.getTerritories()));
+        assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
     }
 
     /**

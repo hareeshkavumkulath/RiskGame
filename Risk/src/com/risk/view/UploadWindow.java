@@ -179,7 +179,7 @@ public class UploadWindow {
 					errorMessage.setForeground(Color.GREEN);
 					errorMessage.setText("Valid Map");
 					StringBuffer continentsInfo = new StringBuffer();
-					ArrayList<Continent> continents = mapMessage.getContinents();
+					ArrayList<Continent> continents = mapMessage.getMap().getContinents();
 					String[] continentNames = new String[continents.size()];
 					for(int i = 0; i < continents.size(); i++) {
 						Continent thisContinent = (Continent) continents.get(i);
@@ -246,7 +246,7 @@ public class UploadWindow {
 					errorMessage.setForeground(Color.GREEN);
 					errorMessage.setText("Valid Map");
 					StringBuffer continentsInfo = new StringBuffer();
-					ArrayList<Continent> continents = mapMessage.getContinents();
+					ArrayList<Continent> continents = mapMessage.getMap().getContinents();
 					String[] continentNames = new String[continents.size()];
 					for(int i = 0; i < continents.size(); i++) {
 						Continent thisContinent = (Continent) continents.get(i);
@@ -274,7 +274,7 @@ public class UploadWindow {
 				adjTerritoriesJList.setListData(adjTerritoryNames);
 				JList<?> list = (JList<?>) listSelectionEvent.getSource();
 				int selections[] = list.getSelectedIndices();
-				ArrayList<Territory> territories = mapMessage.getContinents().get(selections[0]).getTerritories();
+				ArrayList<Territory> territories = mapMessage.getMap().getContinents().get(selections[0]).getTerritories();
 				String[] territoryNames = new String[territories.size()];
 				for(int i=0;i<territories.size();i++) {
 					territoryNames[i] = territories.get(i).getName();
@@ -291,7 +291,7 @@ public class UploadWindow {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				JList<?> list = (JList<?>) listSelectionEvent.getSource();
 				String selection = (String) list.getSelectedValue();
-				ArrayList<Territory> territories = mapMessage.getTerritories();
+				ArrayList<Territory> territories = mapMessage.getMap().getTerritories();
 				Territory selectedTerritory = null;
 				for(int i=0;i<territories.size();i++) {
 					if(territories.get(i).getName().equals(selection)) {
@@ -321,8 +321,8 @@ public class UploadWindow {
 		if(tempMapMessage.isValidMap) {
 			ArrayList<Continent> continents = new ArrayList<Continent>();
 			ArrayList<Territory> territories = new ArrayList<Territory>();
-			continents = tempMapMessage.getContinents();
-			territories = tempMapMessage.getTerritories();
+			continents = tempMapMessage.getMap().getContinents();
+			territories = tempMapMessage.getMap().getTerritories();
 			StringBuffer mapText = new StringBuffer("");
 			mapText = mapText.append("[Continents]\n");
 			for(int i=0;i<continents.size();i++) {
