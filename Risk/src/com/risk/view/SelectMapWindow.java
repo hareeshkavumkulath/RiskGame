@@ -103,7 +103,7 @@ public class SelectMapWindow {
 					MapController controller = new MapController();
 					MapMessage message = controller.processFile(file);
 					if(message.isValidMap()) {
-						Map map = new Map(message.getMap().getContinents(), message.getMap().getTerritories());
+						Map map = message.getMap();
 						GameWindow beginGame = new GameWindow(map);		
 						beginGame.main(map);
 					}
