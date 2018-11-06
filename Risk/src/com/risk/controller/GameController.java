@@ -245,7 +245,7 @@ public class GameController {
 	 * @return double as percentage
 	 */
 	public double getDomination(Continent continent, Player player) {
-		double percentage = 0.0;
+		double percentage = 0.00;
 		int totalNumTerritories = continent.getTerritories().size();
 		int count = 0;
 		for(int i=0;i<continent.getTerritories().size();i++) {
