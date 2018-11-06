@@ -34,6 +34,12 @@ public class Map {
 	}
 	
 	/**
+	 * Empty Constructor
+	 */
+	public Map() {
+	}
+
+	/**
 	 * Getter for continents
 	 * 
 	 * @return ArrayList list of continents
@@ -46,7 +52,7 @@ public class Map {
 	 * 
 	 * @param continents ArrayList of continents
 	 */
-	public void setContinentsList(ArrayList<Continent> continents) {
+	public void setContinents(ArrayList<Continent> continents) {
 		this.continents = continents;
 	}
 	

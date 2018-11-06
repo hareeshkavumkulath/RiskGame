@@ -1,7 +1,5 @@
 package com.risk.model;
 
-import java.util.ArrayList;
-
 /**
  * Return type of Map Validation method contains ArrayList of Continents,
  * ArrayList of countries, error messages if any and validation status.
@@ -13,9 +11,7 @@ import java.util.ArrayList;
 public class MapMessage {
 	
 	@SuppressWarnings("javadoc")
-	public ArrayList<Territory> territories = new ArrayList<Territory>();
-	@SuppressWarnings("javadoc")
-	public ArrayList<Continent> continents = new ArrayList<Continent>();
+	public Map map = new Map();
 	@SuppressWarnings("javadoc")
 	public boolean isValidMap;
 	@SuppressWarnings("javadoc")
@@ -24,52 +20,18 @@ public class MapMessage {
 	/**
 	 * Constructor
 	 * 
-	 * @param territories ArrayList of territories
-	 * @param continents ArrayList of continents
+	 * @param map the map 
 	 * @param isValidMap true if map is valid, else false
 	 * @param message String message for invalid maps
 	 */
-	public MapMessage(ArrayList<Territory> territories, ArrayList<Continent> continents, boolean isValidMap,
+	public MapMessage(Map map, boolean isValidMap,
 			StringBuffer message) {
 		super();
-		this.territories = territories;
-		this.continents = continents;
+		this.map = map;
 		this.isValidMap = isValidMap;
 		this.message = message;
 	}
 	
-	/**
-	 * Getter for territories
-	 * 
-	 * @return ArrayList list of territories
-	 */
-	public ArrayList<Territory> getTerritories() {
-		return territories;
-	}
-	/**
-	 * Setter for territories
-	 * 
-	 * @param territories ArrayList of territories
-	 */
-	public void setCountries(ArrayList<Territory> territories) {
-		this.territories = territories;
-	}
-	/**
-	 * Getter for continents
-	 * 
-	 * @return ArrayList list of continents
-	 */
-	public ArrayList<Continent> getContinents() {
-		return continents;
-	}
-	/**
-	 * Setter for continents
-	 * 
-	 * @param continents ArrayList of continents
-	 */
-	public void setContinents(ArrayList<Continent> continents) {
-		this.continents = continents;
-	}
 	/**
 	 * Getter for isValidMap
 	 * 
@@ -99,6 +61,24 @@ public class MapMessage {
 	 */
 	public void setMessage(StringBuffer message) {
 		this.message = message;
+	}
+
+	/**
+	 * Getter for map
+	 * 
+	 * @return map the map
+	 */
+	public Map getMap() {
+		return map;
+	}
+
+	/**
+	 * Setter for the Map
+	 * 
+	 * @param map the map to set
+	 */
+	public void setMap(Map map) {
+		this.map = map;
 	}	
 
 }

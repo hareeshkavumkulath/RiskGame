@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.risk.model.Continent;
+import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Territory;
 
@@ -28,6 +29,8 @@ public class MapController {
 	public boolean isValidMap = false;
 	@SuppressWarnings("javadoc")
 	public StringBuffer message = new StringBuffer();	
+	@SuppressWarnings("javadoc")
+	public Map map = new Map();
 	/**
 	 * default constructor of the class MapController
 	 */
@@ -42,15 +45,17 @@ public class MapController {
 	 * @param territoriesArray the arrayList of territories
 	 * @param isValidMap shows whether the map is valid or not
 	 * @param message map message
+	 * @param map the map
 	 */
 	public MapController(StringBuffer fileContent, ArrayList<Continent> continentArray,
-			ArrayList<Territory> territoriesArray, boolean isValidMap, StringBuffer message) {
+			ArrayList<Territory> territoriesArray, boolean isValidMap, StringBuffer message, Map map) {
 		super();
 		this.fileContent = fileContent;
 		this.continentArray = continentArray;
 		this.territoriesArray = territoriesArray;
 		this.isValidMap = isValidMap;
 		this.message = message;
+		this.map = map;
 	}
 
 	/**
@@ -128,7 +133,9 @@ public class MapController {
 		}else {  // else of isValidContinents
 			isValidMap = false;
 		}
-		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isValidMap, message);
+		map.setContinents(continentArray);
+		map.setTerritories(territoriesArray);
+		MapMessage mapMessage = new MapMessage(map, isValidMap, message);
 		
 		return mapMessage;
 	}
@@ -444,135 +451,6 @@ public class MapController {
 	}
 	
 	/**
-	 * Remove continent with continentName
-	 * 
-	 * @param continentName continentName
-	 * @return MapMessage message from the constructor of  MapMessage
-	 */
-	public MapMessage removeContinent(String continentName) {
-		boolean isRemoved = removeContinent(getContinentFromArray(continentName)); 
-		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
-		return mapMessage;
-	}
-	
-	/**
-	 * Remove continent if the user wants to remove it. Removes continent from the arraylist
-	 * <p>It consists of following processes</p>
-	 * <ul>
-	 * <li>Remove adjacency between continents</li>
-	 * <li>Remove all countries from the continent one by one</li>
-	 * </ul>
-	 * 
-	 * @param continent continent object
-	 * @return boolean true if the continent has been removed
-	 */
-	public boolean removeContinent(Continent continent) {
-		boolean isRemoved = true;
-		try {
-			//Remove adjacency between continents
-			removeContinentAdjacency(continent);
-			//Remove all territories from the continent
-			removeTerritoriesFromContinent(continent);
-			continentArray.remove(continent);
-		}catch(Exception e) {
-			isRemoved = false;
-		}
-		return isRemoved;
-	}
-	
-	/**
-	 * Remove adjacency of continent
-	 * <p>If the user wants to delete the continent X from the map. If it has adjacency with continents A, B and C.
-	 * Then, go to continent A, B and C and remove X from their adjacent continents
-	 * </p> 
-	 * 
-	 * @param continent continent object
-	 */
-	public void removeContinentAdjacency(Continent continent) {
-		for(int i=0;i<continentArray.size();i++) {
-			if(continentArray.get(i).getAdjacentContinents().contains(continent)) {
-				continentArray.get(i).getAdjacentContinents().remove(continent);
-			}
-		}
-	}
-	
-	/**
-	 * Remove all territories in the continent
-	 * 
-	 * @param continent continent object
-	 */
-	public void removeTerritoriesFromContinent(Continent continent) {
-		ArrayList<Territory> territoriesInContinent = continent.getTerritories();
-		for(int i=0;i<territoriesInContinent.size();i++) {
-			removeTerritory(territoriesInContinent.get(i));
-		}
-	}
-	
-	/**
-	 * Remove the territory with territoryName
-	 * 
-	 * @param territoryName territoryName
-	 * @return MapMessage message from the constructor of the MapMessage
-	 */
-	public MapMessage removeTerritory(String territoryName) {
-		boolean isRemoved = removeTerritory(getTerritoryFromArray(territoryName)); 
-		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
-		return mapMessage;
-	} 
-	
-	/**
-	 * Remove a single territory
-	 * <p>It consists of following processes</p>
-	 * <ul>
-	 * <li>Remove adjacency between territories</li>
-	 * <li>Remove the territory from the continent</li>
-	 * </ul>
-	 * 
-	 * @param territory territory object
-	 * @return boolean true if it is removed
-	 */
-	public boolean removeTerritory(Territory territory) {
-		boolean isRemoved = true;
-		try {
-			String territoryName = territory.getName();
-			for(int i = 0;i<territoriesArray.size();i++) {
-				Territory newTerritory = (Territory)territoriesArray.get(i);
-				if(territory.equals(newTerritory)) {
-					ArrayList<Territory> adjacentTerritories = newTerritory.getAdjacentTerritories();
-					for(int j = 0;j<adjacentTerritories.size();j++) {
-						String adjacenTerritoryName = adjacentTerritories.get(j).getName();
-						// Remove the adjacency between two territories
-						removeTerritoryAdjacency(territoryName, adjacenTerritoryName);
-					}
-				}
-			}
-			Continent continent = findContinentOfTerritory(territory);
-			removeTerritoryFromContinent(continent, territory);
-			territoriesArray.remove(territory);
-		}catch(Exception e) {
-			isRemoved = false;
-		}
-		return isRemoved;
-	}
-	
-	/**
-	 * Remove the adjacency between two territories.
-	 * <p> If the user wants to delete territory A, and if A has adjacency with B and C, then go to the territories
-	 * B and C and delete A from their adjacent territories list.
-	 * </p>
-	 * 
-	 * @param territoryName territoryName
-	 * @param adjacentTerritoryName adjacentTerritoryName
-	 */
-	public void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
-		for(int i = 0;i<territoriesArray.size();i++) {
-			if(adjacentTerritoryName.equals(territoriesArray.get(i).getName())) {
-				//territoriesArray.get(i).getAdjacentTerritories().remove(territoryName);
-			}
-		}
-	}
-	
-	/**
 	 * Find the continent of a territory
 	 * 
 	 * @param territory territory object
@@ -586,16 +464,6 @@ public class MapController {
 			}
 		}
 		return continent;
-	}
-	
-	/**
-	 * Remove territory from the continent
-	 * 
-	 * @param continent continent object
-	 * @param territory territory object
-	 */
-	public void removeTerritoryFromContinent(Continent continent, Territory territory) {
-		continent.getTerritories().remove(territory);	
 	}
 	
 	/**
@@ -652,5 +520,146 @@ public class MapController {
 		}
 		return isValidTerritories;
 	}
+	
+	// Unused Methods
+	
+	/**
+	 * Remove continent with continentName
+	 * 
+	 * @param continentName continentName
+	 * @return MapMessage message from the constructor of  MapMessage
+	 *//*
+	public MapMessage removeContinent(String continentName) {
+		boolean isRemoved = removeContinent(getContinentFromArray(continentName)); 
+		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
+		return mapMessage;
+	}
+	
+	*//**
+	 * Remove continent if the user wants to remove it. Removes continent from the arraylist
+	 * <p>It consists of following processes</p>
+	 * <ul>
+	 * <li>Remove adjacency between continents</li>
+	 * <li>Remove all countries from the continent one by one</li>
+	 * </ul>
+	 * 
+	 * @param continent continent object
+	 * @return boolean true if the continent has been removed
+	 *//*
+	public boolean removeContinent(Continent continent) {
+		boolean isRemoved = true;
+		try {
+			//Remove adjacency between continents
+			removeContinentAdjacency(continent);
+			//Remove all territories from the continent
+			removeTerritoriesFromContinent(continent);
+			continentArray.remove(continent);
+		}catch(Exception e) {
+			isRemoved = false;
+		}
+		return isRemoved;
+	}
+	
+	*//**
+	 * Remove adjacency of continent
+	 * <p>If the user wants to delete the continent X from the map. If it has adjacency with continents A, B and C.
+	 * Then, go to continent A, B and C and remove X from their adjacent continents
+	 * </p> 
+	 * 
+	 * @param continent continent object
+	 *//*
+	public void removeContinentAdjacency(Continent continent) {
+		for(int i=0;i<continentArray.size();i++) {
+			if(continentArray.get(i).getAdjacentContinents().contains(continent)) {
+				continentArray.get(i).getAdjacentContinents().remove(continent);
+			}
+		}
+	}
+	
+	*//**
+	 * Remove all territories in the continent
+	 * 
+	 * @param continent continent object
+	 *//*
+	public void removeTerritoriesFromContinent(Continent continent) {
+		ArrayList<Territory> territoriesInContinent = continent.getTerritories();
+		for(int i=0;i<territoriesInContinent.size();i++) {
+			removeTerritory(territoriesInContinent.get(i));
+		}
+	}
+	
+	*//**
+	 * Remove the territory with territoryName
+	 * 
+	 * @param territoryName territoryName
+	 * @return MapMessage message from the constructor of the MapMessage
+	 *//*
+	public MapMessage removeTerritory(String territoryName) {
+		boolean isRemoved = removeTerritory(getTerritoryFromArray(territoryName)); 
+		MapMessage mapMessage = new MapMessage(territoriesArray, continentArray, isRemoved, message);
+		return mapMessage;
+	} 
+	
+	*//**
+	 * Remove a single territory
+	 * <p>It consists of following processes</p>
+	 * <ul>
+	 * <li>Remove adjacency between territories</li>
+	 * <li>Remove the territory from the continent</li>
+	 * </ul>
+	 * 
+	 * @param territory territory object
+	 * @return boolean true if it is removed
+	 *//*
+	public boolean removeTerritory(Territory territory) {
+		boolean isRemoved = true;
+		try {
+			String territoryName = territory.getName();
+			for(int i = 0;i<territoriesArray.size();i++) {
+				Territory newTerritory = (Territory)territoriesArray.get(i);
+				if(territory.equals(newTerritory)) {
+					ArrayList<Territory> adjacentTerritories = newTerritory.getAdjacentTerritories();
+					for(int j = 0;j<adjacentTerritories.size();j++) {
+						String adjacenTerritoryName = adjacentTerritories.get(j).getName();
+						// Remove the adjacency between two territories
+						removeTerritoryAdjacency(territoryName, adjacenTerritoryName);
+					}
+				}
+			}
+			Continent continent = findContinentOfTerritory(territory);
+			removeTerritoryFromContinent(continent, territory);
+			territoriesArray.remove(territory);
+		}catch(Exception e) {
+			isRemoved = false;
+		}
+		return isRemoved;
+	}
+	
+	*//**
+	 * Remove the adjacency between two territories.
+	 * <p> If the user wants to delete territory A, and if A has adjacency with B and C, then go to the territories
+	 * B and C and delete A from their adjacent territories list.
+	 * </p>
+	 * 
+	 * @param territoryName territoryName
+	 * @param adjacentTerritoryName adjacentTerritoryName
+	 *//*
+	public void removeTerritoryAdjacency(String territoryName, String adjacentTerritoryName) {
+		for(int i = 0;i<territoriesArray.size();i++) {
+			if(adjacentTerritoryName.equals(territoriesArray.get(i).getName())) {
+				//territoriesArray.get(i).getAdjacentTerritories().remove(territoryName);
+			}
+		}
+	}*/
+	
+	/**
+	 * Remove territory from the continent
+	 * 
+	 * @param continent continent object
+	 * @param territory territory object
+	 *//*
+	public void removeTerritoryFromContinent(Continent continent, Territory territory) {
+		continent.getTerritories().remove(territory);	
+	}*/
 	
 }
