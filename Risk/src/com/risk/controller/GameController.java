@@ -316,13 +316,14 @@ public class GameController {
 	 * @return ArrayList<Players> Players after adding the continents
 	 */
 	public ArrayList<Player> getOwnedContinents(ArrayList<Continent> continents, ArrayList<Player> playerList) {
+		for(int i=0;i<playerList.size();i++) {
+			playerList.get(i).getOwnedContinents().clear();
+		}
 		for(int i=0;i<continents.size();i++) {
 			Player player = getRulerOfContinent(continents.get(i));
 			if(player != null) {
 				int index = playerList.indexOf(player);
-				ArrayList<Continent> ownedContinents = playerList.get(index).getOwnedContinents();
-				ownedContinents.add(continents.get(i));
-				playerList.get(index).setOwnedContinents(ownedContinents);
+				playerList.get(index).getOwnedContinents().add(continents.get(i));
 			}
 		}
 		return playerList;
@@ -403,6 +404,7 @@ public class GameController {
 				int maxLimit = opponentTerr.getNumberOfArmies() - 1;
 				String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
 				        JOptionPane.WARNING_MESSAGE);
+				System.out.println(input);
 				numArmy = Integer.parseInt(input);
 				opponentTerr.setNumberOfArmies(opponentTerr.getNumberOfArmies() - numArmy);
 			}
@@ -419,6 +421,7 @@ public class GameController {
 				int maxLimit = attackerTerr.getNumberOfArmies() - 1;
 				String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
 				        JOptionPane.WARNING_MESSAGE);
+				System.out.println(input);
 				numArmy = Integer.parseInt(input);
 				attackerTerr.setNumberOfArmies(attackerTerr.getNumberOfArmies() - numArmy);
 			}if(opponentRuler.getOwnedTerritories().size() == 0) {
@@ -569,6 +572,35 @@ public class GameController {
 			return 15;
 		}else {
 			return (15 + (turn-6) * 5);
+		}
+	}
+
+	/**
+	 * @param attackerTerr
+	 * @return
+	 */
+	public int getNumAttackerArmies(Territory attackerTerr) {
+		int numArmies = attackerTerr.getNumberOfArmies();
+		if(numArmies > 3) {
+			return 3;
+		}else if(numArmies == 2){
+			return 1;
+		}else {
+			return 2;
+		}
+	}
+
+	/**
+	 * @param opponentTerr
+	 * @param numAttackerArmies
+	 * @return
+	 */
+	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies) {
+		int numArmies = opponentTerr.getNumberOfArmies();
+		if(numAttackerArmies == 3 && numArmies > 1) {
+			return 2;
+		}else {
+			return 1;
 		}
 	}
 	

@@ -208,12 +208,11 @@ public class Player {
 	 * @param numOpponentArmies pass the number of opponent armies into attack and update it
 	 * @return AttackStatus of the current attack status
 	 */
-	public static AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies, Game game) {
+	public static AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies) {
 		
 		StringBuffer message = new StringBuffer();
 		
 		AttackStatus status = new AttackStatus();
-		GameController controller = new GameController();
 		
 		int numArmyAttacker = attackerTerr.getNumberOfArmies();
 		int numArmyOpponent = opponentTerr.getNumberOfArmies();
@@ -263,8 +262,6 @@ public class Player {
 		System.out.println(attackerTerr.getRuler().getName() + " has balance armies in " + attackerTerr.getName() + " is " + numArmyAttacker);
 		System.out.println(opponentTerr.getRuler().getName() + " has balance armies in " + opponentTerr.getName() + " is " + numArmyOpponent);
 		
-		game = controller.updateGame(attackerTerr, opponentTerr, game);
-		
 		if(numArmyOpponent <= 0) {
 			status.setHasWon(true);
 			status.setWinner(attackerTerr.getRuler());
@@ -277,7 +274,6 @@ public class Player {
 			status.setHasWon(false);
 		}
 		status.setStatusMessage(message);
-		status.setGame(game);
 		return status;
 		
 	}
@@ -306,8 +302,12 @@ public class Player {
 	public Player reinforce(Game game) {
 		GameController controller = new GameController();
 		int reinforcementArmy = controller.getNumReinforcements(this);
+		System.out.println("No of reinforcementArmy:" + reinforcementArmy);
 		int numArmiesFromContinents = controller.getNumArmiesFromContinents(this);
-		reinforcementArmy = reinforcementArmy + numArmiesFromContinents;
+		System.out.println("No of numArmiesFromContinents:" + numArmiesFromContinents);
+		int playerNumArmies = this.getNumberOfArmies();
+		System.out.println("No of playerNumArmies:" + playerNumArmies);
+		reinforcementArmy = reinforcementArmy + numArmiesFromContinents + playerNumArmies;
 		this.setNumberOfArmies(reinforcementArmy);
 		return this;
 	}

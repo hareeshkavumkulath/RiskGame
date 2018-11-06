@@ -41,6 +41,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Component;
+import javax.swing.JCheckBox;
 
 /**
  * This class implements Game Window pages functionalities and design user interface.
@@ -138,6 +139,7 @@ public class GameWindow {
 	@SuppressWarnings("javadoc")
 	private JButton btnEndAttack;
 	private CardsJList cardsPanel;
+	private JCheckBox chckbxAllOutMode;
 	
 	/**
 	 * Launch the application.
@@ -438,12 +440,16 @@ public class GameWindow {
 		attackPanel.add(lblNumberOfDices);
 		
 		btnAttack = new JButton("Attack");
-		btnAttack.setBounds(502, 428, 115, 29);
+		btnAttack.setBounds(556, 428, 115, 29);
 		attackPanel.add(btnAttack);
 		
 		btnEndAttack = new JButton("End Attack");
 		btnEndAttack.setBounds(686, 428, 123, 29);
 		attackPanel.add(btnEndAttack);
+		
+		chckbxAllOutMode = new JCheckBox("All Out Mode");
+		chckbxAllOutMode.setBounds(394, 428, 139, 29);
+		attackPanel.add(chckbxAllOutMode);
 		
 		cardsPanel = new CardsJList();
 		frame.getContentPane().add(cardsPanel);
@@ -806,9 +812,9 @@ public class GameWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(currentPlayer.getCards().size() < 5) {
-					currentPlayer = currentPlayer.reinforce(game);
 					GameController controller = new GameController();
 					playerList = controller.getOwnedContinents(continents, playerList);
+					currentPlayer = currentPlayer.reinforce(game);
 					btnAddReinforceArmy.setVisible(true);
 					numArmiesText.setVisible(true);
 					updateOwnedTerritories(playerJList.getSelectedIndex());
@@ -867,6 +873,7 @@ public class GameWindow {
 					}else {
 						if(validateSelectedCards(cardsPanel.getList().getSelectedValuesList())) {
 							currentPlayer = controller.turnInCards(currentPlayer, cardsPanel.getList().getSelectedValuesList());
+							cardsObject.setPlayer(currentPlayer);
 							updatePlayerJList();
 						}else {
 							JOptionPane.showMessageDialog(frame, "Select 3 different cards or 3 same cards");
@@ -1077,28 +1084,32 @@ public class GameWindow {
 					int selectedIndex2 = attackedTerr.getSelectedIndex();
 					Territory attackerTerr = currentPlayer.getOwnedTerritories().get(selectedIndex1);
 					Territory opponentTerr = attackerTerr.getAdjacentTerritories().get(selectedIndex2);
-					Player attacker = attackerTerr.getRuler();
 					boolean canAttack = false;
-					try {
-						numAttackerArmies = Integer.parseInt(attackingArmy.getText());
-						numOpponentArmies = Integer.parseInt(attackedArmy.getText());
-					}catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "Please enter numbers", "Alert", JOptionPane.ERROR_MESSAGE);
-					}
-					if(numAttackerArmies > 3 || numAttackerArmies < 1) {
-						JOptionPane.showMessageDialog(null, "Please enter either 1,2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+					boolean allOutMode = chckbxAllOutMode.isSelected();
+					if(allOutMode) {
+						canAttack = true;
 					}else {
-						if(numAttackerArmies == 3) {
-							if(numOpponentArmies < 1 || numOpponentArmies > 2) {
-								JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
-							}else {
-								canAttack = true;
-							}
+						try {
+							numAttackerArmies = Integer.parseInt(attackingArmy.getText());
+							numOpponentArmies = Integer.parseInt(attackedArmy.getText());
+						}catch(Exception ex) {
+							JOptionPane.showMessageDialog(null, "Please enter numbers", "Alert", JOptionPane.ERROR_MESSAGE);
+						}
+						if(numAttackerArmies > 3 || numAttackerArmies < 1) {
+							JOptionPane.showMessageDialog(null, "Please enter either 1,2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
 						}else {
-							if(numOpponentArmies == 1) {
-								canAttack = true;
+							if(numAttackerArmies == 3) {
+								if(numOpponentArmies < 1 || numOpponentArmies > 2) {
+									JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+								}else {
+									canAttack = true;
+								}
 							}else {
-								JOptionPane.showMessageDialog(null, "Please enter 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+								if(numOpponentArmies == 1) {
+									canAttack = true;
+								}else {
+									JOptionPane.showMessageDialog(null, "Please enter 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+								}
 							}
 						}
 					}
@@ -1108,31 +1119,25 @@ public class GameWindow {
 								btnEndAttack.setVisible(false);
 								attackingTerr.setEnabled(false);
 								attackedTerr.setEnabled(false);
-								instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
-								AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies, game);
-								game = status.getGame();
-								instructions.setInstructions(status.getStatusMessage().toString());
-								game.update();
-								if(status.hasWon) {
-									checkWinner();
-									Player winner = status.getWinner();
-									System.out.println("Winner is "+ winner);
-									if(attacker == winner) {
-										currentPlayer.hasWon = true;
+								if(allOutMode) {
+									instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
+									AttackStatus status = new AttackStatus();
+									while(attackerTerr.getNumberOfArmies() > 1 && !status.hasWon) {
+										numAttackerArmies = controller.getNumAttackerArmies(attackerTerr);
+										numOpponentArmies = controller.getNumOpponentArmies(opponentTerr, numAttackerArmies);
+										status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
+										instructions.setInstructions(status.getStatusMessage().toString());
+										game = controller.updateGame(attackerTerr, opponentTerr, game);
 									}
-									attackingTerr.setEnabled(true);
-									attackedTerr.setEnabled(true);
-									btnEndAttack.setVisible(true);
-									updateJList(currentIndex, selectedIndex1, -1);
+									game.update();
+									updateStatus(status, attackerTerr, selectedIndex1, selectedIndex2);
 								}else {
-									updateJList(currentIndex, selectedIndex1, selectedIndex2);
-									if(game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getNumberOfArmies() <= 1) {
-										attackingTerr.setEnabled(true);
-										attackedTerr.setEnabled(true);
-										btnEndAttack.setVisible(true);
-									}else {
-										btnEndAttack.setVisible(false);
-									}
+									instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
+									AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
+									instructions.setInstructions(status.getStatusMessage().toString());
+									game = controller.updateGame(attackerTerr, opponentTerr, game);
+									game.update();
+									updateStatus(status, attackerTerr, selectedIndex1, selectedIndex2);
 								}
 							}else {
 								JOptionPane.showMessageDialog(null, "Not enough armies", "Alert", JOptionPane.ERROR_MESSAGE);
@@ -1165,6 +1170,44 @@ public class GameWindow {
 		}
 	}
 	
+	/**
+	 * @param status
+	 * @param selectedIndex2 
+	 * @param selectedIndex1 
+	 * @param attackerTerr 
+	 */
+	protected void updateStatus(AttackStatus status, Territory attackerTerr, int selectedIndex1, int selectedIndex2) {
+		if(status.hasWon) {
+			checkWinner();
+			Player winner = status.getWinner();
+			System.out.println("Winner is "+ winner);
+			if(currentPlayer == winner) {
+				currentPlayer.hasWon = true;
+			}
+			attackingTerr.setEnabled(true);
+			attackedTerr.setEnabled(true);
+			btnEndAttack.setVisible(true);
+			updateJList(currentIndex, selectedIndex1, -1);
+		}else if(attackerTerr.getNumberOfArmies() == 1){
+			instructions.setInstructions(attackerTerr.getName() + " has only one army left, choose a different territory");
+			attackingTerr.setEnabled(true);
+			attackedTerr.setEnabled(true);
+			btnEndAttack.setVisible(true);
+			updateJList(currentIndex, selectedIndex1, -1);
+		}
+		else {
+			updateJList(currentIndex, selectedIndex1, selectedIndex2);
+			if(game.getPlayers().get(currentIndex).getOwnedTerritories().get(selectedIndex1).getNumberOfArmies() <= 1) {
+				attackingTerr.setEnabled(true);
+				attackedTerr.setEnabled(true);
+				btnEndAttack.setVisible(true);
+			}else {
+				btnEndAttack.setVisible(false);
+			}
+		}
+		
+	}
+
 	/**
 	 * Checks whether the game is over
 	 */

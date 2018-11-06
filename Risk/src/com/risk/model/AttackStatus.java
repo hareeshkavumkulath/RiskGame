@@ -11,8 +11,6 @@ public class AttackStatus {
 	public boolean hasWon;
 	@SuppressWarnings("javadoc")
 	public Player winner;
-	@SuppressWarnings("javadoc")
-	public Game game;
 	/**
 	 * Getter method for the getStatusMessage of the AttackStatus class
 	 * 
@@ -61,21 +59,5 @@ public class AttackStatus {
 	public void setWinner(Player winner) {
 		this.winner = winner;
 	}
-	/**
-	 * Getter for the game of the class AttackStatus
-	 * 
-	 * @return Game the object
-	 */
-	public Game getGame() {
-		return game;
-	}
-	/**
-	 * Setter for the game of the class AttackStatus
-	 * 
-	 * @param game the object
-	 */
-	public void setGame(Game game) {
-		this.game = game;
-	}	
 
 }
