@@ -104,7 +104,11 @@ public class Game extends Observable {
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
-
+	/**
+	 * Setter to set the current player
+	 * 
+	 * @param currentPlayer object
+	 */
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}
