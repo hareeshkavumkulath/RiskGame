@@ -209,7 +209,7 @@ public class Player {
 	/**
 	 * set the player won the game
 	 * 
-	 * @param hasWon
+	 * @param hasWon won the game or not
 	 */
 	public void setHasWon(boolean hasWon) {
 		this.hasWon = hasWon;
@@ -312,8 +312,8 @@ public class Player {
 	/**
 	 * Reinforce function
 	 * 
-	 * @param game 
-	 * @return Player this.player
+	 * @param game object
+	 * @return Player current player
 	 */
 	public Player reinforce(Game game) {
 		GameController controller = new GameController();
@@ -354,13 +354,17 @@ public class Player {
 	}
 
 	/**
-	 * @return the turnInCards
+	 *Getter the turn in cards
+	 *
+	 * @return int turnInCards
 	 */
 	public int getTurnInCards() {
 		return turnInCards;
 	}
 
 	/**
+	 *Setter to set the turn in cards
+	 * 
 	 * @param turnInCards the turnInCards to set
 	 */
 	public void setTurnInCards(int turnInCards) {
