@@ -328,8 +328,8 @@ public class GameController {
 	}
 
 	/**
-	 * @param continent
-	 * @return
+	 * @param continent pass the continent parameter to get the ruler 
+	 * @return Player type if the getRulerOfContinent status is successful
 	 */
 	private static Player getRulerOfContinent(Continent continent) {
 		ArrayList<Territory> territories = continent.getTerritories();
