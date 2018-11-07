@@ -177,6 +177,7 @@ public class GameWindow {
 		game = new Game(map);
 		game.setMap(map);
 		frame = new JFrame();
+		frame.setTitle("Risk");
 		frame.getContentPane().setForeground(Color.GREEN);
 		frame.setBounds(100, 100, 1926, 909);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
