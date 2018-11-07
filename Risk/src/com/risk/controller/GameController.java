@@ -149,8 +149,8 @@ public class GameController {
 	 * The method is used to add the player's army to the territory he owned.
 	 * @param player the player
 	 * @param territory the territory is owned by the player
-	 * @param numArmies 
-	 * @return boolean status
+	 * @param numArmies the number of armies needs to be passed to addArmyToTerritory method to do implementation
+	 * @return boolean status if the army to territory has been added
 	 */
 	public boolean addArmyToTerritory(Player player, Territory territory, int numArmies) {
 		boolean isAdded = false;
@@ -279,7 +279,7 @@ public class GameController {
 	/**
 	 * Create cards
 	 * 
-	 * @param numTerritories 
+	 * @param numTerritories pass number of territories for adding cards implementation
 	 * @return ArrayList of Cards
 	 */
 	public ArrayList<Card> loadCards(int numTerritories) {
