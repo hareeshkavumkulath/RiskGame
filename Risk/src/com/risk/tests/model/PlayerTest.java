@@ -28,8 +28,8 @@ public class PlayerTest{
      * <li>player.numberOfArmies => 10 </li>
      */
     @Test
-    @DisplayName("Player(...) => Right Values for Class Members")
-    void playerConstructorTest() {
+    @DisplayName("Player Object => Right Values for Class Members")
+    void playerObjectTest() {
         
         Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
 
