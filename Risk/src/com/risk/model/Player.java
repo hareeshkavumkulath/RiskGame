@@ -36,10 +36,10 @@ public class Player {
 	/**
 	 * Constructor for Player
 	 * 
-	 * @param name String name of the player
-	 * @param isComputer boolean true or false based on whether the player is computer or human
-	 * @param numberOfArmies int number of armies allocated to player
-	 * @param string 
+	 * @param name player name
+	 * @param isComputer player type
+	 * @param numberOfArmies number of armies the player have
+	 * @param strategy strategy type
 	 */
 	public Player(String name, boolean isComputer, int numberOfArmies, String strategy) {
 		this.name = name;
@@ -182,19 +182,35 @@ public class Player {
 	public void setStrategy(String strategy) {
 		this.strategy = strategy;
 	}
-	
+	/**
+	 * Getter to get cards
+	 * 
+	 * @return ArrayList list of cards
+	 */
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
-
+	/**
+	 * Setter to set the cards
+	 * 
+	 * @param cards the list of cards
+	 */
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
-
+	/**
+	 * whether the player won the game
+	 * 
+	 * @return
+	 */
 	public boolean isHasWon() {
 		return hasWon;
 	}
-
+	/**
+	 * set the player won the game
+	 * 
+	 * @param hasWon
+	 */
 	public void setHasWon(boolean hasWon) {
 		this.hasWon = hasWon;
 	}
