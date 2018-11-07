@@ -1260,7 +1260,6 @@ public class GameWindow {
 	}
 
 	/**
-	 * 
 	 * Update JList of Players in Attack Panel
 	 * 
 	 * @param currentIndex index of selected Player
