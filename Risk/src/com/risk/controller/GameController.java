@@ -488,10 +488,11 @@ public class GameController {
 	/**
 	 * Update ruler of the territory
 	 * 
-	 * @param territory 
-	 * @param ruler
-	 * @param game
-	 * @param numArmy
+	 * @param territory pass territory to update territory ruler for this private method
+	 * @param ruler pass ruler to update territory ruler for this private method
+	 * @param game pass game parameter to update territory ruler for this private method
+	 * @param numArmy pass the number of armies to update territory ruler for this private method
+	 * @return game type and receive the new updated territory ruler info
 	 */
 	private Game updateTerritoryRuler(Territory territory, Player ruler, Game game, int numArmy) {
 		int index = game.getMap().getTerritories().indexOf(territory);
@@ -503,11 +504,11 @@ public class GameController {
 	/**
 	 * Check for enough armies
 	 * 
-	 * @param attackerTerr
-	 * @param opponentTerr
-	 * @param numAttackerArmies
-	 * @param numOpponentArmies
-	 * @return
+	 * @param attackerTerr pass attacker territory to check if the player has enough armies
+	 * @param opponentTerr pass opponent territory to check if the player has enough armies
+	 * @param numAttackerArmies pass attacker armies number to check if the player has enough armies 
+	 * @param numOpponentArmies pass opponent armies to check if the player has enough armies
+	 * @return boolean the status if player has enough armies
 	 */
 	public boolean hasEnoughArmies(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,
 			int numOpponentArmies) {
@@ -521,9 +522,9 @@ public class GameController {
 	}
 
 	/**
-	 * @param winner
-	 * @param cards
-	 * @param game
+	 * @param winner pass the winner player
+	 * @param cards pass the cards list
+	 * @param game pass the game to add card information
 	 * @return
 	 */
 	public Game addCard(Player winner, ArrayList<Card> cards, Game game) {
