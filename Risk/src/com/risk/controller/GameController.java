@@ -591,7 +591,7 @@ public class GameController {
 	public int getNumberOfArmies(int turn) {
 		if(turn == 1) {
 			return 4;
-		}else if(turn > 1 && turn <= 6) {
+		}else if(turn > 1 && turn < 6) {
 			return (4 + (turn -1) * 2);
 		}else if(turn == 6) {
 			return 15;
