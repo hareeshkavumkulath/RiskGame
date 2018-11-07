@@ -348,8 +348,8 @@ public class GameController {
 	}
 
 	/**
-	 * @param player
-	 * @return
+	 * @param player pass player parameter to get his Number of Armies From Continents
+	 * @return int for the number of armies
 	 */
 	public int getNumArmiesFromContinents(Player player) {
 		int numArmies = 0;
