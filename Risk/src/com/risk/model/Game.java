@@ -27,7 +27,7 @@ public class Game extends Observable {
 	/**
 	 * Constructor for Game
 	 * 
-	 * @param map
+	 * @param map the map for the game
 	 */
 	public Game(Map map) {
 		this.map = map;
