@@ -328,8 +328,8 @@ public class GameController {
 	}
 
 	/**
-	 * @param continent
-	 * @return
+	 * @param continent pass the continent parameter to get the ruler 
+	 * @return Player type if the getRulerOfContinent status is successful
 	 */
 	private static Player getRulerOfContinent(Continent continent) {
 		ArrayList<Territory> territories = continent.getTerritories();
@@ -348,8 +348,8 @@ public class GameController {
 	}
 
 	/**
-	 * @param player
-	 * @return
+	 * @param player pass player parameter to get his Number of Armies From Continents
+	 * @return int for the number of armies
 	 */
 	public int getNumArmiesFromContinents(Player player) {
 		int numArmies = 0;
@@ -360,10 +360,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param currentPlayer
-	 * @param ruler
-	 * @param playerList
-	 * @return
+	 * @param attackerPlayer pass the player to the method and update the information, as attacker
+	 * @param opponentPlayer pass the player to the method and update the information, as defender
+	 * @param playerList pass the list of the player to update information
+	 * @return ArrayList the list of players
 	 */
 	public ArrayList<Player> updatePlayerList(Player attackerPlayer, Player opponentPlayer, ArrayList<Player> playerList) {
 		for(int i=0;i<playerList.size();i++) {
