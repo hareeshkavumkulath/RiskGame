@@ -59,6 +59,7 @@ public class SelectMapWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Select Map");
 		frame.setBounds(100, 100, 543, 714);
 		frame.getContentPane().setLayout(null);
 		
