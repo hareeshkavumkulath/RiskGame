@@ -3,7 +3,6 @@
  */
 package com.risk.view;
 
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
