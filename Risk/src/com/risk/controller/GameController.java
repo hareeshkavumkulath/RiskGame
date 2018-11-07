@@ -279,14 +279,13 @@ public class GameController {
 
 	/**
 	 * Create cards
-	 * @param numPlayers 
-	 * @param numTerritories 
 	 * 
+	 * @param numTerritories 
 	 * @return ArrayList of Cards
 	 */
-	public ArrayList<Card> loadCards(int numTerritories, int numPlayers) {
-		int eachType = numTerritories / numPlayers;
-		if((numTerritories % numPlayers) > 0) {
+	public ArrayList<Card> loadCards(int numTerritories) {
+		int eachType = numTerritories / 3;
+		if((numTerritories % 3) > 0) {
 			eachType++;
 		}
 		ArrayList<Card> cards = new ArrayList<Card>();

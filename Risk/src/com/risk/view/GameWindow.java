@@ -660,7 +660,7 @@ public class GameWindow {
 				GameController controller = new GameController();
 				//Assign one armies to each territories
 				String returnMessage = controller.assignOneArmyToEachTerritory(playerList, territories);
-				cards = controller.loadCards(territories.size(), playerList.size());
+				cards = controller.loadCards(territories.size());
 				game.setCards(cards);
 				updatePlayerJList();
 				instructions.setInstructions(returnMessage);
