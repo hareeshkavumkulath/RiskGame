@@ -201,7 +201,7 @@ public class Player {
 	/**
 	 * whether the player won the game
 	 * 
-	 * @return
+	 * @return boolean true if it wins,false if not
 	 */
 	public boolean isHasWon() {
 		return hasWon;
