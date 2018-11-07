@@ -384,6 +384,8 @@ public class GameController {
 	}
 
 	/**
+	 * 
+	 * 
 	 * @param attackerTerr pass attacker territory to update game status
 	 * @param opponentTerr pass opponent territory to update game status
 	 * @param game pass game to update its status
@@ -444,6 +446,8 @@ public class GameController {
 	}
 
 	/**
+	 * This method updates the new removed player list
+	 * 
 	 * @param territory pass territory to update the player list
 	 * @param ruler pass ruler to update the defender info
 	 * @param game pass game to update the player list 
@@ -457,6 +461,8 @@ public class GameController {
 	}
 
 	/**
+	 * This method updates the new added player list
+	 * 
 	 * @param territory pass parameter territory to update player list
 	 * @param ruler pass parameter ruler to update player list
 	 * @param game pass parameter game to update new added player list
@@ -522,10 +528,12 @@ public class GameController {
 	}
 
 	/**
+	 * This addCard method implements the adding card step
+	 * 
 	 * @param winner pass the winner player
 	 * @param cards pass the cards list
 	 * @param game pass the game to add card information
-	 * @return
+	 * @return Game type for adding card procedure
 	 */
 	public Game addCard(Player winner, ArrayList<Card> cards, Game game) {
 		int size = cards.size();
@@ -540,9 +548,9 @@ public class GameController {
 	/**
 	 * Turn In Cards - Add armies based on the attempt
 	 * 
-	 * @param currentPlayer Player - Current Player
-	 * @param selectedValuesList - List<String> list of selected values
-	 * @return Player currentPlayer
+	 * @param currentPlayer Current Player
+	 * @param selectedValuesList list of selected values
+	 * @return Player currentPlayer for setting his cards
 	 */
 	public Player turnInCards(Player currentPlayer, List<String> selectedValuesList) {
 		int turn = currentPlayer.getTurnInCards();
@@ -581,8 +589,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param attackerTerr
-	 * @return
+	 * Get number of attacker armies 
+	 * 
+	 * @param attackerTerr pass attacker territory parameter to to get the attacker armies
+	 * @return int the number of armies 
 	 */
 	public int getNumAttackerArmies(Territory attackerTerr) {
 		int numArmies = attackerTerr.getNumberOfArmies();
@@ -596,8 +606,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param opponentTerr
-	 * @param numAttackerArmies
+	 * Get the number of opponent armies 
+	 * 
+	 * @param opponentTerr pass parameter of the opponent territory to get his number of armies
+	 * @param numAttackerArmies pass parameter of the number of attacker armies to get the defender number of armies
 	 * @return
 	 */
 	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies) {
