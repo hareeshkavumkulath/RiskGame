@@ -125,18 +125,6 @@ public class MapControllerTests {
     }
 
     /**
-     * Testing createContinentConnection function return value for Valid Map
-     */
-    @Test
-    @DisplayName("createContinentConnection => TRUE for NotConnected MAP")
-    void createContinentConnectionInValid() {
-        mapController.processContinents(mapToString(notConnected));
-        mapController.processTerritories(mapToString(notConnected));
-        mapController.territoriesToContinents();
-        assertTrue(mapController.createContinentConnection());
-    }
-
-    /**
      * Testing validateMap function return value for Valid Map
      */
     @Test
@@ -145,7 +133,6 @@ public class MapControllerTests {
         mapController.processContinents(mapToString(valid));
         mapController.processTerritories(mapToString(valid));
         mapController.territoriesToContinents();
-        mapController.createContinentConnection();
         MapMessage anything = mapController.processFile(new File(valid));
         assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
     }
@@ -160,7 +147,6 @@ public class MapControllerTests {
         mapController.processContinents(mapToString(notConnected));
         mapController.processTerritories(mapToString(notConnected));
         mapController.territoriesToContinents();
-        mapController.createContinentConnection();
         MapMessage anything = mapController.processFile(new File(notConnected));
         assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
     }
