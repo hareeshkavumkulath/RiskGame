@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.risk.view;
 
 import java.text.DecimalFormat;
@@ -30,7 +27,7 @@ import com.risk.model.Territory;
 public class WorldDominationView extends JPanel implements Observer{
 	
 	/**
-	 * 
+	 * created a random serial version ID
 	 */
 	private static final long serialVersionUID = -863572094027587585L;
 	@SuppressWarnings("javadoc")
