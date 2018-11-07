@@ -18,9 +18,17 @@ import com.risk.model.Territory;
 
 public class TerritoryTest{
 
-	
+	/**
+     * Testing Territory(....) [Constructor for the Model];
+     * <code>Territory("testTerritory", "testContinent", 10)</code>
+     * 
+     * Should set the Right values for:
+     * <li>territory.name => testTerritory </li>
+     * <li>territory.continent => testContinent </li>
+     * <li>territory.numberOfArmies => 10 </li>
+     */
     @Test
-    @DisplayName("Territory(...) => Right Values for Class Members")
+    @DisplayName("Territory Object => Right Values for Class Members")
     void territoryObjectTest() {
         
     	Territory territory = new Territory("testTerritory", "testContinent", 10);
