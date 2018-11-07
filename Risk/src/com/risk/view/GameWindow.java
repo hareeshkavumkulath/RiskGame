@@ -887,7 +887,7 @@ public class GameWindow {
 	/**
 	 * Validate Selected values of Cards JList
 	 * 
-	 * @param selectedValuesList List<String> selected values
+	 * @param selectedValuesList list of selected values
 	 * @return boolean true/if based on the selection
 	 */
 	protected boolean validateSelectedCards(List<String> selectedValuesList) {
@@ -905,6 +905,7 @@ public class GameWindow {
 
 	/**
 	 * Sets the next player to current player
+	 * 
 	 * @return Player next Player
 	 */
 	protected Player nextPlayer() {
@@ -1029,9 +1030,7 @@ public class GameWindow {
 	}
 	
 	/**
-	 * 
 	 * Display current player's attack panel
-	 * 
 	 */
 	protected void displayAttackPanel() {
 		playerJList.setEnabled(true);
@@ -1170,10 +1169,12 @@ public class GameWindow {
 	}
 	
 	/**
-	 * @param status
-	 * @param selectedIndex2 
-	 * @param selectedIndex1 
-	 * @param attackerTerr 
+	 * Update the status of the game
+	 * 
+	 * @param status attack status
+	 * @param attackerTerr territory
+	 * @param selectedIndex1 index
+	 * @param selectedIndex2 index
 	 */
 	protected void updateStatus(AttackStatus status, Territory attackerTerr, int selectedIndex1, int selectedIndex2) {
 		if(status.hasWon) {
@@ -1242,9 +1243,11 @@ public class GameWindow {
 	}
 
 	/**
-	 * @param attackerTerr
-	 * @param opponentTerr
-	 * @return
+	 *Check whether the attacking and attacked territory have the same player
+	 *
+	 * @param attackerTerr attacking territory
+	 * @param opponentTerr attacked territory
+	 * @return boolean true if the ruler is the same, false the ruler is different
 	 */
 	protected boolean samePlayer(Territory attackerTerr, Territory opponentTerr) {
 		System.out.println("Attacker: " + attackerTerr.getName() + ", " + attackerTerr.getRuler().getName());
@@ -1257,7 +1260,6 @@ public class GameWindow {
 	}
 
 	/**
-	 * 
 	 * Update JList of Players in Attack Panel
 	 * 
 	 * @param currentIndex index of selected Player
