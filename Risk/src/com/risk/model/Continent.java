@@ -16,8 +16,6 @@ public class Continent {
 	@SuppressWarnings("javadoc")
 	int numberOfArmies;
 	@SuppressWarnings("javadoc")
-	ArrayList<Continent> adjacentContinents = new ArrayList<Continent>();
-	@SuppressWarnings("javadoc")
 	ArrayList<Territory> territories = new ArrayList<Territory>();
 	
 	/**
@@ -69,23 +67,6 @@ public class Continent {
 		this.numberOfArmies = numberOfArmies;
 	}
 
-	/**
-	 * Getter for adjacent continents
-	 * 
-	 * @return ArrayList list of continents
-	 */
-	public ArrayList<Continent> getAdjacentContinents() {
-		return adjacentContinents;
-	}
-
-	/**
-	 * Setter for adjacent Continents
-	 * 
-	 * @param adjacentContinents ArrayList of continents
-	 */
-	public void setAdjacentContinents(ArrayList<Continent> adjacentContinents) {
-		this.adjacentContinents = adjacentContinents;
-	}
 
 	/**
 	 * Getter for territories

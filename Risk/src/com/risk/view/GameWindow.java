@@ -1319,6 +1319,7 @@ public class GameWindow {
 		}else if(currentPlayer.getStrategy().equals("ATTACK")) {
 			displayAttackPanel();
 		}else if(currentPlayer.getStrategy().equals("FORTIFY")) {
+			currentPlayer.setFortificationStatus(false);
 			displayFortify();
 		}
 	}

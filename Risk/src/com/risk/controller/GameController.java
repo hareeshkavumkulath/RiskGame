@@ -554,6 +554,8 @@ public class GameController {
 				}
 			}
 		}
+		turn++;
+		currentPlayer.setTurnInCards(turn);
 		return currentPlayer;
 	}
 

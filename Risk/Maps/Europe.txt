@@ -1,0 +1,62 @@
+[Continents]
+UK and Ireland=3
+Scandanavia=4
+Russia=6
+Western Europe=5
+Balkans=7
+Central Europe=7
+Italy=3
+
+
+[Territories]
+Ireland,0,0,UK and Ireland,Northern Ireland,Wales
+Northern Ireland,0,0,UK and Ireland,Ireland,Scotland
+Scotland,0,0,UK and Ireland,Northern Ireland,Northern England,Norway
+Northern England,0,0,UK and Ireland,Scotland,Southern England,Wales
+Southern England,0,0,UK and Ireland,Wales,Northern England,Netherlands,Eastern France,Belgium
+Wales,0,0,UK and Ireland,Ireland,Northern England,Southern England
+Norway,0,0,Scandanavia,Scotland,Southern Sweden,Northern Sweden,Northern Finland,Northern Russia
+Southern Sweden,0,0,Scandanavia,Denmark,Poland,Northern Sweden,Norway,Southern Finland
+Northern Sweden,0,0,Scandanavia,Southern Sweden,Norway,Northern Finland,Southern Finland
+Northern Finland,0,0,Scandanavia,Northern Sweden,Norway,Northern Russia,Southern Finland
+Southern Finland,0,0,Scandanavia,Estonia,Northern Russia,Northern Finland,Southern Sweden,Northern Sweden
+Denmark,0,0,Scandanavia,Southern Sweden,West Germany
+Northern Russia,0,0,Russia,Norway,Northern Finland,Southern Finland,Southern Russia
+Southern Russia,0,0,Russia,Northern Russia,Estonia,Latvia,Belarus,Ukraine
+Estonia,0,0,Russia,Southern Finland,Latvia,Southern Russia
+Latvia,0,0,Russia,Estonia,Lithuania,Belarus,Southern Russia
+Lithuania,0,0,Russia,Poland,Belarus,Latvia
+Belarus,0,0,Russia,Latvia,Lithuania,Poland,Ukraine,Southern Russia
+Ukraine,0,0,Russia,Romania,Moldova,Hungary,Slovakia,Poland,Belarus,Southern Russia,Turkey
+Moldova,0,0,Russia,Romania,Ukraine
+Netherlands,0,0,Western Europe,Southern England,Belgium,West Germany
+Belgium,0,0,Western Europe,Southern England,Netherlands,West Germany,Eastern France
+Eastern France,0,0,Western Europe,Belgium,Southern England,Western France,Switzerland,West Germany,Northern Italy,Corsica
+Western France,0,0,Western Europe,Northern Spain,Eastern France
+Northern Spain,0,0,Western Europe,Portugal,Southern Spain,Western France,Sardinia
+Southern Spain,0,0,Western Europe,Portugal,Northern Spain
+Portugal,0,0,Western Europe,Southern Spain,Northern Spain
+Northern Italy,0,0,Italy,Corsica,Croatia,Slovenia,Austria,Switzerland,Eastern France,Southern Italy
+Southern Italy,0,0,Italy,Sicily,Albania,Northern Italy
+Sicily,0,0,Italy,Sardinia,Southern Italy
+Corsica,0,0,Italy,Northern Italy,Sardinia,Eastern France
+Sardinia,0,0,Italy,Corsica,Sicily,Northern Spain
+East Germany,0,0,Central Europe,Poland,Czech Republic,West Germany
+West Germany,0,0,Central Europe,Denmark,Netherlands,Belgium,Eastern France,Switzerland,Austria,Czech Republic,East Germany
+Switzerland,0,0,Central Europe,Eastern France,Northern Italy,Austria,West Germany
+Austria,0,0,Central Europe,West Germany,Switzerland,Northern Italy,Slovenia,Hungary,Slovakia,Czech Republic
+Czech Republic,0,0,Central Europe,East Germany,West Germany,Austria,Slovakia,Poland
+Poland,0,0,Central Europe,Southern Sweden,East Germany,Czech Republic,Slovakia,Ukraine,Belarus,Lithuania
+Slovakia,0,0,Central Europe,Poland,Czech Republic,Austria,Hungary,Ukraine
+Hungary,0,0,Central Europe,Austria,Slovenia,Croatia,Yugoslavia,Romania,Ukraine,Slovakia
+Slovenia,0,0,Balkans,Northern Italy,Croatia,Hungary,Austria
+Croatia,0,0,Balkans,Slovenia,Northern Italy,Bosnia,Yugoslavia,Hungary
+Bosnia,0,0,Balkans,Croatia,Yugoslavia
+Yugoslavia,0,0,Balkans,Hungary,Croatia,Bosnia,Albania,Macedonia,Bulgaria,Romania
+Albania,0,0,Balkans,Greece,Macedonia,Yugoslavia,Southern Italy
+Macedonia,0,0,Balkans,Albania,Yugoslavia,Bulgaria,Greece
+Romania,0,0,Balkans,Moldova,Ukraine,Hungary,Yugoslavia,Bulgaria
+Bulgaria,0,0,Balkans,Turkey,Greece,Macedonia,Yugoslavia,Romania
+Greece,0,0,Balkans,Albania,Macedonia,Bulgaria,Turkey
+Turkey,0,0,Balkans,Ukraine,Bulgaria,Greece
+
