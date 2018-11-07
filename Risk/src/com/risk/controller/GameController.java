@@ -127,6 +127,7 @@ public class GameController {
 		}
 		return message;
 	}	
+	
 	/**
 	 * The method is used to check whether the player still have the armies to add.
 	 * 
@@ -145,8 +146,10 @@ public class GameController {
 		}
 		return isAddingCompleted;
 	}
+	
 	/**
-	 * The method is used to add the player's army to the territory he owned.
+	 * The method is used to add the player's army to the territory he owned
+	 * 
 	 * @param player the player
 	 * @param territory the territory is owned by the player
 	 * @param numArmies the number of armies needs to be passed to addArmyToTerritory method to do implementation
@@ -168,6 +171,7 @@ public class GameController {
 		}
 		return isAdded;		
 	}
+	
 	/**
 	 * The method is used to give the player certain number of armies at the start of the reinforcement stage.
 	 * 
@@ -183,8 +187,10 @@ public class GameController {
 		}
 		return numReinforcements;
 	}
+	
 	/**
-	 * The method is used to check whether the fortification is valid.
+	 * The method is used to check whether the fortification is valid
+	 * 
 	 * @param player the player
 	 * @return boolean true if the fortification is valid for the player else false
 	 */
@@ -328,6 +334,8 @@ public class GameController {
 	}
 
 	/**
+	 * This status methods get the ruler of continent for player
+	 * 
 	 * @param continent pass the continent parameter to get the ruler 
 	 * @return Player type if the getRulerOfContinent status is successful
 	 */
@@ -348,6 +356,8 @@ public class GameController {
 	}
 
 	/**
+	 * This method gets the number of armies from continents
+	 * 
 	 * @param player pass player parameter to get his Number of Armies From Continents
 	 * @return int for the number of armies
 	 */
@@ -360,6 +370,8 @@ public class GameController {
 	}
 
 	/**
+	 * This method updates player list after add or remove
+	 * 
 	 * @param attackerPlayer pass the player to the method and update the information, as attacker
 	 * @param opponentPlayer pass the player to the method and update the information, as defender
 	 * @param playerList pass the list of the player to update information
@@ -384,7 +396,7 @@ public class GameController {
 	}
 
 	/**
-	 * 
+	 * This method updates the game status including attacker, number of armies and rulers
 	 * 
 	 * @param attackerTerr pass attacker territory to update game status
 	 * @param opponentTerr pass opponent territory to update game status
