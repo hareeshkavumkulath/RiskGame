@@ -406,8 +406,8 @@ public class GameController {
 				        JOptionPane.WARNING_MESSAGE);
 				System.out.println(input);
 				numArmy = Integer.parseInt(input);
-				opponentTerr.setNumberOfArmies(opponentTerr.getNumberOfArmies() - numArmy);
 			}
+			opponentTerr.setNumberOfArmies(opponentTerr.getNumberOfArmies() - numArmy);
 			game = updateTerritoryRuler(attackerTerr, opponentTerr.getRuler(), game, numArmy);
 			game = updateTerritoryRuler(opponentTerr, opponentTerr.getRuler(), game, opponentTerr.getNumberOfArmies());
 			game = updateAddPlayerList(attackerTerr, opponentTerr.getRuler(), game);
@@ -423,8 +423,9 @@ public class GameController {
 				        JOptionPane.WARNING_MESSAGE);
 				System.out.println(input);
 				numArmy = Integer.parseInt(input);
-				attackerTerr.setNumberOfArmies(attackerTerr.getNumberOfArmies() - numArmy);
-			}if(opponentRuler.getOwnedTerritories().size() == 0) {
+			}
+			attackerTerr.setNumberOfArmies(attackerTerr.getNumberOfArmies() - numArmy);
+			if(opponentRuler.getOwnedTerritories().size() == 0) {
 				ArrayList<Card> cards = opponentRuler.getCards();
 				if(cards != null) {
 					for(int i=0;i<cards.size();i++) {
