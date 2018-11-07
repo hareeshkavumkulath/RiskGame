@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import com.risk.model.Card;
 import com.risk.model.Continent;
 import com.risk.model.Game;
-import com.risk.model.Map;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 
