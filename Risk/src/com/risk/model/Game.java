@@ -63,7 +63,7 @@ public class Game extends Observable {
 	/**
 	 * Setter for Players
 	 * 
-	 * @param players
+	 * @param players list of players
 	 */
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
@@ -96,7 +96,11 @@ public class Game extends Observable {
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
-
+	/**
+	 * Getter to get the current player
+	 * 
+	 * @return Player object
+	 */
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
