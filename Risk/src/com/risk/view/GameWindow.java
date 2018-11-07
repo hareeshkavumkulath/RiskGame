@@ -887,7 +887,7 @@ public class GameWindow {
 	/**
 	 * Validate Selected values of Cards JList
 	 * 
-	 * @param selectedValuesList List<String> selected values
+	 * @param selectedValuesList list of selected values
 	 * @return boolean true/if based on the selection
 	 */
 	protected boolean validateSelectedCards(List<String> selectedValuesList) {
@@ -905,6 +905,7 @@ public class GameWindow {
 
 	/**
 	 * Sets the next player to current player
+	 * 
 	 * @return Player next Player
 	 */
 	protected Player nextPlayer() {
@@ -1029,9 +1030,7 @@ public class GameWindow {
 	}
 	
 	/**
-	 * 
 	 * Display current player's attack panel
-	 * 
 	 */
 	protected void displayAttackPanel() {
 		playerJList.setEnabled(true);
