@@ -66,7 +66,7 @@ public class MapControllerTests {
     void init() {
         mapController = new MapController();
     }
-
+ // =====================processContinent()=====================
     /**
      * Testing processContinent function return value for Valid Map
      */
@@ -85,7 +85,7 @@ public class MapControllerTests {
     void processContinentInValid() {
         assertTrue(mapController.processContinents(mapToString(noTag)));
     }
-
+ // =====================processTerritories()=====================
     /**
      * Testing processTerritories function return value for Valid Map
      */
@@ -107,7 +107,7 @@ public class MapControllerTests {
         mapController.processTerritories(mapToString(noTerritories));
         assertTrue(mapController.processTerritories(mapToString(noTerritories)));
     }
-
+    // =====================territoriesToContinents()=====================
     /**
      * Testing territoriesToContinents function return value for Valid Map
      */
@@ -132,7 +132,7 @@ public class MapControllerTests {
         mapController.territoriesToContinents();
         assertNotNull(mapController.continentArray);
     }
-
+    // =====================validateMapValid()=====================
     /**
      * Testing validateMap function return value for Valid Map
      */
@@ -159,7 +159,7 @@ public class MapControllerTests {
         MapMessage anything = mapController.processFile(new File(notConnected));
         assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
     }
-    
+    // =====================addAdjacentTerritoriesTest()=====================
     /**
      * Testing addAdjacentTerritories function return value for InValid Map
      * Which is a not connected map
@@ -177,6 +177,8 @@ public class MapControllerTests {
         
         assertTrue(mapController.addAdjacentTerritories(mapToString(valid2),terrList));
     }
+    
+    // =====================mapToString()=====================
     
     /**
      * 
