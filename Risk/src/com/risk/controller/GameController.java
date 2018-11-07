@@ -309,6 +309,10 @@ public class GameController {
 			newCard.addArmy("Artillery");
 			cards.add(newCard);
 		}
+		System.out.println("Number of Cards:" + cards.size());
+		for(int i=0;i<cards.size();i++) {
+			System.out.println(cards.get(i).getArmyType() + "-" + cards.get(i).getNumArmies());
+		}
 		return cards;
 	}
 
@@ -550,7 +554,8 @@ public class GameController {
 	public Game addCard(Player winner, ArrayList<Card> cards, Game game) {
 		int size = cards.size();
 		int indexOfPlayer = game.getPlayers().indexOf(winner);
-		int randomIndex = new Random().nextInt(size);
+		Random rand = new Random();
+		int randomIndex = rand.nextInt(size);
 		game.getPlayers().get(indexOfPlayer).getCards().add(cards.get(randomIndex));
 		cards.remove(randomIndex);
 		game.setCards(cards);
