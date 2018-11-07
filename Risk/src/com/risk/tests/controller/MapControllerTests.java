@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;;
 
 
 /**
@@ -92,10 +93,11 @@ public class MapControllerTests {
      * Testing processTerritories function return value for InValid Map
      * Which is map with no territories
      */
+    
     @Test
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
     void proceeeTerritoriesInValid() {
-        mapController.processContinents(mapToString(noTerritories));
+        mapController.processTerritories(mapToString(noTerritories));
         assertTrue(mapController.processTerritories(mapToString(noTerritories)));
     }
 
