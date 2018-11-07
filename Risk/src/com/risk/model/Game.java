@@ -54,7 +54,7 @@ public class Game extends Observable {
 	/**
 	 * Getter for Players
 	 * 
-	 * @return
+	 * @return arrayList list of player
 	 */
 	public ArrayList<Player> getPlayers() {
 		return players;
