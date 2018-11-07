@@ -127,6 +127,7 @@ public class GameController {
 		}
 		return message;
 	}	
+	
 	/**
 	 * The method is used to check whether the player still have the armies to add.
 	 * 
@@ -145,8 +146,10 @@ public class GameController {
 		}
 		return isAddingCompleted;
 	}
+	
 	/**
-	 * The method is used to add the player's army to the territory he owned.
+	 * The method is used to add the player's army to the territory he owned
+	 * 
 	 * @param player the player
 	 * @param territory the territory is owned by the player
 	 * @param numArmies the number of armies needs to be passed to addArmyToTerritory method to do implementation
@@ -168,6 +171,7 @@ public class GameController {
 		}
 		return isAdded;		
 	}
+	
 	/**
 	 * The method is used to give the player certain number of armies at the start of the reinforcement stage.
 	 * 
@@ -183,8 +187,10 @@ public class GameController {
 		}
 		return numReinforcements;
 	}
+	
 	/**
-	 * The method is used to check whether the fortification is valid.
+	 * The method is used to check whether the fortification is valid
+	 * 
 	 * @param player the player
 	 * @return boolean true if the fortification is valid for the player else false
 	 */
@@ -328,6 +334,8 @@ public class GameController {
 	}
 
 	/**
+	 * This status methods get the ruler of continent for player
+	 * 
 	 * @param continent pass the continent parameter to get the ruler 
 	 * @return Player type if the getRulerOfContinent status is successful
 	 */
@@ -348,6 +356,8 @@ public class GameController {
 	}
 
 	/**
+	 * This method gets the number of armies from continents
+	 * 
 	 * @param player pass player parameter to get his Number of Armies From Continents
 	 * @return int for the number of armies
 	 */
@@ -360,6 +370,8 @@ public class GameController {
 	}
 
 	/**
+	 * This method updates player list after add or remove
+	 * 
 	 * @param attackerPlayer pass the player to the method and update the information, as attacker
 	 * @param opponentPlayer pass the player to the method and update the information, as defender
 	 * @param playerList pass the list of the player to update information
@@ -384,10 +396,12 @@ public class GameController {
 	}
 
 	/**
-	 * @param attackerTerr
-	 * @param opponentTerr
-	 * @param game
-	 * @return
+	 * This method updates the game status including attacker, number of armies and rulers
+	 * 
+	 * @param attackerTerr pass attacker territory to update game status
+	 * @param opponentTerr pass opponent territory to update game status
+	 * @param game pass game to update its status
+	 * @return Game to get the new updated game status
 	 */
 	public Game updateGame(Territory attackerTerr, Territory opponentTerr, Game game) {
 		Player opponentRuler = opponentTerr.getRuler();
@@ -444,10 +458,12 @@ public class GameController {
 	}
 
 	/**
-	 * @param territory
-	 * @param ruler
-	 * @param game
-	 * @return
+	 * This method updates the new removed player list
+	 * 
+	 * @param territory pass territory to update the player list
+	 * @param ruler pass ruler to update the defender info
+	 * @param game pass game to update the player list 
+	 * @return Game to update PlayerList info
 	 */
 	private Game updateRemovePlayerList(Territory territory, Player ruler, Game game) {
 		int removeIndex = game.getPlayers().indexOf(ruler);
@@ -457,10 +473,12 @@ public class GameController {
 	}
 
 	/**
-	 * @param territory
-	 * @param ruler
-	 * @param game
-	 * @return
+	 * This method updates the new added player list
+	 * 
+	 * @param territory pass parameter territory to update player list
+	 * @param ruler pass parameter ruler to update player list
+	 * @param game pass parameter game to update new added player list
+	 * @return game type to update new added player list
 	 */
 	public Game updateAddPlayerList(Territory territory, Player ruler, Game game) {
 		int addIndex = game.getPlayers().indexOf(ruler);
@@ -472,7 +490,8 @@ public class GameController {
 	/**
 	 * Update player list - If any player who don't have army it will get deleted from the list
 	 * 
-	 * @return
+	 * @param game pass game parameter to update player list for this private method
+	 * @return game type and receive the new updated player list info
 	 */
 	private Game updatePlayerList(Game game) {
 		for(int i=0;i<game.getPlayers().size();i++) {
@@ -487,8 +506,11 @@ public class GameController {
 	/**
 	 * Update ruler of the territory
 	 * 
-	 * @param terr 
-	 * @param ruler
+	 * @param territory pass territory to update territory ruler for this private method
+	 * @param ruler pass ruler to update territory ruler for this private method
+	 * @param game pass game parameter to update territory ruler for this private method
+	 * @param numArmy pass the number of armies to update territory ruler for this private method
+	 * @return game type and receive the new updated territory ruler info
 	 */
 	private Game updateTerritoryRuler(Territory territory, Player ruler, Game game, int numArmy) {
 		int index = game.getMap().getTerritories().indexOf(territory);
@@ -500,11 +522,11 @@ public class GameController {
 	/**
 	 * Check for enough armies
 	 * 
-	 * @param attackerTerr
-	 * @param opponentTerr
-	 * @param numAttackerArmies
-	 * @param numOpponentArmies
-	 * @return
+	 * @param attackerTerr pass attacker territory to check if the player has enough armies
+	 * @param opponentTerr pass opponent territory to check if the player has enough armies
+	 * @param numAttackerArmies pass attacker armies number to check if the player has enough armies 
+	 * @param numOpponentArmies pass opponent armies to check if the player has enough armies
+	 * @return boolean the status if player has enough armies
 	 */
 	public boolean hasEnoughArmies(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,
 			int numOpponentArmies) {
@@ -518,10 +540,12 @@ public class GameController {
 	}
 
 	/**
-	 * @param winner
-	 * @param cards
-	 * @param game
-	 * @return
+	 * This addCard method implements the adding card step
+	 * 
+	 * @param winner pass the winner player
+	 * @param cards pass the cards list
+	 * @param game pass the game to add card information
+	 * @return Game type for adding card procedure
 	 */
 	public Game addCard(Player winner, ArrayList<Card> cards, Game game) {
 		int size = cards.size();
@@ -536,9 +560,9 @@ public class GameController {
 	/**
 	 * Turn In Cards - Add armies based on the attempt
 	 * 
-	 * @param currentPlayer Player - Current Player
-	 * @param selectedValuesList - List<String> list of selected values
-	 * @return Player currentPlayer
+	 * @param currentPlayer Current Player
+	 * @param selectedValuesList list of selected values
+	 * @return Player currentPlayer for setting his cards
 	 */
 	public Player turnInCards(Player currentPlayer, List<String> selectedValuesList) {
 		int turn = currentPlayer.getTurnInCards();
@@ -577,8 +601,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param attackerTerr
-	 * @return
+	 * Get number of attacker armies 
+	 * 
+	 * @param attackerTerr pass attacker territory parameter to to get the attacker armies
+	 * @return int the number of armies 
 	 */
 	public int getNumAttackerArmies(Territory attackerTerr) {
 		int numArmies = attackerTerr.getNumberOfArmies();
@@ -592,8 +618,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param opponentTerr
-	 * @param numAttackerArmies
+	 * Get the number of opponent armies 
+	 * 
+	 * @param opponentTerr pass parameter of the opponent territory to get his number of armies
+	 * @param numAttackerArmies pass parameter of the number of attacker armies to get the defender number of armies
 	 * @return
 	 */
 	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies) {
