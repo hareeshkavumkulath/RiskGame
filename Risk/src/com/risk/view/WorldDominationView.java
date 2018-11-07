@@ -41,7 +41,8 @@ public class WorldDominationView extends JPanel implements Observer{
 	
 	/**
 	 * Constructor for Player World Domination View
-	 * @param game 
+	 * 
+	 * @param game set the game profile
 	 */
 	public WorldDominationView(Game game) {
 		super();
