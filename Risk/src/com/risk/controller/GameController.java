@@ -384,10 +384,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param attackerTerr
-	 * @param opponentTerr
-	 * @param game
-	 * @return
+	 * @param attackerTerr pass attacker territory to update game status
+	 * @param opponentTerr pass opponent territory to update game status
+	 * @param game pass game to update its status
+	 * @return Game to get the new updated game status
 	 */
 	public Game updateGame(Territory attackerTerr, Territory opponentTerr, Game game) {
 		Player opponentRuler = opponentTerr.getRuler();
@@ -444,10 +444,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param territory
-	 * @param ruler
-	 * @param game
-	 * @return
+	 * @param territory pass territory to update the player list
+	 * @param ruler pass ruler to update the defender info
+	 * @param game pass game to update the player list 
+	 * @return Game to update PlayerList info
 	 */
 	private Game updateRemovePlayerList(Territory territory, Player ruler, Game game) {
 		int removeIndex = game.getPlayers().indexOf(ruler);
@@ -457,10 +457,10 @@ public class GameController {
 	}
 
 	/**
-	 * @param territory
-	 * @param ruler
-	 * @param game
-	 * @return
+	 * @param territory pass parameter territory to update player list
+	 * @param ruler pass parameter ruler to update player list
+	 * @param game pass parameter game to update new added player list
+	 * @return game type to update new added player list
 	 */
 	public Game updateAddPlayerList(Territory territory, Player ruler, Game game) {
 		int addIndex = game.getPlayers().indexOf(ruler);
@@ -472,7 +472,8 @@ public class GameController {
 	/**
 	 * Update player list - If any player who don't have army it will get deleted from the list
 	 * 
-	 * @return
+	 * @param game pass game parameter to update player list for this private method
+	 * @return game type and receive the new updated player list info
 	 */
 	private Game updatePlayerList(Game game) {
 		for(int i=0;i<game.getPlayers().size();i++) {
@@ -487,8 +488,10 @@ public class GameController {
 	/**
 	 * Update ruler of the territory
 	 * 
-	 * @param terr 
+	 * @param territory 
 	 * @param ruler
+	 * @param game
+	 * @param numArmy
 	 */
 	private Game updateTerritoryRuler(Territory territory, Player ruler, Game game, int numArmy) {
 		int index = game.getMap().getTerritories().indexOf(territory);
