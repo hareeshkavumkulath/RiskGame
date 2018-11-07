@@ -88,8 +88,11 @@ public class GameWindow {
 	private PlayerListView playerJList;
 	@SuppressWarnings("javadoc")
 	private JList<String> ownedTerritories;
+	@SuppressWarnings("javadoc")
 	private ArrayList<Card> cards;
+	@SuppressWarnings("javadoc")
 	int currentIndex = 0;
+	@SuppressWarnings("javadoc")
 	boolean won = false;
 	
 	@SuppressWarnings("javadoc")
@@ -136,7 +139,9 @@ public class GameWindow {
 	private JButton btnAttack;
 	@SuppressWarnings("javadoc")
 	private JButton btnEndAttack;
+	@SuppressWarnings("javadoc")
 	private CardsJList cardsPanel;
+	@SuppressWarnings("javadoc")
 	private JCheckBox chckbxAllOutMode;
 	
 	/**
@@ -468,7 +473,7 @@ public class GameWindow {
 					ArrayList<Territory> territories = playerList.get(selections[0]).getOwnedTerritories();
 					String[] territoryNames = new String[territories.size()];
 					for(int i=0;i<territories.size();i++) {
-						territoryNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
+						territoryNames[i] = territories.get(i).getName() + "-" + territories.get(i).getContinent() + "(" + territories.get(i).getNumberOfArmies() + ")";
 					}
 					ownedTerritories.setListData(territoryNames);
 				}catch (Exception e) {
@@ -478,175 +483,8 @@ public class GameWindow {
 			}
 		});
 		
-	}
-
-	/**
-	 * It displays the setup player panel based on the number of players
-	 * 
-	 * @param number int number of players
-	 */
-	protected void showPlayerSetupPanel(int number) {
 		
-		GameController controller = new GameController();
-		int numArmies; // Number of armies each player get
-		numArmies = controller.getPlayersArmies(number);
-		
-		JFrame playerFrame = new JFrame();
-		playerFrame.setBounds(100, 100, 450, 439);
-		playerFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		playerFrame.getContentPane().setLayout(null);
-		
-		JLabel lblEnterPlayerDetails = new JLabel("Enter Player Details");
-		lblEnterPlayerDetails.setBounds(15, 16, 175, 20);
-		playerFrame.getContentPane().add(lblEnterPlayerDetails);
-		
-		player1 = new JTextField();
-		player1.setText("Player1");
-		player1.setBounds(15, 52, 152, 26);
-		playerFrame.getContentPane().add(player1);
-		player1.setColumns(10);
-		
-		player2 = new JTextField();
-		player2.setText("Player2");
-		player2.setBounds(15, 94, 152, 26);
-		playerFrame.getContentPane().add(player2);
-		player2.setColumns(10);
-		
-		JComboBox<String> playerType1 = new JComboBox<String>();
-		playerType1.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
-		playerType1.setBounds(182, 52, 117, 26);
-		playerFrame.getContentPane().add(playerType1);
-		
-		JComboBox<String> playerType2 = new JComboBox<String>();
-		playerType2.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
-		playerType2.setBounds(182, 94, 117, 26);
-		playerFrame.getContentPane().add(playerType2);
-		
-		if (number > 2) {
-			player3 = new JTextField();
-			player3.setText("Player3");
-			player3.setColumns(10);
-			player3.setBounds(15, 136, 152, 26);
-			playerFrame.getContentPane().add(player3);
-
-			playerType3 = new JComboBox<String>();
-			playerType3.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
-			playerType3.setBounds(182, 136, 117, 26);
-			playerFrame.getContentPane().add(playerType3);
-		}
-		
-		if (number > 3) {
-			player4 = new JTextField();
-			player4.setText("Player4");
-			player4.setColumns(10);
-			player4.setBounds(15, 178, 152, 26);
-			playerFrame.getContentPane().add(player4);	
-			
-			playerType4 = new JComboBox<String>();
-			playerType4.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
-			playerType4.setBounds(182, 178, 117, 26);
-			playerFrame.getContentPane().add(playerType4);
-		}
-		
-		if(number > 4) {
-			player5 = new JTextField();
-			player5.setText("Player5");
-			player5.setColumns(10);
-			player5.setBounds(15, 220, 152, 26);
-			playerFrame.getContentPane().add(player5);
-			
-			playerType5 = new JComboBox<String>();
-			playerType5.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
-			playerType5.setBounds(182, 220, 117, 26);
-			playerFrame.getContentPane().add(playerType5);
-		}
-		
-		if(number > 5) {
-			player6 = new JTextField();
-			player6.setText("Player6");
-			player6.setColumns(10);
-			player6.setBounds(15, 262, 152, 26);
-			playerFrame.getContentPane().add(player6);
-			
-			playerType6 = new JComboBox<String>();
-			playerType6.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
-			playerType6.setBounds(182, 262, 117, 26);
-			playerFrame.getContentPane().add(playerType6);
-		}	
-		playerFrame.setVisible(true);
-		
-		playerButton = new JButton("Enter");
-		playerButton.setBounds(298, 304, 81, 34);
-		playerFrame.getContentPane().add(playerButton);
-		
-		playerButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String name1 = player1.getText();
-				boolean isComputer1 = isComputer(playerType1.getSelectedIndex());
-				Player firstPlayer = new Player(name1, isComputer1, numArmies, "REINFORCEMENT");
-				String name2 = player2.getText();
-				boolean isComputer2 = isComputer(playerType2.getSelectedIndex());
-				Player secondPlayer = new Player(name2, isComputer2, numArmies, "REINFORCEMENT");
-				playerList.add(firstPlayer);
-				playerList.add(secondPlayer);
-				if(number > 2) {
-					String name = player3.getText();
-					boolean isComputer = isComputer(playerType3.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
-					playerList.add(newPlayer);
-				}
-				if(number > 3) {
-					String name = player4.getText();
-					boolean isComputer = isComputer(playerType4.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
-					playerList.add(newPlayer);
-				}
-				if(number > 4) {
-					String name = player5.getText();
-					boolean isComputer = isComputer(playerType5.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
-					playerList.add(newPlayer);
-				}
-				if(number > 5) {
-					String name = player5.getText();
-					boolean isComputer = isComputer(playerType5.getSelectedIndex());
-					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
-					playerList.add(newPlayer);
-				}
-				
-				// Assigning territories to players
-				GameController controller = new GameController();
-				playerList = controller.territoriesToPlayers(playerList, territories);
-				territories = controller.playersToTerritories(playerList, territories);
-				
-				game.setPlayers(playerList);
-				
-				playerFrame.setVisible(false);
-				String[] playerNames = new String[numberOfPlayers];
-				for(int i=0;i<playerList.size();i++) {
-					playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
-				}
-				playerJList.setListData(playerNames);
-				// Set territories and Adjacent territories with Player details
-				
-				//Set new instruction
-				instructions.setInstructions("Players and territories are assigned.\r\nPlease click Begin Conquest to Start the game");
-				//Display begin conquest button
-				beginGame.setVisible(true);
-			}
-
-			private boolean isComputer(int selectedIndex) {
-				if(selectedIndex == 1)
-					return false;
-				else
-					return true;
-			}
-			
-		});
-		
-		
+		// Button Action Listeners
 		// Begin Game - Start 
 		beginGame.addActionListener(new ActionListener() {
 
@@ -871,7 +709,13 @@ public class GameWindow {
 						JOptionPane.showMessageDialog(frame, "Select 3 cards.");
 					}else {
 						if(validateSelectedCards(cardsPanel.getList().getSelectedValuesList())) {
+							ArrayList<Card> currentCards = currentPlayer.getCards();
 							currentPlayer = controller.turnInCards(currentPlayer, cardsPanel.getList().getSelectedValuesList());
+							if(currentPlayer.getCards().size() < currentCards.size()) {
+								for(int i=0;i<currentCards.size();i++) {
+									currentPlayer.getCards().add(currentCards.get(i));
+								}
+							}
 							cardsObject.setPlayer(currentPlayer);
 							updatePlayerJList();
 						}else {
@@ -880,6 +724,174 @@ public class GameWindow {
 					}
 				}
 			}
+		});		
+		
+	}
+
+	/**
+	 * It displays the setup player panel based on the number of players
+	 * 
+	 * @param number int number of players
+	 */
+	protected void showPlayerSetupPanel(int number) {
+		
+		GameController controller = new GameController();
+		int numArmies; // Number of armies each player get
+		numArmies = controller.getPlayersArmies(number);
+		
+		JFrame playerFrame = new JFrame();
+		playerFrame.setBounds(100, 100, 450, 439);
+		playerFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		playerFrame.getContentPane().setLayout(null);
+		
+		JLabel lblEnterPlayerDetails = new JLabel("Enter Player Details");
+		lblEnterPlayerDetails.setBounds(15, 16, 175, 20);
+		playerFrame.getContentPane().add(lblEnterPlayerDetails);
+		
+		player1 = new JTextField();
+		player1.setText("Player1");
+		player1.setBounds(15, 52, 152, 26);
+		playerFrame.getContentPane().add(player1);
+		player1.setColumns(10);
+		
+		player2 = new JTextField();
+		player2.setText("Player2");
+		player2.setBounds(15, 94, 152, 26);
+		playerFrame.getContentPane().add(player2);
+		player2.setColumns(10);
+		
+		JComboBox<String> playerType1 = new JComboBox<String>();
+		playerType1.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
+		playerType1.setBounds(182, 52, 117, 26);
+		playerFrame.getContentPane().add(playerType1);
+		
+		JComboBox<String> playerType2 = new JComboBox<String>();
+		playerType2.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
+		playerType2.setBounds(182, 94, 117, 26);
+		playerFrame.getContentPane().add(playerType2);
+		
+		if (number > 2) {
+			player3 = new JTextField();
+			player3.setText("Player3");
+			player3.setColumns(10);
+			player3.setBounds(15, 136, 152, 26);
+			playerFrame.getContentPane().add(player3);
+
+			playerType3 = new JComboBox<String>();
+			playerType3.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
+			playerType3.setBounds(182, 136, 117, 26);
+			playerFrame.getContentPane().add(playerType3);
+		}
+		
+		if (number > 3) {
+			player4 = new JTextField();
+			player4.setText("Player4");
+			player4.setColumns(10);
+			player4.setBounds(15, 178, 152, 26);
+			playerFrame.getContentPane().add(player4);	
+			
+			playerType4 = new JComboBox<String>();
+			playerType4.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
+			playerType4.setBounds(182, 178, 117, 26);
+			playerFrame.getContentPane().add(playerType4);
+		}
+		
+		if(number > 4) {
+			player5 = new JTextField();
+			player5.setText("Player5");
+			player5.setColumns(10);
+			player5.setBounds(15, 220, 152, 26);
+			playerFrame.getContentPane().add(player5);
+			
+			playerType5 = new JComboBox<String>();
+			playerType5.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
+			playerType5.setBounds(182, 220, 117, 26);
+			playerFrame.getContentPane().add(playerType5);
+		}
+		
+		if(number > 5) {
+			player6 = new JTextField();
+			player6.setText("Player6");
+			player6.setColumns(10);
+			player6.setBounds(15, 262, 152, 26);
+			playerFrame.getContentPane().add(player6);
+			
+			playerType6 = new JComboBox<String>();
+			playerType6.setModel(new DefaultComboBoxModel<String>(new String[] {"Human", "Computer"}));
+			playerType6.setBounds(182, 262, 117, 26);
+			playerFrame.getContentPane().add(playerType6);
+		}	
+		playerFrame.setVisible(true);
+		
+		playerButton = new JButton("Enter");
+		playerButton.setBounds(298, 304, 81, 34);
+		playerFrame.getContentPane().add(playerButton);
+		
+		playerButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name1 = player1.getText();
+				boolean isComputer1 = isComputer(playerType1.getSelectedIndex());
+				Player firstPlayer = new Player(name1, isComputer1, numArmies, "REINFORCEMENT");
+				String name2 = player2.getText();
+				boolean isComputer2 = isComputer(playerType2.getSelectedIndex());
+				Player secondPlayer = new Player(name2, isComputer2, numArmies, "REINFORCEMENT");
+				playerList.add(firstPlayer);
+				playerList.add(secondPlayer);
+				if(number > 2) {
+					String name = player3.getText();
+					boolean isComputer = isComputer(playerType3.getSelectedIndex());
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
+					playerList.add(newPlayer);
+				}
+				if(number > 3) {
+					String name = player4.getText();
+					boolean isComputer = isComputer(playerType4.getSelectedIndex());
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
+					playerList.add(newPlayer);
+				}
+				if(number > 4) {
+					String name = player5.getText();
+					boolean isComputer = isComputer(playerType5.getSelectedIndex());
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
+					playerList.add(newPlayer);
+				}
+				if(number > 5) {
+					String name = player5.getText();
+					boolean isComputer = isComputer(playerType5.getSelectedIndex());
+					Player newPlayer = new Player(name, isComputer, numArmies, "REINFORCEMENT");
+					playerList.add(newPlayer);
+				}
+				
+				// Assigning territories to players
+				GameController controller = new GameController();
+				playerList = controller.territoriesToPlayers(playerList, territories);
+				territories = controller.playersToTerritories(playerList, territories);
+				
+				game.setPlayers(playerList);
+				
+				playerFrame.setVisible(false);
+				String[] playerNames = new String[numberOfPlayers];
+				for(int i=0;i<playerList.size();i++) {
+					playerNames[i] = playerList.get(i).getName() + "(" + playerList.get(i).getNumberOfArmies() + ")";
+				}
+				playerJList.setListData(playerNames);
+				// Set territories and Adjacent territories with Player details
+				
+				//Set new instruction
+				instructions.setInstructions("Players and territories are assigned.\r\nPlease click Begin Conquest to Start the game");
+				//Display begin conquest button
+				beginGame.setVisible(true);
+			}
+
+			private boolean isComputer(int selectedIndex) {
+				if(selectedIndex == 1)
+					return false;
+				else
+					return true;
+			}
+			
 		});
 		
 	}
@@ -1048,7 +1060,7 @@ public class GameWindow {
 			attackingTerritories = currentPlayer.getOwnedTerritories();
 			String[] attackingTerrNames = new String[attackingTerritories.size()];
 			for(int i = 0;i<attackingTerritories.size();i++) {
-				attackingTerrNames[i] = attackingTerritories.get(i).getName() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
+				attackingTerrNames[i] = attackingTerritories.get(i).getName() + "-" + attackingTerritories.get(i).getContinent() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
 			}
 			attackingTerr.setListData(attackingTerrNames);
 			
@@ -1062,7 +1074,7 @@ public class GameWindow {
 						String[] attackedTerrNames = new String[attackedTerritories.size()];
 						for(int i = 0;i<attackedTerrNames.length;i++) {
 							Territory tempTerritory = attackedTerritories.get(i);
-							attackedTerrNames[i] = tempTerritory.getName() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
+							attackedTerrNames[i] = tempTerritory.getName() + "-" + tempTerritory.getContinent() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
 						}
 						attackedTerr.setListData(attackedTerrNames);
 					}catch(Exception ex) {
@@ -1128,16 +1140,17 @@ public class GameWindow {
 										game = controller.updateGame(attackerTerr, opponentTerr, game);
 									}
 									game.update();
-									updateStatus(status, attackerTerr, selectedIndex1, selectedIndex2);
+									updateAttackStatus(status, attackerTerr, selectedIndex1, selectedIndex2);
 								}else {
 									instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
 									AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
 									instructions.setInstructions(status.getStatusMessage().toString());
 									game = controller.updateGame(attackerTerr, opponentTerr, game);
 									game.update();
-									updateStatus(status, attackerTerr, selectedIndex1, selectedIndex2);
+									updateAttackStatus(status, attackerTerr, selectedIndex1, selectedIndex2);
 								}
 							}else {
+								System.out.println("controller.hasEnoughArmies(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies)" + controller.hasEnoughArmies(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies));
 								JOptionPane.showMessageDialog(null, "Not enough armies", "Alert", JOptionPane.ERROR_MESSAGE);
 							}
 						}
@@ -1176,7 +1189,7 @@ public class GameWindow {
 	 * @param selectedIndex1 index
 	 * @param selectedIndex2 index
 	 */
-	protected void updateStatus(AttackStatus status, Territory attackerTerr, int selectedIndex1, int selectedIndex2) {
+	protected void updateAttackStatus(AttackStatus status, Territory attackerTerr, int selectedIndex1, int selectedIndex2) {
 		if(status.hasWon) {
 			checkWinner();
 			Player winner = status.getWinner();
@@ -1231,8 +1244,7 @@ public class GameWindow {
 	}
 	
 	/**
-	 * Hide add buttons
-	 * 
+	 * Hide add buttons 
 	 */
 	public void hideAddButtons() {
 		btnFortify.setVisible(false);
@@ -1243,7 +1255,7 @@ public class GameWindow {
 	}
 
 	/**
-	 *Check whether the attacking and attacked territory have the same player
+	 * Check whether the attacking and attacked territory have the same player
 	 *
 	 * @param attackerTerr attacking territory
 	 * @param opponentTerr attacked territory
@@ -1274,7 +1286,7 @@ public class GameWindow {
 		ArrayList<Territory> attackingTerritories = game.getPlayers().get(currentIndex).getOwnedTerritories();
 		String[] attackingTerrNames = new String[attackingTerritories.size()];
 		for(int i = 0;i<attackingTerritories.size();i++) {
-			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
+			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "-" + attackingTerritories.get(i).getContinent() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
 		}
 		attackingTerr.setListData(attackingTerrNames);
 		attackingTerr.setSelectedIndex(selectedIndex1);
