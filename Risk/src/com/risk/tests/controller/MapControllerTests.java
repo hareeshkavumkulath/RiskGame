@@ -1,10 +1,14 @@
 package com.risk.tests.controller;
 import com.risk.controller.MapController;
 import com.risk.model.MapMessage;
+import com.risk.model.Territory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
@@ -29,6 +33,8 @@ public class MapControllerTests {
 	@SuppressWarnings("javadoc")
     private  static String valid;
 	@SuppressWarnings("javadoc")
+    private  static String valid2;
+	@SuppressWarnings("javadoc")
     private  static String noTag;
 	@SuppressWarnings("javadoc")
     private  static String noTerritories;
@@ -46,6 +52,7 @@ public class MapControllerTests {
     static void initAll() {
         mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/controller/maps/";
         valid = mapFolder + "valid.map";
+        valid2 = mapFolder + "valid2.map";
         noTag = mapFolder + "no_tag.map";
         noTerritories = mapFolder + "no_territories.map";
         notConnected = mapFolder + "not_connected.map";
@@ -152,7 +159,25 @@ public class MapControllerTests {
         MapMessage anything = mapController.processFile(new File(notConnected));
         assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
     }
-
+    
+    /**
+     * Testing addAdjacentTerritories function return value for InValid Map
+     * Which is a not connected map
+     */
+    @Test
+    @DisplayName("addAdjacentTerritories => TRUE for valid2 MAP")
+    void addAdjacentTerritoriesTest() {
+        
+        ArrayList<Territory> terrList = new ArrayList<Territory>();
+        Territory t1= new Territory("Alaska", "North America", 4);
+        Territory t2= new Territory("Northwest Territory", "North America", 4);
+        Territory t3= new Territory("Venezuala", "South America", 4);
+        Territory t4= new Territory("Peru", "South America", 4);
+        terrList.add(t1);terrList.add(t2);terrList.add(t3);terrList.add(t4);
+        
+        assertTrue(mapController.addAdjacentTerritories(mapToString(valid2),terrList));
+    }
+    
     /**
      * 
      * Function for reading a map file and convert that into String
