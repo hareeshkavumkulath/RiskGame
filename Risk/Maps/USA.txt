@@ -1,0 +1,70 @@
+[Continents]
+Mexico=2
+Northwest U.S.=3
+Southwest U.S.=4
+Canada=5
+Southeast U.S.=6
+Northeast U.S.=7
+Midwest U.S.=8
+
+
+[Territories]
+Baja California,0,0,Mexico,California,Western Mexico
+Western Mexico,0,0,Mexico,Baja California,Arizona,New Mexico,Texas,Eastern Mexico
+Eastern Mexico,0,0,Mexico,Western Mexico,Texas
+Washington,0,0,Northwest U.S.,British Columbia,Idaho,Oregon
+Oregon,0,0,Northwest U.S.,Washington,Idaho,Nevada,California
+Idaho,0,0,Northwest U.S.,British Columbia,Montana,Wyoming,Utah,Nevada,Oregon,Washington
+Montana,0,0,Northwest U.S.,British Columbia,Alberta,Saskatchewan,North Dakota,South Dakota,Wyoming,Idaho
+Wyoming,0,0,Northwest U.S.,Montana,South Dakota,Nebraska,Colorado,Utah,Idaho
+California,0,0,Southwest U.S.,Oregon,Nevada,Arizona,Baja California
+Nevada,0,0,Southwest U.S.,Oregon,Idaho,Utah,Arizona,California
+Utah,0,0,Southwest U.S.,Idaho,Wyoming,Colorado,Arizona,Nevada
+Colorado,0,0,Southwest U.S.,Wyoming,Nebraska,Kansas,Oklahoma,New Mexico,Utah
+Arizona,0,0,Southwest U.S.,California,Nevada,Utah,New Mexico,Western Mexico
+New Mexico,0,0,Southwest U.S.,Colorado,Oklahoma,Texas,Western Mexico,Arizona
+British Columbia,0,0,Canada,Alberta,Montana,Idaho,Washington
+Alberta,0,0,Canada,Saskatchewan,Montana,British Columbia
+Saskatchewan,0,0,Canada,Manitoba,North Dakota,Montana,Alberta
+Manitoba,0,0,Canada,Ontario,Minnisota,North Dakota,Saskatchewan
+Ontario,0,0,Canada,Quebec,New York,Ohio,Michigan,Minnisota,Manitoba
+Quebec,0,0,Canada,New Brunswick,Maine,New Hampshire,Vermont,New York,Ontario
+New Brunswick,0,0,Canada,Maine,Quebec
+Kentucky,0,0,Southeast U.S.,Illinois,Indiana,Ohio,West Virginia,Virginia,Tennessee,Missouri
+West Virginia,0,0,Southeast U.S.,Ohio,Pennsylvania,Maryland,Virginia,Kentucky
+Maryland,0,0,Southeast U.S.,Pennsylvania,Delaware,Virginia,West Virginia
+Delaware,0,0,Southeast U.S.,Pennsylvania,New Jersey,Maryland
+Virginia,0,0,Southeast U.S.,Maryland,North Carolina,Tennessee,Kentucky,West Virginia
+Tennessee,0,0,Southeast U.S.,Kentucky,Virginia,North Carolina,Georgia,Alabama,Mississippi,Arkansas,Missouri
+North Carolina,0,0,Southeast U.S.,Virginia,South Carolina,Georgia,Tennessee
+Mississippi,0,0,Southeast U.S.,Tennessee,Alabama,Louisiana,Arkansas
+Alabama,0,0,Southeast U.S.,Tennessee,Georgia,Florida,Mississippi
+Georgia,0,0,Southeast U.S.,Tennessee,North Carolina,South Carolina,Florida,Alabama
+South Carolina,0,0,Southeast U.S.,North Carolina,Georgia
+Florida,0,0,Southeast U.S.,Alabama,Georgia
+Wisconsin,0,0,Northeast U.S.,Michigan,Illinois,Iowa,Minnisota
+Michigan,0,0,Northeast U.S.,Ontario,Ohio,Indiana,Wisconsin,Minnisota
+Illinois,0,0,Northeast U.S.,Wisconsin,Indiana,Kentucky,Missouri,Iowa
+Indiana,0,0,Northeast U.S.,Michigan,Ohio,Kentucky,Illinois
+Ohio,0,0,Northeast U.S.,Michigan,Ontario,Pennsylvania,West Virginia,Kentucky,Indiana
+Pennsylvania,0,0,Northeast U.S.,New York,New Jersey,Delaware,Maryland,West Virginia,Ohio
+New Jersey,0,0,Northeast U.S.,New York,Delaware,Pennsylvania
+New York,0,0,Northeast U.S.,Quebec,Vermont,Massachusetts,Connecticut,New Jersey,Pennsylvania,Ontario
+Connecticut,0,0,Northeast U.S.,Massachusetts,Rhode Island,New York
+Rhode Island,0,0,Northeast U.S.,Massachusetts,Connecticut
+Massachusetts,0,0,Northeast U.S.,Vermont,New Hampshire,Rhode Island,Connecticut,New York
+Vermont,0,0,Northeast U.S.,Quebec,New Hampshire,Massachusetts,New York
+New Hampshire,0,0,Northeast U.S.,Quebec,Maine,Massachusetts,Vermont
+Maine,0,0,Northeast U.S.,Quebec,New Brunswick,New Hampshire
+North Dakota,0,0,Midwest U.S.,Saskatchewan,Manitoba,Minnisota,South Dakota,Montana
+South Dakota,0,0,Midwest U.S.,North Dakota,Minnisota,Iowa,Nebraska,Wyoming,Montana
+Nebraska,0,0,Midwest U.S.,South Dakota,Iowa,Missouri,Kansas,Colorado,Wyoming
+Kansas,0,0,Midwest U.S.,Nebraska,Missouri,Oklahoma,Colorado
+Oklahoma,0,0,Midwest U.S.,Kansas,Missouri,Arkansas,Texas,New Mexico,Colorado
+Texas,0,0,Midwest U.S.,Oklahoma,Arkansas,Louisiana,Eastern Mexico,Western Mexico,New Mexico
+Minnisota,0,0,Midwest U.S.,Ontario,Michigan,Wisconsin,Iowa,South Dakota,North Dakota,Manitoba
+Iowa,0,0,Midwest U.S.,Minnisota,Wisconsin,Illinois,Missouri,Nebraska,South Dakota
+Missouri,0,0,Midwest U.S.,Iowa,Illinois,Kentucky,Tennessee,Arkansas,Oklahoma,Kansas,Nebraska
+Arkansas,0,0,Midwest U.S.,Missouri,Tennessee,Mississippi,Louisiana,Texas,Oklahoma
+Louisiana,0,0,Midwest U.S.,Arkansas,Mississippi,Texas
+
