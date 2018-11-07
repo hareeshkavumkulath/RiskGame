@@ -18,4 +18,16 @@ import com.risk.model.Territory;
 
 public class TerritoryTest{
 
+	
+    @Test
+    @DisplayName("Territory(...) => Right Values for Class Members")
+    void territoryObjectTest() {
+        
+    	Territory territory = new Territory("testTerritory", "testContinent", 10);
+
+        assertEquals(territory.getName(),"testTerritory");
+        assertEquals(territory.getContinent(),"testContinent");
+        assertEquals(territory.getNumberOfArmies(), 10);
+    }
+
 }
