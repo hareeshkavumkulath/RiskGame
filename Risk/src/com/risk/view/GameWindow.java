@@ -1169,10 +1169,12 @@ public class GameWindow {
 	}
 	
 	/**
-	 * @param status
-	 * @param selectedIndex2 
-	 * @param selectedIndex1 
-	 * @param attackerTerr 
+	 * Update the status of the game
+	 * 
+	 * @param status attack status
+	 * @param attackerTerr territory
+	 * @param selectedIndex1 index
+	 * @param selectedIndex2 index
 	 */
 	protected void updateStatus(AttackStatus status, Territory attackerTerr, int selectedIndex1, int selectedIndex2) {
 		if(status.hasWon) {
@@ -1241,9 +1243,11 @@ public class GameWindow {
 	}
 
 	/**
-	 * @param attackerTerr
-	 * @param opponentTerr
-	 * @return
+	 *Check whether the attacking and attacked territory have the same player
+	 *
+	 * @param attackerTerr attacking territory
+	 * @param opponentTerr attacked territory
+	 * @return boolean true if the ruler is the same, false the ruler is different
 	 */
 	protected boolean samePlayer(Territory attackerTerr, Territory opponentTerr) {
 		System.out.println("Attacker: " + attackerTerr.getName() + ", " + attackerTerr.getRuler().getName());
