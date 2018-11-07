@@ -88,8 +88,6 @@ public class WorldDominationView extends JPanel implements Observer{
 	
 	/**
 	 * Populates fields with Game Values
-	 * 
-	 * @param game Game from GameWindow
 	 */
 	public void editField() {
 		GameController controller = new GameController();
