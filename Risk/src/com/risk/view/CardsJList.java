@@ -27,10 +27,16 @@ public class CardsJList extends JPanel implements Observer{
 	/**
 	 * create a random serialVersionUID
 	 */
-	private static final long serialVersionUID = -3174204953083961860L;;
+	private static final long serialVersionUID = -3174204953083961860L;
+	@SuppressWarnings("javadoc")
 	private JList<String> list = new JList<String>();
+	@SuppressWarnings("javadoc")
 	JButton btnNewButton = new JButton("Turn In");
 
+	/**
+	 * Constructor for CardsJList 
+	 * Sets the fields
+	 */
 	public CardsJList() {
 		super();
 		setBounds(1051, 106, 324, 205);
