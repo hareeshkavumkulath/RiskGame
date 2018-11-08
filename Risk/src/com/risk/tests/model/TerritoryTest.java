@@ -3,7 +3,6 @@ package com.risk.tests.model;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.risk.model.Territory;
 
@@ -23,9 +22,11 @@ public class TerritoryTest{
      * <code>Territory("testTerritory", "testContinent", 10)</code>
      * 
      * Should set the Right values for:
-     * <li>territory.name => testTerritory </li>
-     * <li>territory.continent => testContinent </li>
-     * <li>territory.numberOfArmies => 10 </li>
+     * <ul>
+     * <li>territory.name = testTerritory </li>
+     * <li>territory.continent = testContinent </li>
+     * <li>territory.numberOfArmies = 10 </li>
+     * </ul>
      */
     @Test
     @DisplayName("Territory Object => Right Values for Class Members")

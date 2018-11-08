@@ -23,9 +23,11 @@ public class PlayerTest{
      * <code>Player("testPlayer", true, 10)</code>
      * 
      * Should set the Right values for:
-     * <li>player.name => testPlayer </li>
-     * <li>player.isComputer => true </li>
-     * <li>player.numberOfArmies => 10 </li>
+     * <ul>
+     * <li>player.name = testPlayer </li>
+     * <li>player.isComputer = true </li>
+     * <li>player.numberOfArmies = 10 </li>
+     * </ul>
      */
     @Test
     @DisplayName("Player Object => Right Values for Class Members")

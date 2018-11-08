@@ -28,8 +28,8 @@ public class FortifyWindowTest{
 
      /**
      * Before Each Test it Creates following new objects
-     * <li>testPlayer from Player</li>
-     * <li>fortifyWindow from FortifyWindow </li>
+     * <ul><li>testPlayer from Player</li>
+     * <li>fortifyWindow from FortifyWindow </li></ul>
      */
     @BeforeEach
     void init() {

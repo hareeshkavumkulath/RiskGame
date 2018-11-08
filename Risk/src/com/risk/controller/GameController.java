@@ -321,7 +321,7 @@ public class GameController {
 	 * 
 	 * @param continents ArrayList of continents
 	 * @param playerList ArrayList of Players
-	 * @return ArrayList<Players> Players after adding the continents
+	 * @return ArrayList ArrayList of Players after adding the continents
 	 */
 	public ArrayList<Player> getOwnedContinents(ArrayList<Continent> continents, ArrayList<Player> playerList) {
 		for(int i=0;i<playerList.size();i++) {
@@ -623,11 +623,11 @@ public class GameController {
 	}
 
 	/**
-	 * Get the number of opponent armies 
+	 * Get the number of opponent armies for All out mode
 	 * 
 	 * @param opponentTerr pass parameter of the opponent territory to get his number of armies
 	 * @param numAttackerArmies pass parameter of the number of attacker armies to get the defender number of armies
-	 * @return
+	 * @return int number of opponent Armies
 	 */
 	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies) {
 		int numArmies = opponentTerr.getNumberOfArmies();

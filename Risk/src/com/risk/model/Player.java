@@ -29,8 +29,11 @@ public class Player {
 	public boolean fortificationStatus;
 	@SuppressWarnings("javadoc")
 	public String strategy;
+	@SuppressWarnings("javadoc")
 	public ArrayList<Card> cards = new ArrayList<Card>();
+	@SuppressWarnings("javadoc")
 	public boolean hasWon = false;
+	@SuppressWarnings("javadoc")
 	public int turnInCards;
 	
 	/**

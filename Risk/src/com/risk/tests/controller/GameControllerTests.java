@@ -1,7 +1,6 @@
 package com.risk.tests.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 
 import java.util.ArrayList;
 import com.risk.controller.GameController;
@@ -400,7 +399,7 @@ public class GameControllerTests{
  // =====================validateFortifyMove()===================== 
     /**
      * Testing validateFortifyMove() function return value
-     * Should return TRUE for getNumberOfArmies > 1
+     * Should return TRUE for getNumberOfArmies is greater than 1
      */
     @Test
     @DisplayName("validateFortifyMove() for Armies > 1 => TRUE")
@@ -415,7 +414,7 @@ public class GameControllerTests{
     }
     /**
      * Testing validateFortifyMove() function return value
-     * Should return FALSE for getNumberOfArmies < 1
+     * Should return FALSE for getNumberOfArmies is less than 1
      */
     @Test
     @DisplayName("validateFortifyMove() for Armies < 1 => FALSE")
@@ -431,7 +430,7 @@ public class GameControllerTests{
  // =====================validateFortifyNumber()===================== 
     /**
      * Testing validateFortifyNumber() function return value
-     * Should return TRUE for currentNumArmies > fortifyNum
+     * Should return TRUE for currentNumArmies is greater than fortifyNum
      */
     @Test
     @DisplayName("validateFortifyNumber() => TRUE")
@@ -444,7 +443,7 @@ public class GameControllerTests{
     }
     /**
      * Testing validateFortifyNumber() function return value
-     * Should return FALSE for currentNumArmies < fortifyNum
+     * Should return FALSE for currentNumArmies is less than fortifyNum
      */
     @Test
     @DisplayName("validateFortifyNumber() => FALSE")
