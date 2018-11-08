@@ -1135,7 +1135,7 @@ public class GameWindow {
 									while(attackerTerr.getNumberOfArmies() > 1 && !status.hasWon) {
 										numAttackerArmies = controller.getNumAttackerArmies(attackerTerr);
 										numOpponentArmies = controller.getNumOpponentArmies(opponentTerr, numAttackerArmies);
-										status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
+										status = currentPlayer.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
 										instructions.setInstructions(status.getStatusMessage().toString());
 										game = controller.updateGame(attackerTerr, opponentTerr, game);
 									}
@@ -1143,7 +1143,7 @@ public class GameWindow {
 									updateAttackStatus(status, attackerTerr, selectedIndex1, selectedIndex2);
 								}else {
 									instructions.setInstructions(attackerTerr.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerr.getName() + "(" + opponentTerr.getRuler().getName() + ")");
-									AttackStatus status = Player.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
+									AttackStatus status = currentPlayer.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
 									instructions.setInstructions(status.getStatusMessage().toString());
 									game = controller.updateGame(attackerTerr, opponentTerr, game);
 									game.update();

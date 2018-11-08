@@ -305,7 +305,7 @@ public class GameController {
 			cards.add(newCard);
 		}
 		for(int i=0;i<eachType;i++) {
-			Card newCard = new Card("Infantry");
+			Card newCard = new Card("Artillery");
 			newCard.addArmy("Artillery");
 			cards.add(newCard);
 		}

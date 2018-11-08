@@ -93,8 +93,8 @@ public class PlayerTest{
     /**
      * Testing attack() function return value
      * attack territory t1 to territory t2
-     * t1.armies = 4, Ruller=> Player1
-     * t2.armies = 2, Ruller=> Player2
+     * t1.armies = 4, Ruller = Player1
+     * t2.armies = 2, Ruller = Player2
      */
     @Test
     @DisplayName("attack()=> Normal Run => No Error")
@@ -120,7 +120,6 @@ public class PlayerTest{
     @DisplayName("attack()=> No Ruler => Error")
     void attackFALSETest() {
     		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
-    		Player player2 = new Player("testPlayer", true, 10,"REINFORCEMENT");
     		Territory t1= new Territory("testTerritory", "testContinent", 4);
     		t1.setRuler(player);
     		Territory t2= new Territory("testTerritory", "testContinent", 2);

@@ -227,7 +227,7 @@ public class Player {
 	 * @param numOpponentArmies pass the number of opponent armies into attack and update it
 	 * @return AttackStatus of the current attack status
 	 */
-	public static AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies) {
+	public AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies) {
 		
 		StringBuffer message = new StringBuffer();
 		
