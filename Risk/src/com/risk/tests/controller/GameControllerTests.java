@@ -502,5 +502,21 @@ public class GameControllerTests{
     		assertEquals(0,Double.compare(25.0,gameController.getDomination(player,t)));
     		assertEquals(0,Double.compare(75.0,gameController.getDomination(player2,t)));
     }
+    // =====================Cards Scenarios=====================
+    // =====================loadCards()=====================
+    /**
+     * Testing loadCards() function return value
+     * Should return 6,9,9,9 for 6,7,8,9
+     */
+    @Test
+    @DisplayName("loadCards() => return 6,9,9,9")
+    void loadCardsTest() {
+    		
+    		assertEquals(6,gameController.loadCards(6).size());
+    		assertEquals(9,gameController.loadCards(7).size());
+    		assertEquals(9,gameController.loadCards(8).size());
+    		assertEquals(9,gameController.loadCards(9).size());
+    		
+    }
     
 }
