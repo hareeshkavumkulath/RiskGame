@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 1.0
  */
 
-class GameControllerTests{
+public class GameControllerTests{
 	@SuppressWarnings("javadoc")
     private GameController gameController;
 
@@ -362,4 +362,6 @@ class GameControllerTests{
     	assertEquals(30, gameController.getNumberOfArmies(5));
     	assertEquals(35, gameController.getNumberOfArmies(6));
     }
+    
+    // =====================isValidFortify()===================== 
 }
