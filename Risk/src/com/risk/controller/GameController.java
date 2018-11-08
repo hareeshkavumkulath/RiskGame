@@ -418,10 +418,17 @@ public class GameController {
 			}else if(opponentTerr.getNumberOfArmies() > 2){
 				int minLimit = 1;
 				int maxLimit = opponentTerr.getNumberOfArmies() - 1;
-				String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
-				        JOptionPane.WARNING_MESSAGE);
-				System.out.println(input);
-				numArmy = Integer.parseInt(input);
+				numArmy = 0;
+				while(numArmy == 0) {
+					try {
+						String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
+						        JOptionPane.WARNING_MESSAGE);
+						System.out.println(input);
+						numArmy = Integer.parseInt(input);
+					}catch(Exception e) {
+						numArmy = 0;
+					}
+				}
 			}
 			opponentTerr.setNumberOfArmies(opponentTerr.getNumberOfArmies() - numArmy);
 			game = updateTerritoryRuler(attackerTerr, opponentTerr.getRuler(), game, numArmy);
@@ -435,10 +442,17 @@ public class GameController {
 			}else if(attackerTerr.getNumberOfArmies() > 2){
 				int minLimit = 1;
 				int maxLimit = attackerTerr.getNumberOfArmies() - 1;
-				String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
-				        JOptionPane.WARNING_MESSAGE);
-				System.out.println(input);
-				numArmy = Integer.parseInt(input);
+				numArmy = 0;
+				while(numArmy == 0) {
+					try {
+						String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
+								JOptionPane.WARNING_MESSAGE);
+						System.out.println(input);
+						numArmy = Integer.parseInt(input);
+					}catch(Exception e) {
+						numArmy = 0;
+					}
+				}
 			}
 			attackerTerr.setNumberOfArmies(attackerTerr.getNumberOfArmies() - numArmy);
 			if(opponentRuler.getOwnedTerritories().size() == 0) {

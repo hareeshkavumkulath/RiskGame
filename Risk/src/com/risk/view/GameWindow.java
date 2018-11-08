@@ -340,7 +340,7 @@ public class GameWindow {
 		frame.getContentPane().add(instructionsScrollPane);
 		
 		numArmiesText = new JTextField();
-		numArmiesText.setEditable(true);
+		numArmiesText.setEditable(false);
 		numArmiesText.setText("1");
 		numArmiesText.setBounds(1051, 325, 27, 26);
 		frame.getContentPane().add(numArmiesText);
