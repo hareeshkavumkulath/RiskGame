@@ -63,11 +63,20 @@ public class CardsJList extends JPanel implements Observer{
 		}
 		list.setListData(cardTypes);
 	}
-
+	/**
+	 * Get button
+	 * 
+	 * @return JButton btnNewButton
+	 */
 	public JButton getBtnNewButton() {
 		return btnNewButton;
 	}
-
+	
+	/**
+	 * Get card list
+	 * 
+	 * @return JList card list
+	 */
 	public JList<String> getList() {
 		return list;
 	}
