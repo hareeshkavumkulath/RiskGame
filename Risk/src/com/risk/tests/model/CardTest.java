@@ -61,5 +61,18 @@ public class CardTest{
     		assertEquals(5,card.numArmies);
     		
     }
-    
+    /**
+     * Testing addArmy() function return value
+     * addArmy() => 5 for Artillery
+     */
+    @Test
+    @DisplayName("addArmy() => 10 for Artillery")
+    void addArmyArtillary() {
+    		Card card = new Card("Artillery");
+    		assertEquals(card.armyType,"Artillery");
+    		
+    		card.addArmy("Artillery");
+    		assertEquals(10,card.numArmies);
+    		
+    }
 }
