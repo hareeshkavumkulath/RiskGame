@@ -364,4 +364,9 @@ public class GameControllerTests{
     }
     
     // =====================isValidFortify()===================== 
+    /**
+     * Testing isValidFortify() function return value
+     * Should return TRUE for territories More than 1
+     */
+    
 }
