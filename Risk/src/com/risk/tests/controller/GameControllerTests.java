@@ -425,4 +425,6 @@ public class GameControllerTests{
     		
     		assertTrue(gameController.validateFortifyMove(player,0));
     }
+ // =====================validateFortifyNumber()===================== 
+    
 }
