@@ -5,8 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import com.risk.model.Player;
 import com.risk.model.Territory;
+import com.risk.model.Game;
+import com.risk.model.Map;
+import com.risk.model.Continent;
 
 /**
  * PlayerTest
@@ -91,7 +96,7 @@ public class PlayerTest{
      */
     @Test
     @DisplayName("attack()=> Normal Run => No Error")
-    void attackTest() {
+    void attackTRUETest() {
     		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
     		Player player2 = new Player("testPlayer", true, 10,"REINFORCEMENT");
     		Territory t1= new Territory("testTerritory", "testContinent", 4);
@@ -119,6 +124,52 @@ public class PlayerTest{
     		Territory t2= new Territory("testTerritory", "testContinent", 2);
     		
     		assertTrue(player.attack(t1, t2,2,1).hasWon);
+    		
+    		
+    }
+    // =====================reinforce()=====================
+    /**
+     * Testing reinforce() function return value
+     */
+    @Test
+    @DisplayName("reinforce()")
+    void reinforceTest() {
+    		
+    		
+    		
+    		
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		Player player2 = new Player("testPlayer2", true, 10,"REINFORCEMENT");
+    		ArrayList<Player> pArray= new  ArrayList<Player>();
+    		pArray.add(player);pArray.add(player2);
+    		
+    		Territory t1= new Territory("testTerritory", "testContinent1", 4);
+    		Territory t2= new Territory("testTerritory", "testContinent1", 4);
+    		Territory t3= new Territory("testTerritory", "testContinent2", 4);
+    		Territory t4= new Territory("testTerritory", "testContinent2", 4);
+    		t1.setRuler(player);t2.setRuler(player);t3.setRuler(player);t4.setRuler(player);
+    		
+    		Territory t5= new Territory("testTerritory", "testContinent1", 2);
+    		Territory t6= new Territory("testTerritory", "testContinent", 2);
+    		t5.setRuler(player2);t6.setRuler(player2);
+    		
+    		ArrayList<Territory> TerArray= new  ArrayList<Territory>();
+    		TerArray.add(t1);TerArray.add(t2);TerArray.add(t3);TerArray.add(t4);
+    		TerArray.add(t5);TerArray.add(t6);
+    		
+    		Continent continent1 = new Continent("testContinent1",3);
+    		Continent continent2 = new Continent("testContinent2",3);
+    		ArrayList<Continent> ConArray= new  ArrayList<Continent>();
+    		ConArray.add(continent1);ConArray.add(continent2);
+    		
+    		Map map = new Map();
+    		map.setContinents(ConArray);
+    		map.setTerritories(TerArray);
+    		Game game = new Game(map);
+    		game.setPlayers(pArray);
+    		game.setCurrentPlayer(player);
+    		
+    		assertEquals("testPlayer",player.reinforce(game).name);
     		
     		
     }
