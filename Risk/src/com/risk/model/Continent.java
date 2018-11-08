@@ -36,6 +36,7 @@ public class Continent {
 
 	/**
 	 * Getter for name of the continent
+	 * 
 	 * @return String name as a string
 	 */
 	public String getName() {
@@ -44,6 +45,7 @@ public class Continent {
 
 	/**
 	 * Setter of name of the continent
+	 * 
 	 * @param name name of the continent
 	 */
 	public void setName(String name) {
@@ -52,6 +54,7 @@ public class Continent {
 
 	/**
 	 * Getter for the number of armies in the continent
+	 * 
 	 * @return int number of armies
 	 */
 	public int getNumberOfArmies() {

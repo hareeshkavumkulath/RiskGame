@@ -48,6 +48,7 @@ public class MapMessage {
 	public void setValidMap(boolean isValidMap) {
 		this.isValidMap = isValidMap;
 	}
+	
 	/**
 	 * Getter for the message for invalid maps
 	 * @return StringBuffer message
@@ -55,6 +56,7 @@ public class MapMessage {
 	public StringBuffer getMessage() {
 		return message;
 	}
+	
 	/**
 	 * Setter for the message for invalid maps
 	 * @param message String message
