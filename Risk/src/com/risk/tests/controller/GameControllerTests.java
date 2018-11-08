@@ -394,4 +394,20 @@ public class GameControllerTests{
     		
     		assertTrue(gameController.isValidFortify(player));
     }
+ // =====================validateFortifyMove()===================== 
+    /**
+     * Testing validateFortifyMove() function return value
+     * Should return TRUE for getNumberOfArmies > 1
+     */
+    @Test
+    @DisplayName("validateFortifyMove() for getNumberOfArmies > 1 => TRUE")
+    void validateFortifyMoveTRUETest() {
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		Territory t1= new Territory("testTerritory1", "testContinent", 0);
+    		Territory t2= new Territory("testTerritory2", "testContinent", 10);
+    		player.ownedTerritories.add(t1);
+    		player.ownedTerritories.add(t2);
+    		
+    		assertTrue(gameController.validateFortifyMove(player,1));
+    }
 }
