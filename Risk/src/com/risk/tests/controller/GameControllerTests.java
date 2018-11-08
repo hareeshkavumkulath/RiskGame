@@ -368,5 +368,18 @@ public class GameControllerTests{
      * Testing isValidFortify() function return value
      * Should return TRUE for territories More than 1
      */
+    @Test
+    @DisplayName("isValidFortify() for 3 Territory => TRUE")
+    void isValidFortifyTRUETest() {
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		Territory t1= new Territory("testTerritory1", "testContinent", 10);
+    		Territory t2= new Territory("testTerritory2", "testContinent", 10);
+    		Territory t3= new Territory("testTerritory3", "testContinent", 10);
+    		player.ownedTerritories.add(t1);
+    		player.ownedTerritories.add(t2);
+    		player.ownedTerritories.add(t3);
+    		
+    		assertTrue(gameController.isValidFortify(player));
+    }
     
 }
