@@ -39,5 +39,30 @@ public class PlayerTest{
         assertTrue(player.isComputer);
         assertEquals(player.numberOfArmies, 10);
     }
+ // =====================compareDices()=====================
+    /**
+     * Testing compareDices() function return value
+     */
+    @Test
+    @DisplayName("compareDices() => TRUE test case")
+    void compareDicesTRUETest() {
+    		
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		assertTrue(player.compareDices(3, 2));
+    		assertTrue(player.compareDices(2, 1));
+    		
+    }
+    /**
+     * Testing compareDices() function return value
+     */
+    @Test
+    @DisplayName("compareDices() => FALSE test case")
+    void compareDicesFALSETest() {
+    		
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		assertTrue(player.compareDices(2, 3));
+    		assertTrue(player.compareDices(1, 2));
+    		
+    }
 
 }
