@@ -50,5 +50,17 @@ public class PlayerTest{
     		assertTrue(player.compareDices(2, 1));
     		
     }
+    /**
+     * Testing compareDices() function return value
+     */
+    @Test
+    @DisplayName("compareDices() => FALSE test case")
+    void compareDicesFALSETest() {
+    		
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		assertTrue(player.compareDices(2, 3));
+    		assertTrue(player.compareDices(1, 2));
+    		
+    }
 
 }
