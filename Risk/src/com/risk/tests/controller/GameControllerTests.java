@@ -1,10 +1,13 @@
 package com.risk.tests.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+
 import java.util.ArrayList;
 import com.risk.controller.GameController;
 import com.risk.model.Player;
 import com.risk.model.Territory;
+import com.risk.model.Continent;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
@@ -451,6 +454,31 @@ public class GameControllerTests{
     		player.ownedTerritories.add(t1);
     		
     		assertTrue(gameController.validateFortifyNumber(player,0,8));
+    }
+    // =====================getDomination()=====================   
+    /**
+     * Testing getDomination() function return value
+     * Should return 25.0 for following condition
+     */
+    @Test
+    @DisplayName("getDomination() => TRUE")
+    void getDominationTest() {
+    		Continent continent = new Continent("testContinent",16);
+    		
+    		Player player = new Player("testPlayer", false, 4,"REINFORCEMENT");
+    		Player player2 = new Player("testPlayer2", false, 12,"REINFORCEMENT");
+    		Territory t1= new Territory("testTerritory", "testContinent", 4);
+    		t1.setRuler(player);
+    		Territory t2= new Territory("testTerritory2", "testContinent", 4);
+    		Territory t3= new Territory("testTerritory3", "testContinent", 4);
+    		Territory t4= new Territory("testTerritory4", "testContinent", 4);
+    		t2.setRuler(player2);t3.setRuler(player2);t4.setRuler(player2);
+    		
+    		continent.addTerritories(t1);continent.addTerritories(t2);
+    		continent.addTerritories(t3);continent.addTerritories(t4);
+    		
+    		assertEquals(0,Double.compare(25.0,gameController.getDomination(continent,player)));
+    		assertEquals(0,Double.compare(75.0,gameController.getDomination(continent,player2)));
     }
     
 }
