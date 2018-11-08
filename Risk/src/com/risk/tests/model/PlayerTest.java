@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.risk.model.Player;
+import com.risk.model.Territory;
 
 /**
  * PlayerTest
@@ -60,6 +61,25 @@ public class PlayerTest{
     		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
     		assertTrue(player.compareDices(2, 3));
     		assertTrue(player.compareDices(1, 2));
+    		
+    }
+ // =====================fortify()=====================
+    /**
+     * Testing fortify() function return value
+     * moving 2 armies from territory t1 to territory t2
+     * t1.armies = 4
+     * t2.armies = 2
+     */
+    @Test
+    @DisplayName("fortify() => should return TRUE")
+    void fortifyTRUETest() {
+    		
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		Territory t1= new Territory("testTerritory", "testContinent", 4);
+    		Territory t2= new Territory("testTerritory", "testContinent", 2);
+    		
+    		assertTrue(player.fortify(t1, t2,2));
+    		
     		
     }
 
