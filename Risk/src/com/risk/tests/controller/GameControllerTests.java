@@ -439,5 +439,18 @@ public class GameControllerTests{
     		
     		assertTrue(gameController.validateFortifyNumber(player,0,2));
     }
+    /**
+     * Testing validateFortifyNumber() function return value
+     * Should return FALSE for currentNumArmies < fortifyNum
+     */
+    @Test
+    @DisplayName("validateFortifyNumber() => FALSE")
+    void validateFortifyNumberFALSETest() {
+    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
+    		Territory t1= new Territory("testTerritory", "testContinent", 2);
+    		player.ownedTerritories.add(t1);
+    		
+    		assertTrue(gameController.validateFortifyNumber(player,0,8));
+    }
     
 }
