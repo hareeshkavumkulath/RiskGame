@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -81,7 +82,7 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Continent => FALSE for noTag MAP")
     void processContinentInValid() {
-        assertTrue(mapController.processContinents(mapToString(noTag)));
+        assertFalse(mapController.processContinents(mapToString(noTag)));
     }
  // =====================processTerritories()=====================
     /**
@@ -103,7 +104,7 @@ public class MapControllerTests {
     @DisplayName("Process Territories => FALSE for noTerritories MAP")
     void proceeeTerritoriesInValid() {
         mapController.processTerritories(mapToString(noTerritories));
-        assertTrue(mapController.processTerritories(mapToString(noTerritories)));
+        assertFalse(mapController.processTerritories(mapToString(noTerritories)));
     }
     // =====================territoriesToContinents()=====================
     /**
@@ -155,7 +156,7 @@ public class MapControllerTests {
         mapController.processTerritories(mapToString(notConnected));
         mapController.territoriesToContinents();
         MapMessage anything = mapController.processFile(new File(notConnected));
-        assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
+        assertFalse(mapController.validateMap(anything.getMap().getTerritories()));
     }
     // =====================addAdjacentTerritoriesTest()=====================
     /**
