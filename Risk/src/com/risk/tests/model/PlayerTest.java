@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.ArrayList;
 
@@ -66,8 +67,8 @@ public class PlayerTest{
     void compareDicesFALSETest() {
     		
     		
-    		assertTrue(Player.compareDices(2, 3));
-    		assertTrue(Player.compareDices(1, 2));
+    		assertFalse(Player.compareDices(2, 3));
+    		assertFalse(Player.compareDices(1, 2));
     		
     }
  // =====================fortify()=====================
@@ -106,25 +107,7 @@ public class PlayerTest{
     		Territory t2= new Territory("testTerritory", "testContinent", 2);
     		t2.setRuler(player2);
     		
-    		assertTrue(player.attack(t1, t2,2,1).hasWon);
-    		
-    		
-    }
-    /**
-     * Testing attack() function return value
-     * attack territory t1 to territory t2
-     * t1.armies = 4
-     * t2.armies = 2
-     */
-    @Test
-    @DisplayName("attack()=> No Ruler => Error")
-    void attackFALSETest() {
-    		Player player = new Player("testPlayer", true, 10,"REINFORCEMENT");
-    		Territory t1= new Territory("testTerritory", "testContinent", 4);
-    		t1.setRuler(player);
-    		Territory t2= new Territory("testTerritory", "testContinent", 2);
-    		
-    		assertTrue(player.attack(t1, t2,2,1).hasWon);
+    		assertFalse(player.attack(t1, t2,2,1).hasWon);
     		
     		
     }
