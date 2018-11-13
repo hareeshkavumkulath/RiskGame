@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 /**
@@ -215,7 +216,7 @@ public class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 10);
         p.ownedTerritories.add(temp);
 
-        assertTrue(gameController.isValidFortify(p));
+        assertFalse(gameController.isValidFortify(p));
     }
 
     /**
@@ -266,7 +267,7 @@ public class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 1);
         p.ownedTerritories.add(temp);
 
-        assertTrue(gameController.validateFortifyMove(p,0));
+        assertFalse(gameController.validateFortifyMove(p,0));
     }
      // =====================validateFortifyNumber()=====================
     /**
@@ -296,7 +297,7 @@ public class GameControllerTests{
         Territory temp= new Territory("testTerritory", "testContinent", 2);
         p.ownedTerritories.add(temp);
 
-        assertTrue(gameController.validateFortifyNumber(p,0,3));
+        assertFalse(gameController.validateFortifyNumber(p,0,3));
     }
     
  // =====================hasEnoughArmies()=====================
@@ -322,7 +323,7 @@ public class GameControllerTests{
     		Territory opponent= new Territory("testTerritory", "testContinent", 1);
     		int attacker_armies = 2;
     		int opponent_armies = 2;
-    		assertTrue(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
+    		assertFalse(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
     }
     /**
      * Testing hasEnoughArmies() function return value
@@ -334,7 +335,7 @@ public class GameControllerTests{
     		Territory opponent= new Territory("testTerritory", "testContinent", 10);
     		int attacker_armies = 2;
     		int opponent_armies = 2;
-    		assertTrue(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
+    		assertFalse(gameController.hasEnoughArmies(attacker,opponent,attacker_armies,opponent_armies));
     }
     
  // =====================getNumberOfArmiesTest()=====================
@@ -359,10 +360,10 @@ public class GameControllerTests{
     @Test
     @DisplayName("getNumberOfArmiesFALSETest() => FALSE cases")
     void getNumberOfArmiesFalseTest() {
-    	assertEquals(20, gameController.getNumberOfArmies(3));
-    assertEquals(25, gameController.getNumberOfArmies(4));
-    	assertEquals(30, gameController.getNumberOfArmies(5));
-    	assertEquals(35, gameController.getNumberOfArmies(6));
+    	assertNotEquals(20, gameController.getNumberOfArmies(3));
+    	assertNotEquals(25, gameController.getNumberOfArmies(4));
+    	assertNotEquals(30, gameController.getNumberOfArmies(5));
+    	assertNotEquals(35, gameController.getNumberOfArmies(6));
     }
     
     // =====================isValidFortify()===================== 
@@ -394,7 +395,7 @@ public class GameControllerTests{
     		Territory t1= new Territory("testTerritory1", "testContinent", 10);
     		player.ownedTerritories.add(t1);
     		
-    		assertTrue(gameController.isValidFortify(player));
+    		assertFalse(gameController.isValidFortify(player));
     }
  // =====================validateFortifyMove()===================== 
     /**
@@ -425,7 +426,7 @@ public class GameControllerTests{
     		player.ownedTerritories.add(t1);
     		player.ownedTerritories.add(t2);
     		
-    		assertTrue(gameController.validateFortifyMove(player,0));
+    		assertFalse(gameController.validateFortifyMove(player,0));
     }
  // =====================validateFortifyNumber()===================== 
     /**
@@ -452,7 +453,7 @@ public class GameControllerTests{
     		Territory t1= new Territory("testTerritory", "testContinent", 2);
     		player.ownedTerritories.add(t1);
     		
-    		assertTrue(gameController.validateFortifyNumber(player,0,8));
+    		assertFalse(gameController.validateFortifyNumber(player,0,8));
     }
     // =====================getDomination()=====================   
     /**
