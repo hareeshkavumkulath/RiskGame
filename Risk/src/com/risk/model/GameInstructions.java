@@ -44,6 +44,17 @@ public class GameInstructions extends Observable implements Serializable{
 		this.instructions = instructions;
 		setChanged();
 		notifyObservers(instructions);
+	}
+
+	/**
+	 * Append Instructions will append messages during assign territories
+	 * 
+	 * @param string instructions
+	 */
+	public void appendInstructions(String instructions) {
+		this.instructions = this.instructions + instructions;
+		setChanged();
+		notifyObservers(instructions);
 	}	
 
 }
