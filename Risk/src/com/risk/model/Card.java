@@ -1,5 +1,7 @@
 package com.risk.model;
 
+import java.io.Serializable;
+
 /**
  * Model class for Cards
  * 
@@ -7,8 +9,10 @@ package com.risk.model;
  * @version 1.0
  *
  */
-public class Card {
+public class Card implements Serializable{
 	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = -2822420377842771854L;
 	@SuppressWarnings("javadoc")
 	public String armyType;
 	@SuppressWarnings("javadoc")

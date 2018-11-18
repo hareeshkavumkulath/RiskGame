@@ -3,6 +3,7 @@
  */
 package com.risk.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -13,8 +14,10 @@ import java.util.Observable;
  * @version 1.0
  *
  */
-public class Game extends Observable {
+public class Game extends Observable implements Serializable{
 
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 5362344289925666151L;
 	@SuppressWarnings("javadoc")
 	public Map map;
 	@SuppressWarnings("javadoc")
@@ -28,9 +31,15 @@ public class Game extends Observable {
 	 * Constructor for Game
 	 * 
 	 * @param map the map for the game
+	 * @param playerList the player list
+	 * @param cards the turn in Cards
+	 * @param currentPlayer Current Player of the game
 	 */
-	public Game(Map map) {
+	public Game(Map map, ArrayList<Player> playerList, ArrayList<Card> cards, Player currentPlayer) {
 		this.map = map;
+		this.players = playerList;
+		this.cards = cards;
+		this.currentPlayer = currentPlayer;
 	}
 
 	/**

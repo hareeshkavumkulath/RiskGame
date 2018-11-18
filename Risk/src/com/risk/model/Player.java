@@ -1,9 +1,7 @@
 package com.risk.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
 
 import com.risk.controller.GameController;
 
@@ -13,8 +11,10 @@ import com.risk.controller.GameController;
  * @author Hareesh Kavumkulath
  * @version 1.0
  */
-public class Player {
+public class Player implements Serializable{
 	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = -4223242317148118005L;
 	@SuppressWarnings("javadoc")
 	public String name;
 	@SuppressWarnings("javadoc")
@@ -28,13 +28,15 @@ public class Player {
 	@SuppressWarnings("javadoc")
 	public boolean fortificationStatus;
 	@SuppressWarnings("javadoc")
-	public String strategy;
+	public String phase;
 	@SuppressWarnings("javadoc")
 	public ArrayList<Card> cards = new ArrayList<Card>();
 	@SuppressWarnings("javadoc")
 	public boolean hasWon = false;
 	@SuppressWarnings("javadoc")
 	public int turnInCards;
+	@SuppressWarnings("javadoc")
+	public Strategy strategy;
 	
 	/**
 	 * Constructor for Player
@@ -42,14 +44,14 @@ public class Player {
 	 * @param name player name
 	 * @param isComputer player type
 	 * @param numberOfArmies number of armies the player have
-	 * @param strategy strategy type
+	 * @param phase String phase of the player
 	 */
-	public Player(String name, boolean isComputer, int numberOfArmies, String strategy) {
+	public Player(String name, boolean isComputer, int numberOfArmies, String phase) {
 		this.name = name;
 		this.isComputer = isComputer;
 		this.numberOfArmies = numberOfArmies;
 		this.fortificationStatus = false;
-		this.strategy = strategy;
+		this.phase = phase;
 		this.turnInCards = 1;
 	}
 	
@@ -173,7 +175,7 @@ public class Player {
 	 * 
 	 * @return String of the strategy
 	 */
-	public String getStrategy() {
+	public Strategy getStrategy() {
 		return strategy;
 	}
 
@@ -182,7 +184,7 @@ public class Player {
 	 * 
 	 * @param strategy set and define the strategy
 	 */
-	public void setStrategy(String strategy) {
+	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
 	}
 	/**
@@ -217,145 +219,6 @@ public class Player {
 	public void setHasWon(boolean hasWon) {
 		this.hasWon = hasWon;
 	}
-
-	/**
-	 * Attack method implements the attack phase and define the variables, number of armies, show status messages 
-	 * 
-	 * @param attackerTerr pass the attacker territory into attack function
-	 * @param opponentTerr pass the opponent territory into the attack method
-	 * @param numAttackerArmies pass the number of attacker armies into attack and update it
-	 * @param numOpponentArmies pass the number of opponent armies into attack and update it
-	 * @return AttackStatus of the current attack status
-	 */
-	public AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies) {
-		
-		StringBuffer message = new StringBuffer();
-		
-		AttackStatus status = new AttackStatus();
-		
-		int numArmyAttacker = attackerTerr.getNumberOfArmies();
-		int numArmyOpponent = opponentTerr.getNumberOfArmies();
-		
-		Integer[] firstDices = new Integer[numAttackerArmies];
-		Integer[] secondDices = new Integer[numOpponentArmies];
-		
-		for(int i=0;i<numAttackerArmies;i++) {
-			firstDices[i] = new Random().nextInt(6) + 1;
-		}
-		
-		for(int i=0;i<numOpponentArmies;i++) {
-			secondDices[i] = new Random().nextInt(6) + 1;
-		}
-		
-		Arrays.sort(firstDices, Collections.reverseOrder());
-		Arrays.sort(secondDices, Collections.reverseOrder());
-		
-		message.append(attackerTerr.getRuler().getName() + " has "+ numAttackerArmies +" dices \n");
-		for(int i=0;i<numAttackerArmies;i++) {
-			System.out.println(firstDices[i]);
-			message.append(firstDices[i] + "\n");
-		}
-		
-		message.append(opponentTerr.getRuler().getName() + " has " + numOpponentArmies + " dices \n");
-		for(int i=0;i<numOpponentArmies;i++) {
-			System.out.println(secondDices[i]);
-			message.append(secondDices[i] + "\n");
-		}
-		
-		for(int i=0;i<numOpponentArmies;i++) {
-			boolean win = compareDices(firstDices[i], secondDices[i]);
-			System.out.println("Comparing " + firstDices[i] + "," + secondDices[i]);
-			message.append("Comparing " + firstDices[i] + "," + secondDices[i] + "\n");
-			if(win) {
-				message.append(opponentTerr.getRuler().getName() + " lost an army.\n");
-				numArmyOpponent--;
-			}else {
-				message.append(attackerTerr.getRuler().getName() + " lost an army.\n");
-				numArmyAttacker--;
-			}
-		}
-		
-		attackerTerr.setNumberOfArmies(numArmyAttacker);
-		opponentTerr.setNumberOfArmies(numArmyOpponent);
-		
-		System.out.println(attackerTerr.getRuler().getName() + " has balance armies in " + attackerTerr.getName() + " is " + numArmyAttacker);
-		System.out.println(opponentTerr.getRuler().getName() + " has balance armies in " + opponentTerr.getName() + " is " + numArmyOpponent);
-		
-		if(numArmyOpponent <= 0) {
-			status.setHasWon(true);
-			status.setWinner(attackerTerr.getRuler());
-			message.append(attackerTerr.getRuler().getName() + " won and balance armies " + (numArmyAttacker) + "\n");
-		}else if(numArmyAttacker <= 0) {
-			status.setHasWon(true);
-			status.setWinner(opponentTerr.getRuler());
-			message.append(opponentTerr.getRuler().getName() + " won and balance armies " + (numArmyOpponent) + "\n");
-		}else {
-			status.setHasWon(false);
-		}
-		status.setStatusMessage(message);
-		return status;
-		
-	}
-	
-	/**
-	 * This compare dices method executes the comparison result of dices number
-	 * 
-	 * @param i the number of dices of player 1
-	 * @param j the number of dices of player 2
-	 * @return boolean true of false if player 1 has more dices than player 2
-	 */
-	public static boolean compareDices(int i, int j) {
-		if(i>j) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-	/**
-	 * Reinforce function
-	 * 
-	 * @param game object
-	 * @return Player current player
-	 */
-	public Player reinforce(Game game) {
-		GameController controller = new GameController();
-		int reinforcementArmy = controller.getNumReinforcements(this);
-		System.out.println("No of reinforcementArmy:" + reinforcementArmy);
-		int numArmiesFromContinents = controller.getNumArmiesFromContinents(this);
-		System.out.println("No of numArmiesFromContinents:" + numArmiesFromContinents);
-		int playerNumArmies = this.getNumberOfArmies();
-		System.out.println("No of playerNumArmies:" + playerNumArmies);
-		reinforcementArmy = reinforcementArmy + numArmiesFromContinents + playerNumArmies;
-		this.setNumberOfArmies(reinforcementArmy);
-		return this;
-	}
-
-	/**
-	 * Fortify with the fortifyNumber
-	 * 
-	 * @param territoryFrom From Territory
-	 * @param territoryTo To Territory
-	 * @param fortifyNum number of fortifying armies
-	 * @return boolean true if fortify function is completed else false
-	 */
-	public boolean fortify(Territory territoryFrom, Territory territoryTo, int fortifyNum) {
-		boolean status = false;
-		try {
-			int fromTerrNumArmies = territoryFrom.getNumberOfArmies();
-			int toTerrNumArmies = territoryTo.getNumberOfArmies();
-			fromTerrNumArmies = fromTerrNumArmies - fortifyNum;
-			toTerrNumArmies = toTerrNumArmies + fortifyNum;
-			territoryFrom.setNumberOfArmies(fromTerrNumArmies);
-			territoryTo.setNumberOfArmies(toTerrNumArmies);
-			this.setFortificationStatus(true);
-			status = true;
-		}catch(Exception e) {
-			status = false;
-		}
-		return status;
-	}
-
 	/**
 	 *Getter the turn in cards
 	 *
@@ -364,7 +227,6 @@ public class Player {
 	public int getTurnInCards() {
 		return turnInCards;
 	}
-
 	/**
 	 *Setter to set the turn in cards
 	 * 
@@ -372,5 +234,54 @@ public class Player {
 	 */
 	public void setTurnInCards(int turnInCards) {
 		this.turnInCards = turnInCards;
+	}
+	/**
+	 * Getter for player's current phase
+	 * 
+	 * @return the phase
+	 */
+	public String getPhase() {
+		return phase;
+	}
+	/**
+	 * Setter for player's current phase
+	 * 
+	 * @param phase the phase to set
+	 */
+	public void setPhase(String phase) {
+		this.phase = phase;
+	}
+	
+	/**
+	 * Strategy function for reinforce
+	 * 
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController
+	 */
+	public void reinforce(GameInstructions gameInstructions, GameController controller) {
+		this.strategy.reinforce(this, gameInstructions, controller);
+	}
+
+	/**
+	 * Strategy function for Attack
+	 * 
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController object
+	 * @param game Game object
+	 */
+	public void attack(GameInstructions gameInstructions, GameController controller, Game game) {
+		this.strategy.attack(this, gameInstructions, controller, game);
+		this.setPhase("FORTIFY");
+	}
+	
+	/**
+	 * Strategy function for Fortify
+	 * 
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController object
+	 */
+	public void fortify(GameInstructions gameInstructions, GameController controller) {
+		this.strategy.fortify(this, gameInstructions, controller);
+		this.setPhase("REINFORCEMENT");
 	}
 }

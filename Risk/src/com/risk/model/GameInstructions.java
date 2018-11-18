@@ -1,5 +1,6 @@
 package com.risk.model;
 
+import java.io.Serializable;
 import java.util.Observable;
 /**
  * Class GameInstructions an observable class for the player to view the game instructions and logs
@@ -7,8 +8,10 @@ import java.util.Observable;
  * @author Hareesh Kavumkulath
  * @version 1.0
  */
-public class GameInstructions extends Observable{
+public class GameInstructions extends Observable implements Serializable{
 	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = -7087833662915982490L;
 	/**
 	 * Instructions and logs of the game
 	 */
