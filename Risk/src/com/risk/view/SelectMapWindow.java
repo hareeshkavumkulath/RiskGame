@@ -105,8 +105,8 @@ public class SelectMapWindow {
 					MapMessage message = controller.processFile(file);
 					if(message.isValidMap()) {
 						Map map = message.getMap();
-						GameWindow beginGame = new GameWindow(map);		
-						beginGame.main(map);
+						SetPlayersWindow setPlayersWindow = new SetPlayersWindow();
+						setPlayersWindow.main(map);
 					}
 				}
 			}
