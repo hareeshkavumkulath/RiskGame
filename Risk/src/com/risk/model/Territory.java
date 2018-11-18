@@ -1,5 +1,6 @@
 package com.risk.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,8 +9,10 @@ import java.util.ArrayList;
  * @author Hareesh Kavumkulath
  * @version 1.0 
  */
-public class Territory {
+public class Territory implements Serializable {
 	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 339137798507186038L;
 	@SuppressWarnings("javadoc")
 	String name;
 	@SuppressWarnings("javadoc")

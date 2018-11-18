@@ -1,5 +1,6 @@
 package com.risk.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,8 +10,10 @@ import java.util.ArrayList;
  * @version 1.0
  * 
  */
-public class Continent {
+public class Continent implements Serializable{
 	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 5674800133017682098L;
 	@SuppressWarnings("javadoc")
 	String name;
 	@SuppressWarnings("javadoc")

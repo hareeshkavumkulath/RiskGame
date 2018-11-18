@@ -1,5 +1,6 @@
 package com.risk.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,8 +15,10 @@ import java.util.ArrayList;
  * @version 1.0
  *
  */
-public class Map {
+public class Map implements Serializable {
 	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 6335643430954837718L;
 	@SuppressWarnings("javadoc")
 	ArrayList<Continent> continents = new ArrayList<Continent>();
 	@SuppressWarnings("javadoc")
