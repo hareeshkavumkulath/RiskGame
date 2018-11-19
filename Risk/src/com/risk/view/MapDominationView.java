@@ -16,6 +16,7 @@ import com.risk.model.Continent;
 import com.risk.model.Game;
 import com.risk.model.Player;
 import com.risk.model.Territory;
+import java.awt.Font;
 
 /**
  * Observable view for Player World Domination
@@ -24,7 +25,7 @@ import com.risk.model.Territory;
  * @version 1.0
  *
  */
-public class WorldDominationView extends JPanel implements Observer{
+public class MapDominationView extends JPanel implements Observer{
 	
 	/**
 	 * created a random serial version ID
@@ -44,7 +45,7 @@ public class WorldDominationView extends JPanel implements Observer{
 	 * 
 	 * @param game set the game profile
 	 */
-	public WorldDominationView(Game game) {
+	public MapDominationView(Game game) {
 		super();
 		this.game = game;
 		
@@ -56,14 +57,17 @@ public class WorldDominationView extends JPanel implements Observer{
 		add(panelName);
 		
 		continentDomination = new JTextPane();
+		continentDomination.setFont(new Font("Calibri", Font.PLAIN, 18));
 		continentDomination.setBounds(15, 52, 247, 303);
 		add(continentDomination);
 		
 		mapDomination = new JTextPane();
+		mapDomination.setFont(new Font("Calibri", Font.PLAIN, 18));
 		mapDomination.setBounds(277, 52, 326, 145);
 		add(mapDomination);
 		
 		playerInfo = new JTextPane();
+		playerInfo.setFont(new Font("Calibri", Font.PLAIN, 18));
 		playerInfo.setBounds(277, 213, 326, 142);
 		add(playerInfo);
 		

@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -67,6 +68,7 @@ public class GameWindow extends JFrame{
 	private JButton btnEndFortify;
 	private JButton btnSave;
 	private JTextField gameName;
+	private JPanel panel;
 
 	/**
 	 * Create the application.
@@ -82,7 +84,7 @@ public class GameWindow extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Risk");
 		getContentPane().setForeground(Color.GREEN);
-		setBounds(100, 100, 1926, 909);
+		setBounds(100, 100, 1954, 920);
 		getContentPane().setLayout(null);
 		
 		// Map View Panel
@@ -92,7 +94,7 @@ public class GameWindow extends JFrame{
 		game.addObserver(mapViewPanel);
 		
 		//Display Player World Domination
-		WorldDominationView worldDomViewPanel = new WorldDominationView(game);
+		MapDominationView worldDomViewPanel = new MapDominationView(game);
 		worldDomViewPanel.setBounds(15, 369, 618, 371);
 		getContentPane().add(worldDomViewPanel);
 		game.addObserver(worldDomViewPanel);
@@ -255,6 +257,11 @@ public class GameWindow extends JFrame{
 		gameName.setBounds(69, 775, 406, 26);
 		getContentPane().add(gameName);
 		gameName.setColumns(10);
+		
+		//Map Ruler Display Panel
+		MapRulerPanel rulerPanel = new MapRulerPanel(game);
+		getContentPane().add(rulerPanel);
+		game.addObserver(rulerPanel);
 		
 		//Button Actions
 		btnSave.addActionListener(new ActionListener() {
@@ -726,5 +733,4 @@ public class GameWindow extends JFrame{
 			game.update();
 		}
 	}
-
 }
