@@ -51,8 +51,10 @@ public class GameWindow extends JFrame{
 
 	private Game game;
 	private GameController controller;
-	private Object gameInstructions;
+	private GameInstructions gameInstructions;
 	private Player currentPlayer;
+	private InstructionsView instructionsPane;
+	private AddArmyPanel addArmyPanel;
 
 	/**
 	 * Create the application.
@@ -70,6 +72,34 @@ public class GameWindow extends JFrame{
 		getContentPane().setForeground(Color.GREEN);
 		setBounds(100, 100, 1926, 909);
 		getContentPane().setLayout(null);
+		
+		// Map View Panel
+		MapViewPanel mapViewPanel = new MapViewPanel(game);
+		mapViewPanel.setBounds(15, 16, 632, 302);
+		getContentPane().add(mapViewPanel);
+		game.addObserver(mapViewPanel);
+		
+		//Display Player World Domination
+		WorldDominationView worldDomViewPanel = new WorldDominationView(game);
+		worldDomViewPanel.setBounds(15, 369, 618, 371);
+		getContentPane().add(worldDomViewPanel);
+		game.addObserver(worldDomViewPanel);
+		
+		// Display Instructions Pane
+		instructionsPane = new InstructionsView(gameInstructions.getInstructions());
+		gameInstructions.addObserver(instructionsPane);
+				
+		JScrollPane instructionsScrollPane = new JScrollPane(instructionsPane);
+		instructionsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		instructionsScrollPane.setBounds(1390, 16, 499, 302);
+		getContentPane().add(instructionsScrollPane);
+				
+		setVisible(true);
+		
+		// Add Army Panel
+		addArmyPanel = new AddArmyPanel(game);
+		getContentPane().add(addArmyPanel);
+		game.addObserver(addArmyPanel);
 	}
 
 
