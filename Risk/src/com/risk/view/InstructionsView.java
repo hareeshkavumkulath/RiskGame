@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JTextPane;
 import java.awt.Color;
+import java.awt.Font;
 /**
  * The InstructionsView class shows instructions for player to play this game.
  * This class sets up the user interface for instructions.  
@@ -25,6 +26,7 @@ public class InstructionsView extends JTextPane implements Observer{
 	 */
 	public InstructionsView(String instructionsMsg) {
 		super();
+		setFont(new Font("Calibri", Font.PLAIN, 18));
 		setForeground(Color.RED);
 		setText(instructionsMsg);
 		setBounds(46, 148, 300, 500);
