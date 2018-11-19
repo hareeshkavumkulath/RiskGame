@@ -72,7 +72,7 @@ public class SelectMapWindow {
 		
 		JButton btnSelect = new JButton("Select");
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 22));
-		btnSelect.setBounds(377, 613, 115, 29);
+		btnSelect.setBounds(211, 613, 115, 29);
 		frame.getContentPane().add(btnSelect);
 		
 		File folder = new File(".\\Maps\\");
