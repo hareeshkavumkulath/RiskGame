@@ -497,10 +497,7 @@ public class SetPlayersWindow {
 				GameController gameController = new GameController(game, gameInstructions);
 				game.setCurrentPlayer(gameController.assignTerritories());
 				
-				/*NewGameWindow gameWindow = new NewGameWindow();				
-				gameWindow.main(game, gameController);*/
-				
-//				TestFrame testFrame = new TestFrame(game, gameController);
+				GameWindow gameWindow = new GameWindow(game, gameController);
 				
 			}
 			
