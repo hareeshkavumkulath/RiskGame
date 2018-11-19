@@ -51,7 +51,7 @@ public class StartWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Risk Game");
-		frame.setBounds(100, 100, 419, 244);
+		frame.setBounds(100, 100, 422, 316);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -64,6 +64,11 @@ public class StartWindow {
 		btnUpload.setFont(new Font("Calibri", Font.PLAIN, 20));
 		btnUpload.setBounds(114, 111, 161, 45);
 		frame.getContentPane().add(btnUpload);
+		
+		JButton loadGame = new JButton("Load Game");
+		loadGame.setFont(new Font("Calibri", Font.PLAIN, 20));
+		loadGame.setBounds(114, 186, 161, 45);
+		frame.getContentPane().add(loadGame);
 		
 		btnUpload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -80,6 +85,16 @@ public class StartWindow {
 				gameStart.main();
 			}
 		});
-		frame.setVisible(true);
+		
+		loadGame.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			SelectGameWindow gameStart = new SelectGameWindow();	
+			gameStart.main();
+			}
+			});
+			frame.setVisible(true);
+
 	}
 }
