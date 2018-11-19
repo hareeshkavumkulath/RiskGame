@@ -256,8 +256,6 @@ public class GameWindow extends JFrame{
 		getContentPane().add(gameName);
 		gameName.setColumns(10);
 		
-		onGame();
-		
 		//Button Actions
 		btnSave.addActionListener(new ActionListener() {
 			private Component frame;
@@ -667,7 +665,7 @@ public class GameWindow extends JFrame{
 	/**
 	 * check the strategy of the current player
 	 */
-	private void onGame() {
+	public void onGame() {
 		if(currentPlayer.getPhase().equals("ADD")) {
 			if(currentPlayer.isComputer) {
 				System.out.println(currentPlayer.getName() + " is Computer");

@@ -498,6 +498,7 @@ public class SetPlayersWindow {
 				game.setCurrentPlayer(gameController.assignTerritories());
 				
 				GameWindow gameWindow = new GameWindow(game, gameController);
+				gameWindow.onGame();
 				
 			}
 			
