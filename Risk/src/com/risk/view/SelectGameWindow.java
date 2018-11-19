@@ -120,6 +120,7 @@ public class SelectGameWindow {
 								new GameInstructions("Risk Game\r\n"));
 
 						GameWindow gameWindow = new GameWindow(result, gameController);
+						gameWindow.onGame();
 
 					} catch (FileNotFoundException ex) {
 						ex.printStackTrace();
