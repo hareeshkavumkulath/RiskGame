@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -17,6 +19,7 @@ import com.risk.model.Game;
 import com.risk.model.GameInstructions;
 import com.risk.model.Player;
 import com.risk.model.Territory;
+import com.risk.view.StartWindow;
 
 /**
  * Controller class for the game setup, players information and territories information
@@ -25,6 +28,11 @@ import com.risk.model.Territory;
  * @version 1.2
  */
 public class GameController {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 	
 	@SuppressWarnings("javadoc")
 	public Game game;
@@ -111,6 +119,7 @@ public class GameController {
 			newCard.addArmy("Artillery");
 			cards.add(newCard);
 		}
+		logger.log(Level.INFO, cards.size() + " cards are loaded");
 		return cards;
 	}
 	
@@ -132,6 +141,7 @@ public class GameController {
 			tempTerritories.get(randomNumber).setRuler(currentPlayer);
 			addArmyToTerritory(tempTerritories.get(randomNumber), 1);
 			currentPlayer.setNumberOfArmies(currentPlayer.getNumberOfArmies() - 1);
+			logger.log(Level.INFO, currentPlayer.getName() + " has placed an army in " + tempTerritories.get(randomNumber).getName());
 			gameInstructions.appendInstructions(currentPlayer.getName() + " has placed an army in " + tempTerritories.get(randomNumber).getName() + "\r\n");
 			tempTerritories.remove(randomNumber);
 			if(currentIndex == (players.size() - 1))

@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +35,11 @@ import javax.swing.JRadioButton;
  * @version 1.0
  */
 public class SetPlayersWindow {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	@SuppressWarnings("javadoc")
 	private JFrame frame;
@@ -489,6 +496,8 @@ public class SetPlayersWindow {
 					playerList.add(newPlayer);
 				}
 				
+				logger.log(Level.INFO, "OK button is pressed. "+ playerList.size() + " are created. The created Players are,");
+				
 				//Game Objects initialization
 				ArrayList<Card> cards = controller.loadCards(map.getTerritories().size());
 				Game game = new Game(map, playerList, cards, playerList.get(0));
@@ -498,6 +507,7 @@ public class SetPlayersWindow {
 				game.setCurrentPlayer(gameController.assignTerritories());
 				
 				GameWindow gameWindow = new GameWindow(game, gameController);
+				logger.log(Level.INFO, "Proceeding to Game Window");
 				gameWindow.onGame();
 				
 			}
