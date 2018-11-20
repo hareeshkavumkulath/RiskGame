@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
  * 
  * @author Hareesh Kavumkulath
  * @author Jingya Pan
- * @version 1.0
+ * @version 1.1
  * 
  */
 public class StartWindow {
@@ -81,20 +81,19 @@ public class StartWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SelectMapWindow gameStart = new SelectMapWindow();		
+				SelectModeWindow gameStart = new SelectModeWindow();		
 				gameStart.main();
 			}
 		});
 		
 		loadGame.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			SelectGameWindow gameStart = new SelectGameWindow();	
-			gameStart.main();
+				SelectGameWindow gameStart = new SelectGameWindow();		
+				gameStart.main();
 			}
-			});
-			frame.setVisible(true);
-
+		});
+		frame.setVisible(true);
 	}
 }
