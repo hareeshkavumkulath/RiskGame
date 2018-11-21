@@ -99,6 +99,7 @@ public class GameController {
 	 * @return ArrayList of Cards
 	 */
 	public ArrayList<Card> loadCards(int numTerritories) {
+		logger.log(Level.INFO, "");
 		int eachType = numTerritories / 3;
 		if((numTerritories % 3) > 0) {
 			eachType++;
@@ -129,6 +130,7 @@ public class GameController {
 	 * @return Player currentPlayer
 	 */
 	public Player assignTerritories() {
+		logger.log(Level.INFO, "");
 		ArrayList<Player> players = game.getPlayers();
 		ArrayList<Territory> territories = game.getMap().getTerritories();
 		int currentIndex = 0;
@@ -159,6 +161,7 @@ public class GameController {
 	 * @param num number of armies
 	 */
 	public void addArmyToTerritory(Territory territory, int num) {
+		logger.log(Level.INFO, "");
 		int numArmies = territory.getNumberOfArmies();
 		territory.setNumberOfArmies(numArmies + num);
 	}
@@ -171,17 +174,21 @@ public class GameController {
 	 * @param numArmies number of armies
 	 */
 	public void addArmyToTerritory(Player player, Territory territory, int numArmies) {
+		logger.log(Level.INFO, "inside addArmyToTerritory function");
 		int territoryIndex = player.getOwnedTerritories().indexOf(territory);
 		int currentNum = player.getOwnedTerritories().get(territoryIndex).getNumberOfArmies();
 		int currentNumberOfArmies = player.getNumberOfArmies();
 		if(currentNumberOfArmies > 0) {
 			player.getOwnedTerritories().get(territoryIndex).setNumberOfArmies(currentNum + numArmies);
 			player.setNumberOfArmies(currentNumberOfArmies-numArmies);
+			logger.log(Level.INFO, player.getName() + " has placed " + numArmies + " armies in " + territory.getName());
 			gameInstructions.setInstructions(player.getName() + " has placed " + numArmies + " armies in " + territory.getName() + "\n");
 		}
 		if(player.getNumberOfArmies() == 0 && player.getPhase().equals("ADD")) {
+			logger.log(Level.INFO, "Adding Armies completed. Move to Reinforcement Phase");
 			player.setPhase("REINFORCEMENT");
 		}else if(player.getNumberOfArmies() == 0 && player.getPhase().equals("REINFORCEMENT")) {
+			logger.log(Level.INFO, "Adding Armies during Reinforcement completed. Move to Attack Phase");
 			player.setPhase("ATTACK");
 		}
 	}
@@ -192,6 +199,7 @@ public class GameController {
 	 * @param currentPlayer Player current player
 	 */
 	public void addArmyRandom(Player currentPlayer) {
+		logger.log(Level.INFO, "Inside addArmyRandom function");
 		int randomNumber = getRandomNumber(currentPlayer.getOwnedTerritories().size());
 		addArmyToTerritory(currentPlayer, currentPlayer.getOwnedTerritories().get(randomNumber), 1);
 	}
@@ -203,6 +211,7 @@ public class GameController {
 	 * @return integer number of reinforcement armies
 	 */
 	public int getNumReinforcements(Player player) {
+		logger.log(Level.INFO, "Inside addArmyRandom function");
 		int numReinforcements = 3;
 		int numTerritories = player.getOwnedTerritories().size();
 		numReinforcements = numTerritories/4;
@@ -222,6 +231,7 @@ public class GameController {
 	 * @return int for the number of armies
 	 */
 	public int getNumArmiesFromContinents(Player player) {
+		logger.log(Level.INFO, "");
 		int numArmies = 0;
 		for(int i=0;i<player.getOwnedContinents().size();i++) {
 			numArmies = numArmies + player.getOwnedContinents().get(i).getNumberOfArmies();
@@ -238,8 +248,8 @@ public class GameController {
 	 * @param numOpponentArmies pass opponent armies to check if the player has enough armies
 	 * @return boolean the status if player has enough armies
 	 */
-	public boolean hasEnoughArmies(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,
-			int numOpponentArmies) {
+	public boolean hasEnoughArmies(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies, int numOpponentArmies) {
+		logger.log(Level.INFO, "");
 		if(attackerTerr.getNumberOfArmies() <= numAttackerArmies) {
 			return false;
 		}else if(opponentTerr.getNumberOfArmies() < numOpponentArmies) {
@@ -256,14 +266,18 @@ public class GameController {
 	 * @return int the number of armies 
 	 */
 	public int getNumAttackerArmies(Territory attackerTerr) {
+		logger.log(Level.INFO, "");
+		int retNumArmies = 0;
 		int numArmies = attackerTerr.getNumberOfArmies();
 		if(numArmies > 3) {
-			return 3;
+			retNumArmies = 3;
 		}else if(numArmies == 2){
-			return 1;
+			retNumArmies = 1;
 		}else {
-			return 2;
+			retNumArmies = 2;
 		}
+		logger.log(Level.INFO, "Attacker number of armies:" + retNumArmies);
+		return retNumArmies;
 	}
 	
 	/**
@@ -274,12 +288,16 @@ public class GameController {
 	 * @return int number of opponent Armies
 	 */
 	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies) {
+		logger.log(Level.INFO, "");
+		int retNumArmies = 0;
 		int numArmies = opponentTerr.getNumberOfArmies();
 		if(numAttackerArmies == 3 && numArmies > 1) {
-			return 2;
+			retNumArmies = 2;
 		}else {
-			return 1;
+			retNumArmies = 1;
 		}
+		logger.log(Level.INFO, "Opponent number of armies:" + retNumArmies);
+		return retNumArmies;
 	}
 	
 	/**
@@ -291,6 +309,7 @@ public class GameController {
 	 * @return Game to get the new updated game status
 	 */
 	public void updateGame(Territory attackerTerr, Territory opponentTerr) {
+		logger.log(Level.INFO, "");
 		Player opponentRuler = opponentTerr.getRuler();
 		Player attackerRuler = attackerTerr.getRuler();
 		int numArmy = 0;
@@ -348,6 +367,7 @@ public class GameController {
 	 * @return game type to update new added player list
 	 */
 	public void updateAddPlayerList(Territory territory, Player ruler) {
+		logger.log(Level.INFO, "");
 		int addIndex = game.getPlayers().indexOf(ruler);
 		game.getPlayers().get(addIndex).getOwnedTerritories().add(territory);
 		System.out.println(territory.getName() + " is added to " + ruler.getName());
@@ -363,6 +383,7 @@ public class GameController {
 	 * @return game type and receive the new updated territory ruler info
 	 */
 	public void updateTerritoryRuler(Territory territory, Player ruler, int numArmy) {
+		logger.log(Level.INFO, "");
 		int index = game.getMap().getTerritories().indexOf(territory);
 		game.getMap().getTerritories().get(index).setRuler(ruler);
 		game.getMap().getTerritories().get(index).setNumberOfArmies(numArmy);
@@ -377,6 +398,7 @@ public class GameController {
 	 * @return Game to update PlayerList info
 	 */
 	public Game updateRemovePlayerList(Territory territory, Player ruler) {
+		logger.log(Level.INFO, "");
 		int removeIndex = game.getPlayers().indexOf(ruler);
 		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(territory);
 		System.out.println(territory.getName() + " is removed from " + ruler.getName());
@@ -390,6 +412,7 @@ public class GameController {
 	 * @return game type and receive the new updated player list info
 	 */
 	public void updatePlayerList() {
+		logger.log(Level.INFO, "");
 		for(int i=0;i<game.getPlayers().size();i++) {
 			Player currPlayer = game.getPlayers().get(i);
 			if(currPlayer.getOwnedTerritories().size() == 0) {
@@ -407,6 +430,7 @@ public class GameController {
 	 * @return Game type for adding card procedure
 	 */
 	public Game addCard(Player winner, ArrayList<Card> cards, Game game) {
+		logger.log(Level.INFO, "");
 		int size = cards.size();
 		int indexOfPlayer = game.getPlayers().indexOf(winner);
 		Random rand = new Random();
@@ -424,6 +448,7 @@ public class GameController {
 	 * @return boolean true if the fortification is valid for the player else false
 	 */
 	public boolean isValidFortify(Player player) {
+		logger.log(Level.INFO, "");
 		boolean isValidFortify = false;
 		if(player.getOwnedTerritories().size() == 1) {
 			isValidFortify = false;
@@ -446,6 +471,7 @@ public class GameController {
 	 * @return territory strong territory
 	 */
 	public Territory getStrongTerritory(Player currentPlayer) {
+		logger.log(Level.INFO, "");	
 		@SuppressWarnings("unchecked")
 		ArrayList<Territory> tempTerritories = (ArrayList<Territory>) currentPlayer.getOwnedTerritories().clone();
 		Territory strongTerritory = null;
@@ -481,6 +507,7 @@ public class GameController {
 	 * @return territory weak territory
 	 */
 	public Territory getWeakTerritory(Player currentPlayer) {
+		logger.log(Level.INFO, "");
 		@SuppressWarnings("unchecked")
 		ArrayList<Territory> tempTerritories = (ArrayList<Territory>) currentPlayer.getOwnedTerritories().clone();
 		Territory weakTerritory = null;
@@ -500,6 +527,7 @@ public class GameController {
 	 * @return territory attacker territory
 	 */
 	public Territory getAttacker(Player currentPlayer) {
+		logger.log(Level.INFO, "");
 		@SuppressWarnings("unchecked")
 		ArrayList<Territory> tempTerritories = (ArrayList<Territory>) currentPlayer.getOwnedTerritories().clone();
 		Territory attacker = null;
@@ -525,6 +553,7 @@ public class GameController {
 				attacker = null;
 			}
 		}
+		logger.log(Level.INFO, "Attacker Territory for " + currentPlayer.getName() + " is " + attacker.getName());
 		return attacker;
 	}
 	
@@ -536,6 +565,7 @@ public class GameController {
 	 * @return Territory opponent territory
 	 */
 	public Territory getOpponent(Player currentPlayer, Territory attacker) {
+		logger.log(Level.INFO, "");
 		Territory opponent = new Territory();
 		int number = 0;
 		ArrayList<Territory> oppponentTerritories = new ArrayList<Territory>();
@@ -546,6 +576,7 @@ public class GameController {
 			}
 		}
 		if(number == 0) {
+			logger.log(Level.INFO, currentPlayer.getName() + " has no opponent for " + attacker.getName());
 			return null;
 		}else {
 			opponent = oppponentTerritories.get(0);
@@ -554,6 +585,7 @@ public class GameController {
 					opponent = oppponentTerritories.get(i);
 				}
 			}
+			logger.log(Level.INFO, "Opponent territory for " + attacker.getName() + " is " + opponent.getName());
 			return opponent;
 		}
 	}
@@ -568,7 +600,7 @@ public class GameController {
 	 * @return AttackStatus of the current attack status
 	 */
 	public AttackStatus attack(Territory attackerTerr, Territory opponentTerr, int numAttackerArmies,int numOpponentArmies) {
-		
+		logger.log(Level.INFO, "");
 		StringBuffer message = new StringBuffer();
 		
 		AttackStatus status = new AttackStatus();
@@ -590,26 +622,30 @@ public class GameController {
 		Arrays.sort(firstDices, Collections.reverseOrder());
 		Arrays.sort(secondDices, Collections.reverseOrder());
 		
-		message.append(attackerTerr.getRuler().getName() + " has "+ numAttackerArmies +" dices \n");
+		logger.log(Level.INFO, attackerTerr.getRuler().getName() + " has "+ numAttackerArmies +" dices and the results are ");
+		message.append(attackerTerr.getRuler().getName() + " has "+ numAttackerArmies +" dices and the results are\n");
 		for(int i=0;i<numAttackerArmies;i++) {
-			System.out.println(firstDices[i]);
+			logger.log(Level.INFO, ""+firstDices[i]);
 			message.append(firstDices[i] + "\n");
 		}
 		
-		message.append(opponentTerr.getRuler().getName() + " has " + numOpponentArmies + " dices \n");
+		logger.log(Level.INFO, attackerTerr.getRuler().getName() + " has "+ numAttackerArmies +" dices and the results are ");
+		message.append(opponentTerr.getRuler().getName() + " has " + numOpponentArmies + " dices and the results are\n");
 		for(int i=0;i<numOpponentArmies;i++) {
-			System.out.println(secondDices[i]);
+			logger.log(Level.INFO, ""+secondDices[i]);
 			message.append(secondDices[i] + "\n");
 		}
 		
 		for(int i=0;i<numOpponentArmies;i++) {
 			boolean win = compareDices(firstDices[i], secondDices[i]);
-			System.out.println("Comparing " + firstDices[i] + "," + secondDices[i]);
+			logger.log(Level.INFO, "Comparing " + firstDices[i] + "," + secondDices[i]);
 			message.append("Comparing " + firstDices[i] + "," + secondDices[i] + "\n");
 			if(win) {
+				logger.log(Level.INFO, opponentTerr.getRuler().getName() + " lost an army.");
 				message.append(opponentTerr.getRuler().getName() + " lost an army.\n");
 				numArmyOpponent--;
 			}else {
+				logger.log(Level.INFO, attackerTerr.getRuler().getName() + " lost an army.");
 				message.append(attackerTerr.getRuler().getName() + " lost an army.\n");
 				numArmyAttacker--;
 			}
@@ -618,14 +654,16 @@ public class GameController {
 		attackerTerr.setNumberOfArmies(numArmyAttacker);
 		opponentTerr.setNumberOfArmies(numArmyOpponent);
 		
-		System.out.println(attackerTerr.getRuler().getName() + " has balance armies in " + attackerTerr.getName() + " is " + numArmyAttacker);
-		System.out.println(opponentTerr.getRuler().getName() + " has balance armies in " + opponentTerr.getName() + " is " + numArmyOpponent);
+		logger.log(Level.INFO, attackerTerr.getRuler().getName() + " has balance armies in " + attackerTerr.getName() + " is " + numArmyAttacker);
+		logger.log(Level.INFO, opponentTerr.getRuler().getName() + " has balance armies in " + opponentTerr.getName() + " is " + numArmyOpponent);
 		
 		if(numArmyOpponent <= 0) {
 			status.setHasWon(true);
 			status.setWinner(attackerTerr.getRuler());
+			logger.log(Level.INFO, attackerTerr.getRuler().getName() + " won and balance armies " + (numArmyAttacker));
 			message.append(attackerTerr.getRuler().getName() + " won and balance armies " + (numArmyAttacker) + "\n");
 		}else {
+			logger.log(Level.INFO, "Nobody wins");
 			status.setHasWon(false);
 		}
 		status.setStatusMessage(message);
@@ -640,6 +678,7 @@ public class GameController {
 	 * @return integer number of reinforcement armies
 	 */
 	public int calculateReinforcementArmiesForCheater(Player currentPlayer) {
+		logger.log(Level.INFO, "");
 		int totalNum = 0;
 		for(int i=0;i<currentPlayer.getOwnedTerritories().size();i++) {
 			totalNum = totalNum + currentPlayer.getOwnedTerritories().get(i).getNumberOfArmies();
@@ -654,6 +693,7 @@ public class GameController {
 	 * @return Territory random territory which can attack
 	 */
 	public Territory getRandomAttacker(Player currentPlayer) {
+		logger.log(Level.INFO, "");
 		@SuppressWarnings("unchecked")
 		ArrayList<Territory> tempTerritories = (ArrayList<Territory>) currentPlayer.getOwnedTerritories().clone();
 		Territory attacker = null;
@@ -684,6 +724,7 @@ public class GameController {
 	 * @return territory safe territory which can fortify
 	 */
 	public Territory getSafeTerritory(Player currentPlayer) {
+		logger.log(Level.INFO, "");
 		@SuppressWarnings("unchecked")
 		ArrayList<Territory> tempTerritories = (ArrayList<Territory>) currentPlayer.getOwnedTerritories().clone();
 		Territory safeTerritory = null;
@@ -709,6 +750,7 @@ public class GameController {
 				safeTerritory = null;
 			}
 		}
+		logger.log(Level.INFO, currentPlayer.getName() + "'s safest territory is " + safeTerritory.getName());
 		return safeTerritory;
 	}
 	
@@ -718,6 +760,7 @@ public class GameController {
 	 * @return true if the game ended with one army left, else false
 	 */
 	public boolean isWinner() {
+		logger.log(Level.INFO, "");
 		if(game.getPlayers().size() == 1) {
 			return true;
 		}else {
@@ -731,11 +774,13 @@ public class GameController {
 	 * @param currentPlayer Player current player
 	 */
 	public void addCard(Player currentPlayer) {
+		logger.log(Level.INFO, "");
 		ArrayList<Card> cards = game.getCards();
 		int size = cards.size();
 		int randomIndex = getRandomNumber(size);
 		Card card = cards.get(randomIndex);				
 		currentPlayer.getCards().add(card);
+		logger.log(Level.INFO, currentPlayer.getName() + " got a card, " + card.getArmyType());
 		gameInstructions.setInstructions(currentPlayer.getName() + " got a card, " + card.getArmyType() + "\n");
 		cards.remove(randomIndex);
 		game.setCards(cards);
@@ -749,6 +794,7 @@ public class GameController {
 	 * @return boolean returns true if the move is valid
 	 */
 	public boolean validateFortifyMove(Player player, int selectedIndex) {
+		logger.log(Level.INFO, "");
 		boolean validMove = false;
 		if(player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies() > 1) {
 			validMove = true;
@@ -765,6 +811,7 @@ public class GameController {
 	 * @return boolean true if the number is less than the number of armies in the territory
 	 */
 	public boolean validateFortifyNumber(Player player, int selectedIndex, int fortifyNum) {
+		logger.log(Level.INFO, "");
 		boolean isValidNumber = false;
 		int currentNumArmies = player.getOwnedTerritories().get(selectedIndex).getNumberOfArmies();
 		if(currentNumArmies > fortifyNum) {
@@ -781,6 +828,7 @@ public class GameController {
 	 * @return int random number
 	 */
 	public int getRandomNumber(int number) {
+		logger.log(Level.INFO, "inside getRandomNumber function");
 		int randomNumber = 0;
 		Random rand = new Random();
 		try {
@@ -788,6 +836,7 @@ public class GameController {
 		}catch(Exception e) {
 			randomNumber = 0;
 		}
+		logger.log(Level.INFO, "inside getRandomNumber function returns" + randomNumber);
 		return randomNumber;		
 	}
 	
@@ -873,6 +922,7 @@ public class GameController {
 	 * @return 
 	 */
 	public int validateCards(Player currentPlayer) {
+		logger.log(Level.INFO, "Inside validateCards function");
 		int numberOfArmies = 0;
 		Set<String> setToReturn = new HashSet<String>();
 		int size = currentPlayer.getCards().size();
@@ -933,6 +983,7 @@ public class GameController {
 	 * @return integer number of armies
 	 */
 	public int getNumberOfArmies(int turn) {
+		logger.log(Level.INFO, "Inside getNumberOfArmies function");
 		if(turn == 1) {
 			return 4;
 		}else if(turn > 1 && turn < 6) {
