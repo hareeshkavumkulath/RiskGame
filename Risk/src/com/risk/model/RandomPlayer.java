@@ -4,8 +4,26 @@ import java.io.Serializable;
 
 import com.risk.controller.GameController;
 
+/**
+ * This class implements the Random Player functionalities for this game 
+ * 
+ * @author Anqi Wang
+ * @version 1.1
+ */
 public class RandomPlayer implements Strategy, Serializable {
 
+	/**
+	 * Logger object setup for the log file
+	 */
+	private static final long serialVersionUID = -5235779546189131503L;
+
+	/**
+	 * This is reinforce method for this current random player
+	 * 
+	 * @param currentPlayer Pass the current player and consider it as a random player
+	 * @param gameInstructions Pass game instructions and update it
+	 * @param controller Pass controller and update it
+	 */
 	@Override
 	public void reinforce(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
 		if(currentPlayer.getCards() != null) {
@@ -27,6 +45,14 @@ public class RandomPlayer implements Strategy, Serializable {
 		}
 	}
 
+	/**
+	 * This implements attack method for this random player to attack
+	 * 
+	 * @param currentPlayer Pass the currentPlayer to let him attack
+	 * @param gameInstructions Pass gameInstructions to update the game instructions user interface
+	 * @param controller Pass controller to update its properties
+	 * @param game Pass game to update the current game status
+	 */
 	@Override
 	public void attack(Player currentPlayer, GameInstructions gameInstructions, GameController controller, Game game) {
 		Territory attackerTerr = controller.getRandomAttacker(currentPlayer);
@@ -50,6 +76,13 @@ public class RandomPlayer implements Strategy, Serializable {
 		}
 	}
 
+	/**
+	 * This is fortify method and its implements the random player at fortify step
+	 * 
+	 * @param currentPlayer Pass the current player and consider him is at fortify step
+	 * @param gameInstructions Pass game instructions and update it
+	 * @param controller Pass controller and update it
+	 */
 	@Override
 	public void fortify(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
 		int totalNumTerritories = currentPlayer.getOwnedTerritories().size();
