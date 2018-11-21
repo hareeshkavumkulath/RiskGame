@@ -30,6 +30,7 @@ import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
+import com.risk.model.TournamentGame;
 /**
  * Tournament mode player set up
  * 
@@ -89,8 +90,6 @@ public class SetupWindow extends JFrame {
 			}
 		}
 		mapList.setListData(fileNames);
-		
-		initialize();
 	}
 	/**
 	 * initialize
@@ -134,10 +133,10 @@ public class SetupWindow extends JFrame {
 		lblSelectPlayerStrategies.setBounds(310, 23, 256, 36);
 		getContentPane().add(lblSelectPlayerStrategies);
 		
-		textField = new JTextField();
-		textField.setBounds(477, 323, 53, 26);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		numTurnTxtField = new JTextField();
+		numTurnTxtField.setBounds(477, 323, 53, 26);
+		getContentPane().add(numTurnTxtField);
+		numTurnTxtField.setColumns(10);
 		
 		JLabel lblNumberOenterNumber = new JLabel("* (Enter number between 10 and 50)");
 		lblNumberOenterNumber.setForeground(Color.GRAY);
@@ -188,23 +187,21 @@ public class SetupWindow extends JFrame {
 		int rows = maps.size();
 		int columns = numGames;
 		String[][] winners = new String[rows][columns];
-		System.out.println("Succcesss");
-		System.out.println("Rows:"+rows+", Columns:"+columns);
 		for(int i=0;i<rows;i++) {
+			ArrayList<Map> newMaps = getMaps();
+			Map map = newMaps.get(i);
 			for(int j=0;j<columns;j++) {
+ 				ArrayList<Player> newPlayers = getPlayers(); 
 				GameController controller = new GameController();
-				ArrayList<Card> cards = controller.loadCards(maps.get(i).getTerritories().size());
-				Game game = new Game(maps.get(i), players, cards, players.get(0));
+				ArrayList<Card> cards = controller.loadCards(map.getTerritories().size());
+				Game game = new Game(map, newPlayers, cards, newPlayers.get(0));
 				GameInstructions gameInstructions = new GameInstructions("Risk Game\r\n");				
 				GameController gameController = new GameController(game, gameInstructions);
 				game.setCurrentPlayer(gameController.assignTerritories());
-				/*
 				TournamentGame tournament = new TournamentGame(game, gameController, numTurns);
 				tournament.onGame();
 				winners[i][j] = tournament.getWinner();	
-				*/
 			}
-			System.out.println();
 		}
 		
 		for(int i=0;i<rows;i++) {
@@ -224,7 +221,6 @@ public class SetupWindow extends JFrame {
 	protected int getNumTurns() {
 		int numTurns = 0;
 		try {
-			System.out.println(numTurnTxtField.getText());
 			numTurns = Integer.parseInt(numTurnTxtField.getText());
 			if(numTurns > 50 || numTurns < 10) {
 				numTurns = 0;

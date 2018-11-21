@@ -303,7 +303,7 @@ public class GameWindow extends JFrame{
 					game.update();
 					onGame();
 				}catch(Exception ex) {
-					System.out.println("Exception in adding armies to territory" + ex.toString());
+					logger.log(Level.INFO, "Exception in adding armies to territory" + ex.toString());
 				}
 			}
 		});
@@ -488,7 +488,7 @@ public class GameWindow extends JFrame{
 								JOptionPane.showMessageDialog(null, "Please enter a small number", "Alert", JOptionPane.ERROR_MESSAGE);
 							}
 						}catch(Exception ex) {
-							System.out.println(ex.toString());
+							logger.log(Level.INFO, ex.toString());
 							JOptionPane.showMessageDialog(null, "Please enter a valid number", "Alert", JOptionPane.ERROR_MESSAGE);
 						}						
 					}else {
@@ -557,7 +557,7 @@ public class GameWindow extends JFrame{
 					}
 					attackedTerr.setListData(attackedTerrNames);
 				}catch(Exception ex) {
-					System.out.println("Exception in attacking territory JList" + ex.toString());
+					logger.log(Level.INFO, "Exception in attacking territory JList" + ex.toString());
 				}
 			}
 		});
@@ -591,7 +591,6 @@ public class GameWindow extends JFrame{
 		if(status.hasWon) {
 			checkWinner();
 			Player winner = status.getWinner();
-			System.out.println("Winner is "+ winner);
 			if(currentPlayer == winner) {
 				currentPlayer.hasWon = true;
 			}
@@ -655,7 +654,6 @@ public class GameWindow extends JFrame{
 	 */
 	protected void checkWinner() {
 		if(game.getPlayers().size() == 1) {
-			System.out.println(game.getPlayers().get(0).getName() + " has conquered the Map.");
 			JOptionPane.showMessageDialog(null, game.getPlayers().get(0).getName() + " has conquered the Map.", "Message", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,14 +24,18 @@ import com.risk.model.Game;
 import com.risk.model.GameInstructions;
 
 /**
- * SelectMapWindow is used to select the map you uploaded and saved in the
- * previous page
+ * Select Game Window is used to select the game you saved
  * 
  * @author Jingya Pan
- * @version 1.1
+ * @version 1.0
  *
  */
 public class SelectGameWindow {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	@SuppressWarnings("javadoc")
 	private JFrame frame;
@@ -112,9 +117,6 @@ public class SelectGameWindow {
 						ObjectInputStream ois = new ObjectInputStream(fis);
 						Game result = (Game) ois.readObject();
 						ois.close();
-
-						System.out.println(result.getCurrentPlayer().getName());
-						System.out.println(result.getCurrentPlayer().getPhase());
 
 						GameController gameController = new GameController(result,
 								new GameInstructions("Risk Game\r\n"));

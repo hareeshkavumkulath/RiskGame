@@ -143,7 +143,7 @@ public class GameController {
 			tempTerritories.get(randomNumber).setRuler(currentPlayer);
 			addArmyToTerritory(tempTerritories.get(randomNumber), 1);
 			currentPlayer.setNumberOfArmies(currentPlayer.getNumberOfArmies() - 1);
-			logger.log(Level.INFO, currentPlayer.getName() + " has placed an army in " + tempTerritories.get(randomNumber).getName());
+			logger.log(Level.INFO, currentPlayer.getName() + "(" + currentPlayer.getNumberOfArmies() + ")" + " has placed an army in " + tempTerritories.get(randomNumber).getName());
 			gameInstructions.appendInstructions(currentPlayer.getName() + " has placed an army in " + tempTerritories.get(randomNumber).getName() + "\r\n");
 			tempTerritories.remove(randomNumber);
 			if(currentIndex == (players.size() - 1))
@@ -181,7 +181,7 @@ public class GameController {
 		if(currentNumberOfArmies > 0) {
 			player.getOwnedTerritories().get(territoryIndex).setNumberOfArmies(currentNum + numArmies);
 			player.setNumberOfArmies(currentNumberOfArmies-numArmies);
-			logger.log(Level.INFO, player.getName() + " has placed " + numArmies + " armies in " + territory.getName());
+			logger.log(Level.INFO, player.getName() + "(" + player.getNumberOfArmies() + ")" + " has placed " + numArmies + " armies in " + territory.getName());
 			gameInstructions.setInstructions(player.getName() + " has placed " + numArmies + " armies in " + territory.getName() + "\n");
 		}
 		if(player.getNumberOfArmies() == 0 && player.getPhase().equals("ADD")) {
@@ -314,7 +314,6 @@ public class GameController {
 		Player attackerRuler = attackerTerr.getRuler();
 		int numArmy = 0;
 		if(opponentTerr.getNumberOfArmies() == 0) {
-			System.out.println("Attacker has won");
 			if(attackerTerr.getNumberOfArmies() == 2) {
 				numArmy = 1;
 			}else if(attackerTerr.getNumberOfArmies() > 2){
@@ -330,7 +329,6 @@ public class GameController {
 						try {
 							String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
 									JOptionPane.WARNING_MESSAGE);
-							System.out.println(input);
 							numArmy = Integer.parseInt(input);
 						}catch(Exception e) {
 							numArmy = 0;
@@ -370,7 +368,6 @@ public class GameController {
 		logger.log(Level.INFO, "");
 		int addIndex = game.getPlayers().indexOf(ruler);
 		game.getPlayers().get(addIndex).getOwnedTerritories().add(territory);
-		System.out.println(territory.getName() + " is added to " + ruler.getName());
 	}
 	
 	/**
@@ -750,7 +747,9 @@ public class GameController {
 				safeTerritory = null;
 			}
 		}
-		logger.log(Level.INFO, currentPlayer.getName() + "'s safest territory is " + safeTerritory.getName());
+		if(safeTerritory != null) {
+			logger.log(Level.INFO, currentPlayer.getName() + "'s safest territory is " + safeTerritory.getName());
+		}
 		return safeTerritory;
 	}
 	
