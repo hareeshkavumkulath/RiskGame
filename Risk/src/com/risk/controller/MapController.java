@@ -509,7 +509,23 @@ public class MapController {
     }
     return isMapConnected;
     }
-
+    
+    public boolean checkContinentContectivity(Map map){
+    		boolean areContinentsConnected = true;
+        for (Continent continent : map.getContinents()){
+            boolean isConnected = checkConnectivity(continent.getTerritories());
+            
+            if (isConnected){
+            		message.append("Territories in Continent:[ "+continent.getName()+" ] are Connected!\n");
+                isConnected = false;
+            }else{
+            		message.append("Territories in Continent:[ "+continent.getName()+" ] are NOT Connected!\n");
+                areContinentsConnected = false;
+            }
+        }
+        
+        return areContinentsConnected;
+    }
     
     public Map setMap(String mapFile) {
 
