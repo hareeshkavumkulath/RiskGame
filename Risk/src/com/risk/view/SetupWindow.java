@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -15,7 +14,6 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 
 import com.risk.controller.GameController;
@@ -30,7 +28,10 @@ import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
+import com.risk.model.ResultsTableModel;
 import com.risk.model.TournamentGame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 /**
  * Tournament mode player set up
  * 
@@ -45,8 +46,6 @@ public class SetupWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("javadoc")
-	private JTextField textField;
-	@SuppressWarnings("javadoc")
 	private JList<String> mapList;
 	@SuppressWarnings("javadoc")
 	private String[] fileNames;
@@ -60,20 +59,72 @@ public class SetupWindow extends JFrame {
 	private JCheckBox chckbxRandom;
 	@SuppressWarnings("javadoc")
 	private JCheckBox chckbxCheater;
+	@SuppressWarnings("javadoc")
+	private String[] columnNames;
+	@SuppressWarnings("javadoc")
+	private String[][] mapNames;
+	@SuppressWarnings("javadoc")
+	private String[][] winners;
+	@SuppressWarnings("javadoc")
+	private JTable table;
+
+	@SuppressWarnings("javadoc")
+	private String[][] results;
+
+	@SuppressWarnings("javadoc")
+	private JPanel panel;
+
+	@SuppressWarnings("javadoc")
+	private JLabel mapLabel;
+
+	@SuppressWarnings("javadoc")
+	private JLabel playerLabel;
+
+	@SuppressWarnings("javadoc")
+	private JLabel gameLabel;
+
+	@SuppressWarnings("javadoc")
+	private JLabel turnLabel;
 	
 	/**
-	 * Create the frame.
+	 * Create the frame. - Constructor
 	 */
 	public SetupWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 856, 514);
+		setBounds(100, 100, 855, 887);
 		getContentPane().setLayout(null);
 		setVisible(true);
 		
 		mapList = new JList<String>();
-		mapList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		mapList.setBounds(25, 47, 243, 331);
 		getContentPane().add(mapList);
+		
+		panel = new JPanel();
+		panel.setBounds(15, 440, 804, 375);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel resultLabel = new JLabel("Results");
+		resultLabel.setBounds(15, 16, 144, 29);
+		panel.add(resultLabel);
+		
+		mapLabel = new JLabel("");
+		mapLabel.setBounds(15, 61, 315, 20);
+		panel.add(mapLabel);
+		
+		playerLabel = new JLabel("");
+		playerLabel.setBounds(15, 86, 353, 20);
+		panel.add(playerLabel);
+		
+		gameLabel = new JLabel("");
+		gameLabel.setBounds(15, 114, 371, 20);
+		panel.add(gameLabel);
+		
+		turnLabel = new JLabel("");
+		turnLabel.setBounds(15, 142, 396, 20);
+		panel.add(turnLabel);
+		
+		panel.setVisible(false);
 		
 		File folder = new File(".\\Maps\\");
 		File[] listOfFiles = folder.listFiles();
@@ -148,7 +199,7 @@ public class SetupWindow extends JFrame {
 		getContentPane().add(btnNewButton);
 		
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				int numTurns = 0;
 				ArrayList<Player> players = new ArrayList<Player>();
@@ -159,8 +210,16 @@ public class SetupWindow extends JFrame {
 					players = getPlayers();
 					if(players != null) {
 						numTurns = getNumTurns();
+						turnLabel.setText("D: " + numTurns);
 						if(numTurns > 0) {
 							numGames = Integer.parseInt(spinner.getValue().toString());
+							gameLabel.setText("G: " + numGames);
+							columnNames = new String[numGames + 1];
+							columnNames[0] = "";
+							for(int i=1;i<=numGames;i++) {
+								columnNames[i] = "Game" + i;
+							}
+							mapNames = getMapNames();
 							startTournament(maps, players, numGames, numTurns);
 						}else {
 							JOptionPane.showMessageDialog(null, "Number of turns must be number between 10 and 50", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -176,6 +235,20 @@ public class SetupWindow extends JFrame {
 		
 	}
 	/**
+	 * Returns the selected map names
+	 * 
+	 * @return String[][] two dimensional array
+	 * 
+	 */
+	protected String[][] getMapNames() {
+		int[] indices = mapList.getSelectedIndices();
+		String[][] mapNames = new String[indices.length][1];
+		for(int i=0;i<indices.length;i++) {
+			mapNames[i][0] = fileNames[indices[i]]; 
+		}
+		return mapNames;
+	}
+	/**
 	 * tournament mode set up
 	 * 
 	 * @param maps list of maps
@@ -186,7 +259,7 @@ public class SetupWindow extends JFrame {
 	protected void startTournament(ArrayList<Map> maps, ArrayList<Player> players, int numGames, int numTurns) {
 		int rows = maps.size();
 		int columns = numGames;
-		String[][] winners = new String[rows][columns];
+		winners = new String[rows][columns];
 		for(int i=0;i<rows;i++) {
 			ArrayList<Map> newMaps = getMaps();
 			Map map = newMaps.get(i);
@@ -204,15 +277,36 @@ public class SetupWindow extends JFrame {
 			}
 		}
 		
+		results = new String[rows][columns + 1];
+		
 		for(int i=0;i<rows;i++) {
-			for(int j=0;j<columns;j++) {
-				System.out.print(winners[i][j]);
+			results[i][0] = mapNames[i][0];
+			for(int j=0;j<columns;j++) {				
+				results[i][j+1] =  winners[i][j];
+			}
+		}
+		
+		for(int i=0;i<rows;i++) {
+			for(int j=0;j<=columns;j++) {
+				System.out.print(results[i][j]);
 			}
 			System.out.println();
 		}
 		
+		displayResult();
+		
 	}
 	
+	/**
+	 * Display End Result
+	 */
+	private void displayResult() {
+		table = new JTable(new ResultsTableModel(columnNames, results));
+		table.getTableHeader();
+		table.setBounds(15, 177, 774, 182);
+		panel.add(table);
+		panel.setVisible(true);
+	}
 	/**
 	 * get the number of turns
 	 * 
@@ -251,6 +345,7 @@ public class SetupWindow extends JFrame {
 			count++;
 		}
 		if(count > 1) {
+			playerLabel.setText("P: ");
 			ArrayList<Player> players = new ArrayList<Player>();
 			GameController controller = new GameController();
 			int numArmies = controller.getPlayersArmies(count);
@@ -258,21 +353,25 @@ public class SetupWindow extends JFrame {
 				Player player1 = new Player("Aggressive", true, numArmies, "ADD");
 				player1.setStrategy(new AggressivePlayer());
 				players.add(player1);
+				playerLabel.setText(playerLabel.getText() + player1.getName() + " ");
 			}
 			if(chckbxBenevolent.isSelected()) {
 				Player player2 = new Player("Benevolent", true, numArmies, "ADD");
 				player2.setStrategy(new BenevolentPlayer());
 				players.add(player2);
+				playerLabel.setText(playerLabel.getText() + player2.getName() + " ");
 			}
 			if(chckbxRandom.isSelected()) {
 				Player player3 = new Player("Random", true, numArmies, "ADD");
 				player3.setStrategy(new RandomPlayer());
 				players.add(player3);
+				playerLabel.setText(playerLabel.getText() + player3.getName() + " ");
 			}
 			if(chckbxCheater.isSelected()) {
 				Player player4 = new Player("Cheater", true, numArmies, "ADD");
 				player4.setStrategy(new CheaterPlayer());
 				players.add(player4);
+				playerLabel.setText(playerLabel.getText() + player4.getName() + " ");
 			}
 			return players;
 		}else {
@@ -290,6 +389,7 @@ public class SetupWindow extends JFrame {
 		if(indices.length > 5 || indices.length < 1) {
 			return null;
 		}else {
+			mapLabel.setText("M: ");
 			ArrayList<Map> maps = new ArrayList<Map>();
 			for(int i=0;i<indices.length;i++) {
 				MapController controller = new MapController();
@@ -299,6 +399,7 @@ public class SetupWindow extends JFrame {
 					Map map = message.getMap();
 					maps.add(map);
 				}
+				mapLabel.setText(mapLabel.getText() + fileNames[indices[i]] + " ");
 			}
 			return maps;
 		}

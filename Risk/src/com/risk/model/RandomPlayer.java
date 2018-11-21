@@ -56,23 +56,25 @@ public class RandomPlayer implements Strategy, Serializable {
 	@Override
 	public void attack(Player currentPlayer, GameInstructions gameInstructions, GameController controller, Game game) {
 		Territory attackerTerr = controller.getRandomAttacker(currentPlayer);
-		Territory opponentTerr = controller.getOpponent(currentPlayer, attackerTerr);
-		int numAttacks = controller.getRandomNumber(10);
-		int count = 0;
-		gameInstructions.setInstructions(attackerTerr.getName() + " is attacking " + opponentTerr.getName() + " " + numAttacks +" times\r\n");
-		AttackStatus status = new AttackStatus();
-		int numAttackerArmies, numOpponentArmies;
-		while(attackerTerr.getNumberOfArmies() > 1 && !status.hasWon && numAttacks != count) {
-			numAttackerArmies = controller.getNumAttackerArmies(attackerTerr);
-			numOpponentArmies = controller.getNumOpponentArmies(opponentTerr, numAttackerArmies);
-			status = controller.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
-			gameInstructions.setInstructions(status.getStatusMessage().toString());
-			controller.updateGame(attackerTerr, opponentTerr);
-			game.update();
-			count++;
-		}
-		if(status.hasWon) {
-			currentPlayer.hasWon = true;
+		if(attackerTerr != null) {
+			Territory opponentTerr = controller.getOpponent(currentPlayer, attackerTerr);
+			int numAttacks = controller.getRandomNumber(10);
+			int count = 0;
+			gameInstructions.setInstructions(attackerTerr.getName() + " is attacking " + opponentTerr.getName() + " " + numAttacks +" times\r\n");
+			AttackStatus status = new AttackStatus();
+			int numAttackerArmies, numOpponentArmies;
+			while(attackerTerr.getNumberOfArmies() > 1 && !status.hasWon && numAttacks != count) {
+				numAttackerArmies = controller.getNumAttackerArmies(attackerTerr);
+				numOpponentArmies = controller.getNumOpponentArmies(opponentTerr, numAttackerArmies);
+				status = controller.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
+				gameInstructions.setInstructions(status.getStatusMessage().toString());
+				controller.updateGame(attackerTerr, opponentTerr);
+				game.update();
+				count++;
+			}
+			if(status.hasWon) {
+				currentPlayer.hasWon = true;
+			}
 		}
 	}
 
