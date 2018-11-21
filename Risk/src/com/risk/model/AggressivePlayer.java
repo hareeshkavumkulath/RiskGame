@@ -3,7 +3,12 @@ package com.risk.model;
 import java.io.Serializable;
 
 import com.risk.controller.GameController;
-
+/**
+ * model for the aggressive player
+ * 
+ * @author Jingya Pan
+ * @version 1.0
+ */
 public class AggressivePlayer implements Strategy, Serializable {
 
 	/**
