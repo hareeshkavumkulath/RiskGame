@@ -6,6 +6,8 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
@@ -24,6 +26,11 @@ import javax.swing.JLabel;
  *
  */
 public class MapViewPanel extends JPanel implements Observer{
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	private JList<String> continentJList;
 	private JList<String> territoriesJList;
@@ -123,7 +130,7 @@ public class MapViewPanel extends JPanel implements Observer{
 					}
 					adjTerrJList.setListData(adjTerritoryNames);
 				} catch(Exception e) {
-					System.out.println(e.toString());
+					logger.log(Level.INFO, e.toString());
 				}
 			}
 		});
@@ -172,7 +179,7 @@ public class MapViewPanel extends JPanel implements Observer{
 				adjTerrJList.setListData(adjTerritoryNames);
 				adjTerrJList.setSelectedIndex(adjTerrSelectedIndex);
 			} catch(Exception e) {
-				System.out.println(e.toString());
+				logger.log(Level.INFO, e.toString());
 			}
 		}
 	}
