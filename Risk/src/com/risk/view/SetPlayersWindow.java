@@ -496,7 +496,7 @@ public class SetPlayersWindow {
 					playerList.add(newPlayer);
 				}
 				
-				logger.log(Level.INFO, "OK button is pressed. "+ playerList.size() + " are created. The created Players are,");
+				logger.log(Level.INFO, "OK button is pressed. "+ playerList.size() + " are created.");
 				
 				//Game Objects initialization
 				ArrayList<Card> cards = controller.loadCards(map.getTerritories().size());

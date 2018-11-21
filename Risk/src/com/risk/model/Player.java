@@ -2,6 +2,8 @@ package com.risk.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.risk.controller.GameController;
 
@@ -12,6 +14,11 @@ import com.risk.controller.GameController;
  * @version 1.0
  */
 public class Player implements Serializable{
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(Player.class.getName());
 	
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = -4223242317148118005L;
@@ -259,6 +266,7 @@ public class Player implements Serializable{
 	 * @param controller GameController
 	 */
 	public void reinforce(GameInstructions gameInstructions, GameController controller) {
+		logger.log(Level.INFO, "Inside reinforce function");
 		this.strategy.reinforce(this, gameInstructions, controller);
 	}
 
