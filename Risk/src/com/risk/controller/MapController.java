@@ -1,7 +1,10 @@
 package com.risk.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,6 +34,11 @@ public class MapController {
 	public StringBuffer message = new StringBuffer();	
 	@SuppressWarnings("javadoc")
 	public Map map = new Map();
+	//====== New Variables ======
+	@SuppressWarnings("javadoc")
+	public Map map1;
+	@SuppressWarnings("javadoc")
+	String mapString;
 	/**
 	 * default constructor of the class MapController
 	 */
@@ -69,7 +77,10 @@ public class MapController {
 	public MapMessage processFile(File file) {
 		try {
 
-            Scanner input = new Scanner(file);
+			//========NEW MAP==========
+			map1 = setMap(file.getPath());
+            //==========OLD CODE=======
+			Scanner input = new Scanner(file);
             
             while (input.hasNext()) {
             	String line = input.nextLine();
@@ -83,9 +94,14 @@ public class MapController {
         } catch (FileNotFoundException ex) {
         	ex.printStackTrace();
         }
-		MapMessage mapMessage = validateMap(fileContent.toString());
+		//========NEW Validation==========
+		MapMessage mapMessage = validateMap();
 		return mapMessage;
 	}
+	
+	
+	
+	
 	/**
 	 * Check the map is valid or not
 	 * 
@@ -131,7 +147,6 @@ public class MapController {
 		
 		return mapMessage;
 	}
-	
 	
 	/**
 	 * Function to process the content of the .map file and see whether there are Continents available 
@@ -420,5 +435,165 @@ public class MapController {
 		}
 		return isValidTerritories;
 	}
+
 	
+	//========================= NEW FUNCTIONS =========================
+	public static boolean isInArrayList(ArrayList<Territory> input, Territory member){
+        
+        for (Territory temp: input){
+            if (temp.getName().equals(member.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkConnectivity(ArrayList<Territory> conTerritories){
+        ArrayList<Territory> mainStack = new ArrayList<Territory>();
+        ArrayList<Territory> tempStack = new ArrayList<Territory>();
+        
+        boolean isConnected = false;
+        mainStack.add(conTerritories.get(0));
+        tempStack.add(conTerritories.get(0));
+        
+        while(!isConnected){
+            //Taking the first node out
+            Territory temp = tempStack.get(0);
+            tempStack.remove(temp);
+
+            //Adding Adjacent Territories
+            for (Territory territories: temp.getAdjacentTerritories()){
+                //if is In that continent
+                if (isInArrayList(conTerritories,territories)){
+                    //if not already in mainStack
+                    if(!isInArrayList(mainStack,territories)){
+                        //add it to the mainStack
+                        for (Territory conTerritory : conTerritories){
+                            if (conTerritory.getName().equals(territories.getName()))
+                            {
+                                mainStack.add(conTerritory);
+                                tempStack.add(conTerritory);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //IsConnected Check
+            if (mainStack.size()==conTerritories.size()){
+                isConnected=true;
+                break;
+            }
+            //If noMore Nodes Break
+            if (tempStack.size()==0){
+                break;
+            }
+            
+        }
+
+        return isConnected;
+    }
+
+    public boolean checkMapContectivity(Map map){
+	
+    	boolean isMapConnected = true;
+	boolean isConnected = checkConnectivity(map.getTerritories());
+    
+    if (isConnected){
+    		message.append("Map Territories are Connected!\n");
+        isConnected = false;
+    }else{
+    		message.append("Map Territories are NOT Connected!!\n");
+        isMapConnected = false;
+    }
+    return isMapConnected;
+    }
+
+    
+    public Map setMap(String mapFile) {
+
+        Map map = new Map();
+
+        ArrayList<Continent> con = new ArrayList<Continent>();
+        ArrayList<Territory> ter = new ArrayList<Territory>();
+        
+
+        //String mapInString = "";
+        boolean isContinent = false;
+        boolean isTerritory = false;
+        Continent tempCon;
+        Territory tempTer;
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(mapFile));
+
+            String line = reader.readLine();
+            mapString += line;
+
+            while (line != null) {
+                mapString += line;
+                
+                if (line.toLowerCase().contains("continents"))
+                {isContinent = true;isTerritory=false;}
+                if (line.toLowerCase().contains("territories"))
+                {isContinent = false;isTerritory=true;}
+
+                if (isContinent){
+                String[] tokens = line.split("=");
+                    if (tokens.length>1){
+                        tempCon = new Continent();
+                        tempCon.setName(tokens[0]);
+                        tempCon.setNumberOfArmies(Integer.parseInt(tokens[1]));
+                        con.add(tempCon);
+                    }
+                }
+                if (isTerritory){
+                    String[] tokens = line.split(",");
+                    if (tokens.length>3){
+                        tempTer = new Territory();
+                        
+                        tempTer.setName(tokens[0]);
+                        tempTer.setContinent(tokens[3]);
+                        if (tokens.length>4)
+                        {
+                            ArrayList<Territory> adTer = new ArrayList<Territory>();
+                            for(int i=4;i<tokens.length;i++){
+                                Territory tt = new Territory();
+                                tt.setName(tokens[i]);
+                                adTer.add(tt);
+                            }
+                            // System.out.println(adTer.size());
+                            tempTer.setAdjacentTerritories(adTer);
+                            // System.out.println(tempTer.getAdjacentTerritories().size());
+                            // adTer.clear();
+                        }
+                        ter.add(tempTer);
+                        // System.out.println(tempTer.getAdjacentTerritories().size());
+
+                        for(int i=0;i<con.size();i++){
+                            if (con.get(i).getName().equals(tempTer.getContinent())){
+                                con.get(i).addTerritories(tempTer);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                line = reader.readLine();
+            }
+            reader.close();
+            
+            //==== MAP ====
+            map.setContinents(con);
+            map.setTerritories(ter);
+            //=============
+
+        } catch (IOException e) {
+            map = null;
+        }
+        return map;
+    }
+    
+    
 }
