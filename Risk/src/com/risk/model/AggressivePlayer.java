@@ -7,6 +7,12 @@ import java.util.logging.Logger;
 import com.risk.controller.GameController;
 import com.risk.view.StartWindow;
 
+/**
+ * model for the aggressive player
+ * 
+ * @author Jingya Pan
+ * @version 1.0
+ */
 public class AggressivePlayer implements Strategy, Serializable {
 	
 	/**

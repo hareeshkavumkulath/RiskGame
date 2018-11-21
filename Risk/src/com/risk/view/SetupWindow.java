@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -46,25 +44,21 @@ public class SetupWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("javadoc")
-	private JPanel contentPane;
-	@SuppressWarnings("javadoc")
 	private JTextField textField;
 	@SuppressWarnings("javadoc")
 	private JList<String> mapList;
 	@SuppressWarnings("javadoc")
-	private ButtonGroup btnGroup;
-	@SuppressWarnings("javadoc")
 	private String[] fileNames;
 	@SuppressWarnings("javadoc")
-	private AbstractButton numTurnTxtField;
+	private JTextField numTurnTxtField;
 	@SuppressWarnings("javadoc")
-	private AbstractButton chckbxAggressive;
+	private JCheckBox chckbxAggressive;
 	@SuppressWarnings("javadoc")
-	private AbstractButton chckbxBenevolent;
+	private JCheckBox chckbxBenevolent;
 	@SuppressWarnings("javadoc")
-	private AbstractButton chckbxRandom;
+	private JCheckBox chckbxRandom;
 	@SuppressWarnings("javadoc")
-	private AbstractButton chckbxCheater;
+	private JCheckBox chckbxCheater;
 	
 	/**
 	 * Create the frame.
@@ -96,8 +90,6 @@ public class SetupWindow extends JFrame {
 		}
 		mapList.setListData(fileNames);
 		
-		btnGroup = new ButtonGroup();
-		
 		initialize();
 	}
 	/**
@@ -105,30 +97,25 @@ public class SetupWindow extends JFrame {
 	 */
 	public void initialize() {
 		
-		JCheckBox chckbxAggressive = new JCheckBox("Aggressive");
+		chckbxAggressive = new JCheckBox("Aggressive");
 		chckbxAggressive.setBounds(310, 69, 139, 29);
 		chckbxAggressive.setActionCommand("AGGRESSIVE");
 		getContentPane().add(chckbxAggressive);
 		
-		JCheckBox chckbxBenevolent = new JCheckBox("Benevolent");
+		chckbxBenevolent = new JCheckBox("Benevolent");
 		chckbxBenevolent.setBounds(310, 114, 139, 29);
 		chckbxBenevolent.setActionCommand("BENEVOLENT");
 		getContentPane().add(chckbxBenevolent);
 		
-		JCheckBox chckbxRandom = new JCheckBox("Random");
+		chckbxRandom = new JCheckBox("Random");
 		chckbxRandom.setBounds(310, 165, 139, 29);
 		chckbxRandom.setActionCommand("RANDOM");
 		getContentPane().add(chckbxRandom);
 		
-		JCheckBox chckbxCheater = new JCheckBox("Cheater");
+		chckbxCheater = new JCheckBox("Cheater");
 		chckbxCheater.setBounds(310, 215, 139, 29);
 		chckbxCheater.setActionCommand("CHEATER");
 		getContentPane().add(chckbxCheater);
-		
-		btnGroup.add(chckbxAggressive);
-		btnGroup.add(chckbxBenevolent);
-		btnGroup.add(chckbxRandom);
-		btnGroup.add(chckbxCheater);
 		
 		JLabel lblNewLabel = new JLabel("Number of Games:");
 		lblNewLabel.setBounds(310, 266, 152, 36);
