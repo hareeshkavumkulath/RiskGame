@@ -98,8 +98,54 @@ public class MapController {
 		MapMessage mapMessage = validateMap();
 		return mapMessage;
 	}
-	
-	
+	/**
+	 * Check the map is valid or not
+	 * 
+	 * @param mapInfo the text in the mapTextPane
+	 * @return MapMessage message including territories,continents,message about the checking result
+	 */
+	public MapMessage validateMap() {
+		
+		String mapInfo = this.mapString;
+		// Processing continents - Whether the continents are available in the .map file
+		boolean isValidContinents = false;
+		isValidContinents = processContinents(mapInfo);
+		if(isValidContinents) {
+			// Processing territories -  Whether the territories are available in the .map file
+			boolean isValidTerritories = false;
+			isValidTerritories = processTerritories(mapInfo);
+			if(isValidTerritories) {
+				boolean addAdjacentTerritories = false;
+				//Adding adjacent territories
+				addAdjacentTerritories = addAdjacentTerritories(mapInfo, territoriesArray);
+				if(addAdjacentTerritories) {
+					//connecting territories to continents
+					boolean valid = false;
+					valid = territoriesToContinents();
+					if(valid) {
+						//CONNECTIVITY CHECK=========================================
+						boolean areContinentsConnected = checkContinentContectivity(map1);
+						boolean isMapConnected = checkMapContectivity(map1);
+						
+						isMapConnected = areContinentsConnected && isMapConnected;
+						//===========================================================
+						if(isMapConnected) {
+							isValidMap = true;
+						}				
+					}
+				}else {
+					isValidMap = false;
+				}
+			}else { // else of isValidTerritories
+				isValidMap = false;
+			}
+		}else {  // else of isValidContinents
+			isValidMap = false;
+		}
+		MapMessage mapMessage = new MapMessage(map1, isValidMap, message);
+		
+		return mapMessage;
+	}
 	
 	
 	/**
