@@ -7,7 +7,7 @@ import com.risk.controller.GameController;
 /**
  * This class implements the Random Player functionalities for this game 
  * 
- * @author Angeline Anqi Wang
+ * @author Anqi Wang
  * @version 1.1
  */
 public class RandomPlayer implements Strategy, Serializable {
