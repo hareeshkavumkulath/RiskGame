@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 /**
  * select Single Game Mode or Tournament Game Mode
@@ -13,7 +15,13 @@ import java.awt.event.ActionEvent;
  * @version 1.0
  */
 public class SelectModeWindow {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
+	@SuppressWarnings("javadoc")
 	private JFrame frame;
 
 	/**
@@ -58,6 +66,7 @@ public class SelectModeWindow {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				logger.log(Level.INFO, "Player clicked Single Game Mode Button, proceeding to Single Mode - Select Map Window");
 				SelectMapWindow gameStart = new SelectMapWindow();		
 				gameStart.main();
 			}
@@ -65,6 +74,7 @@ public class SelectModeWindow {
 		
 		btnTournamentGameMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "Player clicked Single Game Mode Button, proceeding to Tournament Mode");
 				SetupWindow window = new SetupWindow();
 				window.initialize();
 			}

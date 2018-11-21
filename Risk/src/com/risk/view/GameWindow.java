@@ -9,6 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -39,10 +41,12 @@ import com.risk.model.Territory;
  * @version 1.1
  */
 public class GameWindow extends JFrame{
-
+	
 	/**
-	 * 
+	 * Logger object setup for the log file
 	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
+
 	private static final long serialVersionUID = 1L;
 	private Game game;
 	private GameController controller;
@@ -451,12 +455,12 @@ public class GameWindow extends JFrame{
 		
 		btnEndAttack.addActionListener(new ActionListener() {
 			
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			currentPlayer.setPhase("FORTIFY");
-			attackPanel.setVisible(false);
-			onGame();
-		}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentPlayer.setPhase("FORTIFY");
+				attackPanel.setVisible(false);
+				onGame();
+			}
 		});
 		
 		btnFortify.addActionListener(new ActionListener() {
@@ -660,6 +664,7 @@ public class GameWindow extends JFrame{
 	 * set the next player by index
 	 */
 	protected void nextPlayer() {
+		logger.log(Level.INFO, "Inside Next player function");
 		int indexOfCurrentPlayer = game.getPlayers().indexOf(currentPlayer);
 		if(indexOfCurrentPlayer + 1 >= game.getPlayers().size()) {
 			currentPlayer = game.getPlayers().get(0);
@@ -673,9 +678,11 @@ public class GameWindow extends JFrame{
 	 * check the strategy of the current player
 	 */
 	public void onGame() {
+		logger.log(Level.INFO, "Inside onGame function");
 		if(currentPlayer.getPhase().equals("ADD")) {
+			logger.log(Level.INFO, "Add Armies Phase");
 			if(currentPlayer.isComputer) {
-				System.out.println(currentPlayer.getName() + " is Computer");
+				logger.log(Level.INFO, currentPlayer.getName() + " is Computer");
 				controller.addArmyRandom(currentPlayer);
 				nextPlayer();
 				game.update();
@@ -683,17 +690,18 @@ public class GameWindow extends JFrame{
 			}else {
 				addArmyPanel.getBtnAddArmy().setVisible(true);
 				addArmyPanel.getBtnReinforceArmy().setVisible(false);
-				System.out.println(currentPlayer.getName() + " is Human");
+				logger.log(Level.INFO, currentPlayer.getName() + " is Human");
 				displayAddArmyPanel();
 			}
 			game.update();
 		}else if(currentPlayer.getPhase().equals("REINFORCEMENT")) {
-			gameInstructions.setInstructions("Reinforcement Phase\r\n");
+			logger.log(Level.INFO, "Reinforcement Phase");
+			gameInstructions.setInstructions("Reinforcement Phase\n");
 			hideAddArmyPanel();
 			addArmyPanel.getBtnReinforceAddArmy().setVisible(false);
 			addArmyPanel.getBtnReinforceArmy().setVisible(true);
 			if(currentPlayer.isComputer) {
-				System.out.println(currentPlayer.getName() + " is Computer");
+				logger.log(Level.INFO, currentPlayer.getName() + " is Computer");
 				currentPlayer.reinforce(gameInstructions, controller);
 				game.update();
 				onGame();
@@ -705,7 +713,7 @@ public class GameWindow extends JFrame{
 			}
 			game.update();
 		}else if(currentPlayer.getPhase().equals("ATTACK")) {
-			System.out.println("Attack Phase");
+			logger.log(Level.INFO, "Reinforcement Phase");
 			if(currentPlayer.isComputer) {
 				currentPlayer.attack(gameInstructions, controller, game);
 				game.update();
@@ -719,7 +727,7 @@ public class GameWindow extends JFrame{
 			}
 			game.update();
 		}else if(currentPlayer.getPhase().equals("FORTIFY")) {
-			System.out.println("Fortification Phase");
+			logger.log(Level.INFO, "Reinforcement Phase");
 			currentPlayer.setFortificationStatus(false);
 			gameInstructions.setInstructions("Fortification Phase\n");
 			gameInstructions.setInstructions("***************************************\n");

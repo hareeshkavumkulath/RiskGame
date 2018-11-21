@@ -1,8 +1,12 @@
 package com.risk.model;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.risk.controller.GameController;
+import com.risk.view.StartWindow;
+
 /**
  * model for the aggressive player
  * 
@@ -10,12 +14,48 @@ import com.risk.controller.GameController;
  * @version 1.0
  */
 public class AggressivePlayer implements Strategy, Serializable {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	/**
 	 * set a Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Aggressive player reinforce
+	 * 
+	 * @param currentPlayer player object
+	 * @param gameInstructions object
+	 * @param controller GameController
+	 */
+	@Override
+	public void reinforce(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
+		if(currentPlayer.getCards() != null) {
+			if(currentPlayer.getCards().size() >= 3) {
+				int turnInNumArmies = controller.validateCards(currentPlayer);
+				if(turnInNumArmies > 0) {
+					logger.log(Level.INFO, currentPlayer.getName() + " has turned in cards and got " + turnInNumArmies + "armies");
+					gameInstructions.setInstructions(currentPlayer.getName() + " has turned in cards and got " + turnInNumArmies + "armies");
+				}
+			}
+		}
+		int reinforcementArmy = controller.getNumReinforcements(currentPlayer);
+		logger.log(Level.INFO, "Armies from reinforcements" + reinforcementArmy);
+		int numArmiesFromContinents = controller.getNumArmiesFromContinents(currentPlayer);
+		logger.log(Level.INFO, "Armies from Continents" + numArmiesFromContinents);
+		int playerNumArmies = currentPlayer.getNumberOfArmies();
+		reinforcementArmy = reinforcementArmy + numArmiesFromContinents + playerNumArmies;
+		currentPlayer.setNumberOfArmies(reinforcementArmy);
+		logger.log(Level.INFO, currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.");
+		gameInstructions.setInstructions(currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.\n");
+		Territory strongTerritory = controller.getStrongTerritory(currentPlayer);
+		logger.log(Level.INFO, currentPlayer.getName() + " has strong territory " + strongTerritory.getName());
+		controller.addArmyToTerritory(currentPlayer, strongTerritory, reinforcementArmy);
+	}
 	
 	/**
 	 * Aggressive player attack
@@ -30,6 +70,7 @@ public class AggressivePlayer implements Strategy, Serializable {
 		Territory attackerTerr = controller.getAttacker(currentPlayer);
 		Territory opponentTerr = controller.getOpponent(currentPlayer, attackerTerr);
 		while(opponentTerr != null) {
+			logger.log(Level.INFO, attackerTerr.getName() + " is attacking " + opponentTerr.getName());
 			gameInstructions.setInstructions(attackerTerr.getName() + " is attacking " + opponentTerr.getName() + "\r\n");
 			AttackStatus status = new AttackStatus();
 			int numAttackerArmies, numOpponentArmies;
@@ -81,34 +122,6 @@ public class AggressivePlayer implements Strategy, Serializable {
 			controller.addCard(currentPlayer);
 			currentPlayer.hasWon = false;
 		}
-	}
-	
-	/**
-	 * Aggressive player reinforce
-	 * 
-	 * @param currentPlayer player object
-	 * @param gameInstructions object
-	 * @param controller GameController
-	 */
-	@Override
-	public void reinforce(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
-		if(currentPlayer.getCards() != null) {
-			if(currentPlayer.getCards().size() >= 3) {
-				int turnInNumArmies = controller.validateCards(currentPlayer);
-				if(turnInNumArmies > 0) {
-					gameInstructions.setInstructions(currentPlayer.getName() + " has turned in cards");
-				}
-			}
-		}
-		int reinforcementArmy = controller.getNumReinforcements(currentPlayer);
-		int numArmiesFromContinents = controller.getNumArmiesFromContinents(currentPlayer);
-		int playerNumArmies = currentPlayer.getNumberOfArmies();
-		reinforcementArmy = reinforcementArmy + numArmiesFromContinents + playerNumArmies;
-		currentPlayer.setNumberOfArmies(reinforcementArmy);
-		gameInstructions.setInstructions(currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.\n");
-		Territory strongTerritory = controller.getStrongTerritory(currentPlayer);
-		System.out.println(strongTerritory.getName());
-		controller.addArmyToTerritory(currentPlayer, strongTerritory, reinforcementArmy);
 	}
 
 }

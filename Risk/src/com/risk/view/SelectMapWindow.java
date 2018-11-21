@@ -3,6 +3,8 @@ package com.risk.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -27,6 +29,11 @@ import javax.swing.JButton;
  *
  */
 public class SelectMapWindow {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	@SuppressWarnings("javadoc")
 	private JFrame frame;
@@ -101,6 +108,7 @@ public class SelectMapWindow {
 				if(fileName == null) {
 					JOptionPane.showMessageDialog(frame, "Please select the map.");
 				} else {
+					logger.log(Level.INFO, fileName + " is selected, proceeding to Setup Player Window");
 					MapController controller = new MapController();
 					MapMessage message = controller.processFile(file);
 					if(message.isValidMap()) {

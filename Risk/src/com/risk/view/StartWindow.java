@@ -4,7 +4,13 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import com.risk.log.RiskLogger;
+
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 
 /**
@@ -16,6 +22,11 @@ import java.awt.event.ActionEvent;
  * 
  */
 public class StartWindow {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	@SuppressWarnings("javadoc")
 	private JFrame frame;
@@ -40,8 +51,12 @@ public class StartWindow {
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
 	 */
-	public StartWindow() {
+	public StartWindow() throws IOException {
+		RiskLogger custLogger = new RiskLogger();
+		custLogger.setLogger();
+		logger = custLogger.getLogger();
 		initialize();
 	}
 	
@@ -72,6 +87,7 @@ public class StartWindow {
 		
 		btnUpload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "Player clicked Upload Map Button, proceeding to Map Upload");
 				UploadWindow uploadWindow = new UploadWindow();
 				uploadWindow.main();
 			}
@@ -81,6 +97,7 @@ public class StartWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "Player clicked Start Game Button, proceeding to Game");
 				SelectModeWindow gameStart = new SelectModeWindow();		
 				gameStart.main();
 			}
@@ -90,6 +107,7 @@ public class StartWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "Player clicked Load Game Button, proceeding to Load Game");
 				SelectGameWindow gameStart = new SelectGameWindow();		
 				gameStart.main();
 			}
