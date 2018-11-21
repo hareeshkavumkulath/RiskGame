@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -19,10 +20,18 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 
+import com.risk.controller.GameController;
 import com.risk.controller.MapController;
+import com.risk.model.AggressivePlayer;
+import com.risk.model.BenevolentPlayer;
+import com.risk.model.Card;
+import com.risk.model.CheaterPlayer;
+import com.risk.model.Game;
+import com.risk.model.GameInstructions;
 import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
+import com.risk.model.RandomPlayer;
 /**
  * Tournament mode player set up
  * 
@@ -46,6 +55,16 @@ public class SetupWindow extends JFrame {
 	private ButtonGroup btnGroup;
 	@SuppressWarnings("javadoc")
 	private String[] fileNames;
+	@SuppressWarnings("javadoc")
+	private AbstractButton numTurnTxtField;
+	@SuppressWarnings("javadoc")
+	private AbstractButton chckbxAggressive;
+	@SuppressWarnings("javadoc")
+	private AbstractButton chckbxBenevolent;
+	@SuppressWarnings("javadoc")
+	private AbstractButton chckbxRandom;
+	@SuppressWarnings("javadoc")
+	private AbstractButton chckbxCheater;
 	
 	/**
 	 * Create the frame.
@@ -145,17 +164,88 @@ public class SetupWindow extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				ArrayList<Map> maps = getMaps();
+				int numTurns = 0;
+				ArrayList<Player> players = new ArrayList<Player>();
+				ArrayList<Map> maps = new ArrayList<Map>();
+				int numGames = 1;
+				maps = getMaps();
 				if(maps != null) {
-					ArrayList<Player> players = getPlayers();
+					players = getPlayers();
+					if(players != null) {
+						numTurns = getNumTurns();
+						if(numTurns > 0) {
+							numGames = Integer.parseInt(spinner.getValue().toString());
+							startTournament(maps, players, numGames, numTurns);
+						}else {
+							JOptionPane.showMessageDialog(null, "Number of turns must be number between 10 and 50", "Warning", JOptionPane.WARNING_MESSAGE);
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Select 2 Players atleast", "Warning", JOptionPane.WARNING_MESSAGE);
+					}
 				}else {
 					JOptionPane.showMessageDialog(null, "Select 1-5 Maps", "Warning", JOptionPane.WARNING_MESSAGE);
 				}
-				
 			}
 		});
 		
+	}
+	/**
+	 * tournament mode set up
+	 * 
+	 * @param maps list of maps
+	 * @param players list of player
+	 * @param numGames number of games
+	 * @param numTurns numbers of turns
+	 */
+	protected void startTournament(ArrayList<Map> maps, ArrayList<Player> players, int numGames, int numTurns) {
+		int rows = maps.size();
+		int columns = numGames;
+		String[][] winners = new String[rows][columns];
+		System.out.println("Succcesss");
+		System.out.println("Rows:"+rows+", Columns:"+columns);
+		for(int i=0;i<rows;i++) {
+			for(int j=0;j<columns;j++) {
+				GameController controller = new GameController();
+				ArrayList<Card> cards = controller.loadCards(maps.get(i).getTerritories().size());
+				Game game = new Game(maps.get(i), players, cards, players.get(0));
+				GameInstructions gameInstructions = new GameInstructions("Risk Game\r\n");				
+				GameController gameController = new GameController(game, gameInstructions);
+				game.setCurrentPlayer(gameController.assignTerritories());
+				/*
+				TournamentGame tournament = new TournamentGame(game, gameController, numTurns);
+				tournament.onGame();
+				winners[i][j] = tournament.getWinner();	
+				*/
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<rows;i++) {
+			for(int j=0;j<columns;j++) {
+				System.out.print(winners[i][j]);
+			}
+			System.out.println();
+		}
+		
+	}
+	
+	/**
+	 * get the number of turns
+	 * 
+	 * @return int number of turns
+	 */
+	protected int getNumTurns() {
+		int numTurns = 0;
+		try {
+			System.out.println(numTurnTxtField.getText());
+			numTurns = Integer.parseInt(numTurnTxtField.getText());
+			if(numTurns > 50 || numTurns < 10) {
+				numTurns = 0;
+			}
+		}catch(Exception e) {
+			numTurns = 0;
+		}
+		return numTurns;
 	}
 	
 	/**
@@ -164,7 +254,47 @@ public class SetupWindow extends JFrame {
 	 * @return ArrayList list of players
 	 */
 	protected ArrayList<Player> getPlayers() {
-		return null;
+		int count = 0;
+		if(chckbxAggressive.isSelected()) {
+			count++;
+		}
+		if(chckbxBenevolent.isSelected()) {
+			count++;
+		}
+		if(chckbxRandom.isSelected()) {
+			count++;
+		}
+		if(chckbxCheater.isSelected()) {
+			count++;
+		}
+		if(count > 1) {
+			ArrayList<Player> players = new ArrayList<Player>();
+			GameController controller = new GameController();
+			int numArmies = controller.getPlayersArmies(count);
+			if(chckbxAggressive.isSelected()) {
+				Player player1 = new Player("Aggressive", true, numArmies, "ADD");
+				player1.setStrategy(new AggressivePlayer());
+				players.add(player1);
+			}
+			if(chckbxBenevolent.isSelected()) {
+				Player player2 = new Player("Benevolent", true, numArmies, "ADD");
+				player2.setStrategy(new BenevolentPlayer());
+				players.add(player2);
+			}
+			if(chckbxRandom.isSelected()) {
+				Player player3 = new Player("Random", true, numArmies, "ADD");
+				player3.setStrategy(new RandomPlayer());
+				players.add(player3);
+			}
+			if(chckbxCheater.isSelected()) {
+				Player player4 = new Player("Cheater", true, numArmies, "ADD");
+				player4.setStrategy(new CheaterPlayer());
+				players.add(player4);
+			}
+			return players;
+		}else {
+			return null;
+		}
 	}
 	
 	/**
