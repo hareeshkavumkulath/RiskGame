@@ -3,11 +3,16 @@ package com.risk.model;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JOptionPane;
-
 import com.risk.controller.GameController;
 import com.risk.view.StartWindow;
 
+/**
+ * Class for Tournament Game mode
+ * 
+ * @author Hareesh Kavumkulath
+ * @version 1.0
+ *
+ */
 public class TournamentGame {
 	
 	/**
@@ -15,14 +20,28 @@ public class TournamentGame {
 	 */
 	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 	
+	@SuppressWarnings("javadoc")
 	private Game game;
+	@SuppressWarnings("javadoc")
 	private GameController controller;
+	@SuppressWarnings("javadoc")
 	private GameInstructions gameInstructions;
+	@SuppressWarnings("javadoc")
 	private Player currentPlayer;
+	@SuppressWarnings("javadoc")
 	private int turns;
+	@SuppressWarnings("javadoc")
 	private int count;
+	@SuppressWarnings("javadoc")
 	private String winner;
 
+	/**
+	 * Constructor sets game parameters
+	 * 
+	 * @param currentGame Game
+	 * @param controller GameController
+	 * @param numTurns Integer number of turns
+	 */
 	public TournamentGame(Game currentGame, GameController controller, int numTurns) {
 		logger.log(Level.INFO, "Inside tournament home");
 		this.game = currentGame;
@@ -34,6 +53,9 @@ public class TournamentGame {
 		this.winner = null;
 	}
 	
+	/**
+	 * Sets the current player to the next player
+	 */
 	protected void nextPlayer() {
 		int indexOfCurrentPlayer = game.getPlayers().indexOf(currentPlayer);
 		if(indexOfCurrentPlayer + 1 >= game.getPlayers().size()) {
@@ -47,6 +69,9 @@ public class TournamentGame {
 		game.setCurrentPlayer(currentPlayer);
 	}
 	
+	/**
+	 * On Game function
+	 */
 	public void onGame() {
 		logger.log(Level.INFO, "");
 		if(count == turns) {
@@ -78,6 +103,8 @@ public class TournamentGame {
 	}
 
 	/**
+	 * Returns the winner of the game
+	 * 
 	 * @return the winner
 	 */
 	public String getWinner() {
@@ -85,6 +112,8 @@ public class TournamentGame {
 	}
 
 	/**
+	 * Sets the winner
+	 * 
 	 * @param winner the winner to set
 	 */
 	public void setWinner(String winner) {

@@ -13,6 +13,10 @@ import com.risk.controller.GameController;
  */
 public class BenevolentPlayer implements Strategy, Serializable {
 
+	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 1260591218179482532L;
+
 	/**
 	 * BenevolentPlayer player reinforce
 	 * 

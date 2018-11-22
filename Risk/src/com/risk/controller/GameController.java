@@ -1029,6 +1029,8 @@ public class GameController {
 		for(String param : selectedValuesList) {
 			for(int i=0;i<currentPlayer.getCards().size();i++) {
 				if(param.equals(currentPlayer.getCards().get(i).getArmyType())) {
+					Card card = currentPlayer.getCards().get(i);
+					game.getCards().add(card);
 					currentPlayer.getCards().remove(i);
 					break;
 				}
