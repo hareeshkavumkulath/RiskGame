@@ -49,7 +49,7 @@ public class GameInstructions extends Observable implements Serializable{
 	/**
 	 * Append Instructions will append messages during assign territories
 	 * 
-	 * @param string instructions
+	 * @param instructions String gameInstructions 
 	 */
 	public void appendInstructions(String instructions) {
 		this.instructions = this.instructions + instructions;
