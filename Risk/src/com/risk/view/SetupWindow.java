@@ -109,7 +109,7 @@ public class SetupWindow extends JFrame {
 		panel.add(resultLabel);
 		
 		mapLabel = new JLabel("");
-		mapLabel.setBounds(15, 61, 315, 20);
+		mapLabel.setBounds(15, 61, 763, 20);
 		panel.add(mapLabel);
 		
 		playerLabel = new JLabel("");
