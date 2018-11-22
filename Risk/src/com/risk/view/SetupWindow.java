@@ -1,5 +1,6 @@
 package com.risk.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,7 +103,7 @@ public class SetupWindow extends JFrame {
 		panel = new JPanel();
 		panel.setBounds(15, 440, 804, 375);
 		getContentPane().add(panel);
-		panel.setLayout(null);
+		panel.setLayout(new BorderLayout());
 		
 		JLabel resultLabel = new JLabel("Results");
 		resultLabel.setBounds(15, 16, 144, 29);
@@ -301,10 +302,10 @@ public class SetupWindow extends JFrame {
 	 * Display End Result
 	 */
 	private void displayResult() {
-		table = new JTable(new ResultsTableModel(columnNames, results));
-		table.getTableHeader();
+		table = new JTable(results,columnNames);	
 		table.setBounds(15, 177, 774, 182);
-		panel.add(table);
+		panel.add(table.getTableHeader(), BorderLayout.PAGE_START);
+		panel.add(table, BorderLayout.CENTER);
 		panel.setVisible(true);
 	}
 	/**
