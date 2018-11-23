@@ -262,23 +262,26 @@ public class Player implements Serializable{
 	/**
 	 * Strategy function for reinforce
 	 * 
+	 * @param territory reinforce Territory
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
 	 */
-	public void reinforce(GameInstructions gameInstructions, GameController controller) {
+	public void reinforce(Territory territory, GameInstructions gameInstructions, GameController controller) {
 		logger.log(Level.INFO, "Inside reinforce function");
-		this.strategy.reinforce(this, gameInstructions, controller);
+		this.strategy.reinforce(this, territory, gameInstructions, controller);
 	}
 
 	/**
 	 * Strategy function for Attack
-	 * 
+	 * @param attackerTerritory Territory Attacker
+	 * @param opponentTerritory Territory Opponent
+	 * @param allOutMode boolean 
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController object
 	 * @param game Game object
 	 */
-	public void attack(GameInstructions gameInstructions, GameController controller, Game game) {
-		this.strategy.attack(this, gameInstructions, controller, game);
+	public void attack(Territory attackerTerritory, Territory opponentTerritory, boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
+		this.strategy.attack(this, attackerTerritory, opponentTerritory, allOutMode, gameInstructions, controller);
 		this.setPhase("FORTIFY");
 	}
 	
@@ -287,9 +290,12 @@ public class Player implements Serializable{
 	 * 
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController object
+	 * @param fortifyNum 
+	 * @param toTerritory 
+	 * @param fromTerritory 
 	 */
-	public void fortify(GameInstructions gameInstructions, GameController controller) {
-		this.strategy.fortify(this, gameInstructions, controller);
+	public void fortify(GameInstructions gameInstructions, GameController controller, Territory fromTerritory, Territory toTerritory, int fortifyNum) {
+		this.strategy.fortify(this, fromTerritory, toTerritory, fortifyNum, gameInstructions, controller);
 		this.setPhase("REINFORCEMENT");
 	}
 }

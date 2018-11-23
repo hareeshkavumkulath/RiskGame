@@ -20,12 +20,13 @@ public class BenevolentPlayer implements Strategy, Serializable {
 	/**
 	 * BenevolentPlayer player reinforce
 	 * 
-	 * @param currentPlayer player object
-	 * @param gameInstructions object
+	 * @param currentPlayer Player
+	 * @param territory reinforcement Territory
+	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
 	 */
 	@Override
-	public void reinforce(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
+	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions, GameController controller) {
 		int reinforcementArmy = controller.getNumReinforcements(currentPlayer);
 		int numArmiesFromContinents = controller.getNumArmiesFromContinents(currentPlayer);
 		int playerNumArmies = currentPlayer.getNumberOfArmies();
@@ -41,31 +42,37 @@ public class BenevolentPlayer implements Strategy, Serializable {
 	/**
 	 * BenevolentPlayer player attack
 	 * 
-	 * @param currentPlayer player object
-	 * @param gameInstructions object
+	 * @param currentPlayer Player
+	 * @param attackerTerritory Attacker Territory
+	 * @param opponentTerritory Opponent Territory
+	 * @param allOutMode boolean
+	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
-	 * @param game object
-	 */
-	
+	 * @param game Game current game
+	 */	
 	@Override
-	public void attack(Player currentPlayer, GameInstructions gameInstructions, GameController controller, Game game) {
+	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
+			boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
 		gameInstructions.setInstructions(currentPlayer.getName() + " is not attacking any other territory.\n");	
 	}
 	
 	/**
 	 * BenevolentPlayer player fortify
 	 * 
-	 * @param currentPlayer player object
-	 * @param gameInstructions object
-	 * @param controller GameController
+	 * @param currentPlayer Player
+	 * @param fromTerritory Territory from
+	 * @param toTerritory Territory To
+	 * @param fortifyNum int fortification number
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController 
 	 */
 	@Override
-	public void fortify(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
+	public void fortify(Player currentPlayer, Territory fromTerritory, Territory toTerritory, int fortifyNum, GameInstructions gameInstructions, GameController controller) {
 		int totalNumTerritories = currentPlayer.getOwnedTerritories().size();
 		if(totalNumTerritories > 1) {
 			Territory territoryFrom = controller.getSafeTerritory(currentPlayer);
 			if(territoryFrom != null) {
-				int fortifyNum = territoryFrom.getNumberOfArmies() - 1;
+				fortifyNum = territoryFrom.getNumberOfArmies() - 1;
 				Territory territoryTo = controller.getWeakTerritory(currentPlayer);
 				int fromTerrNumArmies = territoryFrom.getNumberOfArmies();
 				int toTerrNumArmies = territoryTo.getNumberOfArmies();

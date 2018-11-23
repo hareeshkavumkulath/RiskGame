@@ -995,26 +995,6 @@ public class GameController {
 	}
 
 	/**
-	 * Fortification for Human player
-	 * 
-	 * @param currentPlayer Player current player
-	 * @param territoryFrom Territory from
-	 * @param territoryTo Territory to
-	 * @param fortifyNum integer number of fortification armies
-	 */
-	public void fortify(Player currentPlayer, Territory territoryFrom, Territory territoryTo, int fortifyNum) {
-		int fromTerrNumArmies = territoryFrom.getNumberOfArmies();
-		int toTerrNumArmies = territoryTo.getNumberOfArmies();
-		fromTerrNumArmies = fromTerrNumArmies - fortifyNum;
-		toTerrNumArmies = toTerrNumArmies + fortifyNum;
-		territoryFrom.setNumberOfArmies(fromTerrNumArmies);
-		territoryTo.setNumberOfArmies(toTerrNumArmies);
-		currentPlayer.setFortificationStatus(true);
-		currentPlayer.setPhase("REINFORCEMENT");
-		gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies");
-	}
-
-	/**
 	 * Turn In Cards - Add armies based on the attempt
 	 * 
 	 * @param currentPlayer Current Player

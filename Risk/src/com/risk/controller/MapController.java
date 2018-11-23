@@ -339,7 +339,7 @@ public class MapController {
 					message.append("Territory: " + territory.getName() + "\n");
 					message.append("*************************************************\n");
 					for(int j=0;j<territoriesArray.size();j++) {
-						if(!visitedTerritories.contains(territoriesArray.get(j).getName())){
+						if(!visitedTerritories.contains(territoriesArray.get(j))){
 							message.append("It is not connected to:"+territoriesArray.get(j).getName()+"\n");
 						}
 					}

@@ -83,10 +83,10 @@ public class TournamentGame {
 				nextPlayer();
 				onGame();
 			}else if(currentPlayer.getPhase().equals("REINFORCEMENT")) {
-				currentPlayer.reinforce(gameInstructions, controller);
+				currentPlayer.reinforce(null, gameInstructions, controller);
 				onGame();
 			}else if(currentPlayer.getPhase().equals("ATTACK")) {
-				currentPlayer.attack(gameInstructions, controller, game);
+				currentPlayer.attack(null, null, false, gameInstructions, controller);
 				if(!controller.isWinner()) {
 					onGame();
 				}else {
@@ -95,7 +95,7 @@ public class TournamentGame {
 				}
 			}else if(currentPlayer.getPhase().equals("FORTIFY")) {
 				currentPlayer.setFortificationStatus(false);
-				currentPlayer.fortify(gameInstructions, controller);
+				currentPlayer.fortify(gameInstructions, controller, null, null, 0);
 				nextPlayer();
 				onGame();
 			}

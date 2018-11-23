@@ -21,6 +21,7 @@ import com.risk.model.Card;
 import com.risk.model.CheaterPlayer;
 import com.risk.model.Game;
 import com.risk.model.GameInstructions;
+import com.risk.model.HumanPlayer;
 import com.risk.model.Map;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
@@ -522,7 +523,7 @@ public class SetPlayersWindow {
 				}else if(actionCommand.equals("CHEATER")) {
 					player.setStrategy(new CheaterPlayer());
 				}else {
-					player.setStrategy(null);
+					player.setStrategy(new HumanPlayer());
 				}
 			}
 

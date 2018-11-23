@@ -13,8 +13,19 @@ import com.risk.controller.GameController;
  */
 public class CheaterPlayer implements Strategy {
 
+	/**
+	 * Aggressive player reinforce
+	 * 
+	 * @param currentPlayer Player
+	 * @param attackerTerritory Attacker Territory
+	 * @param opponentTerritory Opponent Territory
+	 * @param allOutMode boolean
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController
+	 * @param game Game current game
+	 */
 	@Override
-	public void reinforce(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
+	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions, GameController controller) {
 		int reinforcementArmy = controller.calculateReinforcementArmiesForCheater(currentPlayer);
 		currentPlayer.setNumberOfArmies(reinforcementArmy);
 		gameInstructions.setInstructions(currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.\n");	
@@ -23,8 +34,17 @@ public class CheaterPlayer implements Strategy {
 		}
 	}
 
+	/**
+	 * Cheater player attack
+	 * 
+	 * @param currentPlayer player object
+	 * @param gameInstructions object
+	 * @param controller GameController
+	 * @param game object
+	 */
 	@Override
-	public void attack(Player currentPlayer, GameInstructions gameInstructions, GameController controller, Game game) {
+	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
+			boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
 		for(int i=0;i<currentPlayer.getOwnedTerritories().size();i++) {
 			Territory attackerTerr = currentPlayer.getOwnedTerritories().get(i);
 			for(int j=0;j<attackerTerr.getAdjacentTerritories().size();j++) {
@@ -42,8 +62,19 @@ public class CheaterPlayer implements Strategy {
 		}
 	}
 
+	/**
+	 * Cheater player fortify
+	 * 
+	 * @param currentPlayer Player
+	 * @param fromTerritory Territory from
+	 * @param toTerritory Territory To
+	 * @param fortifyNum int fortification number
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController 
+	 */
 	@Override
-	public void fortify(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
+	public void fortify(Player currentPlayer, Territory fromTerritory, Territory toTerritory, int fortifyNum,
+			GameInstructions gameInstructions, GameController controller) {
 		for(int i=0;i<currentPlayer.getOwnedTerritories().size();i++) {
 			Territory territory = currentPlayer.getOwnedTerritories().get(i);
 			Territory opponentTerr = controller.getOpponent(currentPlayer, territory);
