@@ -20,12 +20,13 @@ public class RandomPlayer implements Strategy, Serializable {
 	/**
 	 * This is reinforce method for this current random player
 	 * 
-	 * @param currentPlayer Pass the current player and consider it as a random player
-	 * @param gameInstructions Pass game instructions and update it
-	 * @param controller Pass controller and update it
+	 * @param currentPlayer Player
+	 * @param territory reinforcement Territory
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController
 	 */
 	@Override
-	public void reinforce(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
+	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions, GameController controller) {
 		if(currentPlayer.getCards() != null) {
 			if(currentPlayer.getCards().size() >= 5) {
 				int turnInNumArmies = controller.validateCards(currentPlayer);
@@ -48,13 +49,17 @@ public class RandomPlayer implements Strategy, Serializable {
 	/**
 	 * This implements attack method for this random player to attack
 	 * 
-	 * @param currentPlayer Pass the currentPlayer to let him attack
-	 * @param gameInstructions Pass gameInstructions to update the game instructions user interface
-	 * @param controller Pass controller to update its properties
-	 * @param game Pass game to update the current game status
+	 * @param currentPlayer Player
+	 * @param attackerTerritory Attacker Territory
+	 * @param opponentTerritory Opponent Territory
+	 * @param allOutMode boolean
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController
+	 * @param game Game current game
 	 */
 	@Override
-	public void attack(Player currentPlayer, GameInstructions gameInstructions, GameController controller, Game game) {
+	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
+			boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
 		Territory attackerTerr = controller.getRandomAttacker(currentPlayer);
 		if(attackerTerr != null) {
 			Territory opponentTerr = controller.getOpponent(currentPlayer, attackerTerr);
@@ -69,7 +74,7 @@ public class RandomPlayer implements Strategy, Serializable {
 				status = controller.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
 				gameInstructions.setInstructions(status.getStatusMessage().toString());
 				controller.updateGame(attackerTerr, opponentTerr);
-				game.update();
+				//game.update();
 				count++;
 			}
 			if(status.hasWon) {
@@ -81,12 +86,16 @@ public class RandomPlayer implements Strategy, Serializable {
 	/**
 	 * This is fortify method and its implements the random player at fortify step
 	 * 
-	 * @param currentPlayer Pass the current player and consider him is at fortify step
-	 * @param gameInstructions Pass game instructions and update it
-	 * @param controller Pass controller and update it
+	 * @param currentPlayer Player
+	 * @param fromTerritory Territory from
+	 * @param toTerritory Territory To
+	 * @param fortifyNum int fortification number
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController 
 	 */
 	@Override
-	public void fortify(Player currentPlayer, GameInstructions gameInstructions, GameController controller) {
+	public void fortify(Player currentPlayer, Territory fromTerritory, Territory toTerritory, int fortifyNum, 
+			GameInstructions gameInstructions, GameController controller) {
 		int totalNumTerritories = currentPlayer.getOwnedTerritories().size();
 		if(totalNumTerritories > 1) {
 			Territory territoryFrom = currentPlayer.getOwnedTerritories().get(controller.getRandomNumber(totalNumTerritories));
@@ -94,7 +103,7 @@ public class RandomPlayer implements Strategy, Serializable {
 				territoryFrom = currentPlayer.getOwnedTerritories().get(controller.getRandomNumber(totalNumTerritories));
 			}
 			if(territoryFrom != null) {
-				int fortifyNum = territoryFrom.getNumberOfArmies() - 1;
+				fortifyNum = territoryFrom.getNumberOfArmies() - 1;
 				Territory territoryTo = currentPlayer.getOwnedTerritories().get(controller.getRandomNumber(totalNumTerritories));
 				while(territoryFrom == territoryTo) {
 					territoryTo = currentPlayer.getOwnedTerritories().get(controller.getRandomNumber(totalNumTerritories));

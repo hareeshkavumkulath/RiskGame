@@ -31,6 +31,7 @@ public class InstructionsView extends JTextPane implements Observer{
 		setText(instructionsMsg);
 		setBounds(46, 148, 300, 500);
 		setEditable(false);
+		repaint();
 	}
 
 	@Override
@@ -48,6 +49,7 @@ public class InstructionsView extends JTextPane implements Observer{
 			message = message + "\r\n" + arg.toString();
 			setText(message);
 		}
+		repaint();
 	}
 
 }
