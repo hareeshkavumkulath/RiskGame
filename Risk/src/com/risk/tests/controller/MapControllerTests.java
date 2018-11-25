@@ -149,7 +149,27 @@ public class MapControllerTests {
     }
     // =====================validateMapValid()=====================
     //Valid Maps Test
-    
+    /**
+     * 
+     * Testing validateMap function return value for following VALID maps
+     * World, 3DCliff, aussiWorld
+     * 
+     */
+    @Test
+    @DisplayName("validateMap => TRUE for Valid MAPs")
+    void validateMapValid() {
+    	//aussiWorld
+    	MapMessage aussiWorldResult = mapToMapMessage(aussiWorld);
+        assertTrue(aussiWorldResult.isValidMap);
+
+        //World
+   		MapMessage worldResult = mapToMapMessage(world);
+        assertTrue(worldResult.isValidMap);
+
+        //3DCliff
+        MapMessage threeDCliffResult = mapToMapMessage(threeDCliff);
+        assertTrue(threeDCliffResult.isValidMap);
+    }
     
     //Invalid Maps Test
     /**
@@ -161,12 +181,12 @@ public class MapControllerTests {
     @Test
     @DisplayName("validateMap => FALSE for InValid MAPs")
     void validateMapInValid() {
-    		//twinVolcano
+    	//twinVolcano
         MapMessage twinVolcanoResult = mapToMapMessage(twinVolcano);
         assertFalse(twinVolcanoResult.isValidMap);
         assertEquals("The continent Barren Rocks is not a connected subgraph",twinVolcanoResult.message.toString());
         
-      //MapConnectedContinetsNot
+        //MapConnectedContinetsNot
         MapMessage MapConnectedContinetsNotResult = mapToMapMessage(MapConnectedContinetsNot);
         assertFalse(MapConnectedContinetsNotResult.isValidMap);
         assertEquals("The continent 1 is not a connected subgraph",MapConnectedContinetsNotResult.message.toString());
