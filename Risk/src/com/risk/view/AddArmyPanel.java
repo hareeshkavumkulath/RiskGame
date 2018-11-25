@@ -16,19 +16,33 @@ import com.risk.model.Card;
 import com.risk.model.Game;
 import com.risk.model.Player;
 import com.risk.model.Territory;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class AddArmyPanel extends JPanel implements Observer {
 	
+	/**
+	 * set serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("javadoc")
 	public JButton btnTurnInCards;
+	@SuppressWarnings("javadoc")
 	public JButton btnAddArmy;
+	@SuppressWarnings("javadoc")
 	public JList<String> addArmyCardslist;
+	@SuppressWarnings("javadoc")
 	public JList<String> addArmyTerrlist;
+	@SuppressWarnings("javadoc")
 	private JLabel plyrNameAddArmyLbl;
+	@SuppressWarnings("javadoc")
 	public JButton btnReinforceArmy;
+	@SuppressWarnings("javadoc")
 	public JButton btnReinforceAddArmy;
 
+	/**
+	 * add army
+	 * 
+	 * @param game game object
+	 */
 	public AddArmyPanel(Game game) {
 		Player currentPlayer = game.getCurrentPlayer();
 		
@@ -90,7 +104,13 @@ public class AddArmyPanel extends JPanel implements Observer {
 		addArmyCardslist.setListData(cardNames);
 		
 	}
-
+	
+	/**
+	 * observer design pattern
+	 * 
+	 * @param arg0 Observable
+	 * @param arg1 Object
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		Game game = (Game) arg1;
@@ -114,6 +134,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Get the btnTurnInCards
+	 * 
 	 * @return the btnTurnInCards
 	 */
 	public JButton getBtnTurnInCards() {
@@ -121,6 +143,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Set the btnTurnInCards
+	 * 
 	 * @param btnTurnInCards the btnTurnInCards to set
 	 */
 	public void setBtnTurnInCards(JButton btnTurnInCards) {
@@ -128,6 +152,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Get the btnAddArmy
+	 * 
 	 * @return the btnAddArmy
 	 */
 	public JButton getBtnAddArmy() {
@@ -135,6 +161,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Set the btnAddArmy
+	 * 
 	 * @param btnAddArmy the btnAddArmy to set
 	 */
 	public void setBtnAddArmy(JButton btnAddArmy) {
@@ -142,6 +170,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Get addArmyCardslist
+	 * 
 	 * @return the addArmyCardslist
 	 */
 	public JList<String> getAddArmyCardslist() {
@@ -149,6 +179,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Set addArmyCardslist
+	 * 
 	 * @param addArmyCardslist the addArmyCardslist to set
 	 */
 	public void setAddArmyCardslist(JList<String> addArmyCardslist) {
@@ -156,6 +188,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Get addArmyTerrlist
+	 * 
 	 * @return the addArmyTerrlist
 	 */
 	public JList<String> getAddArmyTerrlist() {
@@ -163,6 +197,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Set addArmyTerrlist
+	 * 
 	 * @param addArmyTerrlist the addArmyTerrlist to set
 	 */
 	public void setAddArmyTerrlist(JList<String> addArmyTerrlist) {
@@ -170,6 +206,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Get btnReinforceArmy
+	 * 
 	 * @return the btnReinforceArmy
 	 */
 	public JButton getBtnReinforceArmy() {
@@ -177,6 +215,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Set btnReinforceArmy
+	 * 
 	 * @param btnReinforceArmy the btnReinforceArmy to set
 	 */
 	public void setBtnReinforceArmy(JButton btnReinforceArmy) {
@@ -184,6 +224,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Get btnReinforceAddArmy
+	 * 
 	 * @return the btnReinforceAddArmy
 	 */
 	public JButton getBtnReinforceAddArmy() {
@@ -191,6 +233,8 @@ public class AddArmyPanel extends JPanel implements Observer {
 	}
 
 	/**
+	 * Set btnReinforceAddArmy
+	 * 
 	 * @param btnReinforceAddArmy the btnReinforceAddArmy to set
 	 */
 	public void setBtnReinforceAddArmy(JButton btnReinforceAddArmy) {

@@ -22,19 +22,27 @@ import javax.swing.JLabel;
 /**
  * MapViewPanel shows the map
  * 
- * @author Jingya
- *
+ * @author Jingya Pan
+ * @version 1.1
  */
 public class MapViewPanel extends JPanel implements Observer{
 	
 	/**
+	 * set serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Logger object setup for the log file
 	 */
 	static Logger logger = Logger.getLogger(StartWindow.class.getName());
-
+	@SuppressWarnings("javadoc")
 	private JList<String> continentJList;
+	@SuppressWarnings("javadoc")
 	private JList<String> territoriesJList;
+	@SuppressWarnings("javadoc")
 	private JList<String> adjTerrJList;
+	@SuppressWarnings("javadoc")
 	private Game game;
 
 	/**
@@ -136,7 +144,12 @@ public class MapViewPanel extends JPanel implements Observer{
 		});
 
 	}
-
+	/**
+	 * Observer design pattern
+	 * 
+	 * @param arg0 Observable
+	 * @param arg1 Object
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		int continentsSelectedIndex = continentJList.getSelectedIndex();

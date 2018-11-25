@@ -26,9 +26,20 @@ import java.awt.Color;
  */
 public class MapRulerPanel extends JPanel implements Observer {
 	
+	/**
+	 * Set serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("javadoc")
 	private Game game;
+	@SuppressWarnings("javadoc")
 	private JTextPane textPane;
 
+	/**
+	 * Set the layout
+	 * 
+	 * @param game object
+	 */
 	public MapRulerPanel(Game game) {	
 		this.game = game;
 		setBounds(1390, 336, 519, 513);	
@@ -50,7 +61,7 @@ public class MapRulerPanel extends JPanel implements Observer {
 	}
 
 	/**
-	 * 
+	 * Display MapRuler
 	 */
 	private void displayMapRuler() {
 		ArrayList<Continent> continents = game.getMap().getContinents();
@@ -67,6 +78,12 @@ public class MapRulerPanel extends JPanel implements Observer {
 		textPane.setText(mapDisplay.toString());
 	}
 
+	/**
+	 * Observer design pattern 
+	 * 
+	 * @param arg0 Observable
+	 * @param arg1 Object
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		displayMapRuler();
