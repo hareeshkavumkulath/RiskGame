@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,6 @@ public class MapControllerTests {
 	@SuppressWarnings("javadoc")
     private  static String mapFolder;
 	@SuppressWarnings("javadoc")
-    private  static String valid;
-	@SuppressWarnings("javadoc")
-    private  static String valid2;
-	@SuppressWarnings("javadoc")
     private  static String noTag;
 	@SuppressWarnings("javadoc")
     private  static String noTerritories;
@@ -43,6 +40,20 @@ public class MapControllerTests {
     private  static String notConnected;
 	@SuppressWarnings("javadoc")
     private  MapController mapController;
+	@SuppressWarnings("javadoc")
+	//MAPS
+	private  static String aussiWorld;
+	@SuppressWarnings("javadoc")
+    private  static String world;
+	@SuppressWarnings("javadoc")
+	private  static String twinVolcano;
+	@SuppressWarnings("javadoc")
+	private  static String threeDCliff;
+	@SuppressWarnings("javadoc")
+	private  static String ContinentsConnectedMapNot;
+	@SuppressWarnings("javadoc")
+	private  static String MapConnectedContinetsNot;
+    
 
     /**
      * Before All sets the local address for Valid and Invalid maps 
@@ -50,12 +61,17 @@ public class MapControllerTests {
     @BeforeAll
     static void initAll() {
         mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/controller/maps/";
-        valid = mapFolder + "valid.map";
-        valid2 = mapFolder + "valid2.map";
         noTag = mapFolder + "no_tag.map";
         noTerritories = mapFolder + "no_territories.map";
         notConnected = mapFolder + "not_connected.map";
         noContinent = mapFolder + "no_continent.map";
+        
+        aussiWorld = mapFolder + "aussiWorld.map";
+        world = mapFolder + "world.map";
+	    	twinVolcano = mapFolder + "twinVolcano.map";
+	    	threeDCliff = mapFolder + "threeDCliff.map";
+	    	ContinentsConnectedMapNot = mapFolder + "ContinentsConnectedMapNot.map";
+	    	MapConnectedContinetsNot = mapFolder + "MapConnectedContinetsNot.map";
     }
 
     /**
@@ -72,7 +88,7 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Continent => TRUE for Valid MAP")
     void processContinentValid() {
-        assertTrue(mapController.processContinents(mapToString(valid)));
+        assertTrue(mapController.processContinents(mapToString(world)));
     }
 
     /**
@@ -91,8 +107,8 @@ public class MapControllerTests {
     @Test
     @DisplayName("Process Territories => TRUE for Valid MAP")
     void proceeeTerritoriesValid() {
-        mapController.processContinents(mapToString(valid));
-        assertTrue(mapController.processTerritories(mapToString(valid)));
+        mapController.processContinents(mapToString(world));
+        assertTrue(mapController.processTerritories(mapToString(world)));
     }
 
     /**
@@ -113,8 +129,8 @@ public class MapControllerTests {
     @Test
     @DisplayName("continentArray => NotNULL for Valid MAP")
     void territoriesToContinentsValid() {
-        mapController.processContinents(mapToString(valid));
-        mapController.processTerritories(mapToString(valid));
+        mapController.processContinents(mapToString(world));
+        mapController.processTerritories(mapToString(world));
         mapController.territoriesToContinents();
         assertNotNull(mapController.continentArray);
     }
@@ -132,31 +148,32 @@ public class MapControllerTests {
         assertNotNull(mapController.continentArray);
     }
     // =====================validateMapValid()=====================
+    //Valid Maps Test
+    
+    
+    //Invalid Maps Test
     /**
-     * Testing validateMap function return value for Valid Map
+     * 
+     * Testing validateMap function return value for following INVALID maps
+     * TwinVolcano, MapConnectedContinetsNot, ContinentsConnectedMapNot
+     * 
      */
     @Test
-    @DisplayName("validateMap => TRUE for Valid MAP")
-    void validateMapValid() {
-        mapController.processContinents(mapToString(valid));
-        mapController.processTerritories(mapToString(valid));
-        mapController.territoriesToContinents();
-        MapMessage anything = mapController.processFile(new File(valid));
-        assertTrue(mapController.validateMap(anything.getMap().getTerritories()));
-    }
-
-    /**
-     * Testing validateMap function return value for InValid Map
-     * Which is a not connected map
-     */
-    @Test
-    @DisplayName("validateMap => FALSE for NotConnected MAP")
+    @DisplayName("validateMap => FALSE for InValid MAPs")
     void validateMapInValid() {
-        mapController.processContinents(mapToString(notConnected));
-        mapController.processTerritories(mapToString(notConnected));
-        mapController.territoriesToContinents();
-        MapMessage anything = mapController.processFile(new File(notConnected));
-        assertFalse(mapController.validateMap(anything.getMap().getTerritories()));
+    		//twinVolcano
+        MapMessage twinVolcanoResult = mapToMapMessage(twinVolcano);
+        assertFalse(twinVolcanoResult.isValidMap);
+        assertEquals("The continent Barren Rocks is not a connected subgraph",twinVolcanoResult.message.toString());
+        
+      //MapConnectedContinetsNot
+        MapMessage MapConnectedContinetsNotResult = mapToMapMessage(MapConnectedContinetsNot);
+        assertFalse(MapConnectedContinetsNotResult.isValidMap);
+        assertEquals("The continent 1 is not a connected subgraph",MapConnectedContinetsNotResult.message.toString());
+        
+        //ContinentsConnectedMapNot
+        MapMessage ContinentsConnectedMapNotResult = mapToMapMessage(ContinentsConnectedMapNot);
+        assertFalse(ContinentsConnectedMapNotResult.isValidMap);
     }
     // =====================addAdjacentTerritoriesTest()=====================
     /**
@@ -174,7 +191,7 @@ public class MapControllerTests {
         Territory t4= new Territory("Peru", "South America", 4);
         terrList.add(t1);terrList.add(t2);terrList.add(t3);terrList.add(t4);
         
-        assertTrue(mapController.addAdjacentTerritories(mapToString(valid2),terrList));
+        assertTrue(mapController.addAdjacentTerritories(mapToString(world),terrList));
     }
     
     // =====================mapToString()=====================
@@ -206,5 +223,23 @@ public class MapControllerTests {
         }
         return mapInString;
     }
-
+    /**
+     * 
+     * Function for processing a map and returning 
+     * the result as a MapMessage
+     * 
+     * @param String mapName for the Name of the map 
+     * @return MapMessage mapMessage which is the processed result 
+     */
+    // 	=====================mapToMapMessage()=====================
+    private static MapMessage mapToMapMessage(String mapName) {
+    	
+    		MapController mpc = new MapController();
+    		mpc.processContinents(mapToString(mapName));
+    		mpc.processTerritories(mapToString(mapName));
+    		mpc.territoriesToContinents();
+        MapMessage mapMessage = mpc.processFile(new File(mapName));
+        return mapMessage;
+        
+    }
 }
