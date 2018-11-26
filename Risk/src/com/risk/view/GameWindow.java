@@ -516,6 +516,7 @@ public class GameWindow extends JFrame{
 	 * show the attack info in the panel
 	 */
 	private void displayAttackPanel() {
+		addArmyPanel.getBtnTurnInCards().setVisible(false);
 		addArmyPanel.getBtnAddArmy().setVisible(false);
 		addArmyPanel.getBtnReinforceArmy().setVisible(false);
 		addArmyPanel.getBtnReinforceAddArmy().setVisible(false);
