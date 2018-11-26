@@ -47,6 +47,7 @@ public class MapViewPanel extends JPanel implements Observer{
 
 	/**
 	 * Create the panel.
+	 * @param game Game Object
 	 */
 	public MapViewPanel(Game game) {
 		this.game = game;

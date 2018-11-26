@@ -1,7 +1,5 @@
 package com.risk.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -14,55 +12,36 @@ import java.awt.event.ActionEvent;
  * @author Jingya Pan
  * @version 1.0
  */
-public class SelectModeWindow {
+public class SelectModeWindow extends JFrame{
 	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Logger object setup for the log file
 	 */
 	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
-	@SuppressWarnings("javadoc")
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelectModeWindow window = new SelectModeWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
 	public SelectModeWindow() {
-		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the 
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public void initialize() {
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JButton btnSingleGameMode = new JButton("Single Game Mode");
 		btnSingleGameMode.setBounds(99, 57, 224, 50);
-		frame.getContentPane().add(btnSingleGameMode);
+		getContentPane().add(btnSingleGameMode);
 		
 		JButton btnTournamentGameMode = new JButton("Tournament Game Mode");
 		btnTournamentGameMode.setBounds(99, 123, 224, 50);
-		frame.getContentPane().add(btnTournamentGameMode);
+		getContentPane().add(btnTournamentGameMode);
 		
 		btnSingleGameMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -79,6 +58,8 @@ public class SelectModeWindow {
 				window.initialize();
 			}
 		});
+		
+		setVisible(true);
 		
 	}
 }
