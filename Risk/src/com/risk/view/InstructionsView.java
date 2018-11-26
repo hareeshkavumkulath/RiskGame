@@ -46,7 +46,7 @@ public class InstructionsView extends JTextPane implements Observer{
 		if(arg.toString().equals("")) {
 			setText(arg.toString());
 		}else {
-			message = message + "\r\n" + arg.toString();
+			message = message + arg.toString();
 			setText(message);
 		}
 		repaint();

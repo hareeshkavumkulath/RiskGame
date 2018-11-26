@@ -21,13 +21,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.risk.controller.GameController;
-import com.risk.model.AttackStatus;
 import com.risk.model.Card;
 import com.risk.model.Game;
 import com.risk.model.GameInstructions;
@@ -47,35 +45,59 @@ public class GameWindow extends JFrame{
 	 */
 	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("javadoc")
 	private Game game;
+	@SuppressWarnings("javadoc")
 	private GameController controller;
+	@SuppressWarnings("javadoc")
 	private GameInstructions gameInstructions;
+	@SuppressWarnings("javadoc")
 	private Player currentPlayer;
+	@SuppressWarnings("javadoc")
 	private InstructionsView instructionsPane;
+	@SuppressWarnings("javadoc")
 	private AddArmyPanel addArmyPanel;
+	@SuppressWarnings("javadoc")
 	private JPanel attackPanel;
+	@SuppressWarnings("javadoc")
 	private JLabel lblPlayer;
+	@SuppressWarnings("javadoc")
 	private JList<String> attackingTerr;
+	@SuppressWarnings("javadoc")
 	private JList<String> attackedTerr;
+	@SuppressWarnings("javadoc")
 	private JButton btnAttack;
+	@SuppressWarnings("javadoc")
 	private JButton btnEndAttack;
+	@SuppressWarnings("javadoc")
 	private JCheckBox chckbxAllOutMode;
+	@SuppressWarnings("javadoc")
 	private JPanel fortifyPanel;
+	@SuppressWarnings("javadoc")
 	private JLabel lblFortPlayer;
+	@SuppressWarnings("javadoc")
 	private JTextField fortifyNumberField;
+	@SuppressWarnings("javadoc")
 	private JList<String> fromTerr;
+	@SuppressWarnings("javadoc")
 	private JList<String> toTerr;
+	@SuppressWarnings("javadoc")
 	private JButton btnFortify;
+	@SuppressWarnings("javadoc")
 	private JButton btnEndFortify;
+	@SuppressWarnings("javadoc")
 	private JButton btnSave;
+	@SuppressWarnings("javadoc")
 	private JTextField gameName;
-	private JPanel panel;
-
+	
 	/**
 	 * Create the application.
 	 * 
-	 * @param map Map pass map model to GameWindow.java
+	 * @param currentGame Game Object 
+	 * @param controller GameController
+	 * 
 	 */
 	public GameWindow(Game currentGame, GameController controller) {
 		this.game = currentGame;
@@ -280,14 +302,20 @@ public class GameWindow extends JFrame{
 		
 		addArmyPanel.getBtnAddArmy().addActionListener(new ActionListener() {
 			
+			private Component frame;
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int selectedIndex = addArmyPanel.getAddArmyTerrlist().getSelectedIndex();
-					controller.addArmyToTerritory(currentPlayer, currentPlayer.getOwnedTerritories().get(selectedIndex), 1);
-					nextPlayer();
-					game.update();
-					onGame();
+					if(selectedIndex < 0) {
+						JOptionPane.showMessageDialog(frame, "Select a territory from the list");
+					}else {
+						controller.addArmyToTerritory(currentPlayer, currentPlayer.getOwnedTerritories().get(selectedIndex), 1);
+						nextPlayer();
+						game.update();
+						onGame();
+					}
 				}catch(Exception ex) {
 					logger.log(Level.INFO, "Exception in adding armies to territory" + ex.toString());
 				}
@@ -315,15 +343,20 @@ public class GameWindow extends JFrame{
 		
 		addArmyPanel.getBtnReinforceAddArmy().addActionListener(new ActionListener() {
 			
+			private Component frame;
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				int selectedIndex = addArmyPanel.getAddArmyTerrlist().getSelectedIndex();
-				currentPlayer.reinforce(currentPlayer.getOwnedTerritories().get(selectedIndex), gameInstructions, controller);
-				game.update();
-				
-				if(currentPlayer.getNumberOfArmies() == 0) {
-					onGame();
+				if(selectedIndex < 0) {
+					JOptionPane.showMessageDialog(frame, "Select a territory from the list");
+				}else {
+					currentPlayer.reinforce(currentPlayer.getOwnedTerritories().get(selectedIndex), gameInstructions, controller);
+					game.update();				
+					if(currentPlayer.getNumberOfArmies() == 0) {
+						onGame();
+					}
 				}
 			}
 		});
@@ -360,8 +393,6 @@ public class GameWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int numAttackerArmies = 0;
-				int numOpponentArmies = 0;
 				int selectedIndex1 = attackingTerr.getSelectedIndex();
 				int selectedIndex2 = attackedTerr.getSelectedIndex();
 				Territory attackerTerr = currentPlayer.getOwnedTerritories().get(selectedIndex1);
@@ -485,6 +516,9 @@ public class GameWindow extends JFrame{
 	 * show the attack info in the panel
 	 */
 	private void displayAttackPanel() {
+		addArmyPanel.getBtnAddArmy().setVisible(false);
+		addArmyPanel.getBtnReinforceArmy().setVisible(false);
+		addArmyPanel.getBtnReinforceAddArmy().setVisible(false);
 		attackPanel.setVisible(true);
 		gameInstructions.setInstructions("It's " + currentPlayer.getName() + "'s turn!!! Select territories and click Attack Button");
 		ArrayList<Territory> attackingTerritories;
@@ -624,7 +658,9 @@ public class GameWindow extends JFrame{
 			game.update();
 		}else if(currentPlayer.getPhase().equals("REINFORCEMENT")) {
 			logger.log(Level.INFO, "Reinforcement Phase");
+			gameInstructions.setInstructions("");
 			gameInstructions.setInstructions("Reinforcement Phase\n");
+			gameInstructions.setInstructions("***************************************\n");
 			hideAddArmyPanel();
 			addArmyPanel.getBtnReinforceAddArmy().setVisible(false);
 			addArmyPanel.getBtnReinforceArmy().setVisible(true);
@@ -636,12 +672,14 @@ public class GameWindow extends JFrame{
 			}else {
 				addArmyPanel.getBtnAddArmy().setVisible(false);
 				addArmyPanel.getBtnReinforceArmy().setVisible(true);
-				System.out.println(currentPlayer.getName() + " is Human");
 				displayAddArmyPanel();
 			}
 			game.update();
 		}else if(currentPlayer.getPhase().equals("ATTACK")) {
-			logger.log(Level.INFO, "Reinforcement Phase");
+			logger.log(Level.INFO, "Attack Phase");
+			gameInstructions.setInstructions("");
+			gameInstructions.setInstructions("Attack Phase\n");
+			gameInstructions.setInstructions("***************************************\n");
 			if(currentPlayer.isComputer) {
 				currentPlayer.attack(null, null, false, gameInstructions, controller);
 				game.update();
@@ -657,6 +695,7 @@ public class GameWindow extends JFrame{
 		}else if(currentPlayer.getPhase().equals("FORTIFY")) {
 			logger.log(Level.INFO, "Reinforcement Phase");
 			currentPlayer.setFortificationStatus(false);
+			gameInstructions.setInstructions("");
 			gameInstructions.setInstructions("Fortification Phase\n");
 			gameInstructions.setInstructions("***************************************\n");
 			if(currentPlayer.isComputer) {
