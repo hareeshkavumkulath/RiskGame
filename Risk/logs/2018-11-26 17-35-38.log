@@ -1,3 +1,0 @@
-Mon Nov 26 17:35:39 EST 2018:com.risk.view.StartWindow$3:actionPerformed::Player clicked Start Game Button, proceeding to Game
-Mon Nov 26 17:35:40 EST 2018:com.risk.view.SelectModeWindow$1:actionPerformed::Player clicked Single Game Mode Button, proceeding to Single Mode - Select Map Window
-Mon Nov 26 17:35:43 EST 2018:com.risk.view.SelectMapWindow$2:actionPerformed::USA.txt is selected, proceeding to Setup Player Window
