@@ -44,10 +44,8 @@ public class HumanPlayer implements Strategy {
 		if(allOutMode) {
 			canAttack = true;
 		}else {
-			System.out.println("Inside else");
 			boolean isValidNumber = false;
 			while(!isValidNumber) {
-				System.out.println("Inside while");
 				try {
 					String input = JOptionPane.showInputDialog(null, "Enter the number of armies for the attacker, " + attackerTerritory.getName(), "Dialog for Input",
 							JOptionPane.WARNING_MESSAGE);
@@ -63,25 +61,7 @@ public class HumanPlayer implements Strategy {
 				}
 			}
 			if(opponentTerritory.getRuler().isComputer()) {
-				numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies);
-			}else {
-				isValidNumber = false;
-				while(!isValidNumber) {
-					try {
-						String input = JOptionPane.showInputDialog(null, "Enter the number of armies for the Opponent, " + opponentTerritory.getName(), "Dialog for Input",
-								JOptionPane.WARNING_MESSAGE);
-						numOpponentArmies = Integer.parseInt(input);
-						int availNum = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies);
-						if(numOpponentArmies > 0 && numOpponentArmies <= controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies)) {
-							isValidNumber = true;
-						}
-						if(numOpponentArmies > availNum) {
-							JOptionPane.showMessageDialog(null, "Insufficient Number of armies for " + opponentTerritory.getName(), "Alert", JOptionPane.ERROR_MESSAGE);
-						}
-					}catch(Exception e) {
-						JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Opponent Armies", "Alert", JOptionPane.ERROR_MESSAGE);
-					}
-				}
+				numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies, false);
 			}
 			if(attackerTerritory.getRuler() != opponentTerritory.getRuler()) {
 				canAttack = true;
@@ -111,7 +91,7 @@ public class HumanPlayer implements Strategy {
 					AttackStatus status = new AttackStatus();
 					while(attackerTerritory.getNumberOfArmies() > 1 && !status.hasWon) {
 						numAttackerArmies = controller.getNumAttackerArmies(attackerTerritory);
-						numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies);
+						numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies, allOutMode);
 						status = controller.attack(attackerTerritory, opponentTerritory, numAttackerArmies, numOpponentArmies);
 						gameInstructions.setInstructions(status.getStatusMessage().toString());
 						controller.updateGame(attackerTerritory, opponentTerritory);
