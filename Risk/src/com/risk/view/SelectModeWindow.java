@@ -31,6 +31,7 @@ public class SelectModeWindow extends JFrame{
 	 * Initialize the contents of the 
 	 */
 	public void initialize() {
+		setTitle("Select Mode");
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
