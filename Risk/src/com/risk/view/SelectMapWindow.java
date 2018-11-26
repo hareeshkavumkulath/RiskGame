@@ -112,9 +112,11 @@ public class SelectMapWindow {
 					MapController controller = new MapController();
 					MapMessage message = controller.processFile(file);
 					if(message.isValidMap()) {
+						frame.setVisible(false);
+			            frame.dispose();
 						Map map = message.getMap();
-						SetPlayersWindow setPlayersWindow = new SetPlayersWindow();
-						setPlayersWindow.main(map);
+						SetPlayersWindow setPlayersWindow = new SetPlayersWindow(map);
+						setPlayersWindow.initialize();
 					}
 				}
 			}
