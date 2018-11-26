@@ -64,6 +64,39 @@ public class SelectGameWindow {
 	}
 
 	/**
+	 *  Loads The Game to the File
+	 */
+	public boolean loadGameFromFile(File gameFile) {
+		
+		boolean loadResult = true;
+		try {
+			
+			// read object from file
+			FileInputStream fis = new FileInputStream(gameFile);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Game result = (Game) ois.readObject();
+			ois.close();
+
+			GameController gameController = new GameController(result,
+					new GameInstructions("Risk Game\r\n"));
+
+			GameWindow gameWindow = new GameWindow(result, gameController);
+			gameWindow.onGame();
+
+		} catch (FileNotFoundException ex) {
+			loadResult = false;
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			loadResult = false;
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			loadResult = false;
+			ex.printStackTrace();
+		}
+		
+		return loadResult;
+	}
+	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
@@ -106,31 +139,18 @@ public class SelectGameWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				String fileName = mapFilesJList.getSelectedValue();
 				File file = new File(".\\Games\\" + fileName);
 				if (fileName == null) {
 					JOptionPane.showMessageDialog(frame, "Please select the Game.");
 				} else {
-					try {
-						// read object from file
-						FileInputStream fis = new FileInputStream(file);
-						ObjectInputStream ois = new ObjectInputStream(fis);
-						Game result = (Game) ois.readObject();
-						ois.close();
-
-						GameController gameController = new GameController(result,
-								new GameInstructions("Risk Game\r\n"));
-
-						GameWindow gameWindow = new GameWindow(result, gameController);
-						gameWindow.onGame();
-
-					} catch (FileNotFoundException ex) {
-						ex.printStackTrace();
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					} catch (ClassNotFoundException ex) {
-						ex.printStackTrace();
+					
+					if (!loadGameFromFile(file))
+					{
+						JOptionPane.showMessageDialog(frame, "Couldn't load the Game");
 					}
+					
 				}
 			}
 		});

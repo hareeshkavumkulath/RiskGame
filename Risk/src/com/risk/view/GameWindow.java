@@ -256,22 +256,24 @@ public class GameWindow extends JFrame{
 			private Component frame;
 
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					// write object to file
-					if(!gameName.getText().equals("")) {
-						game.setCurrentPlayer(currentPlayer);
-						String name = gameName.getText() + ".game";
-						FileOutputStream fos = new FileOutputStream(".\\Games\\" + name);
-						ObjectOutputStream oos = new ObjectOutputStream(fos);
-						oos.writeObject(game);
-						oos.close();
+				
+				// write object to file
+				if(!gameName.getText().equals("")) {
+					game.setCurrentPlayer(currentPlayer);
+					String name = gameName.getText() + ".game";
+					if (saveToFile(name))
+					{
+						JOptionPane.showMessageDialog(frame, "Game Saved Successfully.");
+						gameName.setText("");
 					}else {
-						JOptionPane.showMessageDialog(frame, "Enter a name");
+						JOptionPane.showMessageDialog(frame, "Game Couldn't be saved. Please try Again!!");
 					}
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+					//FileOutputStream fos = new FileOutputStream(".\\Games\\" + name);
+					//ObjectOutputStream oos = new ObjectOutputStream(fos);
+					//oos.writeObject(game);
+					//oos.close();
+				}else {
+					JOptionPane.showMessageDialog(frame, "Enter a name");
 				}
 			}
 		});
@@ -445,6 +447,33 @@ public class GameWindow extends JFrame{
 	 */
 	private void displayAddArmyPanel() {		
 		addArmyPanel.setVisible(true);
+	}
+	
+	/**
+	 *  Saves The Game to the File
+	 */
+	public boolean saveToFile(String fileName) {
+		boolean saveResult = true;
+		try {
+			
+			FileOutputStream fos = new FileOutputStream(".\\Games\\" + fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(game);
+			oos.close();
+			
+		} catch (FileNotFoundException e) {
+			
+			saveResult = false;
+			e.printStackTrace();
+			
+		} catch (IOException e) {
+			
+			saveResult = false;
+			e.printStackTrace();
+			
+		}
+		
+		return saveResult;
 	}
 	/**
 	 * set the addArmyPanel invisible
