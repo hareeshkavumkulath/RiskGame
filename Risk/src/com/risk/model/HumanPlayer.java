@@ -1,5 +1,8 @@
 package com.risk.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 import com.risk.controller.GameController;
@@ -9,6 +12,11 @@ import com.risk.controller.GameController;
  *
  */
 public class HumanPlayer implements Strategy {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(Player.class.getName());
 
 	/**
 	 * Reinforce function for Human Player
@@ -21,6 +29,7 @@ public class HumanPlayer implements Strategy {
 	@Override
 	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions,
 			GameController controller) {
+		logger.log(Level.INFO, currentPlayer.getName() + " is Human");
 		controller.addArmyToTerritory(currentPlayer, territory, 1);		
 	}
 	
@@ -38,6 +47,7 @@ public class HumanPlayer implements Strategy {
 	@Override
 	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
 			boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
+		logger.log(Level.INFO, currentPlayer.getName() + " is Human");
 		int numAttackerArmies = 0;
 		int numOpponentArmies = 0;
 		boolean canAttack = false;
@@ -126,6 +136,7 @@ public class HumanPlayer implements Strategy {
 	@Override
 	public void fortify(Player currentPlayer, Territory fromTerritory, Territory toTerritory, int fortifyNum,
 			GameInstructions gameInstructions, GameController controller) {
+		logger.log(Level.INFO, currentPlayer.getName() + " is Human");
 		int fromTerrNumArmies = fromTerritory.getNumberOfArmies();
 		int toTerrNumArmies = toTerritory.getNumberOfArmies();
 		fromTerrNumArmies = fromTerrNumArmies - fortifyNum;

@@ -19,6 +19,7 @@ import javax.swing.SpinnerNumberModel;
 
 import com.risk.controller.GameController;
 import com.risk.controller.MapController;
+import com.risk.controller.TournamentGame;
 import com.risk.model.AggressivePlayer;
 import com.risk.model.BenevolentPlayer;
 import com.risk.model.Card;
@@ -29,8 +30,7 @@ import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
-import com.risk.model.ResultsTableModel;
-import com.risk.model.TournamentGame;
+
 import javax.swing.JPanel;
 import javax.swing.JTable;
 /**

@@ -1,9 +1,11 @@
-package com.risk.model;
+package com.risk.controller;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.risk.controller.GameController;
+import com.risk.model.Game;
+import com.risk.model.GameInstructions;
+import com.risk.model.Player;
 import com.risk.view.StartWindow;
 
 /**

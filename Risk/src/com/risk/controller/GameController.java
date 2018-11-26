@@ -303,11 +303,12 @@ public class GameController {
 				try {
 					String input = JOptionPane.showInputDialog(null, "Enter the number of armies for the Opponent, " + opponentTerr.getName(), "Dialog for Input",
 							JOptionPane.WARNING_MESSAGE);
-					retNumArmies = Integer.parseInt(input);
-					if(retNumArmies > 0 && retNumArmies <= retNumArmies) {
+					int numArmy = Integer.parseInt(input);
+					if(retNumArmies > 0 && numArmy <= retNumArmies) {
 						isValidNumber = true;
+						retNumArmies = numArmy;
 					}
-					if(retNumArmies > retNumArmies) {
+					if(numArmy > retNumArmies) {
 						JOptionPane.showMessageDialog(null, "Insufficient Number of armies for " + opponentTerr.getName(), "Alert", JOptionPane.ERROR_MESSAGE);
 					}
 				}catch(Exception e) {
