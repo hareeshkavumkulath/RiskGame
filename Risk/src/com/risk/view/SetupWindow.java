@@ -30,7 +30,6 @@ import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
-import com.risk.model.ResultsTableModel;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
