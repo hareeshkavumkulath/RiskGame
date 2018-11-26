@@ -3,6 +3,8 @@
  */
 package com.risk.model;
 
+import java.io.Serializable;
+
 import com.risk.controller.GameController;
 
 /**
@@ -11,8 +13,11 @@ import com.risk.controller.GameController;
  * @author Angeline Anqi Wang
  *
  */
-public class CheaterPlayer implements Strategy {
+public class CheaterPlayer implements Strategy, Serializable  {
 
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 1260591218189482532L;
+	
 	/**
 	 * Aggressive player reinforce
 	 * 

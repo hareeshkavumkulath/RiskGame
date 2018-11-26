@@ -1,5 +1,6 @@
 package com.risk.model;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,7 +12,10 @@ import com.risk.controller.GameController;
  * @author Hareesh Kavumkulath
  *
  */
-public class HumanPlayer implements Strategy {
+public class HumanPlayer implements Strategy, Serializable  {
+	
+	@SuppressWarnings("javadoc")
+	private static final long serialVersionUID = 1260591218179582532L;
 	
 	/**
 	 * Logger object setup for the log file
