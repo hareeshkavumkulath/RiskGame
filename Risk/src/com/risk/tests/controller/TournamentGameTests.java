@@ -26,14 +26,16 @@ import com.risk.model.RandomPlayer;
 
 /**
  * Tests for Tournament Game Mode
+ * This Class will run tests on TournamentGame.class
  * 
  * @author Anqi Wang
- *
+ * @version 1.0
  */
 public class TournamentGameTests {
 	
+    // =====================tournamentModeTest()=====================
 	/**
-     * Tournament Mode Test
+     * Testing tournament Mode Test function return value for 2x2
      */
     @Test
     @DisplayName("Tournament Mode 2X2 Mode")
@@ -44,7 +46,7 @@ public class TournamentGameTests {
     }
     
     /**
-     * Tournament Mode Test
+     * Testing tournament Mode Test function return value for 3x3
      */
     @Test
     @DisplayName("Tournament Mode 3X3 Mode")
@@ -55,7 +57,7 @@ public class TournamentGameTests {
     }
     
     /**
-     * Tournament Mode Test
+     * Testing tournament Mode Test function return value for 4x4
      */
     @Test
     @DisplayName("Tournament Mode 4X4 Mode")
@@ -66,7 +68,7 @@ public class TournamentGameTests {
     }
     
     /**
-     * Tournament Mode Test
+     * Testing tournament Mode Test function return value for 5x5
      */
     @Test
     @DisplayName("Tournament Mode 5X5 Mode")
@@ -76,13 +78,13 @@ public class TournamentGameTests {
     	assertTrue(winnersList.contains("Cheater"));
     }
     
-    /**
-     * Play the games 
+   /**
+     * Create Play games function for private usage to support Tournament Game testing
      * 
-     * @param numGames Integer Number of Games
-     * @param numPlayers Integer Number of Players
-     * @param numMaps Integer Number of Maps
-	 * @param numTurns Integer Number of Turns
+     * @param numGames Integer Number of Games needed to be considered
+     * @param numPlayers Integer Number of Players needed to be considered
+     * @param numMaps Integer Number of Maps needed to be considered
+	 * @param numTurns Integer Number of Turns needed to be considered
 	 * 
 	 * @return String[][] Two Dimensional Array with the name of the winners
 	 */
@@ -112,8 +114,10 @@ public class TournamentGameTests {
 	}
 
 	/**
-	 * Sets the ArrayList of Players
-	 * @param numPlayers Integer Number of Players
+	 * Create getPlayers function for private usage to support Tournament Game testing
+     * Sets the ArrayList of Players
+	 * 
+	 * @param numPlayers Integer Number of Players needed to be used to get players
 	 * 
 	 * @return ArrayList ArrayList of Players
 	 */
@@ -147,10 +151,11 @@ public class TournamentGameTests {
 	}
 
 	/**
+	 * Create getMaps function for private usage to support Tournament Game testing
      * Sets the ArrayList of Maps
      * 
-	 * @param num Integer Number of Maps
-	 * @return ArrayList ArrayList of Maps
+	 * @param num Integer Number of Maps 
+	 * @return ArrayList ArrayList of Maps gotten
      */
     private ArrayList<Map> getMaps(int num) {
     	ArrayList<Map> maps = new ArrayList<Map>();
@@ -168,11 +173,12 @@ public class TournamentGameTests {
 		return maps;
     }
     
+ // =====================twoDimensionalArrayToList()=====================
     /**
      * Convert Two Dimensional Array to ArrayList
      * 
-     * @param twoDArray
-     * @return
+     * @param twoDArray the array needs to be converted
+     * @return List the list of converted twoDArray
      */
     public <T> List<T> twoDimensionalArrayToList(T[][] twoDArray) {
         List<T> list = new ArrayList<T>();
