@@ -17,6 +17,13 @@ import com.risk.model.Game;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 
+/**
+ * Add Army JPanel
+ * 
+ * @author Hareesh Kavumkulath
+ * @version 1.0
+ *
+ */
 public class AddArmyPanel extends JPanel implements Observer {
 	
 	/**
