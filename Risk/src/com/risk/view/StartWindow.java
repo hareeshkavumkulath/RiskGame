@@ -99,7 +99,7 @@ public class StartWindow {
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Player clicked Start Game Button, proceeding to Game");
 				SelectModeWindow gameStart = new SelectModeWindow();		
-				gameStart.main();
+				gameStart.initialize();
 			}
 		});
 		
