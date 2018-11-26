@@ -46,6 +46,8 @@ public class SelectModeWindow extends JFrame{
 		btnSingleGameMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				logger.log(Level.INFO, "Player clicked Single Game Mode Button, proceeding to Single Mode - Select Map Window");
+				setVisible(false);
+	            dispose();
 				SelectMapWindow gameStart = new SelectMapWindow();		
 				gameStart.main();
 			}
@@ -54,6 +56,8 @@ public class SelectModeWindow extends JFrame{
 		btnTournamentGameMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Player clicked Single Game Mode Button, proceeding to Tournament Mode");
+				setVisible(false);
+	            dispose();
 				SetupWindow window = new SetupWindow();
 				window.initialize();
 			}
