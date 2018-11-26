@@ -281,6 +281,7 @@ public class Player implements Serializable{
 	 * @param game Game object
 	 */
 	public void attack(Territory attackerTerritory, Territory opponentTerritory, boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
+		logger.log(Level.INFO, "Inside attack function");
 		this.strategy.attack(this, attackerTerritory, opponentTerritory, allOutMode, gameInstructions, controller);
 		this.setPhase("FORTIFY");
 	}
@@ -295,6 +296,7 @@ public class Player implements Serializable{
 	 * @param fromTerritory 
 	 */
 	public void fortify(GameInstructions gameInstructions, GameController controller, Territory fromTerritory, Territory toTerritory, int fortifyNum) {
+		logger.log(Level.INFO, "Inside fortify function");
 		this.strategy.fortify(this, fromTerritory, toTerritory, fortifyNum, gameInstructions, controller);
 		this.setPhase("REINFORCEMENT");
 	}
