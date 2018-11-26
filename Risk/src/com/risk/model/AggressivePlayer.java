@@ -81,7 +81,7 @@ public class AggressivePlayer implements Strategy, Serializable {
 			int numAttackerArmies, numOpponentArmies;
 			while(attackerTerr.getNumberOfArmies() > 1 && !status.hasWon) {
 				numAttackerArmies = controller.getNumAttackerArmies(attackerTerr);
-				numOpponentArmies = controller.getNumOpponentArmies(opponentTerr, numAttackerArmies);
+				numOpponentArmies = controller.getNumOpponentArmies(opponentTerr, numAttackerArmies, false);
 				status = controller.attack(attackerTerr, opponentTerr, numAttackerArmies, numOpponentArmies);
 				gameInstructions.setInstructions(status.getStatusMessage().toString());
 				controller.updateGame(attackerTerr, opponentTerr);

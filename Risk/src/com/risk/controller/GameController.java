@@ -285,16 +285,35 @@ public class GameController {
 	 * 
 	 * @param opponentTerr pass parameter of the opponent territory to get his number of armies
 	 * @param numAttackerArmies pass parameter of the number of attacker armies to get the defender number of armies
+	 * @param allOutMode 
 	 * @return int number of opponent Armies
 	 */
-	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies) {
+	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies, boolean allOutMode) {
 		logger.log(Level.INFO, "");
 		int retNumArmies = 0;
+		boolean isValidNumber = false;
 		int numArmies = opponentTerr.getNumberOfArmies();
 		if(numAttackerArmies == 3 && numArmies > 1) {
 			retNumArmies = 2;
 		}else {
 			retNumArmies = 1;
+		}
+		if(!opponentTerr.getRuler().isComputer && !allOutMode) {
+			while(!isValidNumber) {
+				try {
+					String input = JOptionPane.showInputDialog(null, "Enter the number of armies for the Opponent, " + opponentTerr.getName(), "Dialog for Input",
+							JOptionPane.WARNING_MESSAGE);
+					retNumArmies = Integer.parseInt(input);
+					if(retNumArmies > 0 && retNumArmies <= retNumArmies) {
+						isValidNumber = true;
+					}
+					if(retNumArmies > retNumArmies) {
+						JOptionPane.showMessageDialog(null, "Insufficient Number of armies for " + opponentTerr.getName(), "Alert", JOptionPane.ERROR_MESSAGE);
+					}
+				}catch(Exception e) {
+					JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Opponent Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 		logger.log(Level.INFO, "Opponent number of armies:" + retNumArmies);
 		return retNumArmies;

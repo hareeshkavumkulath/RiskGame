@@ -56,15 +56,15 @@ public class SelectModeWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Single Game Mode");
-		btnNewButton.setBounds(99, 57, 224, 50);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnSingleGameMode = new JButton("Single Game Mode");
+		btnSingleGameMode.setBounds(99, 57, 224, 50);
+		frame.getContentPane().add(btnSingleGameMode);
 		
 		JButton btnTournamentGameMode = new JButton("Tournament Game Mode");
 		btnTournamentGameMode.setBounds(99, 123, 224, 50);
 		frame.getContentPane().add(btnTournamentGameMode);
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		btnSingleGameMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				logger.log(Level.INFO, "Player clicked Single Game Mode Button, proceeding to Single Mode - Select Map Window");
 				SelectMapWindow gameStart = new SelectMapWindow();		
