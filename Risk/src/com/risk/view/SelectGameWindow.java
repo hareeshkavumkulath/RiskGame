@@ -66,9 +66,9 @@ public class SelectGameWindow {
 	/**
 	 *  Loads The Game to the File
 	 */
-	public boolean loadGameFromFile(File gameFile) {
+	public Game loadGameFromFile(File gameFile) {
 		
-		boolean loadResult = true;
+		Game loadResult = null;
 		try {
 			
 			// read object from file
@@ -76,21 +76,14 @@ public class SelectGameWindow {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Game result = (Game) ois.readObject();
 			ois.close();
-
-			GameController gameController = new GameController(result,
-					new GameInstructions("Risk Game\r\n"));
-
-			GameWindow gameWindow = new GameWindow(result, gameController);
-			gameWindow.onGame();
+			
+			loadResult = result;
 
 		} catch (FileNotFoundException ex) {
-			loadResult = false;
 			ex.printStackTrace();
 		} catch (IOException ex) {
-			loadResult = false;
 			ex.printStackTrace();
 		} catch (ClassNotFoundException ex) {
-			loadResult = false;
 			ex.printStackTrace();
 		}
 		
@@ -146,8 +139,16 @@ public class SelectGameWindow {
 					JOptionPane.showMessageDialog(frame, "Please select the Game.");
 				} else {
 					
-					if (!loadGameFromFile(file))
+					Game savedGame = loadGameFromFile(file);
+					if (savedGame!=null)
 					{
+						GameController gameController = new GameController(savedGame,
+								new GameInstructions("Risk Game\r\n"));
+
+						GameWindow gameWindow = new GameWindow(savedGame, gameController);
+						gameWindow.onGame();
+						
+					}else {
 						JOptionPane.showMessageDialog(frame, "Couldn't load the Game");
 					}
 					
