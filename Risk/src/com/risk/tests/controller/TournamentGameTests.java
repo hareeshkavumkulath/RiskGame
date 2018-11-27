@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import com.risk.controller.GameController;
 import com.risk.controller.MapController;
-import com.risk.model.TournamentGame;
+import com.risk.controller.TournamentGame;
 import com.risk.model.AggressivePlayer;
 import com.risk.model.BenevolentPlayer;
 import com.risk.model.Card;
