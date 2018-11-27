@@ -1,8 +1,11 @@
 package com.risk.model;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.risk.controller.GameController;
+import com.risk.view.StartWindow;
 
 /**
  * BenevolentPlayer class
@@ -12,6 +15,11 @@ import com.risk.controller.GameController;
  *
  */
 public class BenevolentPlayer implements Strategy, Serializable {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	
 	@SuppressWarnings("javadoc")
@@ -33,6 +41,7 @@ public class BenevolentPlayer implements Strategy, Serializable {
 		reinforcementArmy = reinforcementArmy + numArmiesFromContinents + playerNumArmies;
 		currentPlayer.setNumberOfArmies(reinforcementArmy);
 		gameInstructions.setInstructions(currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.\n");
+		logger.log(Level.INFO, currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies");
 		while(currentPlayer.getNumberOfArmies() > 0) {
 			Territory weakTerritory = controller.getWeakTerritory(currentPlayer);
 			controller.addArmyToTerritory(currentPlayer, weakTerritory, 1);
@@ -53,6 +62,7 @@ public class BenevolentPlayer implements Strategy, Serializable {
 	@Override
 	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
 			boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
+		logger.log(Level.INFO, currentPlayer.getName() + " is not attacking any other territory.");
 		gameInstructions.setInstructions(currentPlayer.getName() + " is not attacking any other territory.\n");	
 	}
 	
@@ -81,7 +91,8 @@ public class BenevolentPlayer implements Strategy, Serializable {
 				territoryFrom.setNumberOfArmies(fromTerrNumArmies);
 				territoryTo.setNumberOfArmies(toTerrNumArmies);
 				currentPlayer.setFortificationStatus(true);
-				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies");
+				logger.log(Level.INFO, currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies\n");
+				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies\n");
 			}		
 		}
 	}

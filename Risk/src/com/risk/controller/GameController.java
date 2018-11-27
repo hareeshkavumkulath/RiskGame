@@ -343,6 +343,8 @@ public class GameController {
 				if(attackerRuler.isComputer) {
 					Random random = new Random();
 					numArmy = random.nextInt(maxLimit) + 1;
+					gameInstructions.setInstructions(numArmy + " armies have moved to " + opponentTerr.getName() + "\n");
+					logger.log(Level.INFO, numArmy + " armies have moved to " + opponentTerr.getName());
 					//numArmy = 1;
 				}else {
 					while(numArmy == 0 || numArmy < minLimit || numArmy > maxLimit) {
@@ -351,6 +353,7 @@ public class GameController {
 									JOptionPane.WARNING_MESSAGE);
 							numArmy = Integer.parseInt(input);
 							gameInstructions.setInstructions(input + " armies have moved to " + opponentTerr.getName() + "\n");
+							logger.log(Level.INFO, input + " armies have moved to " + opponentTerr.getName());
 						}catch(Exception e) {
 							numArmy = 0;
 						}
@@ -571,7 +574,7 @@ public class GameController {
 				attacker = null;
 			}
 		}
-		logger.log(Level.INFO, "Attacker Territory for " + currentPlayer.getName() + " is " + attacker.getName());
+		logger.log(Level.INFO, "Attacker Territory for " + currentPlayer.getName() + " is " + attacker.getName() + " which has " + attacker.getNumberOfArmies() + " armies");
 		return attacker;
 	}
 	
@@ -603,7 +606,7 @@ public class GameController {
 					opponent = oppponentTerritories.get(i);
 				}
 			}
-			logger.log(Level.INFO, "Opponent territory for " + attacker.getName() + " is " + opponent.getName());
+			logger.log(Level.INFO, "Opponent territory for " + attacker.getName() + " is " + opponent.getName() + " which has " + opponent.getNumberOfArmies() + " armies");
 			return opponent;
 		}
 	}

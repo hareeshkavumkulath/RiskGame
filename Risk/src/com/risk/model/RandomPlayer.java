@@ -1,8 +1,11 @@
 package com.risk.model;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.risk.controller.GameController;
+import com.risk.view.StartWindow;
 
 /**
  * This class implements the Random Player functionalities for this game 
@@ -11,10 +14,13 @@ import com.risk.controller.GameController;
  * @version 1.1
  */
 public class RandomPlayer implements Strategy, Serializable {
-
+	
 	/**
 	 * Logger object setup for the log file
 	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
+
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = -5235779546189131503L;
 
 	/**
@@ -41,6 +47,7 @@ public class RandomPlayer implements Strategy, Serializable {
 		reinforcementArmy = reinforcementArmy + numArmiesFromContinents + playerNumArmies;
 		currentPlayer.setNumberOfArmies(reinforcementArmy);
 		gameInstructions.setInstructions(currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.\n");
+		logger.log(Level.INFO, currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.");
 		while(currentPlayer.getNumberOfArmies() > 0) {
 			controller.addArmyRandom(currentPlayer);
 		}
@@ -115,7 +122,8 @@ public class RandomPlayer implements Strategy, Serializable {
 				territoryFrom.setNumberOfArmies(fromTerrNumArmies);
 				territoryTo.setNumberOfArmies(toTerrNumArmies);
 				currentPlayer.setFortificationStatus(true);
-				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies");
+				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies\n");
+				logger.log(Level.INFO, currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies");
 			}	
 		}
 		if(currentPlayer.hasWon) {

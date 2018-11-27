@@ -603,7 +603,7 @@ public class GameWindow extends JFrame{
 			}
 			game.update();
 		}else if(currentPlayer.getPhase().equals("FORTIFY")) {
-			logger.log(Level.INFO, "Reinforcement Phase");
+			logger.log(Level.INFO, "Fortification Phase");
 			currentPlayer.setFortificationStatus(false);
 			gameInstructions.setInstructions("");
 			gameInstructions.setInstructions("Fortification Phase\n");

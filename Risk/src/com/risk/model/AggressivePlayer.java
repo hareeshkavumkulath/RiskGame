@@ -124,6 +124,7 @@ public class AggressivePlayer implements Strategy, Serializable {
 				territoryFrom.setNumberOfArmies(fromTerrNumArmies);
 				territoryTo.setNumberOfArmies(toTerrNumArmies);
 				currentPlayer.setFortificationStatus(true);
+				logger.log(Level.INFO, currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies");
 				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies");
 			}
 		}
