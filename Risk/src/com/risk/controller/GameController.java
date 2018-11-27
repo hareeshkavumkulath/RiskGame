@@ -350,6 +350,7 @@ public class GameController {
 							String input = JOptionPane.showInputDialog(null, "Move armies(" + minLimit + "-" + maxLimit +")", "Dialog for Input",
 									JOptionPane.WARNING_MESSAGE);
 							numArmy = Integer.parseInt(input);
+							gameInstructions.setInstructions(input + " armies have moved to " + opponentTerr.getName() + "\n");
 						}catch(Exception e) {
 							numArmy = 0;
 						}
