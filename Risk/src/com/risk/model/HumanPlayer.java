@@ -80,9 +80,7 @@ public class HumanPlayer implements Strategy, Serializable  {
 				}
 			}
 			if(numAttackerArmies > 0) {
-				if(opponentTerritory.getRuler().isComputer()) {
-					numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies, false);
-				}
+				numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies, false);
 				if(attackerTerritory.getRuler() != opponentTerritory.getRuler()) {
 					canAttack = true;
 				}
@@ -91,7 +89,7 @@ public class HumanPlayer implements Strategy, Serializable  {
 				}else {
 					if(numAttackerArmies == 3) {
 						if(numOpponentArmies < 1 || numOpponentArmies > 2) {
-							JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Opponent Armies", "Alert", JOptionPane.ERROR_MESSAGE);
 						}else {
 							canAttack = true;
 						}
