@@ -415,6 +415,7 @@ public class GameWindow extends JFrame{
 	 */
 	private void displayAddArmyPanel() {		
 		addArmyPanel.setVisible(true);
+		addArmyPanel.getBtnTurnInCards().setVisible(true);
 	}
 	
 	/**
@@ -459,6 +460,7 @@ public class GameWindow extends JFrame{
 		addArmyPanel.getBtnAddArmy().setVisible(false);
 		addArmyPanel.getBtnReinforceArmy().setVisible(false);
 		addArmyPanel.getBtnReinforceAddArmy().setVisible(false);
+		attackPanel.getChckbxAllOutMode().setSelected(false);
 		attackPanel.setVisible(true);
 		gameInstructions.setInstructions("It's " + currentPlayer.getName() + "'s turn!!! Select territories and click Attack Button");
 	}

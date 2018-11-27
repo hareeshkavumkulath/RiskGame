@@ -48,13 +48,15 @@ public class AttackPanel extends JPanel implements Observer {
 	private JLabel lblPlayer;
 	@SuppressWarnings("javadoc")
 	public JCheckBox chckbxAllOutMode;
+	@SuppressWarnings("javadoc")
+	private Player currentPlayer;
 
 	/**
 	 * Create the panel.
-	 * @param game Game current game
+	 * @param newGame Game current game
 	 */
-	public AttackPanel(Game game) {
-		this.game = game;
+	public AttackPanel(Game newGame) {
+		game = newGame;
 		setBounds(648, 369, 726, 468);
 		setLayout(null);
 		
@@ -103,7 +105,7 @@ public class AttackPanel extends JPanel implements Observer {
 		add(btnEndAttack);
 		setVisible(false);
 		
-		Player currentPlayer = this.game.getCurrentPlayer();
+		currentPlayer = this.game.getCurrentPlayer();
 		lblPlayer.setText(currentPlayer.getName());
 		
 		ArrayList<Territory> attackingTerritories;
@@ -122,6 +124,9 @@ public class AttackPanel extends JPanel implements Observer {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				try {
+					
+					currentPlayer = game.getCurrentPlayer();
+					
 					int selectedIndex = attackingTerr.getSelectedIndex();
 					ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
 					String[] attackedTerrNames = new String[attackedTerritories.size()];
