@@ -63,37 +63,44 @@ public class HumanPlayer implements Strategy, Serializable  {
 				try {
 					String input = JOptionPane.showInputDialog(null, "Enter the number of armies for the attacker, " + attackerTerritory.getName(), "Dialog for Input",
 							JOptionPane.WARNING_MESSAGE);
-					numAttackerArmies = Integer.parseInt(input);
-					if(numAttackerArmies > 0 && numAttackerArmies <= controller.getNumAttackerArmies(attackerTerritory)) {
+					if(input == null) {
+						canAttack = false;
 						isValidNumber = true;
-					}
-					if(numAttackerArmies > controller.getNumAttackerArmies(attackerTerritory)) {
-						JOptionPane.showMessageDialog(null, "Insufficient Number of armies for " + attackerTerritory.getName(), "Alert", JOptionPane.ERROR_MESSAGE);
+					}else {
+						numAttackerArmies = Integer.parseInt(input);
+						if(numAttackerArmies > 0 && numAttackerArmies <= controller.getNumAttackerArmies(attackerTerritory)) {
+							isValidNumber = true;
+						}
+						if(numAttackerArmies > controller.getNumAttackerArmies(attackerTerritory)) {
+							JOptionPane.showMessageDialog(null, "Insufficient Number of armies for " + attackerTerritory.getName(), "Alert", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				}catch(Exception e) {
 					JOptionPane.showMessageDialog(null, "Please enter either 1,2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			if(opponentTerritory.getRuler().isComputer()) {
-				numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies, false);
-			}
-			if(attackerTerritory.getRuler() != opponentTerritory.getRuler()) {
-				canAttack = true;
-			}
-			if(numAttackerArmies > 3 || numAttackerArmies < 1) {
-				JOptionPane.showMessageDialog(null, "Please enter either 1,2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
-			}else {
-				if(numAttackerArmies == 3) {
-					if(numOpponentArmies < 1 || numOpponentArmies > 2) {
-						JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
-					}else {
-						canAttack = true;
-					}
+			if(numAttackerArmies > 0) {
+				if(opponentTerritory.getRuler().isComputer()) {
+					numOpponentArmies = controller.getNumOpponentArmies(opponentTerritory, numAttackerArmies, false);
+				}
+				if(attackerTerritory.getRuler() != opponentTerritory.getRuler()) {
+					canAttack = true;
+				}
+				if(numAttackerArmies > 3 || numAttackerArmies < 1) {
+					JOptionPane.showMessageDialog(null, "Please enter either 1,2 or 3 for Attacking Armies", "Alert", JOptionPane.ERROR_MESSAGE);
 				}else {
-					if(numOpponentArmies == 1) {
-						canAttack = true;
+					if(numAttackerArmies == 3) {
+						if(numOpponentArmies < 1 || numOpponentArmies > 2) {
+							JOptionPane.showMessageDialog(null, "Please enter either 2 or 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+						}else {
+							canAttack = true;
+						}
 					}else {
-						JOptionPane.showMessageDialog(null, "Please enter 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+						if(numOpponentArmies == 1) {
+							canAttack = true;
+						}else {
+							JOptionPane.showMessageDialog(null, "Please enter 1 for Attacked Armies", "Alert", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				}
 			}
