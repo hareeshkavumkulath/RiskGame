@@ -1,7 +1,6 @@
 package com.risk.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +29,7 @@ import com.risk.model.GameInstructions;
  * @version 1.0
  *
  */
-public class SelectGameWindow {
+public class SelectGameWindow extends JFrame{
 	
 	/**
 	 * Logger object setup for the log file
@@ -40,21 +39,6 @@ public class SelectGameWindow {
 	@SuppressWarnings("javadoc")
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelectGameWindow window = new SelectGameWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -90,25 +74,24 @@ public class SelectGameWindow {
 		return loadResult;
 	}
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the 
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("Select Game");
-		frame.setBounds(100, 100, 373, 714);
-		frame.getContentPane().setLayout(null);
-
+	public void initialize() {
+		setTitle("Select Game");
+		setBounds(100, 100, 373, 714);
+		getContentPane().setLayout(null);
+		setVisible(true);
 		JList<String> mapFilesJList = new JList<String>();
 		mapFilesJList.setFont(new Font("Calibri", Font.PLAIN, 20));
 		mapFilesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		mapFilesJList.setBorder(new LineBorder(Color.BLUE));
 		mapFilesJList.setBounds(25, 34, 301, 542);
-		frame.getContentPane().add(mapFilesJList);
+		getContentPane().add(mapFilesJList);
 
 		JButton btnSelect = new JButton("Select");
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 22));
 		btnSelect.setBounds(211, 613, 115, 29);
-		frame.getContentPane().add(btnSelect);
+		getContentPane().add(btnSelect);
 
 		File folder = new File(".\\Games\\");
 		File[] listOfFiles = folder.listFiles();

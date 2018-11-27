@@ -2,16 +2,16 @@ package com.risk.view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import com.risk.log.RiskLogger;
-
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import com.risk.log.RiskLogger;
 
 /**
  * Starting window of the Risk Game where the user can start the game or upload the Map
@@ -89,7 +89,7 @@ public class StartWindow {
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Player clicked Upload Map Button, proceeding to Map Upload");
 				UploadWindow uploadWindow = new UploadWindow();
-				uploadWindow.main();
+				uploadWindow.initialize();
 			}
 		});
 		
@@ -109,7 +109,7 @@ public class StartWindow {
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Player clicked Load Game Button, proceeding to Load Game");
 				SelectGameWindow gameStart = new SelectGameWindow();		
-				gameStart.main();
+				gameStart.initialize();
 			}
 		});
 		frame.setVisible(true);
