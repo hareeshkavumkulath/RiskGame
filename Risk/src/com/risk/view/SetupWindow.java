@@ -32,7 +32,6 @@ import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
-
 /**
  * Tournament mode player set up
  * 

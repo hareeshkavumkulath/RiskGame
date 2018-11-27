@@ -1,6 +1,27 @@
 package com.risk.view;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -11,23 +32,18 @@ import com.risk.model.Continent;
 import com.risk.model.MapMessage;
 import com.risk.model.Territory;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-
 /**
  * Map Upload Window for the user to upload .map file. It validates and prints the map.
  * 
  * @author Anqi Wang
  * @version 1.1
  */
-public class UploadWindow {
+public class UploadWindow extends JFrame{
 
+	/**
+	 * set serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("javadoc") 
     private JFrame frame;
 	@SuppressWarnings("javadoc")
@@ -47,21 +63,6 @@ public class UploadWindow {
 	@SuppressWarnings("javadoc")
     private String mapStringAfterValidation;
     
-    /**
-     * Launch the application.
-     */
-    public void main() {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UploadWindow window = new UploadWindow();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /**
      * Create the application.
@@ -73,63 +74,62 @@ public class UploadWindow {
      * The method is used to initialize
      */
     public void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1735, 1075);
-		frame.getContentPane().setLayout(null);	
-		frame.setTitle("Upload Map File");
-		
+		setBounds(100, 100, 1735, 1075);
+		getContentPane().setLayout(null);	
+		setTitle("Upload Map File");
+		setVisible(true);
 		fileName = new JTextField();
 		fileName.setBounds(46, 49, 281, 26);
-		frame.getContentPane().add(fileName);
+		getContentPane().add(fileName);
 		fileName.setColumns(10);
 		
 		JButton browseButton = new JButton("Browse");
 		browseButton.setBounds(376, 48, 115, 29);
-		frame.getContentPane().add(browseButton);
+		getContentPane().add(browseButton);
 		
 		uploadButton = new JButton("Upload");
 		uploadButton.setBounds(530, 48, 115, 29);
-		frame.getContentPane().add(uploadButton);
+		getContentPane().add(uploadButton);
 		
 		// Continents Information
 		JLabel labelContinents = new JLabel("Continents");
 		labelContinents.setBounds(45, 108, 115, 20);
-		frame.getContentPane().add(labelContinents);
+		getContentPane().add(labelContinents);
 		
 		JList<String> continentsJList = new JList<String>();
 		continentsJList.setBorder(new LineBorder(Color.BLUE));
 		continentsJList.setBounds(46, 144, 201, 349);
 		continentsJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		frame.getContentPane().add(continentsJList);
+		getContentPane().add(continentsJList);
         
 		// Territories Information
 		JLabel labelTerritories = new JLabel("Territories");
 		labelTerritories.setBounds(277, 108, 115, 20);
-		frame.getContentPane().add(labelTerritories);
+		getContentPane().add(labelTerritories);
 		
 		JList<String> territoriesJList = new JList<String>();
 		territoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		territoriesJList.setBorder(new LineBorder(Color.BLUE));
 		territoriesJList.setBounds(277, 144, 211, 349);
-		frame.getContentPane().add(territoriesJList);		
+		getContentPane().add(territoriesJList);		
 		
 		// Adjacent Territories Information
 		JLabel labelAdjacentTerritories = new JLabel("Adjacent Territories");
 		labelAdjacentTerritories.setBounds(524, 108, 201, 20);
-		frame.getContentPane().add(labelAdjacentTerritories);		
+		getContentPane().add(labelAdjacentTerritories);		
 		
 		JList<String> adjTerritoriesJList = new JList<String>();
 		adjTerritoriesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		adjTerritoriesJList.setBorder(new LineBorder(Color.BLUE));
 		adjTerritoriesJList.setBounds(524, 144, 211, 349);
-		frame.getContentPane().add(adjTerritoriesJList);
+		getContentPane().add(adjTerritoriesJList);
 		
 		//Save Map fields
 		mapName = new JTextField();
 		mapName.setToolTipText("Enter name for Map");
 		mapName.setColumns(10);
 		mapName.setBounds(1190, 898, 281, 26);
-		frame.getContentPane().add(mapName);
+		getContentPane().add(mapName);
 		
 		JButton btnSaveMap = new JButton("Save Map");
 		btnSaveMap.addActionListener(new ActionListener() {
@@ -144,7 +144,7 @@ public class UploadWindow {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							frame.dispose();
+							dispose();
 						}else {
 							JOptionPane.showMessageDialog(frame, "Please validate the Map.");
 						}				
@@ -158,7 +158,7 @@ public class UploadWindow {
 			}
 		});
 		btnSaveMap.setBounds(1500, 897, 115, 29);
-		frame.getContentPane().add(btnSaveMap);
+		getContentPane().add(btnSaveMap);
 		
 		JTextPane errorMessage = new JTextPane();
 		errorMessage.setBounds(46, 148, 300, 500);
@@ -167,7 +167,7 @@ public class UploadWindow {
 		JScrollPane messageScrollPane = new JScrollPane(errorMessage);
 		messageScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		messageScrollPane.setBounds(46, 509, 689, 415);
-		frame.getContentPane().add(messageScrollPane);
+		getContentPane().add(messageScrollPane);
 		
 		JButton validateAgain = new JButton("Validate Again");
 		validateAgain.addActionListener(new ActionListener() {
@@ -197,12 +197,12 @@ public class UploadWindow {
 			}
 		});
 		validateAgain.setBounds(918, 897, 191, 29);
-		frame.getContentPane().add(validateAgain);
+		getContentPane().add(validateAgain);
 		
 		JScrollPane mapScrollPane = new JScrollPane((Component) null);
 		mapScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		mapScrollPane.setBounds(877, 46, 803, 811);
-		frame.getContentPane().add(mapScrollPane);
+		getContentPane().add(mapScrollPane);
 		
 		mapTextPane = new JTextPane();
 		mapTextPane.setFont(new Font("Calibri", Font.PLAIN, 19));

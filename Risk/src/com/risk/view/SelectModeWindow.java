@@ -1,11 +1,12 @@
 package com.risk.view;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 /**
  * select Single Game Mode or Tournament Game Mode
  * 
@@ -50,7 +51,7 @@ public class SelectModeWindow extends JFrame{
 				setVisible(false);
 	            dispose();
 				SelectMapWindow gameStart = new SelectMapWindow();		
-				gameStart.main();
+				gameStart.initialize();
 			}
 		});
 		
