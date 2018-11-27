@@ -647,6 +647,12 @@ public class SetPlayersWindow extends JFrame {
 		}
 	}
 	
+	/**
+	 * Sets Player's strategy
+	 * 
+	 * @param player Player object
+	 * @param actionCommand RadioButton Action Command
+	 */
 	private void setStrategy(Player player, String actionCommand) {
 		if(actionCommand.equals("AGGRESSIVE")) {
 			player.setStrategy(new AggressivePlayer());
@@ -661,6 +667,12 @@ public class SetPlayersWindow extends JFrame {
 		}
 	}
 
+	/**
+	 * Returns true if Player is a computer of any kind, otherwise return false
+	 * 
+	 * @param actionCommand ActionCommand for radioButton
+	 * @return boolean true/false
+	 */
 	private boolean isComputer(String actionCommand) {
 		if(actionCommand.equals("HUMAN")) {
 			return false;
