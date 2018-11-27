@@ -60,7 +60,7 @@ public class GameWindow extends JFrame{
 	@SuppressWarnings("javadoc")
 	private AddArmyPanel addArmyPanel;
 	@SuppressWarnings("javadoc")
-	private JPanel attackPanel;
+	private AttackPanel attackPanel;
 	@SuppressWarnings("javadoc")
 	private JLabel lblPlayer;
 	@SuppressWarnings("javadoc")
@@ -140,61 +140,9 @@ public class GameWindow extends JFrame{
 		game.addObserver(addArmyPanel);
 		
 		//Attack Panel
-		attackPanel = new JPanel();
-		attackPanel.setBounds(648, 369, 726, 468);
+		attackPanel = new AttackPanel(game);
 		getContentPane().add(attackPanel);
-		attackPanel.setLayout(null);
-		attackPanel.setVisible(false);
-		
-		JLabel lblNewLabel_1 = new JLabel("Attack View");
-		lblNewLabel_1.setBounds(15, 16, 138, 20);
-		attackPanel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel = new JLabel("Attacking Territory");
-		lblNewLabel.setBounds(181, 52, 151, 20);
-		attackPanel.add(lblNewLabel);
-		
-		JLabel labelName = new JLabel("Player Name");
-		labelName.setBounds(15, 52, 151, 20);
-		attackPanel.add(labelName);
-		
-		JLabel lblAttackedCountry = new JLabel("Attacked Territory");
-		lblAttackedCountry.setBounds(442, 52, 151, 20);
-		attackPanel.add(lblAttackedCountry);
-		
-		lblPlayer = new JLabel("");
-		lblPlayer.setBounds(15, 88, 69, 20);
-		attackPanel.add(lblPlayer);
-		
-		attackingTerr = new JList<String>();
-		attackingTerr.setBounds(1, 1, 219, 301);
-		attackPanel.add(attackingTerr);
-		
-		JScrollPane attackingTerrPane = new JScrollPane(attackingTerr);
-		attackingTerrPane.setBounds(181, 88, 247, 271);
-		attackingTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		attackPanel.add(attackingTerrPane);
-		
-		attackedTerr = new JList<String>();
-		attackedTerr.setBounds(1, 1, 219, 301);
-		attackPanel.add(attackedTerr);
-		
-		JScrollPane attackedTerrPane = new JScrollPane(attackedTerr);
-		attackedTerrPane.setBounds(442, 88, 247, 267);
-		attackedTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		attackPanel.add(attackedTerrPane);
-		
-		btnAttack = new JButton("Attack");
-		btnAttack.setBounds(442, 395, 115, 29);
-		attackPanel.add(btnAttack);
-		
-		btnEndAttack = new JButton("End Attack");
-		btnEndAttack.setBounds(572, 395, 123, 29);
-		attackPanel.add(btnEndAttack);
-		
-		chckbxAllOutMode = new JCheckBox("All Out Mode");
-		chckbxAllOutMode.setBounds(295, 395, 139, 29);
-		attackPanel.add(chckbxAllOutMode);
+		game.addObserver(attackPanel);
 		
 		//Fortify Panel
 		fortifyPanel = new JPanel();
@@ -389,15 +337,15 @@ public class GameWindow extends JFrame{
 			}
 		});
 		
-		btnAttack.addActionListener(new ActionListener() {
+		attackPanel.getBtnAttack().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int selectedIndex1 = attackingTerr.getSelectedIndex();
-				int selectedIndex2 = attackedTerr.getSelectedIndex();
+				int selectedIndex1 = attackPanel.getAttackingTerr().getSelectedIndex();
+				int selectedIndex2 = attackPanel.getAttackedTerr().getSelectedIndex();
 				Territory attackerTerr = currentPlayer.getOwnedTerritories().get(selectedIndex1);
 				Territory opponentTerr = attackerTerr.getAdjacentTerritories().get(selectedIndex2);
-				boolean allOutMode = chckbxAllOutMode.isSelected();
+				boolean allOutMode = attackPanel.getChckbxAllOutMode().isSelected();
 				currentPlayer.attack(attackerTerr, opponentTerr, allOutMode, gameInstructions, controller);
 				game.update();
 				if(controller.isWinner()) {
@@ -408,7 +356,7 @@ public class GameWindow extends JFrame{
 			}
 		});
 		
-		btnEndAttack.addActionListener(new ActionListener() {
+		attackPanel.getBtnEndAttack().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -522,35 +470,6 @@ public class GameWindow extends JFrame{
 		addArmyPanel.getBtnReinforceAddArmy().setVisible(false);
 		attackPanel.setVisible(true);
 		gameInstructions.setInstructions("It's " + currentPlayer.getName() + "'s turn!!! Select territories and click Attack Button");
-		ArrayList<Territory> attackingTerritories;
-		
-		lblPlayer.setText(currentPlayer.getName());
-		
-		attackingTerritories = currentPlayer.getOwnedTerritories();
-		String[] attackingTerrNames = new String[attackingTerritories.size()];
-		for(int i = 0;i<attackingTerritories.size();i++) {
-			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "-" + attackingTerritories.get(i).getContinent() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
-		}
-		attackingTerr.setListData(attackingTerrNames);
-		
-		attackingTerr.addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				try {
-					int selectedIndex = attackingTerr.getSelectedIndex();
-					ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
-					String[] attackedTerrNames = new String[attackedTerritories.size()];
-					for(int i = 0;i<attackedTerrNames.length;i++) {
-						Territory tempTerritory = attackedTerritories.get(i);
-						attackedTerrNames[i] = tempTerritory.getName() + "-" + tempTerritory.getContinent() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
-					}
-					attackedTerr.setListData(attackedTerrNames);
-				}catch(Exception ex) {
-					logger.log(Level.INFO, "Exception in attacking territory JList" + ex.toString());
-				}
-			}
-		});
 	}
 	/**
 	 * show the fortify info in the panel
@@ -577,10 +496,7 @@ public class GameWindow extends JFrame{
 	 * @param selectedIndex2 index
 	 */
 	protected void updateAttackStatus(Territory attackerTerr, int selectedIndex1, int selectedIndex2) {
-		attackingTerr.setEnabled(true);
-		attackedTerr.setEnabled(true);
-		btnEndAttack.setVisible(true);
-		updateJList(selectedIndex1, -1);		
+		//updateJList(selectedIndex1, -1);		
 	}
 	/**
 	 * update the attacked territories list
