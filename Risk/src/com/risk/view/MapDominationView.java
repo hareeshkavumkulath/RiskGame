@@ -17,6 +17,7 @@ import com.risk.model.Game;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 import java.awt.Font;
+import java.awt.Component;
 
 /**
  * Observable view for Player World Domination
@@ -71,10 +72,20 @@ public class MapDominationView extends JPanel implements Observer{
 		playerInfo.setBounds(277, 213, 326, 142);
 		add(playerInfo);
 		
-		JScrollPane scrollPane = new JScrollPane(continentDomination);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(15, 52, 247, 303);
-		add(scrollPane);
+		JScrollPane scrollPaneContinent = new JScrollPane(continentDomination);
+		scrollPaneContinent.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneContinent.setBounds(15, 52, 247, 303);
+		add(scrollPaneContinent);
+		
+		JScrollPane scrollPaneMap = new JScrollPane(mapDomination);
+		scrollPaneMap.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneMap.setBounds(277, 52, 326, 145);
+		add(scrollPaneMap);
+		
+		JScrollPane scrollPanePlayer = new JScrollPane(playerInfo);
+		scrollPanePlayer.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPanePlayer.setBounds(277, 210, 326, 145);
+		add(scrollPanePlayer);
 		setVisible(true);
 		
 		editField();
