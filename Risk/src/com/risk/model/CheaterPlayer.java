@@ -4,8 +4,12 @@
 package com.risk.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.risk.controller.GameController;
+import com.risk.view.StartWindow;
 
 /**
  * Strategy class for Cheater Player
@@ -14,6 +18,11 @@ import com.risk.controller.GameController;
  *
  */
 public class CheaterPlayer implements Strategy, Serializable  {
+	
+	/**
+	 * Logger object setup for the log file
+	 */
+	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1260591218189482532L;
@@ -33,7 +42,8 @@ public class CheaterPlayer implements Strategy, Serializable  {
 	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions, GameController controller) {
 		int reinforcementArmy = controller.calculateReinforcementArmiesForCheater(currentPlayer);
 		currentPlayer.setNumberOfArmies(reinforcementArmy);
-		gameInstructions.setInstructions(currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.\n");	
+		gameInstructions.setInstructions(currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.\n");
+		logger.log(Level.INFO, currentPlayer.getName() + " has " + reinforcementArmy + " reinforcement armies.");
 		for(int i=0;i<currentPlayer.getOwnedTerritories().size();i++) {
 			controller.addArmyToTerritory(currentPlayer, currentPlayer.getOwnedTerritories().get(i), currentPlayer.getOwnedTerritories().get(i).getNumberOfArmies());
 		}
@@ -50,12 +60,14 @@ public class CheaterPlayer implements Strategy, Serializable  {
 	@Override
 	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
 			boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
-		for(int i=0;i<currentPlayer.getOwnedTerritories().size();i++) {
-			Territory attackerTerr = currentPlayer.getOwnedTerritories().get(i);
+		ArrayList<Territory> territories = currentPlayer.getOwnedTerritories();
+		for(int i=0;i<territories.size();i++) {
+			Territory attackerTerr = territories.get(i);
 			for(int j=0;j<attackerTerr.getAdjacentTerritories().size();j++) {
 				Territory opponentTerr = attackerTerr.getAdjacentTerritories().get(j);
 				if(opponentTerr.getRuler() != currentPlayer) {
 					gameInstructions.setInstructions(currentPlayer.getName() + " has conquered " + opponentTerr.getName() +"\n");
+					logger.log(Level.INFO, currentPlayer.getName() + " has conquered " + opponentTerr.getName());
 					Player opponentRuler = opponentTerr.getRuler();
 					controller.updateTerritoryRuler(opponentTerr, attackerTerr.getRuler(), 1);
 					controller.updateTerritoryRuler(attackerTerr, attackerTerr.getRuler(), attackerTerr.getNumberOfArmies());
@@ -86,6 +98,7 @@ public class CheaterPlayer implements Strategy, Serializable  {
 			if(opponentTerr != null) {
 				int numArmy = territory.getNumberOfArmies();
 				territory.setNumberOfArmies(numArmy*2);
+				logger.log(Level.INFO, currentPlayer.getName() + " has fortified " + territory.getName() + " with " + numArmy + " armies");
 				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territory.getName() + " with " + numArmy + " armies\n");
 			}
 		}

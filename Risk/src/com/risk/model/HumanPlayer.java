@@ -106,7 +106,7 @@ public class HumanPlayer implements Strategy, Serializable  {
 		if(canAttack) {
 			if(controller.hasEnoughArmies(attackerTerritory, opponentTerritory, numAttackerArmies, numOpponentArmies)) {
 				if(allOutMode) {
-					gameInstructions.setInstructions(attackerTerritory.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerritory.getName() + "(" + opponentTerritory.getRuler().getName() + ")");
+					gameInstructions.setInstructions(attackerTerritory.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerritory.getName() + "(" + opponentTerritory.getRuler().getName() + ")\n");
 					AttackStatus status = new AttackStatus();
 					while(attackerTerritory.getNumberOfArmies() > 1 && !status.hasWon) {
 						numAttackerArmies = controller.getNumAttackerArmies(attackerTerritory);
@@ -119,7 +119,7 @@ public class HumanPlayer implements Strategy, Serializable  {
 						currentPlayer.hasWon = true;
 					}
 				}else {
-					gameInstructions.setInstructions(attackerTerritory.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerritory.getName() + "(" + opponentTerritory.getRuler().getName() + ")");
+					gameInstructions.setInstructions(attackerTerritory.getName() + "(" + currentPlayer.getName() +") is attacking, " + opponentTerritory.getName() + "(" + opponentTerritory.getRuler().getName() + ")\n");
 					AttackStatus status = controller.attack(attackerTerritory, opponentTerritory, numAttackerArmies, numOpponentArmies);
 					gameInstructions.setInstructions(status.getStatusMessage().toString());
 					controller.updateGame(attackerTerritory, opponentTerritory);
@@ -154,8 +154,8 @@ public class HumanPlayer implements Strategy, Serializable  {
 		toTerritory.setNumberOfArmies(toTerrNumArmies);
 		currentPlayer.setFortificationStatus(true);
 		currentPlayer.setPhase("REINFORCEMENT");
-		gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + toTerritory.getName() + " from " + fromTerritory.getName() + " with " + fortifyNum + " armies");
-		
+		gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + toTerritory.getName() + " from " + fromTerritory.getName() + " with " + fortifyNum + " armies\n");
+		logger.log(Level.INFO, currentPlayer.getName() + " has fortified " + toTerritory.getName() + " from " + fromTerritory.getName() + " with " + fortifyNum + " armies");
 	}
 
 }
