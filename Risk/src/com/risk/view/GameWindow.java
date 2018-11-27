@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -22,8 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import com.risk.controller.GameController;
 import com.risk.model.Card;
@@ -62,17 +59,9 @@ public class GameWindow extends JFrame{
 	@SuppressWarnings("javadoc")
 	private AttackPanel attackPanel;
 	@SuppressWarnings("javadoc")
-	private JLabel lblPlayer;
-	@SuppressWarnings("javadoc")
 	private JList<String> attackingTerr;
 	@SuppressWarnings("javadoc")
 	private JList<String> attackedTerr;
-	@SuppressWarnings("javadoc")
-	private JButton btnAttack;
-	@SuppressWarnings("javadoc")
-	private JButton btnEndAttack;
-	@SuppressWarnings("javadoc")
-	private JCheckBox chckbxAllOutMode;
 	@SuppressWarnings("javadoc")
 	private JPanel fortifyPanel;
 	@SuppressWarnings("javadoc")
@@ -429,7 +418,9 @@ public class GameWindow extends JFrame{
 	}
 	
 	/**
-	 *  Saves The Game to the File
+	 * Saves The Game to the File
+	 * @param fileName String file name 
+	 * @return boolean true/false
 	 */
 	public boolean saveToFile(String fileName) {
 		boolean saveResult = true;

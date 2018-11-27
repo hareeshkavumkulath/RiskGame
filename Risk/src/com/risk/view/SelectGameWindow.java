@@ -32,6 +32,11 @@ import com.risk.model.GameInstructions;
 public class SelectGameWindow extends JFrame{
 	
 	/**
+	 * Default Serialization ID
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Logger object setup for the log file
 	 */
 	static Logger logger = Logger.getLogger(StartWindow.class.getName());
@@ -48,7 +53,9 @@ public class SelectGameWindow extends JFrame{
 	}
 
 	/**
-	 *  Loads The Game to the File
+	 * Loads The Game to the File
+	 * @param gameFile File Game Object File
+	 * @return Game Previous Game
 	 */
 	public Game loadGameFromFile(File gameFile) {
 		

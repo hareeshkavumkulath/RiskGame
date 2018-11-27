@@ -51,6 +51,7 @@ public class AttackPanel extends JPanel implements Observer {
 
 	/**
 	 * Create the panel.
+	 * @param game Game current game
 	 */
 	public AttackPanel(Game game) {
 		this.game = game;
