@@ -1,11 +1,14 @@
 package com.risk.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -15,21 +18,20 @@ import javax.swing.border.LineBorder;
 import com.risk.controller.MapController;
 import com.risk.model.Map;
 import com.risk.model.MapMessage;
-
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 /**
  * SelectMapWindow is used to select the map you uploaded and saved in the previous page
  * 
  * @author Hareesh Kavumkulath
- * @version 1.1
+ * @version 1.2
  *
  */
-public class SelectMapWindow {
+public class SelectMapWindow extends JFrame{
 	
+	/**
+	 * Set serialVersionUID 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Logger object setup for the log file
 	 */
@@ -38,21 +40,6 @@ public class SelectMapWindow {
 	@SuppressWarnings("javadoc")
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelectMapWindow window = new SelectMapWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -62,25 +49,25 @@ public class SelectMapWindow {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the 
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("Select Map");
-		frame.setBounds(100, 100, 373, 714);
-		frame.getContentPane().setLayout(null);
+	public void initialize() {
+		setTitle("Select Map");
+		setBounds(100, 100, 373, 714);
+		getContentPane().setLayout(null);
+		setVisible(true);
 		
 		JList<String> mapFilesJList = new JList<String>();
 		mapFilesJList.setFont(new Font("Calibri", Font.PLAIN, 20));
 		mapFilesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		mapFilesJList.setBorder(new LineBorder(Color.BLUE));
 		mapFilesJList.setBounds(25, 34, 301, 542);
-		frame.getContentPane().add(mapFilesJList);
+		getContentPane().add(mapFilesJList);
 		
 		JButton btnSelect = new JButton("Select");
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 22));
 		btnSelect.setBounds(211, 613, 115, 29);
-		frame.getContentPane().add(btnSelect);
+		getContentPane().add(btnSelect);
 		
 		File folder = new File(".\\Maps\\");
 		File[] listOfFiles = folder.listFiles();
@@ -112,8 +99,8 @@ public class SelectMapWindow {
 					MapController controller = new MapController();
 					MapMessage message = controller.processFile(file);
 					if(message.isValidMap()) {
-						frame.setVisible(false);
-			            frame.dispose();
+						setVisible(false);
+			            dispose();
 						Map map = message.getMap();
 						SetPlayersWindow setPlayersWindow = new SetPlayersWindow(map);
 						setPlayersWindow.initialize();

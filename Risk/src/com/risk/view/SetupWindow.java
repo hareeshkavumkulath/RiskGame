@@ -13,7 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
@@ -30,9 +32,6 @@ import com.risk.model.Map;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
-
-import javax.swing.JPanel;
-import javax.swing.JTable;
 /**
  * Tournament mode player set up
  * 

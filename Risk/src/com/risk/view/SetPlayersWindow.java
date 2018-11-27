@@ -31,17 +31,20 @@ import com.risk.model.RandomPlayer;
  * View class for the player window
  * 
  * @author Angeline Anqi Wang
- * @version 1.0
+ * @version 1.1
  */
 public class SetPlayersWindow extends JFrame {
 	
+	/**
+	 * set serialVersionUID
+	 */
+	private static final long serialVersionUID = -8679598478144639906L;
+
 	/**
 	 * Logger object setup for the log file
 	 */
 	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
-	@SuppressWarnings("javadoc")
-	private JFrame frame;
 	@SuppressWarnings("javadoc")
 	private JTextField playerName1;
 	@SuppressWarnings("javadoc")
@@ -420,7 +423,7 @@ public class SetPlayersWindow extends JFrame {
 				setVisible(false);
 	            dispose();
 				SelectMapWindow selectMapWindow = new SelectMapWindow();
-				selectMapWindow.main();
+				selectMapWindow.initialize();
 			}
 		});
 		btnBack.setBounds(514, 396, 123, 40);
@@ -499,7 +502,8 @@ public class SetPlayersWindow extends JFrame {
 				
 				GameController gameController = new GameController(game, gameInstructions);
 				game.setCurrentPlayer(gameController.assignTerritories());
-				
+				setVisible(false);
+	            dispose();
 				GameWindow gameWindow = new GameWindow(game, gameController);
 				logger.log(Level.INFO, "Proceeding to Game Window");
 				gameWindow.onGame();
