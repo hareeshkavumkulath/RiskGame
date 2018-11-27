@@ -13,7 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
@@ -31,8 +33,6 @@ import com.risk.model.MapMessage;
 import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
 
-import javax.swing.JPanel;
-import javax.swing.JTable;
 /**
  * Tournament mode player set up
  * 
@@ -86,6 +86,8 @@ public class SetupWindow extends JFrame {
 
 	@SuppressWarnings("javadoc")
 	private JLabel turnLabel;
+	@SuppressWarnings("javadoc")
+	private JPanel resultPanel;
 	
 	/**
 	 * Create the frame. - Constructor
@@ -100,31 +102,37 @@ public class SetupWindow extends JFrame {
 		mapList.setBounds(25, 47, 243, 331);
 		getContentPane().add(mapList);
 		
+		resultPanel = new JPanel();
+		resultPanel.setBounds(15, 447, 803, 169);
+		getContentPane().add(resultPanel);
+		resultPanel.setLayout(null);
+		
 		panel = new JPanel();
-		panel.setBounds(15, 440, 804, 375);
+		panel.setBounds(15, 619, 804, 201);
 		getContentPane().add(panel);
 		panel.setLayout(new BorderLayout());
 		
 		JLabel resultLabel = new JLabel("Results");
 		resultLabel.setBounds(15, 16, 144, 29);
-		panel.add(resultLabel);
+		resultPanel.add(resultLabel);
 		
 		mapLabel = new JLabel("");
 		mapLabel.setBounds(15, 61, 763, 20);
-		panel.add(mapLabel);
+		resultPanel.add(mapLabel);
 		
 		playerLabel = new JLabel("");
 		playerLabel.setBounds(15, 86, 353, 20);
-		panel.add(playerLabel);
+		resultPanel.add(playerLabel);
 		
 		gameLabel = new JLabel("");
 		gameLabel.setBounds(15, 114, 371, 20);
-		panel.add(gameLabel);
+		resultPanel.add(gameLabel);
 		
 		turnLabel = new JLabel("");
 		turnLabel.setBounds(15, 142, 396, 20);
-		panel.add(turnLabel);
+		resultPanel.add(turnLabel);
 		
+		resultPanel.setVisible(true);
 		panel.setVisible(false);
 		
 		File folder = new File(".\\Maps\\");
@@ -302,7 +310,7 @@ public class SetupWindow extends JFrame {
 	 * Display End Result
 	 */
 	private void displayResult() {
-		table = new JTable(results,columnNames);	
+		table = new JTable(results, columnNames);	
 		table.setBounds(15, 177, 774, 182);
 		panel.add(table.getTableHeader(), BorderLayout.PAGE_START);
 		panel.add(table, BorderLayout.CENTER);
