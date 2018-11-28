@@ -68,17 +68,20 @@ public class UploadWindow extends JFrame{
      * Create the application.
      */
     public UploadWindow() {
-        initialize();
+    	setBounds(100, 100, 1735, 1075);
+		getContentPane().setLayout(null);	
+		setTitle("Upload Map File");
+		setVisible(true);
+		
+		fileName = new JTextField();
+		uploadButton = new JButton("Upload");
+		mapName = new JTextField();
     }
     /**
      * The method is used to initialize
      */
     public void initialize() {
-		setBounds(100, 100, 1735, 1075);
-		getContentPane().setLayout(null);	
-		setTitle("Upload Map File");
-		setVisible(true);
-		fileName = new JTextField();
+		
 		fileName.setBounds(46, 49, 281, 26);
 		getContentPane().add(fileName);
 		fileName.setColumns(10);
@@ -87,7 +90,6 @@ public class UploadWindow extends JFrame{
 		browseButton.setBounds(376, 48, 115, 29);
 		getContentPane().add(browseButton);
 		
-		uploadButton = new JButton("Upload");
 		uploadButton.setBounds(530, 48, 115, 29);
 		getContentPane().add(uploadButton);
 		
@@ -125,7 +127,6 @@ public class UploadWindow extends JFrame{
 		getContentPane().add(adjTerritoriesJList);
 		
 		//Save Map fields
-		mapName = new JTextField();
 		mapName.setToolTipText("Enter name for Map");
 		mapName.setColumns(10);
 		mapName.setBounds(1190, 898, 281, 26);
