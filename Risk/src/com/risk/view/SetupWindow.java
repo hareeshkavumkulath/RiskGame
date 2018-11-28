@@ -154,7 +154,7 @@ public class SetupWindow extends JFrame {
 	 * initialize
 	 */
 	public void initialize() {
-		
+		setTitle("Tournament Mode");
 		chckbxAggressive = new JCheckBox("Aggressive");
 		chckbxAggressive.setBounds(310, 69, 139, 29);
 		chckbxAggressive.setActionCommand("AGGRESSIVE");
@@ -206,6 +206,11 @@ public class SetupWindow extends JFrame {
 		btnNewButton.setBounds(612, 394, 186, 42);
 		getContentPane().add(btnNewButton);
 		
+		JButton btnTournament = new JButton("Tournament Again");
+		btnTournament.setBounds(612, 394, 186, 42);
+		getContentPane().add(btnTournament);
+		btnTournament.setVisible(false);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -229,6 +234,8 @@ public class SetupWindow extends JFrame {
 							}
 							mapNames = getMapNames();
 							startTournament(maps, players, numGames, numTurns);
+							btnNewButton.setVisible(false);
+							btnTournament.setVisible(true);
 						}else {
 							JOptionPane.showMessageDialog(null, "Number of turns must be number between 10 and 50", "Warning", JOptionPane.WARNING_MESSAGE);
 						}
@@ -241,6 +248,14 @@ public class SetupWindow extends JFrame {
 			}
 		});
 		
+		btnTournament.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+	            dispose();
+	            SetupWindow window = new SetupWindow();
+	            window.initialize();
+			}
+		});
 	}
 	/**
 	 * Returns the selected map names
