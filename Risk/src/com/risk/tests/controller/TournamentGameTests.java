@@ -172,16 +172,15 @@ public class TournamentGameTests {
 		return maps;
     }
     
- // =====================twoDimensionalArrayToList()=====================
     /**
      * Convert Two Dimensional Array to ArrayList
      * 
      * @param twoDArray the array needs to be converted
      * @return List the list of converted twoDArray
      */
-    public <T> List<T> twoDimensionalArrayToList(T[][] twoDArray) {
-        List<T> list = new ArrayList<T>();
-        for (T[] array : twoDArray) {
+    public List<String> twoDimensionalArrayToList(String[][] twoDArray) {
+        List<String> list = new ArrayList<String>();
+        for (String[] array : twoDArray) {
             list.addAll(Arrays.asList(array));
         }
         return list;

@@ -21,8 +21,8 @@ public class ResultsTableModel extends AbstractTableModel{
 	/**
 	 * Constructor
 	 * 
-	 * @param columnNames
-	 * @param data
+	 * @param columnNames String Array Table Column Names
+	 * @param data String two dimensional array for data
 	 */
 	public ResultsTableModel(String[] columnNames, String[][] data) {
 		this.columnNames = columnNames;

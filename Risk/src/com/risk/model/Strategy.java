@@ -30,7 +30,6 @@ public interface Strategy {
 	 * @param allOutMode boolean
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
-	 * @param game Game current game
 	 */
 	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory, boolean allOutMode, 
 			GameInstructions gameInstructions, GameController controller);

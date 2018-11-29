@@ -27,12 +27,9 @@ public class AggressivePlayer implements Strategy, Serializable {
 	 * Aggressive player reinforce
 	 * 
 	 * @param currentPlayer Player
-	 * @param attackerTerritory Attacker Territory
-	 * @param opponentTerritory Opponent Territory
-	 * @param allOutMode boolean
+	 * @param territory Target Territory
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
-	 * @param game Game current game
 	 */
 	@Override
 	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions, GameController controller) {
@@ -63,9 +60,11 @@ public class AggressivePlayer implements Strategy, Serializable {
 	 * Aggressive player attack
 	 * 
 	 * @param currentPlayer player object
-	 * @param gameInstructions object
+	 * @param attackerTerritory Territory Attacking
+	 * @param opponentTerritory Territory defending
+	 * @param allOutMode boolean attacking mode
+	 * @param gameInstructions GameInstructions Object
 	 * @param controller GameController
-	 * @param game object
 	 */
 	@Override
 	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory, boolean allOutMode,

@@ -51,7 +51,7 @@ public class StartWindow {
 
 	/**
 	 * Create the application.
-	 * @throws IOException 
+	 * @throws IOException Throws exception when there is any problem in creating the Log file
 	 */
 	public StartWindow() throws IOException {
 		RiskLogger custLogger = new RiskLogger();

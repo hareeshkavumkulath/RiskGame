@@ -33,7 +33,7 @@ public class CardTest{
  // =====================addArmy()=====================
     /**
      * Testing addArmy() function return value
-     * addArmy() => 1 for infantry
+     * addArmy() - 1 for infantry
      */
     @Test
     @DisplayName("addArmy() => 1 for infantry")
@@ -47,10 +47,10 @@ public class CardTest{
     }
     /**
      * Testing addArmy() function return value
-     * addArmy() => 5 for Cavalry
+     * addArmy() - 5 for Cavalry
      */
     @Test
-    @DisplayName("addArmy() => 5 for Cavalry")
+    @DisplayName("addArmy() -> 5 for Cavalry")
     void addArmyCavalry() {
     		Card card = new Card("Cavalry");
     		assertEquals(card.armyType,"Cavalry");
@@ -61,10 +61,10 @@ public class CardTest{
     }
     /**
      * Testing addArmy() function return value
-     * addArmy() => 5 for Artillery
+     * addArmy() - 5 for Artillery
      */
     @Test
-    @DisplayName("addArmy() => 10 for Artillery")
+    @DisplayName("addArmy() -> 10 for Artillery")
     void addArmyArtillary() {
     		Card card = new Card("Artillery");
     		assertEquals(card.armyType,"Artillery");

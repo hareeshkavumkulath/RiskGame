@@ -145,13 +145,13 @@ public class AttackPanel extends JPanel implements Observer {
 	/**
 	 *Observer design pattern
 	 *
-	 * @param arg0 Observable
-	 * @param arg1 Object
+	 * @param obs Observable
+	 * @param obj Object
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	@Override
-	public void update(Observable o, Object arg) {
-		this.game = (Game) arg;
+	public void update(Observable obs, Object obj) {
+		this.game = (Game) obj;
 		Player currentPlayer = this.game.getCurrentPlayer();
 		lblPlayer.setText(currentPlayer.getName());
 		
