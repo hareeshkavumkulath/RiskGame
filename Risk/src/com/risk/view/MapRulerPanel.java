@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.risk.view;
 
 import java.awt.Component;
@@ -21,11 +18,13 @@ import java.awt.Font;
 import java.awt.Color;
 
 /**
- * @author DELL
- *
+ * This class shows MapRulerPanel as user interface
+ * 
+ * @author Anqi Wang
+ * @version 1.0
  */
 public class MapRulerPanel extends JPanel implements Observer {
-	
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("javadoc")
@@ -38,24 +37,24 @@ public class MapRulerPanel extends JPanel implements Observer {
 	 * 
 	 * @param game object
 	 */
-	public MapRulerPanel(Game game) {	
+	public MapRulerPanel(Game game) {
 		this.game = game;
-		setBounds(1390, 336, 519, 513);	
-		setLayout(null);		
-		
+		setBounds(1390, 336, 519, 513);
+		setLayout(null);
+
 		JScrollPane scrollPane = new JScrollPane((Component) null);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(15, 15, 489, 483);
 		add(scrollPane);
-		
+
 		textPane = new JTextPane();
 		textPane.setForeground(Color.BLACK);
 		textPane.setFont(new Font("Calibri", Font.PLAIN, 16));
 		textPane.setText("");
 		scrollPane.setViewportView(textPane);
-		
+
 		displayMapRuler();
-		
+
 	}
 
 	/**
@@ -64,20 +63,21 @@ public class MapRulerPanel extends JPanel implements Observer {
 	private void displayMapRuler() {
 		ArrayList<Continent> continents = game.getMap().getContinents();
 		StringBuffer mapDisplay = new StringBuffer("Map\n");
-		for(int i=0;i<continents.size();i++) {
+		for (int i = 0; i < continents.size(); i++) {
 			Continent continent = continents.get(i);
 			mapDisplay.append(continent.getName() + "\n");
 			mapDisplay.append("**************************\n");
-			for(int j=0;j<continent.getTerritories().size();j++) {
+			for (int j = 0; j < continent.getTerritories().size(); j++) {
 				Territory territory = continent.getTerritories().get(j);
-				mapDisplay.append(territory.getName() + "-" + territory.getRuler().getName() + "-" + territory.getNumberOfArmies() +"\n");
+				mapDisplay.append(territory.getName() + "-" + territory.getRuler().getName() + "-"
+						+ territory.getNumberOfArmies() + "\n");
 			}
 		}
 		textPane.setText(mapDisplay.toString());
 	}
 
 	/**
-	 * Observer design pattern 
+	 * Observer design pattern
 	 * 
 	 * @param arg0 Observable
 	 * @param arg1 Object

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.risk.view;
 
 import javax.swing.JPanel;
@@ -27,10 +24,9 @@ import javax.swing.JButton;
  * Attack Panel to show the attack phase territory
  * 
  * @author Jingya Pan
- *
  */
 public class AttackPanel extends JPanel implements Observer {
-	
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("javadoc")
@@ -52,98 +48,104 @@ public class AttackPanel extends JPanel implements Observer {
 
 	/**
 	 * Create the panel.
+	 * 
 	 * @param newGame Game current game
 	 */
 	public AttackPanel(Game newGame) {
 		game = newGame;
 		setBounds(648, 369, 726, 468);
 		setLayout(null);
-		
+
 		JLabel labelName = new JLabel("Attack View");
 		labelName.setBounds(15, 15, 138, 20);
 		add(labelName);
-		
+
 		lblPlayer = new JLabel("");
 		lblPlayer.setBounds(15, 50, 151, 20);
 		add(lblPlayer);
-		
+
 		JLabel lblAttackedCountry = new JLabel("Attacking Territory");
 		lblAttackedCountry.setBounds(181, 50, 206, 20);
 		add(lblAttackedCountry);
-		
+
 		JLabel lblOpponentTerritory = new JLabel("Opponent Territory");
 		lblOpponentTerritory.setBounds(448, 50, 197, 20);
 		add(lblOpponentTerritory);
-		
+
 		JScrollPane attackingTerrPane = new JScrollPane((Component) null);
 		attackingTerrPane.setBounds(179, 85, 247, 271);
 		attackingTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(attackingTerrPane);
-		
+
 		attackingTerr = new JList<String>();
 		attackingTerrPane.setViewportView(attackingTerr);
-		
+
 		JScrollPane attackedTerrPane = new JScrollPane((Component) null);
 		attackedTerrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		attackedTerrPane.setBounds(448, 85, 247, 271);
 		add(attackedTerrPane);
-		
+
 		attackedTerr = new JList<String>();
 		attackedTerrPane.setViewportView(attackedTerr);
-		
+
 		chckbxAllOutMode = new JCheckBox("All Out Mode");
 		chckbxAllOutMode.setBounds(259, 390, 167, 29);
 		add(chckbxAllOutMode);
-		
+
 		btnAttack = new JButton("Attack");
 		btnAttack.setBounds(442, 390, 115, 29);
 		add(btnAttack);
-		
+
 		btnEndAttack = new JButton("End Attack");
 		btnEndAttack.setBounds(572, 390, 123, 29);
 		add(btnEndAttack);
 		setVisible(false);
-		
+
 		currentPlayer = this.game.getCurrentPlayer();
 		lblPlayer.setText(currentPlayer.getName());
-		
+
 		ArrayList<Territory> attackingTerritories;
-		
+
 		lblPlayer.setText(currentPlayer.getName());
-		
+
 		attackingTerritories = currentPlayer.getOwnedTerritories();
 		String[] attackingTerrNames = new String[attackingTerritories.size()];
-		for(int i = 0;i<attackingTerritories.size();i++) {
-			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "-" + attackingTerritories.get(i).getContinent() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
+		for (int i = 0; i < attackingTerritories.size(); i++) {
+			attackingTerrNames[i] = attackingTerritories.get(i).getName() + "-"
+					+ attackingTerritories.get(i).getContinent() + "(" + attackingTerritories.get(i).getNumberOfArmies()
+					+ ")";
 		}
 		attackingTerr.setListData(attackingTerrNames);
-		
+
 		attackingTerr.addListSelectionListener(new ListSelectionListener() {
-			
+
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				try {
-					
+
 					currentPlayer = game.getCurrentPlayer();
-					
+
 					int selectedIndex = attackingTerr.getSelectedIndex();
-					ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
+					ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex)
+							.getAdjacentTerritories();
 					String[] attackedTerrNames = new String[attackedTerritories.size()];
-					for(int i = 0;i<attackedTerrNames.length;i++) {
+					for (int i = 0; i < attackedTerrNames.length; i++) {
 						Territory tempTerritory = attackedTerritories.get(i);
-						attackedTerrNames[i] = tempTerritory.getName() + "-" + tempTerritory.getContinent() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
+						attackedTerrNames[i] = tempTerritory.getName() + "-" + tempTerritory.getContinent() + "("
+								+ tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
 					}
 					attackedTerr.setListData(attackedTerrNames);
-				}catch(Exception ex) {
-					//logger.log(Level.INFO, "Exception in attacking territory JList" + ex.toString());
+				} catch (Exception ex) {
+					// logger.log(Level.INFO, "Exception in attacking territory JList" +
+					// ex.toString());
 				}
 			}
 		});
-		
+
 	}
 
 	/**
-	 *Observer design pattern
+	 * Observer design pattern
 	 *
 	 * @param obs Observable
 	 * @param obj Object
@@ -154,45 +156,50 @@ public class AttackPanel extends JPanel implements Observer {
 		this.game = (Game) obj;
 		Player currentPlayer = this.game.getCurrentPlayer();
 		lblPlayer.setText(currentPlayer.getName());
-		
+
 		int attackingTerrSelectedIndex = attackingTerr.getSelectedIndex();
 		int adjTerrSelectedIndex = attackedTerr.getSelectedIndex();
 		attackingTerr.setSelectedIndex(attackingTerrSelectedIndex);
-		if(attackingTerrSelectedIndex < 0) {
+		if (attackingTerrSelectedIndex < 0) {
 			attackingTerrSelectedIndex = 0;
 		}
-		if(adjTerrSelectedIndex < 0) {
+		if (adjTerrSelectedIndex < 0) {
 			adjTerrSelectedIndex = 0;
 		}
 		ArrayList<Territory> attackingTerritories = currentPlayer.getOwnedTerritories();
 		String[] territoryNames = new String[attackingTerritories.size()];
-		for(int i=0;i<attackingTerritories.size();i++) {
+		for (int i = 0; i < attackingTerritories.size(); i++) {
 			territoryNames[i] = attackingTerritories.get(i).getName();
-			if(attackingTerritories.get(i).getRuler() != null) {
-				territoryNames[i] = attackingTerritories.get(i).getName() + "-" + attackingTerritories.get(i).getContinent() + "(" + attackingTerritories.get(i).getNumberOfArmies() + ")";
+			if (attackingTerritories.get(i).getRuler() != null) {
+				territoryNames[i] = attackingTerritories.get(i).getName() + "-"
+						+ attackingTerritories.get(i).getContinent() + "("
+						+ attackingTerritories.get(i).getNumberOfArmies() + ")";
 			}
 		}
-		attackingTerr.setListData(territoryNames);	
+		attackingTerr.setListData(territoryNames);
 		attackingTerr.setSelectedIndex(attackingTerrSelectedIndex);
-		
+
 		try {
 			int selectedIndex = attackingTerr.getSelectedIndex();
-			ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex).getAdjacentTerritories();
+			ArrayList<Territory> attackedTerritories = currentPlayer.getOwnedTerritories().get(selectedIndex)
+					.getAdjacentTerritories();
 			String[] attackedTerrNames = new String[attackedTerritories.size()];
-			for(int i = 0;i<attackedTerrNames.length;i++) {
+			for (int i = 0; i < attackedTerrNames.length; i++) {
 				Territory tempTerritory = attackedTerritories.get(i);
-				attackedTerrNames[i] = tempTerritory.getName() + "-" + tempTerritory.getContinent() + "(" + tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
+				attackedTerrNames[i] = tempTerritory.getName() + "-" + tempTerritory.getContinent() + "("
+						+ tempTerritory.getRuler().getName() + "-" + tempTerritory.getNumberOfArmies() + ")";
 			}
 			attackedTerr.setListData(attackedTerrNames);
 			attackedTerr.setSelectedIndex(adjTerrSelectedIndex);
-		}catch(Exception ex) {
-			//logger.log(Level.INFO, "Exception in attacking territory JList" + ex.toString());
+		} catch (Exception ex) {
+			// logger.log(Level.INFO, "Exception in attacking territory JList" +
+			// ex.toString());
 		}
-		
+
 		lblPlayer.setText(currentPlayer.getName());
-		
+
 	}
-	
+
 	/**
 	 * Get the attacking Territory
 	 * 
@@ -264,7 +271,7 @@ public class AttackPanel extends JPanel implements Observer {
 	public void setBtnEndAttack(JButton btnEndAttack) {
 		this.btnEndAttack = btnEndAttack;
 	}
-	
+
 	/**
 	 * Get the chckbxAllOutMode
 	 * 
