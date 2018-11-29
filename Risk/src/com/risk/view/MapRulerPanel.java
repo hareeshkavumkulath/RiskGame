@@ -26,9 +26,7 @@ import java.awt.Color;
  */
 public class MapRulerPanel extends JPanel implements Observer {
 	
-	/**
-	 * Set serialVersionUID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("javadoc")
 	private Game game;

@@ -422,7 +422,6 @@ public class GameController {
 		logger.log(Level.INFO, "");
 		int removeIndex = game.getPlayers().indexOf(ruler);
 		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(territory);
-		System.out.println(territory.getName() + " is removed from " + ruler.getName());
 		return game;
 	}
 	

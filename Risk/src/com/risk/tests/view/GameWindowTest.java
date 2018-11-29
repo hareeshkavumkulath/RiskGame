@@ -1,29 +1,23 @@
 package com.risk.tests.view;
 
-/**
- * GameWindowTests 
- * This Class will test the  GameWindow functionalities
- * 
- * @author Hamid
- * @version 1.0
- */
-
 import org.junit.jupiter.api.Test;
-
 import com.risk.controller.GameController;
 import com.risk.model.Game;
 import com.risk.model.GameInstructions;
 import com.risk.view.GameWindow;
 import com.risk.view.SelectGameWindow;
-
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.io.File;
 
+/**
+ * Tests class for the GameWindow functions
+ * 
+ * @author Anqi Wang
+ * @version 1.0
+ *
+ */
 public class GameWindowTest {
 
 	// =====================saveToFile()=====================

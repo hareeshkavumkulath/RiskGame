@@ -49,7 +49,6 @@ public class GameControllerTests {
 		gameController = new GameController();
 	}
 
-	// =====================getPlayersArmies()=====================
 	/**
 	 * Testing getPlayersArmies function return value for 2 players
 	 */
@@ -77,7 +76,6 @@ public class GameControllerTests {
 		assertEquals(20, gameController.getPlayersArmies(6));
 	}
 
-	// =====================getNumReinforcements()=====================
 	/**
 	 * Testing getNumReinforcements function return value for less than 3
 	 * Territories
@@ -115,7 +113,6 @@ public class GameControllerTests {
 		assertNotEquals(4, gameController.getNumReinforcements(p));
 	}
 
-	// =====================isValidFortify()=====================
 	/**
 	 * Testing isValidFortify() function return value if (player.ownedTerritories()
 	 * == 1) should be Equal to false
@@ -147,13 +144,11 @@ public class GameControllerTests {
 		assertTrue(gameController.isValidFortify(p));
 	}
 
-	// =====================validateFortifyMove()=====================
 	/**
 	 * Testing validateFortifyMove() function return value if
 	 * (player.ownedTerritories[i].NumberOfArmies is greater than 1) should be Equal
 	 * to true
 	 */
-
 	@Test
 	@DisplayName("For player.ownedTerritories[i].NumberOfArmies > 1 => TRUE")
 	void validateFortifyMove2() {
@@ -180,7 +175,6 @@ public class GameControllerTests {
 		assertFalse(gameController.validateFortifyMove(p, 0));
 	}
 
-	// =====================validateFortifyNumber()=====================
 	/**
 	 * Testing validateFortifyNumber() function return value if
 	 * (player.ownedTerritories[i].NumberOfArmies - 1 is greater than fortifyNum)
@@ -211,7 +205,6 @@ public class GameControllerTests {
 		assertFalse(gameController.validateFortifyNumber(p, 0, 3));
 	}
 
-	// =====================hasEnoughArmies()=====================
 	/**
 	 * Testing hasEnoughArmies() function return value
 	 */
@@ -251,7 +244,6 @@ public class GameControllerTests {
 		assertFalse(gameController.hasEnoughArmies(attacker, opponent, attacker_armies, opponent_armies));
 	}
 
-	// =====================getNumberOfArmiesTest()=====================
 	/**
 	 * Testing getNumberOfArmies() function return value Testing for Turn = 1-6
 	 * (TRUE cases)
@@ -280,7 +272,6 @@ public class GameControllerTests {
 		assertNotEquals(35, gameController.getNumberOfArmies(6));
 	}
 
-	// =====================isValidFortify()=====================
 	/**
 	 * Testing isValidFortify() function return value Should return TRUE for
 	 * territories More than 1
@@ -313,7 +304,6 @@ public class GameControllerTests {
 		assertFalse(gameController.isValidFortify(player));
 	}
 
-	// =====================validateFortifyMove()=====================
 	/**
 	 * Testing validateFortifyMove() function return value Should return TRUE for
 	 * getNumberOfArmies is greater than 1
@@ -346,7 +336,6 @@ public class GameControllerTests {
 		assertFalse(gameController.validateFortifyMove(player, 0));
 	}
 
-	// =====================validateFortifyNumber()=====================
 	/**
 	 * Testing validateFortifyNumber() function return value Should return TRUE for
 	 * currentNumArmies is greater than fortifyNum
@@ -375,7 +364,6 @@ public class GameControllerTests {
 		assertFalse(gameController.validateFortifyNumber(player, 0, 8));
 	}
 
-	// =====================getDomination()=====================
 	/**
 	 * Testing getDomination(continent,player) function return value Should return
 	 * 25.0 for following condition
@@ -433,8 +421,6 @@ public class GameControllerTests {
 		assertEquals(0, Double.compare(75.0, gameController.getDomination(player2, t)));
 	}
 
-	// =====================Cards Scenarios=====================
-	// =====================loadCards()=====================
 	/**
 	 * Testing loadCards() function return value Should return 6,9,9,9 for 6,7,8,9
 	 */
@@ -448,8 +434,6 @@ public class GameControllerTests {
 		assertEquals(9, gameController.loadCards(9).size());
 
 	}
-
-	// =====================getStrongTerritory()=====================
 
 	/**
 	 * Testing getStrongTerritory() function return value
@@ -492,8 +476,6 @@ public class GameControllerTests {
 
 	}
 
-	// =====================getWeakTerritory()=====================
-
 	/**
 	 * Testing getWeakTerritory() function return value
 	 */
@@ -516,8 +498,6 @@ public class GameControllerTests {
 
 	}
 
-	// =====================calculateReinforcementArmiesForCheater()=====================
-
 	/**
 	 * Testing calculateReinforcementArmiesForCheater() function return value
 	 */
@@ -537,7 +517,6 @@ public class GameControllerTests {
 
 	}
 
-	// =====================AttackStatus()=====================
 	/**
 	 * Testing AttackStatus() function return value
 	 */
@@ -562,8 +541,6 @@ public class GameControllerTests {
 		}
 	}
 
-	// =====================EndGame=====================
-	// =====================isWinner()=====================
 	/**
 	 * Testing isWinner() function return value
 	 */
@@ -629,9 +606,7 @@ public class GameControllerTests {
 		assertFalse(gameController.isWinner());
 
 	}
-	// =====================Helper Functions()=====================
-	// =====================mapToString()=====================
-
+	
 	/**
 	 * 
 	 * Function for reading a map file and convert that into String
@@ -661,16 +636,13 @@ public class GameControllerTests {
 		return mapInString;
 	}
 
-	// =====================mapToMapMessage()=====================
 	/**
 	 * 
 	 * Function for processing a map and returning the result as a MapMessage
 	 * 
-	 * @param String
-	 *            mapName for the Name of the map
+	 * @param mapName for the Name of the map
 	 * @return MapMessage mapMessage which is the processed result
 	 */
-
 	private static MapMessage mapToMapMessage(String mapName) {
 
 		MapController mpc = new MapController();
@@ -682,7 +654,6 @@ public class GameControllerTests {
 
 	}
 
-	// =====================SetPlayer()=====================
 	/**
 	 * 
 	 * Function for Setting Player Elements

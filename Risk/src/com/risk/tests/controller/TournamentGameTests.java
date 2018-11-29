@@ -107,7 +107,6 @@ public class TournamentGameTests {
 				TournamentGame tournament = new TournamentGame(game, gameController, numTurns);
 				tournament.onGame();
 				winners[i][j] = tournament.getWinner();	
-				System.out.println(winners[i][j]);
 			}
 		}
 		return winners;

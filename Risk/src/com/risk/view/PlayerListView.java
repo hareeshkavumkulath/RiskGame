@@ -15,9 +15,8 @@ import javax.swing.border.LineBorder;
  */
 
 public class PlayerListView extends JList<String> {
-	/**
-	 * created a random serial version ID by Renpeng.
-	 */
+	
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 5574954950632961945L;
 	@SuppressWarnings("javadoc")
 	int numberOfPlayers;

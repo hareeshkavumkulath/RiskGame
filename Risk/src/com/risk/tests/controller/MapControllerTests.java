@@ -37,8 +37,6 @@ public class MapControllerTests {
 	@SuppressWarnings("javadoc")
     private  static String noContinent;
 	@SuppressWarnings("javadoc")
-    private  static String notConnected;
-	@SuppressWarnings("javadoc")
     private  MapController mapController;
 	@SuppressWarnings("javadoc")
 	//MAPS
@@ -63,7 +61,7 @@ public class MapControllerTests {
         mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/controller/maps/";
         noTag = mapFolder + "no_tag.map";
         noTerritories = mapFolder + "no_territories.map";
-        notConnected = mapFolder + "not_connected.map";
+        //notConnected = mapFolder + "not_connected.map";
         noContinent = mapFolder + "no_continent.map";
         
         aussiWorld = mapFolder + "aussiWorld.map";
@@ -248,7 +246,7 @@ public class MapControllerTests {
      * Function for processing a map and returning 
      * the result as a MapMessage
      * 
-     * @param String mapName for the Name of the map 
+     * @param mapName String for the Name of the map 
      * @return MapMessage mapMessage which is the processed result 
      */
     // 	=====================mapToMapMessage()=====================

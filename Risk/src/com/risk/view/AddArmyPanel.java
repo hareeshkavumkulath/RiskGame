@@ -26,9 +26,7 @@ import com.risk.model.Territory;
  */
 public class AddArmyPanel extends JPanel implements Observer {
 	
-	/**
-	 * set serialVersionUID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("javadoc")
 	public JButton btnTurnInCards;
