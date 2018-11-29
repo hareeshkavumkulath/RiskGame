@@ -519,4 +519,44 @@ public class GameControllerTests{
     		
     }
     
+// =====================getStrongTerritory()=====================
+    
+    /**
+     * Testing getStrongTerritory() function return value
+     */
+    @Test
+    @DisplayName("getStrongTerritory()")
+    void getStrongTerritory() {
+        
+        Player player = new Player("testPlayer", false, 8,"ADD");
+        Territory t1= new Territory("testTerritory", "testContinent", 6);
+        Territory t2= new Territory("testTerritory2", "testContinent", 4);
+        t1.setRuler(player);
+        t2.setRuler(player);
+        player.getOwnedTerritories().add(t1);
+        player.getOwnedTerritories().add(t2);
+        
+        Player player2 = new Player("testPlayer2", false, 8,"ADD");
+        Territory t3= new Territory("testTerritory3", "testContinent", 2);
+        Territory t4= new Territory("testTerritory4", "testContinent", 3);
+        t3.setRuler(player2);
+        t4.setRuler(player2);
+        player2.getOwnedTerritories().add(t3);
+        player2.getOwnedTerritories().add(t4);
+        
+        ArrayList<Territory> t = new ArrayList<Territory>();
+        t.add(t1); t.add(t2);
+        
+        t3.setAdjacentTerritories(t);
+        t4.setAdjacentTerritories(t);
+        
+        ArrayList<Territory> tt = new ArrayList<Territory>();
+        tt.add(t3); tt.add(t4);
+        
+        t1.setAdjacentTerritories(tt);
+        t2.setAdjacentTerritories(tt);
+        
+        assertEquals(t1,gameController.getStrongTerritory(player));
+
+    }
 }
