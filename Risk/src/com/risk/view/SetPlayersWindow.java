@@ -35,9 +35,7 @@ import com.risk.model.RandomPlayer;
  */
 public class SetPlayersWindow extends JFrame {
 	
-	/**
-	 * set serialVersionUID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = -8679598478144639906L;
 
 	/**

@@ -31,9 +31,7 @@ import com.risk.model.GameInstructions;
  */
 public class SelectGameWindow extends JFrame{
 	
-	/**
-	 * Default Serialization ID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 
 	/**

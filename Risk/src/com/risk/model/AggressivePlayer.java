@@ -20,9 +20,7 @@ public class AggressivePlayer implements Strategy, Serializable {
 	 */
 	static Logger logger = Logger.getLogger(StartWindow.class.getName());
 
-	/**
-	 * set a Serializable
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	
 	/**

@@ -40,9 +40,7 @@ import com.risk.model.Territory;
  */
 public class UploadWindow extends JFrame{
 
-	/**
-	 * set serialVersionUID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("javadoc") 
     private JFrame frame;

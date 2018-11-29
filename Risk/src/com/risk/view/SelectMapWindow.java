@@ -27,9 +27,7 @@ import com.risk.model.MapMessage;
  */
 public class SelectMapWindow extends JFrame{
 	
-	/**
-	 * Set serialVersionUID 
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 
 	/**
