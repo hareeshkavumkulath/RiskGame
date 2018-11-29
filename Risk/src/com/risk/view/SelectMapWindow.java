@@ -45,7 +45,7 @@ public class SelectMapWindow extends JFrame{
 	 * Create the application.
 	 */
 	public SelectMapWindow() {
-		initialize();
+		
 	}
 
 	/**
