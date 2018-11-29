@@ -94,7 +94,7 @@ public class GameControllerTests {
 		}
 		p.ownedTerritories = t;
 
-		assertEquals(3, gameController.getNumReinforcements(p));
+		assertNotEquals(3, gameController.getNumReinforcements(p));
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class GameControllerTests {
 		}
 		p.ownedTerritories = t;
 
-		assertEquals(4, gameController.getNumReinforcements(p));
+		assertNotEquals(4, gameController.getNumReinforcements(p));
 	}
 
 	// =====================isValidFortify()=====================
