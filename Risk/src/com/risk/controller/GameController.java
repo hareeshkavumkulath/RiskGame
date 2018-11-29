@@ -1051,4 +1051,45 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * Function to update whether the player has their own continents
+	 *
+	 */
+	public void updateOwnedContinents() {
+		ArrayList<Player> playerList = game.getPlayers();
+		ArrayList<Continent> continents = game.getMap().getContinents();
+		for(int i=0;i<playerList.size();i++) {
+			playerList.get(i).getOwnedContinents().clear();
+		}
+		for(int i=0;i<continents.size();i++) {
+			Player player = getRulerOfContinent(continents.get(i));
+			if(player != null) {
+				int index = playerList.indexOf(player);
+				playerList.get(index).getOwnedContinents().add(continents.get(i));
+			}
+		}
+	}
+	
+	/**
+	 * This status methods get the ruler of continent for player
+	 * 
+	 * @param continent pass the continent parameter to get the ruler 
+	 * @return Player type if the getRulerOfContinent status is successful
+	 */
+	private static Player getRulerOfContinent(Continent continent) {
+		ArrayList<Territory> territories = continent.getTerritories();
+		Player player = territories.get(0).getRuler();
+		boolean status =  true;
+		for(int i=1;i<territories.size();i++) {
+			Player tempPlayer = territories.get(i).getRuler();
+			if(player != tempPlayer) {
+				status = false;
+			}
+		}
+		if(status)
+			return player;
+		else
+			return null;
+	}
+	
 }

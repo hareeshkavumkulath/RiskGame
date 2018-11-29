@@ -268,6 +268,7 @@ public class Player implements Serializable{
 	 */
 	public void reinforce(Territory territory, GameInstructions gameInstructions, GameController controller) {
 		logger.log(Level.INFO, "Inside reinforce function");
+		controller.updateOwnedContinents();
 		this.strategy.reinforce(this, territory, gameInstructions, controller);
 	}
 
