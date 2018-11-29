@@ -11,6 +11,7 @@ public class AttackStatus {
 	public boolean hasWon;
 	@SuppressWarnings("javadoc")
 	public Player winner;
+
 	/**
 	 * Getter method for the getStatusMessage of the AttackStatus class
 	 * 
@@ -19,6 +20,7 @@ public class AttackStatus {
 	public StringBuffer getStatusMessage() {
 		return statusMessage;
 	}
+
 	/**
 	 * Setter for the status message of the AttackStatus class
 	 * 
@@ -27,6 +29,7 @@ public class AttackStatus {
 	public void setStatusMessage(StringBuffer statusMessage) {
 		this.statusMessage = statusMessage;
 	}
+
 	/**
 	 * return the attack status won or not
 	 * 
@@ -35,6 +38,7 @@ public class AttackStatus {
 	public boolean isHasWon() {
 		return hasWon;
 	}
+
 	/**
 	 * Setter for the attack status
 	 * 
@@ -43,6 +47,7 @@ public class AttackStatus {
 	public void setHasWon(boolean hasWon) {
 		this.hasWon = hasWon;
 	}
+
 	/**
 	 * Getter for the winner of the class AttackStatus
 	 * 
@@ -51,6 +56,7 @@ public class AttackStatus {
 	public Player getWinner() {
 		return winner;
 	}
+
 	/**
 	 * Setter for the winner of the class AttackStatus
 	 * 

@@ -95,7 +95,8 @@ public class CheaterPlayer implements Strategy, Serializable  {
 				int numArmy = territory.getNumberOfArmies();
 				territory.setNumberOfArmies(numArmy*2);
 				logger.log(Level.INFO, currentPlayer.getName() + " has fortified " + territory.getName() + " with " + numArmy + " armies");
-				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territory.getName() + " with " + numArmy + " armies\n");
+				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territory.getName()
+						+ " with " + numArmy + " armies\n");
 			}
 		}
 	}

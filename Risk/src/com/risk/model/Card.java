@@ -78,5 +78,5 @@ public class Card implements Serializable{
 			this.numArmies = 10;
 		}
 	}
-	
+
 }

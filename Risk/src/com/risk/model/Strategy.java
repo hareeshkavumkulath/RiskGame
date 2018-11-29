@@ -10,7 +10,7 @@ import com.risk.controller.GameController;
  *
  */
 public interface Strategy {
-	
+
 	/**
 	 * Strategy pattern function for reinforce
 	 * 
@@ -19,8 +19,9 @@ public interface Strategy {
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
 	 */
-	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions, GameController controller);
-	
+	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions,
+			GameController controller);
+
 	/**
 	 * Strategy pattern function for attack
 	 * 
@@ -31,9 +32,9 @@ public interface Strategy {
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
 	 */
-	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory, boolean allOutMode, 
-			GameInstructions gameInstructions, GameController controller);
-	
+	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
+			boolean allOutMode, GameInstructions gameInstructions, GameController controller);
+
 	/**
 	 * Strategy pattern function for fortify
 	 * 
@@ -42,9 +43,9 @@ public interface Strategy {
 	 * @param toTerritory Territory To
 	 * @param fortifyNum integer Fortify Number
 	 * @param gameInstructions GameInstructions message
-	 * @param controller GameController 
+	 * @param controller GameController
 	 */
-	public void fortify(Player currentPlayer, Territory fromTerritory, Territory toTerritory, int fortifyNum, GameInstructions gameInstructions, 
-			GameController controller);
+	public void fortify(Player currentPlayer, Territory fromTerritory, Territory toTerritory, int fortifyNum,
+			GameInstructions gameInstructions, GameController controller);
 
 }
