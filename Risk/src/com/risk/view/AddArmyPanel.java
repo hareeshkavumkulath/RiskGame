@@ -25,7 +25,7 @@ import com.risk.model.Territory;
  *
  */
 public class AddArmyPanel extends JPanel implements Observer {
-	
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("javadoc")
@@ -50,31 +50,31 @@ public class AddArmyPanel extends JPanel implements Observer {
 	 */
 	public AddArmyPanel(Game game) {
 		Player currentPlayer = game.getCurrentPlayer();
-		
+
 		setBounds(662, 16, 700, 302);
 		setLayout(null);
 		setVisible(true);
-		
+
 		plyrNameAddArmyLbl = new JLabel(currentPlayer.getName());
 		plyrNameAddArmyLbl.setBounds(15, 16, 69, 20);
 		add(plyrNameAddArmyLbl);
-		
+
 		JScrollPane addArmyTerrScrollPane = new JScrollPane((Component) null);
 		addArmyTerrScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		addArmyTerrScrollPane.setBounds(15, 52, 240, 234);
 		add(addArmyTerrScrollPane);
-		
+
 		addArmyTerrlist = new JList<String>();
 		addArmyTerrScrollPane.setViewportView(addArmyTerrlist);
-		
+
 		JScrollPane addArmyCardScrollPane = new JScrollPane((Component) null);
 		addArmyCardScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		addArmyCardScrollPane.setBounds(270, 52, 184, 234);
 		add(addArmyCardScrollPane);
-		
+
 		addArmyCardslist = new JList<String>();
 		addArmyCardScrollPane.setViewportView(addArmyCardslist);
-		
+
 		btnAddArmy = new JButton("Add");
 		btnAddArmy.setBounds(508, 212, 151, 29);
 		add(btnAddArmy);
@@ -83,33 +83,33 @@ public class AddArmyPanel extends JPanel implements Observer {
 		btnReinforceAddArmy.setBounds(508, 212, 151, 29);
 		add(btnReinforceAddArmy);
 		btnReinforceAddArmy.setVisible(false);
-		
+
 		btnTurnInCards = new JButton("Turn In Cards");
 		btnTurnInCards.setBounds(508, 257, 151, 29);
 		add(btnTurnInCards);
-		
+
 		btnReinforceArmy = new JButton("Reinforce");
 		btnReinforceArmy.setBounds(508, 167, 151, 29);
 		add(btnReinforceArmy);
-		
-		//Populating fields
+
+		// Populating fields
 		ArrayList<Territory> territories;
 		territories = currentPlayer.getOwnedTerritories();
 		String[] territoriesNames = new String[territories.size()];
-		for(int i = 0;i<territories.size();i++) {
+		for (int i = 0; i < territories.size(); i++) {
 			territoriesNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
 		}
 		addArmyTerrlist.setListData(territoriesNames);
-		
+
 		ArrayList<Card> cards = currentPlayer.getCards();
 		String[] cardNames = new String[cards.size()];
-		for(int i=0;i<cards.size();i++) {
+		for (int i = 0; i < cards.size(); i++) {
 			cardNames[i] = cards.get(i).getArmyType();
 		}
 		addArmyCardslist.setListData(cardNames);
-		
+
 	}
-	
+
 	/**
 	 * observer design pattern
 	 * 
@@ -120,19 +120,19 @@ public class AddArmyPanel extends JPanel implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		Game game = (Game) arg1;
 		Player currentPlayer = game.getCurrentPlayer();
-		//Populating fields
+		// Populating fields
 		plyrNameAddArmyLbl.setText(currentPlayer.getName());
 		ArrayList<Territory> territories;
 		territories = currentPlayer.getOwnedTerritories();
 		String[] territoriesNames = new String[territories.size()];
-		for(int i = 0;i<territories.size();i++) {
+		for (int i = 0; i < territories.size(); i++) {
 			territoriesNames[i] = territories.get(i).getName() + "(" + territories.get(i).getNumberOfArmies() + ")";
 		}
 		addArmyTerrlist.setListData(territoriesNames);
-		
+
 		ArrayList<Card> cards = currentPlayer.getCards();
 		String[] cardNames = new String[cards.size()];
-		for(int i=0;i<cards.size();i++) {
+		for (int i = 0; i < cards.size(); i++) {
 			cardNames[i] = cards.get(i).getArmyType();
 		}
 		addArmyCardslist.setListData(cardNames);

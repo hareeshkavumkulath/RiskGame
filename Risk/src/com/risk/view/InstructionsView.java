@@ -5,21 +5,22 @@ import java.util.Observer;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.Font;
+
 /**
  * The InstructionsView class shows instructions for player to play this game.
- * This class sets up the user interface for instructions.  
+ * This class sets up the user interface for instructions.
  * 
  * @author Hareesh Kavumkulath
  * @version 1.1
  */
 
-public class InstructionsView extends JTextPane implements Observer{
-	
+public class InstructionsView extends JTextPane implements Observer {
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 7597048260648030086L;
 
 	/**
-	 * This is a constructor. It sets instructionsMsg messages in a certain format. 
+	 * This is a constructor. It sets instructionsMsg messages in a certain format.
 	 * 
 	 * @param instructionsMsg This is the message information and set it into a certain user interface
 	 */
@@ -42,9 +43,9 @@ public class InstructionsView extends JTextPane implements Observer{
 	 */
 	public void update(Observable o, Object arg) {
 		String message = getText();
-		if(arg.toString().equals("")) {
+		if (arg.toString().equals("")) {
 			setText(arg.toString());
-		}else {
+		} else {
 			message = message + arg.toString();
 			setText(message);
 		}

@@ -1,0 +1,203 @@
+Tue Nov 27 15:29:53 EST 2018:com.risk.view.StartWindow$3:actionPerformed::Player clicked Start Game Button, proceeding to Game
+Tue Nov 27 15:30:06 EST 2018:com.risk.view.SelectModeWindow$1:actionPerformed::Player clicked Single Game Mode Button, proceeding to Single Mode - Select Map Window
+Tue Nov 27 15:30:08 EST 2018:com.risk.view.SelectMapWindow$1:actionPerformed::Hareesh's Asia.txt is selected, proceeding to Setup Player Window
+Tue Nov 27 15:30:18 EST 2018:com.risk.view.SetPlayersWindow$3:actionPerformed::OK button is pressed. 6 are created.
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:loadCards::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:loadCards::48 cards are loaded
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(19) has placed an army in Kuwait
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns20
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(19) has placed an army in Georgia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns16
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(19) has placed an army in South Korea
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns26
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(19) has placed an army in Afghanistan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns26
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(19) has placed an army in Pakistan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(19) has placed an army in Cyprus
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns21
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(18) has placed an army in Turkmenistan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns5
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(18) has placed an army in Yemen
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns23
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(18) has placed an army in India
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(18) has placed an army in Buhrain
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns25
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(18) has placed an army in Sri Lanka
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns25
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(18) has placed an army in Maldives
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns27
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(17) has placed an army in Laos
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns17
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(17) has placed an army in Azerbaijan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns11
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(17) has placed an army in Japan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns18
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(17) has placed an army in Kyrgyzstan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns8
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(17) has placed an army in Lebanon
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(17) has placed an army in United Arab Emigrants
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns18
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(16) has placed an army in Bhuntan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(16) has placed an army in Omen
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns10
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(16) has placed an army in Mongolia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns12
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(16) has placed an army in Iran
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns5
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(16) has placed an army in Jordan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns8
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(16) has placed an army in China
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns3
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(15) has placed an army in Syria
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns20
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(15) has placed an army in East Malaysia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns21
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(15) has placed an army in Philippines
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns16
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(15) has placed an army in Cambodia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns19
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(15) has placed an army in Brunei
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns8
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(15) has placed an army in Armenia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns10
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(14) has placed an army in Nepal
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(14) has placed an army in Qatar
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns14
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(14) has placed an army in Singapore
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(14) has placed an army in Saudi Arabia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns8
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(14) has placed an army in Bangladesh
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns8
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(14) has placed an army in Myanmar
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns5
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(13) has placed an army in Kazakhstan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(13) has placed an army in Thailand
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(13) has placed an army in Turkey
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns8
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(13) has placed an army in Indonesia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(13) has placed an army in West Malaysia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(13) has placed an army in Iraq
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(12) has placed an army in Russia
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(12) has placed an army in Israel
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns3
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(12) has placed an army in Vietnam
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(12) has placed an army in Uzbekistan
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(12) has placed an army in North Korea
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 15:30:18 EST 2018:com.risk.controller.GameController:assignTerritories::Player6(12) has placed an army in Tajikistan
+Tue Nov 27 15:30:18 EST 2018:com.risk.view.SetPlayersWindow$3:actionPerformed::Proceeding to Game Window
+Tue Nov 27 15:30:18 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 15:30:18 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 15:30:18 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human

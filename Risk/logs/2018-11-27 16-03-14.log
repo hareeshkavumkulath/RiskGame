@@ -1,0 +1,732 @@
+Tue Nov 27 16:03:21 EST 2018:com.risk.view.StartWindow$3:actionPerformed::Player clicked Start Game Button, proceeding to Game
+Tue Nov 27 16:03:22 EST 2018:com.risk.view.SelectModeWindow$1:actionPerformed::Player clicked Single Game Mode Button, proceeding to Single Mode - Select Map Window
+Tue Nov 27 16:03:25 EST 2018:com.risk.view.SelectMapWindow$1:actionPerformed::New World.txt is selected, proceeding to Setup Player Window
+Tue Nov 27 16:03:31 EST 2018:com.risk.view.SetPlayersWindow$3:actionPerformed::OK button is pressed. 5 are created.
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:loadCards::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:loadCards::48 cards are loaded
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns34
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(24) has placed an army in Irkutsk
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(24) has placed an army in Eastern United States
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns12
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(24) has placed an army in North Africa
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns13
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(24) has placed an army in South Africa
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns23
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(24) has placed an army in Middle East
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns35
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(23) has placed an army in Western Australia
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns4
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(23) has placed an army in Ontario
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns20
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(23) has placed an army in Southern Europe
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns3
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(23) has placed an army in Greenland
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns4
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(23) has placed an army in Western United States
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns21
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(22) has placed an army in India
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns11
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(22) has placed an army in East Africa
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns29
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(22) has placed an army in Eastern Australia
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns16
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(22) has placed an army in Northern Europe
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns12
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(22) has placed an army in Iceland
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 16:03:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(21) has placed an army in Northwest Territory
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns6
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(21) has placed an army in Argentina
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns4
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(21) has placed an army in Venezuala
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns18
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(21) has placed an army in Mongolia
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns24
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(21) has placed an army in Pattuvam
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns19
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(20) has placed an army in Kamchatka
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns24
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(20) has placed an army in Kannur
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns14
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(20) has placed an army in Afghanistan
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(20) has placed an army in Madagascar
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns4
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(20) has placed an army in Peru
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(19) has placed an army in Great Britain
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(19) has placed an army in Quebec
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns11
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(19) has placed an army in China
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns11
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(19) has placed an army in Siam
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(19) has placed an army in Scandinavia
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(18) has placed an army in Alberta
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(18) has placed an army in Alaska
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(18) has placed an army in Siberia
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(18) has placed an army in Congo
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(18) has placed an army in Egypt
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns7
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(17) has placed an army in Indonesia
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(17) has placed an army in Brazil
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns8
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(17) has placed an army in Payyannur
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(17) has placed an army in Ukraine
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(17) has placed an army in Central America
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns4
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(16) has placed an army in New Guinea
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player2(16) has placed an army in Yatusk
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player3(16) has placed an army in Ural
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns2
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player4(16) has placed an army in Taliparamba
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns1
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player5(16) has placed an army in Japan
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:getRandomNumber::inside getRandomNumber function returns0
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::
+Tue Nov 27 16:03:32 EST 2018:com.risk.controller.GameController:assignTerritories::Player1(15) has placed an army in Western Europe
+Tue Nov 27 16:03:32 EST 2018:com.risk.view.SetPlayersWindow$3:actionPerformed::Proceeding to Game Window
+Tue Nov 27 16:03:32 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:32 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:32 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:03:35 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:35 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(15) has placed 1 armies in East Africa
+Tue Nov 27 16:03:35 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:35 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:35 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:35 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:03:37 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:37 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(15) has placed 1 armies in Afghanistan
+Tue Nov 27 16:03:37 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:37 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:37 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:37 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:03:39 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:39 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(15) has placed 1 armies in Taliparamba
+Tue Nov 27 16:03:39 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:39 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:39 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:39 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:03:41 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:41 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(15) has placed 1 armies in Japan
+Tue Nov 27 16:03:41 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:41 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:41 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:41 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:03:43 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:43 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(14) has placed 1 armies in Kamchatka
+Tue Nov 27 16:03:43 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:43 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:43 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:43 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:03:44 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:44 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(14) has placed 1 armies in Yatusk
+Tue Nov 27 16:03:44 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:44 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:44 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:44 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:03:46 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:46 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(14) has placed 1 armies in Venezuala
+Tue Nov 27 16:03:46 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:46 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:46 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:46 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:03:49 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:49 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(14) has placed 1 armies in Mongolia
+Tue Nov 27 16:03:49 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:49 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:49 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:49 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:03:51 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:51 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(14) has placed 1 armies in Japan
+Tue Nov 27 16:03:51 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:51 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:51 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:51 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:03:53 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:53 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(13) has placed 1 armies in New Guinea
+Tue Nov 27 16:03:53 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:53 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:53 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:53 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:03:55 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:55 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(13) has placed 1 armies in Alaska
+Tue Nov 27 16:03:55 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:55 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:55 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:55 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:03:57 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:57 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(13) has placed 1 armies in Ural
+Tue Nov 27 16:03:57 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:57 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:57 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:57 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:03:59 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:03:59 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(13) has placed 1 armies in Madagascar
+Tue Nov 27 16:03:59 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:03:59 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:03:59 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:03:59 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:04:01 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:01 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(13) has placed 1 armies in Peru
+Tue Nov 27 16:04:01 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:01 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:01 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:01 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:04:02 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:02 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(12) has placed 1 armies in Alberta
+Tue Nov 27 16:04:02 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:02 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:02 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:02 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:04:05 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:05 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(12) has placed 1 armies in Brazil
+Tue Nov 27 16:04:05 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:05 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:05 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:05 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:04:07 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:07 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(12) has placed 1 armies in Venezuala
+Tue Nov 27 16:04:07 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:07 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:07 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:07 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:04:09 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:09 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(12) has placed 1 armies in Taliparamba
+Tue Nov 27 16:04:09 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:09 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:09 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:09 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:04:11 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:11 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(12) has placed 1 armies in Japan
+Tue Nov 27 16:04:11 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:11 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:11 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:11 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:04:13 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:13 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(11) has placed 1 armies in Alberta
+Tue Nov 27 16:04:13 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:13 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:13 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:13 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:04:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(11) has placed 1 armies in Argentina
+Tue Nov 27 16:04:18 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:18 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:18 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:18 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:04:20 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:20 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(11) has placed 1 armies in Afghanistan
+Tue Nov 27 16:04:20 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:20 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:20 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:20 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:04:22 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:22 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(11) has placed 1 armies in Madagascar
+Tue Nov 27 16:04:22 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:22 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:22 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:22 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:04:24 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:24 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(11) has placed 1 armies in Scandinavia
+Tue Nov 27 16:04:24 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:24 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:24 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:24 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:04:26 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:26 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(10) has placed 1 armies in Kamchatka
+Tue Nov 27 16:04:26 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:26 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:26 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:26 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:04:28 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:28 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(10) has placed 1 armies in East Africa
+Tue Nov 27 16:04:28 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:28 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:28 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:28 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:04:29 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:29 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(10) has placed 1 armies in Venezuala
+Tue Nov 27 16:04:29 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:29 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:29 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:29 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:04:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:31 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(10) has placed 1 armies in Taliparamba
+Tue Nov 27 16:04:31 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:31 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:31 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:31 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:04:33 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:33 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(10) has placed 1 armies in Japan
+Tue Nov 27 16:04:33 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:33 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:33 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:33 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:04:35 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:35 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(9) has placed 1 armies in Great Britain
+Tue Nov 27 16:04:35 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:35 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:35 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:35 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:04:37 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:37 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(9) has placed 1 armies in Alaska
+Tue Nov 27 16:04:37 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:37 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:37 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:37 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:04:39 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:39 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(9) has placed 1 armies in Siberia
+Tue Nov 27 16:04:39 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:39 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:39 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:39 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:04:41 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:41 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(9) has placed 1 armies in Siam
+Tue Nov 27 16:04:41 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:41 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:41 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:41 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:04:42 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:42 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(9) has placed 1 armies in Scandinavia
+Tue Nov 27 16:04:42 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:42 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:42 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:42 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:04:44 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:44 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(8) has placed 1 armies in Great Britain
+Tue Nov 27 16:04:44 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:44 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:44 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:44 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:04:46 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:46 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(8) has placed 1 armies in East Africa
+Tue Nov 27 16:04:46 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:46 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:46 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:46 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:04:48 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:48 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(8) has placed 1 armies in Ural
+Tue Nov 27 16:04:48 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:48 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:48 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:48 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:04:51 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:51 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(8) has placed 1 armies in Taliparamba
+Tue Nov 27 16:04:51 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:51 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:51 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:51 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:04:53 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:53 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(8) has placed 1 armies in Central America
+Tue Nov 27 16:04:53 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:53 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:53 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:53 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:04:55 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:55 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(7) has placed 1 armies in New Guinea
+Tue Nov 27 16:04:55 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:55 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:55 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:55 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:04:57 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:57 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(7) has placed 1 armies in Alaska
+Tue Nov 27 16:04:57 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:57 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:57 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:57 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:04:59 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:04:59 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(7) has placed 1 armies in Ural
+Tue Nov 27 16:04:59 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:04:59 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:04:59 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:04:59 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:05:01 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:01 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(7) has placed 1 armies in Taliparamba
+Tue Nov 27 16:05:01 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:01 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:01 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:01 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:05:03 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:03 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(7) has placed 1 armies in Peru
+Tue Nov 27 16:05:03 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:03 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:03 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:03 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:05:05 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:05 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(6) has placed 1 armies in Alberta
+Tue Nov 27 16:05:05 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:05 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:05 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:05 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:05:06 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:06 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(6) has placed 1 armies in Yatusk
+Tue Nov 27 16:05:06 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:06 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:06 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:06 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:05:08 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:08 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(6) has placed 1 armies in Ural
+Tue Nov 27 16:05:08 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:08 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:08 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:08 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:05:10 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:10 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(6) has placed 1 armies in Congo
+Tue Nov 27 16:05:10 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:10 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:10 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:10 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:05:12 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:12 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(6) has placed 1 armies in Scandinavia
+Tue Nov 27 16:05:12 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:12 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:12 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:12 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:05:14 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:14 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(5) has placed 1 armies in Alberta
+Tue Nov 27 16:05:14 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:14 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:14 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:14 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:05:16 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:16 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(5) has placed 1 armies in Kannur
+Tue Nov 27 16:05:16 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:16 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:16 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:16 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:05:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(5) has placed 1 armies in Ural
+Tue Nov 27 16:05:18 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:18 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:18 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:18 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:05:20 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:20 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(5) has placed 1 armies in Madagascar
+Tue Nov 27 16:05:20 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:20 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:20 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:20 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:05:22 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:22 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(5) has placed 1 armies in Japan
+Tue Nov 27 16:05:22 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:22 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:22 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:22 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:05:24 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:24 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(4) has placed 1 armies in Indonesia
+Tue Nov 27 16:05:24 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:24 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:24 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:24 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:05:26 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:26 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(4) has placed 1 armies in Yatusk
+Tue Nov 27 16:05:26 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:26 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:26 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:26 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:05:28 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:28 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(4) has placed 1 armies in Siberia
+Tue Nov 27 16:05:28 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:28 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:28 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:28 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:05:30 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:30 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(4) has placed 1 armies in Siam
+Tue Nov 27 16:05:30 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:30 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:30 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:30 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:05:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:32 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(4) has placed 1 armies in Scandinavia
+Tue Nov 27 16:05:32 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:32 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:32 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:32 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:05:34 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:34 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(3) has placed 1 armies in Alberta
+Tue Nov 27 16:05:34 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:34 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:34 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:34 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:05:35 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:35 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(3) has placed 1 armies in Yatusk
+Tue Nov 27 16:05:36 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:36 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:36 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:36 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:05:37 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:37 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(3) has placed 1 armies in Ural
+Tue Nov 27 16:05:37 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:37 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:37 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:37 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:05:39 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:39 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(3) has placed 1 armies in Madagascar
+Tue Nov 27 16:05:39 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:39 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:39 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:39 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:05:41 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:41 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(3) has placed 1 armies in Egypt
+Tue Nov 27 16:05:41 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:41 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:41 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:41 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:05:43 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:43 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(2) has placed 1 armies in Kamchatka
+Tue Nov 27 16:05:43 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:43 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:43 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:43 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:05:45 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:45 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(2) has placed 1 armies in Yatusk
+Tue Nov 27 16:05:45 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:45 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:45 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:45 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:05:47 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:47 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(2) has placed 1 armies in Ural
+Tue Nov 27 16:05:47 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:47 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:47 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:47 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:05:49 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:49 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(2) has placed 1 armies in Madagascar
+Tue Nov 27 16:05:49 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:49 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:49 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:49 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:05:51 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:51 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(2) has placed 1 armies in Pattuvam
+Tue Nov 27 16:05:51 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:51 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:51 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:51 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:05:53 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:53 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(1) has placed 1 armies in Great Britain
+Tue Nov 27 16:05:53 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:53 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:53 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:53 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:05:56 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:56 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(1) has placed 1 armies in Kannur
+Tue Nov 27 16:05:56 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:56 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:56 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:56 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:05:58 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:05:58 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(1) has placed 1 armies in China
+Tue Nov 27 16:05:58 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:05:58 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:05:58 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:05:58 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:06:00 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:00 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(1) has placed 1 armies in Congo
+Tue Nov 27 16:06:00 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:06:00 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:00 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:06:00 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:06:02 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:02 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(1) has placed 1 armies in Japan
+Tue Nov 27 16:06:02 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:06:02 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:02 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:06:02 EST 2018:com.risk.view.GameWindow:onGame::Player1 is Human
+Tue Nov 27 16:06:04 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:04 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(0) has placed 1 armies in Northwest Territory
+Tue Nov 27 16:06:04 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Adding Armies completed. Move to Reinforcement Phase
+Tue Nov 27 16:06:04 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:06:04 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:04 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:06:04 EST 2018:com.risk.view.GameWindow:onGame::Player2 is Human
+Tue Nov 27 16:06:06 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:06 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player2(0) has placed 1 armies in Brazil
+Tue Nov 27 16:06:06 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Adding Armies completed. Move to Reinforcement Phase
+Tue Nov 27 16:06:06 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:06:06 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:06 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:06:06 EST 2018:com.risk.view.GameWindow:onGame::Player3 is Human
+Tue Nov 27 16:06:09 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:09 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player3(0) has placed 1 armies in China
+Tue Nov 27 16:06:09 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Adding Armies completed. Move to Reinforcement Phase
+Tue Nov 27 16:06:09 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:06:09 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:09 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:06:09 EST 2018:com.risk.view.GameWindow:onGame::Player4 is Human
+Tue Nov 27 16:06:11 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:11 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player4(0) has placed 1 armies in Siam
+Tue Nov 27 16:06:11 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Adding Armies completed. Move to Reinforcement Phase
+Tue Nov 27 16:06:11 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:06:11 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:11 EST 2018:com.risk.view.GameWindow:onGame::Add Armies Phase
+Tue Nov 27 16:06:11 EST 2018:com.risk.view.GameWindow:onGame::Player5 is Human
+Tue Nov 27 16:06:13 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:13 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player5(0) has placed 1 armies in Scandinavia
+Tue Nov 27 16:06:13 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Adding Armies completed. Move to Reinforcement Phase
+Tue Nov 27 16:06:13 EST 2018:com.risk.view.GameWindow:nextPlayer::Inside Next player function
+Tue Nov 27 16:06:13 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:13 EST 2018:com.risk.view.GameWindow:onGame::Reinforcement Phase
+Tue Nov 27 16:06:16 EST 2018:com.risk.controller.GameController:getNumReinforcements::Inside addArmyRandom function
+Tue Nov 27 16:06:16 EST 2018:com.risk.controller.GameController:getNumArmiesFromContinents::
+Tue Nov 27 16:06:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:18 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(2) has placed 1 armies in Northwest Territory
+Tue Nov 27 16:06:19 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:19 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(1) has placed 1 armies in Great Britain
+Tue Nov 27 16:06:23 EST 2018:com.risk.controller.GameController:addArmyToTerritory::inside addArmyToTerritory function
+Tue Nov 27 16:06:23 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Player1(0) has placed 1 armies in Alberta
+Tue Nov 27 16:06:23 EST 2018:com.risk.controller.GameController:addArmyToTerritory::Adding Armies during Reinforcement completed. Move to Attack Phase
+Tue Nov 27 16:06:23 EST 2018:com.risk.view.GameWindow:onGame::Inside onGame function
+Tue Nov 27 16:06:23 EST 2018:com.risk.view.GameWindow:onGame::Attack Phase
+Tue Nov 27 16:07:21 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::
+Tue Nov 27 16:07:21 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::Attacker number of armies:3
+Tue Nov 27 16:07:21 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::
+Tue Nov 27 16:07:21 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::Attacker number of armies:3
+Tue Nov 27 16:07:21 EST 2018:com.risk.controller.GameController:getNumOpponentArmies::
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:getNumOpponentArmies::Opponent number of armies:1
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:hasEnoughArmies::
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::Player1 has 3 dices and the results are 
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::6
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::2
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::1
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::Player1 has 3 dices and the results are 
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::1
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::Comparing 6,1
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::Player2 lost an army.
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::Player1 has balance armies in Kamchatka is 4
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::Player2 has balance armies in Yatusk is 5
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:attack::Nobody wins
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:updateGame::
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:updateTerritoryRuler::
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:updateTerritoryRuler::
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:updatePlayerList::
+Tue Nov 27 16:07:24 EST 2018:com.risk.controller.GameController:isWinner::
+Tue Nov 27 16:08:07 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::
+Tue Nov 27 16:08:07 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::Attacker number of armies:3
+Tue Nov 27 16:08:07 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::
+Tue Nov 27 16:08:07 EST 2018:com.risk.controller.GameController:getNumAttackerArmies::Attacker number of armies:3
+Tue Nov 27 16:08:07 EST 2018:com.risk.controller.GameController:getNumOpponentArmies::
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:getNumOpponentArmies::Opponent number of armies:1
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:hasEnoughArmies::
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::Player1 has 3 dices and the results are 
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::3
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::1
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::1
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::Player1 has 3 dices and the results are 
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::2
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::Comparing 3,2
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::Player5 lost an army.
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::Player1 has balance armies in Great Britain is 5
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::Player5 has balance armies in Scandinavia is 5
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:attack::Nobody wins
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:updateGame::
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:updateTerritoryRuler::
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:updateTerritoryRuler::
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:updatePlayerList::
+Tue Nov 27 16:08:09 EST 2018:com.risk.controller.GameController:isWinner::
