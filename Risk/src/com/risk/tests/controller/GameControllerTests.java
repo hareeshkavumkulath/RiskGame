@@ -624,62 +624,96 @@ public class GameControllerTests {
 	}
 
 	// =====================AttackStatus()=====================
-    /**
-     * Testing AttackStatus() function return value
-     */
-    @Test
-    @DisplayName("AttackStatus()")
-    void AttackStatus() {
-        
-        Player player = new Player("testPlayer", false, 8,"REINFORCEMENT");
-        Territory t1= new Territory("testTerritory", "testContinent", 6);
-        t1.setRuler(player);
-        
-        Player player2 = new Player("testPlayer2", false, 12,"REINFORCEMENT");
-        Territory t2= new Territory("testTerritory2", "testContinent", 4);
-        t2.setRuler(player2);
-        
-        AttackStatus attackStatus = gameController.attack(t1,t2,3,2);
+	/**
+	 * Testing AttackStatus() function return value
+	 */
+	@Test
+	@DisplayName("AttackStatus()")
+	void AttackStatus() {
 
-        if(attackStatus.isHasWon()) {
-            assertEquals(attackStatus.winner.getName(),player.getName() );
-        }else {
-            assertFalse(attackStatus.isHasWon());
-        }
-    }
-    
-    // =====================EndGame=====================
-    // =====================isWinner()=====================
-    /**
-     * Testing isWinner() function return value
-     */
-    @Test
-    @DisplayName("isWinner()=>TRUE")
-    void isWinnerTestTrue() {
-            
-        String mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/controller/maps/";
-        String world = mapFolder + "world.map";
-        MapMessage worldResult = mapToMapMessage(world);
-        SetPlayersWindow setPlayersWindow = new SetPlayersWindow(worldResult.getMap());
-        
-        //Number of armies for 5 players
-        GameController gc = new GameController();
-        int numArmies = gc.getPlayersArmies(5);
-        
-        //Setting Players
-        //5 Players with different strategies
-        ArrayList<Player> playerList = new ArrayList<Player>();
-         playerList.add(setPlayer("Player1",false,numArmies,"ADD","Human"));
-        
-         //Setting Cards
-         ArrayList<Card> cards = gc.loadCards(worldResult.map.getTerritories().size());
-         
-        //Passing all the Game elements to the function
-         gameController = setPlayersWindow.setStartupPhase(worldResult.map,cards,playerList);
-         
-         assertTrue(gameController.isWinner());
-            
-    }
+		Player player = new Player("testPlayer", false, 8, "REINFORCEMENT");
+		Territory t1 = new Territory("testTerritory", "testContinent", 6);
+		t1.setRuler(player);
 
-    
+		Player player2 = new Player("testPlayer2", false, 12, "REINFORCEMENT");
+		Territory t2 = new Territory("testTerritory2", "testContinent", 4);
+		t2.setRuler(player2);
+
+		AttackStatus attackStatus = gameController.attack(t1, t2, 3, 2);
+
+		if (attackStatus.isHasWon()) {
+			assertEquals(attackStatus.winner.getName(), player.getName());
+		} else {
+			assertFalse(attackStatus.isHasWon());
+		}
+	}
+
+	// =====================EndGame=====================
+	// =====================isWinner()=====================
+	/**
+	 * Testing isWinner() function return value
+	 */
+	@Test
+	@DisplayName("isWinner()=>TRUE")
+	void isWinnerTestTrue() {
+
+		String mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/controller/maps/";
+		String world = mapFolder + "world.map";
+		MapMessage worldResult = mapToMapMessage(world);
+		SetPlayersWindow setPlayersWindow = new SetPlayersWindow(worldResult.getMap());
+
+		// Number of armies for 5 players
+		GameController gc = new GameController();
+		int numArmies = gc.getPlayersArmies(5);
+
+		// Setting Players
+		// 5 Players with different strategies
+		ArrayList<Player> playerList = new ArrayList<Player>();
+		playerList.add(setPlayer("Player1", false, numArmies, "ADD", "Human"));
+
+		// Setting Cards
+		ArrayList<Card> cards = gc.loadCards(worldResult.map.getTerritories().size());
+
+		// Passing all the Game elements to the function
+		gameController = setPlayersWindow.setStartupPhase(worldResult.map, cards, playerList);
+
+		assertTrue(gameController.isWinner());
+
+	}
+
+	/**
+	 * Testing isWinner() function return value
+	 */
+	@Test
+	@DisplayName("isWinner()=>FALSE")
+	void isWinnerTestFalse() {
+
+		String mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/controller/maps/";
+		String world = mapFolder + "world.map";
+		MapMessage worldResult = mapToMapMessage(world);
+		SetPlayersWindow setPlayersWindow = new SetPlayersWindow(worldResult.getMap());
+
+		// Number of armies for 5 players
+		GameController gc = new GameController();
+		int numArmies = gc.getPlayersArmies(5);
+
+		// Setting Players
+		// 5 Players with different strategies
+		ArrayList<Player> playerList = new ArrayList<Player>();
+		playerList.add(setPlayer("Player1", false, numArmies, "ADD", "Human"));
+		playerList.add(setPlayer("Player2", true, numArmies, "ADD", "AGGRESSIVE"));
+		playerList.add(setPlayer("Player3", true, numArmies, "ADD", "BENEVOLENT"));
+		playerList.add(setPlayer("Player4", true, numArmies, "ADD", "RANDOM"));
+		playerList.add(setPlayer("Player5", true, numArmies, "ADD", "CHEATER"));
+
+		// Setting Cards
+		ArrayList<Card> cards = gc.loadCards(worldResult.map.getTerritories().size());
+
+		// Passing all the Game elements to the function
+		gameController = setPlayersWindow.setStartupPhase(worldResult.map, cards, playerList);
+
+		assertFalse(gameController.isWinner());
+
+	}
+
 }
