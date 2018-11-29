@@ -35,7 +35,7 @@ public class RiskLogger {
 	/**
 	 * Setup up logger
 	 *
-	 * @throws IOException
+	 * @throws IOException Throws if the folder is not created in the project folder
 	 */
 	public void setLogger() throws IOException {
 		Date date = new Date() ;

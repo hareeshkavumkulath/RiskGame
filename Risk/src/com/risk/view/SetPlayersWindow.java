@@ -124,7 +124,7 @@ public class SetPlayersWindow extends JFrame {
 	/**
 	 * Constructor for the class with parameter
 	 * 
-	 * @param map 
+	 * @param map Map with continents and Territories
 	 */
 	public SetPlayersWindow(Map map) {
 		this.map = map;

@@ -285,8 +285,8 @@ public class GameController {
 	 * 
 	 * @param opponentTerr pass parameter of the opponent territory to get his number of armies
 	 * @param numAttackerArmies pass parameter of the number of attacker armies to get the defender number of armies
-	 * @param allOutMode 
-	 * @return int number of opponent Armies
+	 * @param allOutMode boolean mode of attack
+	 * @return integer number of opponent Armies
 	 */
 	public int getNumOpponentArmies(Territory opponentTerr, int numAttackerArmies, boolean allOutMode) {
 		logger.log(Level.INFO, "");
@@ -325,8 +325,6 @@ public class GameController {
 	 * 
 	 * @param attackerTerr pass attacker territory to update game status
 	 * @param opponentTerr pass opponent territory to update game status
-	 * @param game pass game to update its status
-	 * @return Game to get the new updated game status
 	 */
 	public void updateGame(Territory attackerTerr, Territory opponentTerr) {
 		logger.log(Level.INFO, "");
@@ -385,8 +383,6 @@ public class GameController {
 	 * 
 	 * @param territory pass parameter territory to update player list
 	 * @param ruler pass parameter ruler to update player list
-	 * @param game pass parameter game to update new added player list
-	 * @return game type to update new added player list
 	 */
 	public void updateAddPlayerList(Territory territory, Player ruler) {
 		logger.log(Level.INFO, "");
@@ -398,10 +394,8 @@ public class GameController {
 	 * Update ruler of the territory
 	 * 
 	 * @param territory pass territory to update territory ruler for this private method
-	 * @param ruler pass ruler to update territory ruler for this private method
-	 * @param game pass game parameter to update territory ruler for this private method
+	 * @param ruler pass Player to update territory ruler for this private method
 	 * @param numArmy pass the number of armies to update territory ruler for this private method
-	 * @return game type and receive the new updated territory ruler info
 	 */
 	public void updateTerritoryRuler(Territory territory, Player ruler, int numArmy) {
 		logger.log(Level.INFO, "");
@@ -414,22 +408,16 @@ public class GameController {
 	 * This method updates the new removed player list
 	 * 
 	 * @param territory pass territory to update the player list
-	 * @param ruler pass ruler to update the defender info
-	 * @param game pass game to update the player list 
-	 * @return Game to update PlayerList info
+	 * @param ruler pass Player to update the defender info
 	 */
-	public Game updateRemovePlayerList(Territory territory, Player ruler) {
+	public void updateRemovePlayerList(Territory territory, Player ruler) {
 		logger.log(Level.INFO, "");
 		int removeIndex = game.getPlayers().indexOf(ruler);
 		game.getPlayers().get(removeIndex).getOwnedTerritories().remove(territory);
-		return game;
 	}
 	
 	/**
-	 * Update player list - If any player who don't have army it will get deleted from the list
-	 * 
-	 * @param game pass game parameter to update player list for this private method
-	 * @return game type and receive the new updated player list info
+	 * Update player list - If any player who don't have army it will get deleted from the list 
 	 */
 	public void updatePlayerList() {
 		logger.log(Level.INFO, "");
@@ -487,7 +475,7 @@ public class GameController {
 	/**
 	 * Get strong territory for aggressive player
 	 * 
-	 * @param currentPlayer
+	 * @param currentPlayer Player Current Player
 	 * @return territory strong territory
 	 */
 	public Territory getStrongTerritory(Player currentPlayer) {
@@ -523,7 +511,7 @@ public class GameController {
 	/**
 	 * Get weak territory for benevolent player
 	 * 
-	 * @param currentPlayer
+	 * @param currentPlayer Player Current Player
 	 * @return territory weak territory
 	 */
 	public Territory getWeakTerritory(Player currentPlayer) {
@@ -941,7 +929,7 @@ public class GameController {
 	 * Validates whether the player can turn in cards and if can turn in cards and add number of reinforcement armies
 	 * 
 	 * @param currentPlayer Player current player
-	 * @return 
+	 * @return integer Turn In Card number of armies
 	 */
 	public int validateCards(Player currentPlayer) {
 		logger.log(Level.INFO, "Inside validateCards function");

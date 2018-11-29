@@ -57,7 +57,6 @@ public class BenevolentPlayer implements Strategy, Serializable {
 	 * @param allOutMode boolean
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController
-	 * @param game Game current game
 	 */	
 	@Override
 	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,

@@ -278,7 +278,6 @@ public class Player implements Serializable{
 	 * @param allOutMode boolean 
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController object
-	 * @param game Game object
 	 */
 	public void attack(Territory attackerTerritory, Territory opponentTerritory, boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
 		logger.log(Level.INFO, "Inside attack function");
@@ -291,9 +290,9 @@ public class Player implements Serializable{
 	 * 
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController object
-	 * @param fortifyNum 
-	 * @param toTerritory 
-	 * @param fromTerritory 
+	 * @param fortifyNum Number of Fortification Armies
+	 * @param toTerritory Territory From
+	 * @param fromTerritory Territory To
 	 */
 	public void fortify(GameInstructions gameInstructions, GameController controller, Territory fromTerritory, Territory toTerritory, int fortifyNum) {
 		logger.log(Level.INFO, "Inside fortify function");
