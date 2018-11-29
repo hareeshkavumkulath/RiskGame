@@ -1,5 +1,6 @@
 package com.risk.view;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -435,9 +437,16 @@ public class SetPlayersWindow extends JFrame {
 				int numberOfPlayers = Integer.parseInt(spinner.getValue().toString());
 				int numTerritories = map.getTerritories().size();
 				if(numTerritories > numberOfPlayers) {
-					showPlayerSetupPanel(numberOfPlayers);
+					GameController controller = new GameController();
+					int armyNumber = controller.getPlayersArmies(numberOfPlayers);
+					if(armyNumber*numberOfPlayers>=numTerritories) {
+						showPlayerSetupPanel(numberOfPlayers);
+					}
+					else {
+						JOptionPane.showMessageDialog(new Frame(),"Please add more player");
+					}
 				}else {
-					
+					JOptionPane.showMessageDialog(new Frame(),"Territory number is less than player number");
 				}
 			}
 		});
