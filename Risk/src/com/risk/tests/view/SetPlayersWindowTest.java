@@ -139,7 +139,7 @@ public class SetPlayersWindowTest {
      * Function for processing a map and returning 
      * the result as a MapMessage
      * 
-     * @param String mapName for the Name of the map 
+     * @param mapName String for the Name of the map 
      * @return MapMessage mapMessage which is the processed result 
      */
 

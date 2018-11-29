@@ -9,7 +9,6 @@ import com.risk.model.AggressivePlayer;
 import com.risk.model.BenevolentPlayer;
 import com.risk.model.Card;
 import com.risk.model.CheaterPlayer;
-import com.risk.model.Continent;
 import com.risk.model.GameInstructions;
 import com.risk.model.HumanPlayer;
 import com.risk.model.MapMessage;
@@ -20,7 +19,6 @@ import com.risk.view.SetPlayersWindow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 
 import static org.junit.Assert.assertEquals;
 
@@ -172,7 +170,6 @@ public class CheaterPlayerTest {
     		t.setNumberOfArmies(5);
     	}
     	
-    	CheaterPlayer cheater = new CheaterPlayer();
     	cheaterattack(playerList.get(4),
     			playerList.get(4).getOwnedTerritories().get(0),
     			playerList.get(4).getOwnedTerritories().get(0).getAdjacentTerritories().get(0),
@@ -220,7 +217,7 @@ public class CheaterPlayerTest {
       * Function for processing a map and returning 
       * the result as a MapMessage
       * 
-      * @param String mapName for the Name of the map 
+      * @param mapName for the Name of the map 
       * @return MapMessage mapMessage which is the processed result 
       */
 
@@ -264,6 +261,17 @@ public class CheaterPlayerTest {
      	
      	return player;
      }
+     
+     /**
+     * Attack function for Cheater player for JUnit testing
+     * 
+     * @param currentPlayer Player 
+     * @param attackerTerritory Attacker Territory
+     * @param opponentTerritory Opponent Territory
+     * @param allOutMode Boolean All Out mode
+     * @param gameInstructions GameInstructions string
+     * @param controller GameController
+     */
      private void cheaterattack (Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory, 
     		 boolean allOutMode, GameInstructions gameInstructions, GameController controller) {
     	 
