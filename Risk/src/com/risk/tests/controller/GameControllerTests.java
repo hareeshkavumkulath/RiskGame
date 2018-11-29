@@ -559,4 +559,29 @@ public class GameControllerTests{
         assertEquals(t1,gameController.getStrongTerritory(player));
 
     }
+    
+    // =====================getWeakTerritory()=====================
+    
+    /**
+     * Testing getWeakTerritory() function return value
+     */
+    @Test
+    @DisplayName("getWeakTerritory()")
+    void getWeakTerritory() {
+        
+        Player player = new Player("testPlayer", false, 8,"REINFORCEMENT");
+        Territory t1= new Territory("testTerritory", "testContinent", 6);
+        Territory t2= new Territory("testTerritory2", "testContinent", 4);
+        Territory t3= new Territory("testTerritory3", "testContinent", 1);
+        t1.setRuler(player);
+        t2.setRuler(player);
+        t3.setRuler(player);
+        player.getOwnedTerritories().add(t1);
+        player.getOwnedTerritories().add(t2);
+        player.getOwnedTerritories().add(t3);
+        
+        
+        assertEquals(t3,gameController.getWeakTerritory(player));
+
+    }
 }
