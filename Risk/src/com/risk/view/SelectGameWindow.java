@@ -49,7 +49,7 @@ public class SelectGameWindow extends JFrame{
 	 * Create the application.
 	 */
 	public SelectGameWindow() {
-		initialize();
+		
 	}
 
 	/**
