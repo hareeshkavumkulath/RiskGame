@@ -1,12 +1,25 @@
 package com.risk.tests.controller;
 
-import static org.junit.Assert.assertEquals;
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import com.risk.controller.GameController;
+import com.risk.controller.MapController;
 import com.risk.model.Player;
+import com.risk.model.RandomPlayer;
 import com.risk.model.Territory;
+import com.risk.view.SetPlayersWindow;
+import com.risk.model.AggressivePlayer;
+import com.risk.model.BenevolentPlayer;
+import com.risk.model.Card;
+import com.risk.model.CheaterPlayer;
+import com.risk.model.AttackStatus;
 import com.risk.model.Continent;
+import com.risk.model.HumanPlayer;
+import com.risk.model.MapMessage;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
@@ -100,105 +113,6 @@ public class GameControllerTests {
 		p.ownedTerritories = t;
 
 		assertEquals(4, gameController.getNumReinforcements(p));
-	}
-
-	// =====================territoriesToPlayers()=====================
-	/**
-	 * Testing territoriesToPlayers function return value For 5 test players and 10
-	 * test Territories, The Sum of players.ownedTerritories in returned ArrayList
-	 * should equal the number of territories
-	 */
-
-	@Test
-	@DisplayName("territoriesToPlayers => Sum of players.ownedTerritories Should = territories.size()")
-	void territoriesToPlayers() {
-		// Creating 5 Test Players
-		ArrayList<Player> playerList = new ArrayList<Player>();
-		Player p;
-		for (int j = 0; j < 5; j++) {
-			p = new Player("testPlayer" + j, false, 10 + j, "REINFORCEMENT");
-			playerList.add(p);
-		}
-
-		// Creating 20 Test Territories
-		ArrayList<Territory> territories = new ArrayList<Territory>();
-		Territory temp;
-		for (int i = 0; i < 20; i++) {
-			temp = new Territory("testTerritory" + i, "testContinent" + i, i);
-			territories.add(temp);
-		}
-
-		ArrayList<Player> result = gameController.territoriesToPlayers(playerList, territories);
-		int finalAssignedTerritories = 0;
-		for (Player pl : result) {
-			finalAssignedTerritories += pl.ownedTerritories.size();
-		}
-
-		assertEquals(territories.size(), finalAssignedTerritories);
-	}
-
-	// =====================playersToTerritories()=====================
-	/**
-	 * Testing playersToTerritories function return value ruler for returned
-	 * territory list should exist in Player List
-	 */
-	@Test
-	@DisplayName("playersToTerritories => ruler for returned territory list should exist in PlayerList")
-	void playersToTerritories() {
-		// Creating 5 Test Players
-		ArrayList<Player> playerList = new ArrayList<Player>();
-		Player p;
-		for (int j = 0; j < 5; j++) {
-			p = new Player("testPlayer" + j, false, 10 + j, "REINFORCEMENT");
-			playerList.add(p);
-		}
-
-		// Creating 20 Test Territories
-		ArrayList<Territory> territories = new ArrayList<Territory>();
-		Territory temp;
-		for (int i = 0; i < 20; i++) {
-			temp = new Territory("testTerritory" + i, "testContinent" + i, i);
-			territories.add(temp);
-		}
-
-		ArrayList<Player> result = gameController.territoriesToPlayers(playerList, territories);
-
-		for (Territory ter : gameController.playersToTerritories(result, territories)) {
-			assertNotEquals(-1, result.indexOf(ter.getRuler()));
-		}
-	}
-
-	// =====================playersToTerritories()=====================
-	/**
-	 * Testing assignOneArmyToEachCountry function return value Number of Assigned
-	 * armies for all territories returned territory list should be Equal to 1
-	 */
-	@Test
-	@DisplayName("assignOneArmyToEachCountry => Assigned armies for each returned territory list => = 1")
-	void assignOneArmyToEachTerritory() {
-		// Creating 5 Test Players
-		ArrayList<Player> playerList = new ArrayList<Player>();
-		Player p;
-		for (int j = 0; j < 5; j++) {
-			p = new Player("testPlayer" + j, false, 10 + j, "REINFORCEMENT");
-			playerList.add(p);
-		}
-
-		// Creating 20 Test Territories
-		ArrayList<Territory> territories = new ArrayList<Territory>();
-		Territory temp;
-		for (int i = 0; i < 20; i++) {
-			temp = new Territory("testTerritory" + i, "testContinent" + i, i);
-			territories.add(temp);
-		}
-
-		ArrayList<Player> result = gameController.territoriesToPlayers(playerList, territories);
-		gameController.assignOneArmyToEachTerritory(result, territories);
-		for (Player pll : result) {
-			for (Territory ter : pll.getOwnedTerritories()) {
-				assertEquals(1, ter.getNumberOfArmies());
-			}
-		}
 	}
 
 	// =====================isValidFortify()=====================
