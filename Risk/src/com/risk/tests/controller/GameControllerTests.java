@@ -681,4 +681,40 @@ public class GameControllerTests {
 		return mapMessage;
 
 	}
+
+	// =====================SetPlayer()=====================
+	/**
+	 * 
+	 * Function for Setting Player Elements
+	 * 
+	 * @param name
+	 *            string for the player name
+	 * @param isComputer
+	 *            a boolean to differentiate between human and a computer
+	 * @param numArmies
+	 *            which depends on number of the players in the game
+	 * @param phase
+	 *            which is ADD in the beginning
+	 * @param Type
+	 *            cane be Human,AGGRESSIVE,BENEVOLENT,RANDOM or CHEATER
+	 * @return Player object from all those inputs
+	 */
+	private Player setPlayer(String name, boolean isComputer, int numArmies, String phase, String Type) {
+
+		Player player = new Player(name, isComputer, numArmies, phase);
+
+		if (Type.equals("Human")) {
+			player.setStrategy(new HumanPlayer());
+		} else if (Type.equals("AGGRESSIVE")) {
+			player.setStrategy(new AggressivePlayer());
+		} else if (Type.equals("BENEVOLENT")) {
+			player.setStrategy(new BenevolentPlayer());
+		} else if (Type.equals("RANDOM")) {
+			player.setStrategy(new RandomPlayer());
+		} else if (Type.equals("CHEATER")) {
+			player.setStrategy(new CheaterPlayer());
+		}
+
+		return player;
+	}
 }
