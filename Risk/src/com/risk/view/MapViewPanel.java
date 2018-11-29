@@ -27,9 +27,7 @@ import javax.swing.JLabel;
  */
 public class MapViewPanel extends JPanel implements Observer{
 	
-	/**
-	 * set serialVersionUID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 
 	/**

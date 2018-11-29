@@ -24,9 +24,7 @@ import com.risk.model.Player;
  */
 public class CardsJList extends JPanel implements Observer{
 	
-	/**
-	 * create a random serialVersionUID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = -3174204953083961860L;
 	@SuppressWarnings("javadoc")
 	private JList<String> list = new JList<String>();

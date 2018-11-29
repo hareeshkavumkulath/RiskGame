@@ -13,18 +13,19 @@ import org.junit.jupiter.api.Test;
 
 import com.risk.model.Game;
 import com.risk.view.SelectGameWindow;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.File;
-
-import org.junit.jupiter.api.BeforeAll;
 import static org.junit.Assert.assertEquals;
 
 
+/**
+ * Tests class for the SelectGameWindow functions
+ * 
+ * @author Anqi Wang
+ * @version 1.0
+ * 
+ */
 public class SelectGameWindowTest {
 
 	@SuppressWarnings("javadoc")

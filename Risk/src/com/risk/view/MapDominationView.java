@@ -17,7 +17,6 @@ import com.risk.model.Game;
 import com.risk.model.Player;
 import com.risk.model.Territory;
 import java.awt.Font;
-import java.awt.Component;
 
 /**
  * Observable view for Player World Domination
@@ -28,9 +27,7 @@ import java.awt.Component;
  */
 public class MapDominationView extends JPanel implements Observer{
 	
-	/**
-	 * created a random serial version ID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = -863572094027587585L;
 	@SuppressWarnings("javadoc")
 	private Game game;

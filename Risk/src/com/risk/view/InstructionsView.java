@@ -14,9 +14,8 @@ import java.awt.Font;
  */
 
 public class InstructionsView extends JTextPane implements Observer{
-	/**
-	 * created a random serial version ID by Renpeng.
-	 */
+	
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 7597048260648030086L;
 
 	/**

@@ -174,7 +174,6 @@ public class MapController {
 				valid = true;
 			}catch(Exception e) {
 				valid = false;
-				System.out.println(e.toString());
 				message.append("There is some error in the syntax of the continents, Please recheck");
 			}
 		}else {
@@ -208,7 +207,6 @@ public class MapController {
 				}
 				isValidTerritories = true;
 			}catch(Exception e) {
-				System.out.println(e.toString());
 				message.append("There is some error in the syntax of the territories, Please recheck");
 				isValidTerritories = false;
 			}			
@@ -429,7 +427,6 @@ public class MapController {
 				}
 				isValidTerritories = true;
 			}catch(Exception e) {
-				System.out.println(e.toString());
 				message.append("There is some error in the syntax of the territories, Please recheck");
 				isValidTerritories = false;
 			}			
