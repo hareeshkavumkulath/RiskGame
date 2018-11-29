@@ -629,5 +629,34 @@ public class GameControllerTests {
 		assertFalse(gameController.isWinner());
 
 	}
+	// =====================Helper Functions()=====================
+    // =====================mapToString()=====================
+        
+        /**
+         * 
+         * Function for reading a map file and convert that into String
+         * 
+         * @param mapFile Map File Address as a String
+         * @return String Map Content to Strings
+         */
+        private static String mapToString(String mapFile) {
+            String mapInString = "";
+            BufferedReader reader;
+            try {
+                reader = new BufferedReader(new FileReader(mapFile));
 
+                String line = reader.readLine();
+                mapInString += line;
+
+                while (line != null) {
+                    mapInString += line;
+                    line = reader.readLine();
+
+                }
+                reader.close();
+            } catch (IOException e) {
+                mapInString = null;
+            }
+            return mapInString;
+        }
 }
