@@ -4,24 +4,18 @@ package com.risk.tests.view;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.BeforeAll;
-import static org.junit.Assert.assertEquals;
-
 import com.risk.controller.GameController;
 import com.risk.controller.MapController;
 import com.risk.model.AggressivePlayer;
 import com.risk.model.BenevolentPlayer;
 import com.risk.model.Card;
 import com.risk.model.CheaterPlayer;
-import com.risk.model.Game;
 import com.risk.model.HumanPlayer;
 import com.risk.model.MapMessage;
 import com.risk.model.Player;
@@ -148,8 +142,6 @@ public class SetPlayersWindowTest {
         return mapMessage;
         
     }
-    
-// 	=====================SetPlayer()=====================
 
     /**
      * 

@@ -177,9 +177,6 @@ public class CheaterPlayerTest {
 	   	 }
     	
     }
-    
- // =====================Helper Functions()=====================
- // =====================mapToString()=====================
      
      /**
       * 
