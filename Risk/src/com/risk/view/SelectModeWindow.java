@@ -66,6 +66,6 @@ public class SelectModeWindow extends JFrame{
 		});
 		
 		setVisible(true);
-		
+
 	}
 }

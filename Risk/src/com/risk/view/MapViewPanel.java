@@ -19,14 +19,15 @@ import com.risk.model.Territory;
 
 import javax.swing.JList;
 import javax.swing.JLabel;
+
 /**
  * MapViewPanel shows the map
  * 
  * @author Jingya Pan
  * @version 1.1
  */
-public class MapViewPanel extends JPanel implements Observer{
-	
+public class MapViewPanel extends JPanel implements Observer {
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 
@@ -45,75 +46,77 @@ public class MapViewPanel extends JPanel implements Observer{
 
 	/**
 	 * Create the panel.
+	 * 
 	 * @param game Game Object
 	 */
 	public MapViewPanel(Game game) {
 		this.game = game;
 		setLayout(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane((Component) null);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(15, 41, 191, 249);
 		add(scrollPane);
-		
+
 		continentJList = new JList<String>();
 		scrollPane.setViewportView(continentJList);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane((Component) null);
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setBounds(219, 41, 191, 249);
 		add(scrollPane_1);
-		
+
 		territoriesJList = new JList<String>();
 		scrollPane_1.setViewportView(territoriesJList);
-		
+
 		JScrollPane scrollPane_2 = new JScrollPane((Component) null);
 		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_2.setBounds(425, 41, 192, 249);
 		add(scrollPane_2);
-		
+
 		adjTerrJList = new JList<String>();
 		scrollPane_2.setViewportView(adjTerrJList);
-		
+
 		JLabel lblContinents = new JLabel("Continents");
 		lblContinents.setBounds(15, 16, 104, 20);
 		add(lblContinents);
-		
+
 		JLabel lblTerritories = new JLabel("Territories");
 		lblTerritories.setBounds(219, 16, 104, 20);
 		add(lblTerritories);
-		
+
 		JLabel lblAdjacentTerritories = new JLabel("Adjacent Territories");
 		lblAdjacentTerritories.setBounds(425, 16, 154, 20);
 		add(lblAdjacentTerritories);
-		
+
 		ArrayList<Continent> continents = game.getMap().getContinents();
 		String[] continentNames = new String[continents.size()];
-		for(int i = 0; i < continents.size(); i++) {
+		for (int i = 0; i < continents.size(); i++) {
 			Continent thisContinent = (Continent) continents.get(i);
-			continentNames[i] = thisContinent.getName(); 
+			continentNames[i] = thisContinent.getName();
 		}
 		continentJList.setListData(continentNames);
-		
+
 		continentJList.addListSelectionListener(new ListSelectionListener() {
-			
+
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				int selections[] = continentJList.getSelectedIndices();
 				ArrayList<Territory> territories = continents.get(selections[0]).getTerritories();
 				String[] territoryNames = new String[territories.size()];
-				for(int i=0;i<territories.size();i++) {
+				for (int i = 0; i < territories.size(); i++) {
 					territoryNames[i] = territories.get(i).getName();
-					if(territories.get(i).getRuler() != null) {
-						territoryNames[i] = territoryNames[i] + "(" + territories.get(i).getRuler().getName() + " - " + territories.get(i).getNumberOfArmies() +")";
+					if (territories.get(i).getRuler() != null) {
+						territoryNames[i] = territoryNames[i] + "(" + territories.get(i).getRuler().getName() + " - "
+								+ territories.get(i).getNumberOfArmies() + ")";
 					}
 				}
-				territoriesJList.setListData(territoryNames);				
+				territoriesJList.setListData(territoryNames);
 			}
 		});
-		
+
 		territoriesJList.addListSelectionListener(new ListSelectionListener() {
-			
+
 			@Override
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				String selection = (String) territoriesJList.getSelectedValue();
@@ -121,28 +124,30 @@ public class MapViewPanel extends JPanel implements Observer{
 					selection = selection.replaceAll("\\(.+?\\)", "");
 					ArrayList<Territory> territories = game.getMap().getTerritories();
 					Territory selectedTerritory = null;
-					for(int i=0;i<territories.size();i++) {
-						if(territories.get(i).getName().equals(selection)) {
+					for (int i = 0; i < territories.size(); i++) {
+						if (territories.get(i).getName().equals(selection)) {
 							selectedTerritory = territories.get(i);
 						}
 					}
-				
+
 					String[] adjTerritoryNames = new String[selectedTerritory.getAdjacentTerritories().size()];
-					for(int i=0;i<selectedTerritory.getAdjacentTerritories().size();i++) {
+					for (int i = 0; i < selectedTerritory.getAdjacentTerritories().size(); i++) {
 						Territory adjTerritory = selectedTerritory.getAdjacentTerritories().get(i);
 						adjTerritoryNames[i] = adjTerritory.getName();
-						if(adjTerritory.getRuler() != null) {
-							adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName() + " - " + adjTerritory.getNumberOfArmies() +")";
+						if (adjTerritory.getRuler() != null) {
+							adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName()
+									+ " - " + adjTerritory.getNumberOfArmies() + ")";
 						}
 					}
 					adjTerrJList.setListData(adjTerritoryNames);
-				} catch(Exception e) {
+				} catch (Exception e) {
 					logger.log(Level.INFO, e.toString());
 				}
 			}
 		});
 
 	}
+
 	/**
 	 * Observer design pattern
 	 * 
@@ -155,42 +160,44 @@ public class MapViewPanel extends JPanel implements Observer{
 		int territoriesSelectedIndex = territoriesJList.getSelectedIndex();
 		int adjTerrSelectedIndex = adjTerrJList.getSelectedIndex();
 		continentJList.setSelectedIndex(continentsSelectedIndex);
-		if(continentsSelectedIndex >= 0) {
+		if (continentsSelectedIndex >= 0) {
 			int selections[] = continentJList.getSelectedIndices();
 			ArrayList<Territory> territories = game.getMap().getContinents().get(selections[0]).getTerritories();
 			String[] territoryNames = new String[territories.size()];
-			for(int i=0;i<territories.size();i++) {
+			for (int i = 0; i < territories.size(); i++) {
 				territoryNames[i] = territories.get(i).getName();
-				if(territories.get(i).getRuler() != null) {
-					territoryNames[i] = territoryNames[i] + "(" + territories.get(i).getRuler().getName() + " - " + territories.get(i).getNumberOfArmies() +")";
+				if (territories.get(i).getRuler() != null) {
+					territoryNames[i] = territoryNames[i] + "(" + territories.get(i).getRuler().getName() + " - "
+							+ territories.get(i).getNumberOfArmies() + ")";
 				}
 			}
-			territoriesJList.setListData(territoryNames);	
+			territoriesJList.setListData(territoryNames);
 			territoriesJList.setSelectedIndex(territoriesSelectedIndex);
 		}
-		if(territoriesSelectedIndex >= 0) {
+		if (territoriesSelectedIndex >= 0) {
 			String selection = (String) territoriesJList.getSelectedValue();
 			try {
 				selection = selection.replaceAll("\\(.+?\\)", "");
 				ArrayList<Territory> territories = game.getMap().getTerritories();
 				Territory selectedTerritory = null;
-				for(int i=0;i<territories.size();i++) {
-					if(territories.get(i).getName().equals(selection)) {
+				for (int i = 0; i < territories.size(); i++) {
+					if (territories.get(i).getName().equals(selection)) {
 						selectedTerritory = territories.get(i);
 					}
 				}
-			
+
 				String[] adjTerritoryNames = new String[selectedTerritory.getAdjacentTerritories().size()];
-				for(int i=0;i<selectedTerritory.getAdjacentTerritories().size();i++) {
+				for (int i = 0; i < selectedTerritory.getAdjacentTerritories().size(); i++) {
 					Territory adjTerritory = selectedTerritory.getAdjacentTerritories().get(i);
 					adjTerritoryNames[i] = adjTerritory.getName();
-					if(adjTerritory.getRuler() != null) {
-						adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName() + " - " + adjTerritory.getNumberOfArmies() +")";
+					if (adjTerritory.getRuler() != null) {
+						adjTerritoryNames[i] = adjTerritoryNames[i] + "(" + adjTerritory.getRuler().getName() + " - "
+								+ adjTerritory.getNumberOfArmies() + ")";
 					}
 				}
 				adjTerrJList.setListData(adjTerritoryNames);
 				adjTerrJList.setSelectedIndex(adjTerrSelectedIndex);
-			} catch(Exception e) {
+			} catch (Exception e) {
 				logger.log(Level.INFO, e.toString());
 			}
 		}
