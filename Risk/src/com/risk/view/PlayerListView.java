@@ -6,7 +6,6 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
-
 /**
  * Player list view is used to show all players.
  * 
@@ -15,11 +14,12 @@ import javax.swing.border.LineBorder;
  */
 
 public class PlayerListView extends JList<String> {
-	
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 5574954950632961945L;
 	@SuppressWarnings("javadoc")
 	int numberOfPlayers;
+
 	/**
 	 * constructor of player list view class.
 	 * 
