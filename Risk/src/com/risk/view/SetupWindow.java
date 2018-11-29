@@ -40,9 +40,7 @@ import com.risk.model.RandomPlayer;
  */
 public class SetupWindow extends JFrame {
 
-	/**
-	 * set the serialVersionUID
-	 */
+	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("javadoc")
@@ -308,13 +306,13 @@ public class SetupWindow extends JFrame {
 				results[i][j+1] =  winners[i][j];
 			}
 		}
-		
-		for(int i=0;i<rows;i++) {
-			for(int j=0;j<=columns;j++) {
-				System.out.print(results[i][j]);
-			}
-			System.out.println();
-		}
+//		
+//		for(int i=0;i<rows;i++) {
+//			for(int j=0;j<=columns;j++) {
+//				System.out.print(results[i][j]);
+//			}
+//			System.out.println();
+//		}
 		
 		displayResult();
 		
