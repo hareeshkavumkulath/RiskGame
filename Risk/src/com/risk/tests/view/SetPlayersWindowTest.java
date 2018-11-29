@@ -1,13 +1,5 @@
 package com.risk.tests.view;
-/**
- * SetPlayersWindowTests
- * 
- * This Class will test the  SetPlayersWindow functionalities
- * (For validation of correct startup phase)
- * 
- * @author Hamid
- * @version 1.0
- */
+
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -36,6 +28,15 @@ import com.risk.model.Player;
 import com.risk.model.RandomPlayer;
 import com.risk.view.SetPlayersWindow;
 
+/**
+ * SetPlayersWindowTests
+ * 
+ * This Class will test the  SetPlayersWindow functionalities
+ * (For validation of correct startup phase)
+ * 
+ * @author Hamid
+ * @version 1.0
+ */
 public class SetPlayersWindowTest {
 
 	@SuppressWarnings("javadoc")
@@ -98,8 +99,7 @@ public class SetPlayersWindowTest {
     	//testing the result
     	
     }
-// =====================Helper Functions()=====================
-// =====================mapToString()=====================
+
     
     /**
      * 
@@ -128,7 +128,7 @@ public class SetPlayersWindowTest {
         }
         return mapInString;
     }
-    // 	=====================mapToMapMessage()=====================
+
     /**
      * 
      * Function for processing a map and returning 
@@ -152,25 +152,15 @@ public class SetPlayersWindowTest {
 // 	=====================SetPlayer()=====================
 
     /**
-
      * 
-
      * Function for Setting Player Elements 
-
      * 
-
      * @param name string for the player name
-
      * @param isComputer a boolean to differentiate between human and a computer
-
      * @param numArmies which depends on number of the players in the game
-
      * @param phase which is ADD in the  beginning
-
      * @param Type cane be Human,AGGRESSIVE,BENEVOLENT,RANDOM or CHEATER
-
      * @return Player object from all those inputs
-
      */
 
     private Player setPlayer(String name, boolean isComputer, int numArmies, String phase, String Type) {

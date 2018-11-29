@@ -1,14 +1,5 @@
 package com.risk.tests.view;
 
-/**
- * SelectGameWindowTests
- * 
- * This Class will test the  SelectGameWindow functionalities
- * 
- * @author Hamid
- * @version 1.0
- */
-
 import org.junit.jupiter.api.Test;
 
 import com.risk.model.Game;
@@ -20,12 +11,14 @@ import static org.junit.Assert.assertEquals;
 
 
 /**
- * Tests class for the SelectGameWindow functions
+ * SelectGameWindowTests
  * 
- * @author Anqi Wang
+ * This Class will test the  SelectGameWindow functionalities
+ * 
+ * @author Hamid
  * @version 1.0
- * 
  */
+
 public class SelectGameWindowTest {
 
 	@SuppressWarnings("javadoc")
@@ -40,7 +33,6 @@ public class SelectGameWindowTest {
     	selectGameWindow = new SelectGameWindow();
     }
     
-    // =====================loadGameFromFile()=====================
     /**
      * Testing loadGameFromFile function return value for Valid Saved File
      * FOR Test.game file:

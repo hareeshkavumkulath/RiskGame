@@ -1,13 +1,5 @@
   package com.risk.tests.model;
 
-/**
- * CheaterPlayerTest
- * 
- * This Class will test the  Cheater Player functionalities
- * 
- * @author Hamid
- * @version 1.0
- */
 
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +33,15 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 
+
+/**
+ * CheaterPlayerTest
+ * 
+ * This Class will test the  Cheater Player functionalities
+ * 
+ * @author Hamid
+ * @version 1.0
+ */
 
 public class CheaterPlayerTest {
 	
@@ -99,7 +100,6 @@ public class CheaterPlayerTest {
     	 
     }
 
- // =====================reinforce()=====================
     /**
      * Testing reinforce() function for Cheater
      */
@@ -121,7 +121,7 @@ public class CheaterPlayerTest {
     	}
     	
     }
- // =====================fortify()=====================
+    
     /**
      * Testing fortify() function for Cheater
      */
@@ -150,7 +150,7 @@ public class CheaterPlayerTest {
     	
     	
     }
- // =====================attack()=====================
+
     /**
      * Testing attack() function for Cheater
      */
@@ -208,7 +208,7 @@ public class CheaterPlayerTest {
          }
          return mapInString;
      }
-     // 	=====================mapToMapMessage()=====================
+
      /**
       * 
       * Function for processing a map and returning 
@@ -228,7 +228,7 @@ public class CheaterPlayerTest {
          return mapMessage;
          
      }
-     // 	=====================SetPlayer()=====================
+
      /**
       * 
       * Function for Setting Player Elements 
