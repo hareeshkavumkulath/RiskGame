@@ -623,4 +623,28 @@ public class GameControllerTests {
 
 	}
 
+	// =====================AttackStatus()=====================
+    /**
+     * Testing AttackStatus() function return value
+     */
+    @Test
+    @DisplayName("AttackStatus()")
+    void AttackStatus() {
+        
+        Player player = new Player("testPlayer", false, 8,"REINFORCEMENT");
+        Territory t1= new Territory("testTerritory", "testContinent", 6);
+        t1.setRuler(player);
+        
+        Player player2 = new Player("testPlayer2", false, 12,"REINFORCEMENT");
+        Territory t2= new Territory("testTerritory2", "testContinent", 4);
+        t2.setRuler(player2);
+        
+        AttackStatus attackStatus = gameController.attack(t1,t2,3,2);
+
+        if(attackStatus.isHasWon()) {
+            assertEquals(attackStatus.winner.getName(),player.getName() );
+        }else {
+            assertFalse(attackStatus.isHasWon());
+        }
+    }
 }
