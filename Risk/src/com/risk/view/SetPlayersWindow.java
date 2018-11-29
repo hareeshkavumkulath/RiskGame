@@ -1,6 +1,5 @@
 package com.risk.view;
 
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -439,16 +437,9 @@ public class SetPlayersWindow extends JFrame {
 				int numberOfPlayers = Integer.parseInt(spinner.getValue().toString());
 				int numTerritories = map.getTerritories().size();
 				if(numTerritories > numberOfPlayers) {
-					GameController controller = new GameController();
-					int armyNumber = controller.getPlayersArmies(numberOfPlayers);
-					if(armyNumber*numberOfPlayers>=numTerritories) {
-						showPlayerSetupPanel(numberOfPlayers);
-					}
-					else {
-						JOptionPane.showMessageDialog(new Frame(),"Please add more player");
-					}
+					showPlayerSetupPanel(numberOfPlayers);
 				}else {
-					JOptionPane.showMessageDialog(new Frame(),"Territory number is less than player number");
+					
 				}
 			}
 		});
@@ -523,7 +514,25 @@ public class SetPlayersWindow extends JFrame {
 		});
 		
 	}
+	
+	/**
+	 * Creates the startup phase and returns a GameController Object
+	 * 
+	 * @param map [Map of the Game]
+	 * @param playerList [List of the Players and their specific type]
+	 * @param cards [Card List for the game]
+	 * @return GameController [containing all the game's elements]
+	 */
 
+	public GameController setStartupPhase (Map map, ArrayList<Card> cards, ArrayList<Player> playerList) 
+	{
+		Game game = new Game(map, playerList, cards, playerList.get(0));
+		GameInstructions gameInstructions = new GameInstructions("Risk Game\r\n");
+		
+		//Creating and Returning the GameController
+		GameController gameController = new GameController(game, gameInstructions);
+		return gameController;
+	}
 	/**
 	 * Display user interface for player setup panel
 	 * 
