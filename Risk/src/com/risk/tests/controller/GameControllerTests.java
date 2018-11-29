@@ -630,33 +630,55 @@ public class GameControllerTests {
 
 	}
 	// =====================Helper Functions()=====================
-    // =====================mapToString()=====================
-        
-        /**
-         * 
-         * Function for reading a map file and convert that into String
-         * 
-         * @param mapFile Map File Address as a String
-         * @return String Map Content to Strings
-         */
-        private static String mapToString(String mapFile) {
-            String mapInString = "";
-            BufferedReader reader;
-            try {
-                reader = new BufferedReader(new FileReader(mapFile));
+	// =====================mapToString()=====================
 
-                String line = reader.readLine();
-                mapInString += line;
+	/**
+	 * 
+	 * Function for reading a map file and convert that into String
+	 * 
+	 * @param mapFile
+	 *            Map File Address as a String
+	 * @return String Map Content to Strings
+	 */
+	private static String mapToString(String mapFile) {
+		String mapInString = "";
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(mapFile));
 
-                while (line != null) {
-                    mapInString += line;
-                    line = reader.readLine();
+			String line = reader.readLine();
+			mapInString += line;
 
-                }
-                reader.close();
-            } catch (IOException e) {
-                mapInString = null;
-            }
-            return mapInString;
-        }
+			while (line != null) {
+				mapInString += line;
+				line = reader.readLine();
+
+			}
+			reader.close();
+		} catch (IOException e) {
+			mapInString = null;
+		}
+		return mapInString;
+	}
+
+	// =====================mapToMapMessage()=====================
+	/**
+	 * 
+	 * Function for processing a map and returning the result as a MapMessage
+	 * 
+	 * @param String
+	 *            mapName for the Name of the map
+	 * @return MapMessage mapMessage which is the processed result
+	 */
+
+	private static MapMessage mapToMapMessage(String mapName) {
+
+		MapController mpc = new MapController();
+		mpc.processContinents(mapToString(mapName));
+		mpc.processTerritories(mapToString(mapName));
+		mpc.territoriesToContinents();
+		MapMessage mapMessage = mpc.processFile(new File(mapName));
+		return mapMessage;
+
+	}
 }
