@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.risk.model;
 
 import java.io.Serializable;
@@ -45,7 +42,7 @@ public class Game extends Observable implements Serializable{
 	/**
 	 * Getter for map
 	 * 
-	 * @return Map
+	 * @return Map map object
 	 */
 	public Map getMap() {
 		return map;
@@ -113,6 +110,7 @@ public class Game extends Observable implements Serializable{
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
+	
 	/**
 	 * Setter to set the current player
 	 * 

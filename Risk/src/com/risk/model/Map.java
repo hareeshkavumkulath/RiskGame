@@ -16,14 +16,14 @@ import java.util.ArrayList;
  *
  */
 public class Map implements Serializable {
-	
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 6335643430954837718L;
 	@SuppressWarnings("javadoc")
 	ArrayList<Continent> continents = new ArrayList<Continent>();
 	@SuppressWarnings("javadoc")
 	ArrayList<Territory> territories = new ArrayList<Territory>();
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -35,7 +35,7 @@ public class Map implements Serializable {
 		this.continents = continents;
 		this.territories = territories;
 	}
-	
+
 	/**
 	 * Empty Constructor
 	 */
@@ -50,6 +50,7 @@ public class Map implements Serializable {
 	public ArrayList<Continent> getContinents() {
 		return continents;
 	}
+
 	/**
 	 * Setter for continents
 	 * 
@@ -58,19 +59,20 @@ public class Map implements Serializable {
 	public void setContinents(ArrayList<Continent> continents) {
 		this.continents = continents;
 	}
-	
+
 	/**
-	 * Getter for territories 
+	 * Getter for territories
 	 * 
 	 * @return ArrayList list of territories
 	 */
 	public ArrayList<Territory> getTerritories() {
 		return territories;
 	}
+
 	/**
 	 * Setter for territories
 	 * 
-	 * @param territories ArrayList of territories
+	 * @param territories  ArrayList of territories
 	 */
 	public void setTerritories(ArrayList<Territory> territories) {
 		this.territories = territories;

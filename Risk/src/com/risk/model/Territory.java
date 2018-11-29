@@ -7,10 +7,10 @@ import java.util.ArrayList;
  * Model class for the Territory
  * 
  * @author Hareesh Kavumkulath
- * @version 1.0 
+ * @version 1.0
  */
 public class Territory implements Serializable {
-	
+
 	@SuppressWarnings("javadoc")
 	private static final long serialVersionUID = 339137798507186038L;
 	@SuppressWarnings("javadoc")
@@ -23,12 +23,13 @@ public class Territory implements Serializable {
 	Player ruler;
 	@SuppressWarnings("javadoc")
 	int numberOfArmies;
+
 	/**
 	 * Create a Territory with territory name and continent name
 	 * 
-	 * @param name - Name of the Territory
-	 * @param continent - Name of the Continent
-	 * @param numberOfArmies  - Number of the armies - initially 0
+	 * @param name Name of the Territory
+	 * @param continent Name of the Continent
+	 * @param numberOfArmies Number of the armies - initially 0
 	 */
 	public Territory(String name, String continent, int numberOfArmies) {
 		super();
@@ -36,9 +37,9 @@ public class Territory implements Serializable {
 		this.continent = continent;
 		this.numberOfArmies = numberOfArmies;
 	}
-	
+
 	/**
-	 * Constructor 
+	 * Constructor
 	 */
 	public Territory() {
 	}
@@ -51,7 +52,7 @@ public class Territory implements Serializable {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Setter for name
 	 * 
@@ -60,7 +61,7 @@ public class Territory implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Getter of continent
 	 * 
@@ -69,7 +70,7 @@ public class Territory implements Serializable {
 	public String getContinent() {
 		return continent;
 	}
-	
+
 	/**
 	 * Getter for continent
 	 * 
@@ -78,7 +79,7 @@ public class Territory implements Serializable {
 	public void setContinent(String continent) {
 		this.continent = continent;
 	}
-	
+
 	/**
 	 * Getter for adjacent territories
 	 * 
@@ -87,7 +88,7 @@ public class Territory implements Serializable {
 	public ArrayList<Territory> getAdjacentTerritories() {
 		return adjacentTerritories;
 	}
-	
+
 	/**
 	 * Setter for adjacent territories
 	 * 

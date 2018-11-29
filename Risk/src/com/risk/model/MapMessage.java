@@ -9,29 +9,28 @@ package com.risk.model;
  * 
  */
 public class MapMessage {
-	
+
 	@SuppressWarnings("javadoc")
 	public Map map = new Map();
 	@SuppressWarnings("javadoc")
 	public boolean isValidMap;
 	@SuppressWarnings("javadoc")
 	public StringBuffer message;
-	
+
 	/**
 	 * Constructor
 	 * 
-	 * @param map the map 
+	 * @param map the map
 	 * @param isValidMap true if map is valid, else false
 	 * @param message String message for invalid maps
 	 */
-	public MapMessage(Map map, boolean isValidMap,
-			StringBuffer message) {
+	public MapMessage(Map map, boolean isValidMap, StringBuffer message) {
 		super();
 		this.map = map;
 		this.isValidMap = isValidMap;
 		this.message = message;
 	}
-	
+
 	/**
 	 * Getter for isValidMap
 	 * 
@@ -40,6 +39,7 @@ public class MapMessage {
 	public boolean isValidMap() {
 		return isValidMap;
 	}
+
 	/**
 	 * Setter for isValidMap
 	 * 
@@ -48,17 +48,19 @@ public class MapMessage {
 	public void setValidMap(boolean isValidMap) {
 		this.isValidMap = isValidMap;
 	}
-	
+
 	/**
 	 * Getter for the message for invalid maps
+	 * 
 	 * @return StringBuffer message
 	 */
 	public StringBuffer getMessage() {
 		return message;
 	}
-	
+
 	/**
 	 * Setter for the message for invalid maps
+	 * 
 	 * @param message String message
 	 */
 	public void setMessage(StringBuffer message) {
@@ -81,6 +83,6 @@ public class MapMessage {
 	 */
 	public void setMap(Map map) {
 		this.map = map;
-	}	
+	}
 
 }

@@ -23,6 +23,7 @@ public class CardsObservable extends Observable {
 	public Player getPlayer() {
 		return player;
 	}
+	
 	/**
 	 * Setter to set the player
 	 * 

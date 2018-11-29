@@ -92,7 +92,7 @@ public class BenevolentPlayer implements Strategy, Serializable {
 				currentPlayer.setFortificationStatus(true);
 				logger.log(Level.INFO, currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies\n");
 				gameInstructions.setInstructions(currentPlayer.getName() + " has fortified " + territoryTo.getName() + " from " + territoryFrom.getName() + " with " + fortifyNum + " armies\n");
-			}		
+			}
 		}
 	}
 

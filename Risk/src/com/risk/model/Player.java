@@ -211,7 +211,7 @@ public class Player implements Serializable{
 		this.cards = cards;
 	}
 	/**
-	 * whether the player won the game
+	 * Whether the player won the game
 	 * 
 	 * @return boolean true if it wins,false if not
 	 */
@@ -219,7 +219,7 @@ public class Player implements Serializable{
 		return hasWon;
 	}
 	/**
-	 * set the player won the game
+	 * Set the player won the game
 	 * 
 	 * @param hasWon won the game or not
 	 */
@@ -227,7 +227,7 @@ public class Player implements Serializable{
 		this.hasWon = hasWon;
 	}
 	/**
-	 *Getter the turn in cards
+	 * Getter the turn in cards
 	 *
 	 * @return int turnInCards
 	 */
@@ -235,7 +235,7 @@ public class Player implements Serializable{
 		return turnInCards;
 	}
 	/**
-	 *Setter to set the turn in cards
+	 * Setter to set the turn in cards
 	 * 
 	 * @param turnInCards the turnInCards to set
 	 */
@@ -274,9 +274,10 @@ public class Player implements Serializable{
 
 	/**
 	 * Strategy function for Attack
+	 * 
 	 * @param attackerTerritory Territory Attacker
 	 * @param opponentTerritory Territory Opponent
-	 * @param allOutMode boolean 
+	 * @param allOutMode true or false
 	 * @param gameInstructions GameInstructions message
 	 * @param controller GameController object
 	 */
@@ -295,7 +296,8 @@ public class Player implements Serializable{
 	 * @param toTerritory Territory From
 	 * @param fromTerritory Territory To
 	 */
-	public void fortify(GameInstructions gameInstructions, GameController controller, Territory fromTerritory, Territory toTerritory, int fortifyNum) {
+	public void fortify(GameInstructions gameInstructions, GameController controller, Territory fromTerritory,
+			Territory toTerritory, int fortifyNum) {
 		logger.log(Level.INFO, "Inside fortify function");
 		this.strategy.fortify(this, fromTerritory, toTerritory, fortifyNum, gameInstructions, controller);
 		this.setPhase("REINFORCEMENT");

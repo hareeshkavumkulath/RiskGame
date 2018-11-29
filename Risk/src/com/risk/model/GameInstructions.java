@@ -55,6 +55,6 @@ public class GameInstructions extends Observable implements Serializable{
 		this.instructions = this.instructions + instructions;
 		setChanged();
 		notifyObservers(instructions);
-	}	
+	}
 
 }
