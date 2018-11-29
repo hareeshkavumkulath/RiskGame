@@ -647,4 +647,39 @@ public class GameControllerTests {
             assertFalse(attackStatus.isHasWon());
         }
     }
+    
+    // =====================EndGame=====================
+    // =====================isWinner()=====================
+    /**
+     * Testing isWinner() function return value
+     */
+    @Test
+    @DisplayName("isWinner()=>TRUE")
+    void isWinnerTestTrue() {
+            
+        String mapFolder = System.getProperty("user.dir") + "/src/com/risk/tests/controller/maps/";
+        String world = mapFolder + "world.map";
+        MapMessage worldResult = mapToMapMessage(world);
+        SetPlayersWindow setPlayersWindow = new SetPlayersWindow(worldResult.getMap());
+        
+        //Number of armies for 5 players
+        GameController gc = new GameController();
+        int numArmies = gc.getPlayersArmies(5);
+        
+        //Setting Players
+        //5 Players with different strategies
+        ArrayList<Player> playerList = new ArrayList<Player>();
+         playerList.add(setPlayer("Player1",false,numArmies,"ADD","Human"));
+        
+         //Setting Cards
+         ArrayList<Card> cards = gc.loadCards(worldResult.map.getTerritories().size());
+         
+        //Passing all the Game elements to the function
+         gameController = setPlayersWindow.setStartupPhase(worldResult.map,cards,playerList);
+         
+         assertTrue(gameController.isWinner());
+            
+    }
+
+    
 }
