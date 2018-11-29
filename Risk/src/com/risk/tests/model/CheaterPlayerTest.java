@@ -103,6 +103,7 @@ public class CheaterPlayerTest {
     /**
      * Testing reinforce() function for Cheater
      */
+    
     @Test
     @DisplayName("Cheater reinforcement")
     void reinforceTest(){
@@ -135,6 +136,7 @@ public class CheaterPlayerTest {
     	ArrayList<Integer> numOfArmiesBefore = new ArrayList<Integer>();
     	for (Territory t :playerList.get(4).getOwnedTerritories()) {
     		numOfArmiesBefore.add(t.getNumberOfArmies()*2);
+    		System.out.println(t.getNumberOfArmies());
     	}
     	
     	
@@ -148,12 +150,19 @@ public class CheaterPlayerTest {
     			gameController);
     	
     	
+    	int i=0;
+    	for (Territory t :playerList.get(4).getOwnedTerritories()) {
+    		
+    		assertEquals( Integer.valueOf(t.getNumberOfArmies()),numOfArmiesBefore.get(i));
+    		i++;
+    	}
     	
     }
 
     /**
      * Testing attack() function for Cheater
      */
+    
     
     @Test
     @DisplayName("Cheater Attack")
