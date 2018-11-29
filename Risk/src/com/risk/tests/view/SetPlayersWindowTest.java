@@ -4,6 +4,9 @@ package com.risk.tests.view;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
+
+import static org.junit.Assert.assertEquals;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -89,9 +92,17 @@ public class SetPlayersWindowTest {
     	 
     	//Passing all the Game elements to the function
     	 GameController gameController = setPlayersWindow.setStartupPhase(worldResult.map,cards,playerList);
+    	 gameController.game.setCurrentPlayer(gameController.assignTerritories());
     	 
     	//testing the result
     	
+    	assertEquals(gameController.game.cards.size(),worldResult.map.getTerritories().size());
+    	
+    	int totalTerritories = 0;
+    	for (Player player: playerList ) {
+    		totalTerritories+=player.getOwnedTerritories().size();
+    	}	
+    	assertEquals(worldResult.map.getTerritories().size(),totalTerritories);
     }
 
     
