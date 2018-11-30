@@ -658,7 +658,7 @@ public class GameController {
 		}
 
 		logger.log(Level.INFO,
-				attackerTerr.getRuler().getName() + " has " + numAttackerArmies + " dices and the results are ");
+				opponentTerr.getRuler().getName() + " has " + numOpponentArmies + " dices and the results are ");
 		message.append(
 				opponentTerr.getRuler().getName() + " has " + numOpponentArmies + " dices and the results are\n");
 		for (int i = 0; i < numOpponentArmies; i++) {
