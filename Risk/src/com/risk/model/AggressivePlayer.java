@@ -26,14 +26,10 @@ public class AggressivePlayer implements Strategy, Serializable {
 	/**
 	 * Aggressive player reinforce
 	 * 
-	 * @param currentPlayer
-	 *            Player
-	 * @param territory
-	 *            Target Territory
-	 * @param gameInstructions
-	 *            GameInstructions message
-	 * @param controller
-	 *            GameController
+	 * @param currentPlayer Player
+	 * @param territory Territory Target
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController
 	 */
 	@Override
 	public void reinforce(Player currentPlayer, Territory territory, GameInstructions gameInstructions,
@@ -67,18 +63,12 @@ public class AggressivePlayer implements Strategy, Serializable {
 	/**
 	 * Aggressive player attack
 	 * 
-	 * @param currentPlayer
-	 *            player object
-	 * @param attackerTerritory
-	 *            Territory Attacking
-	 * @param opponentTerritory
-	 *            Territory defending
-	 * @param allOutMode
-	 *            boolean attacking mode
-	 * @param gameInstructions
-	 *            GameInstructions Object
-	 * @param controller
-	 *            GameController
+	 * @param currentPlayer player object
+	 * @param attackerTerritory Territory Attacking
+	 * @param opponentTerritory Territory defending
+	 * @param allOutMode boolean attacking mode
+	 * @param gameInstructions GameInstructions Object
+	 * @param controller GameController
 	 */
 	@Override
 	public void attack(Player currentPlayer, Territory attackerTerritory, Territory opponentTerritory,
@@ -113,18 +103,12 @@ public class AggressivePlayer implements Strategy, Serializable {
 	/**
 	 * Aggressive player fortify
 	 * 
-	 * @param currentPlayer
-	 *            Player
-	 * @param fromTerritory
-	 *            Territory from
-	 * @param toTerritory
-	 *            Territory To
-	 * @param fortifyNum
-	 *            int fortification number
-	 * @param gameInstructions
-	 *            GameInstructions message
-	 * @param controller
-	 *            GameController
+	 * @param currentPlayer Player
+	 * @param fromTerritory Territory from
+	 * @param toTerritory Territory To
+	 * @param fortifyNum int fortification number
+	 * @param gameInstructions GameInstructions message
+	 * @param controller GameController
 	 */
 	@Override
 	public void fortify(Player currentPlayer, Territory fromTerritory, Territory toTerritory, int fortifyNum,
